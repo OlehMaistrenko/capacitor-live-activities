@@ -1,0 +1,1161 @@
+{
+  "api": {
+    "name": "LiveActivitiesPlugin",
+    "slug": "liveactivitiesplugin",
+    "docs": "Main interface for Live Activity plugin functionality",
+    "tags": [],
+    "methods": [
+      {
+        "name": "startActivity",
+        "signature": "(options: LiveActivitiesOptions) => any",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "Configuration options for the Live Activity",
+            "type": "LiveActivitiesOptions"
+          }
+        ],
+        "returns": "any",
+        "tags": [
+          {
+            "name": "param",
+            "text": "options Configuration options for the Live Activity"
+          },
+          {
+            "name": "returns",
+            "text": "Promise with the generated activity ID"
+          }
+        ],
+        "docs": "Start a new Live Activity",
+        "complexTypes": [
+          "LiveActivitiesOptions"
+        ],
+        "slug": "startactivity"
+      },
+      {
+        "name": "updateActivity",
+        "signature": "(options: UpdateActivityOptions) => any",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "Update options including activity ID and new data",
+            "type": "UpdateActivityOptions"
+          }
+        ],
+        "returns": "any",
+        "tags": [
+          {
+            "name": "param",
+            "text": "options Update options including activity ID and new data"
+          },
+          {
+            "name": "returns",
+            "text": "Promise that resolves when update is complete"
+          }
+        ],
+        "docs": "Update an existing Live Activity",
+        "complexTypes": [
+          "UpdateActivityOptions"
+        ],
+        "slug": "updateactivity"
+      },
+      {
+        "name": "endActivity",
+        "signature": "(options: EndActivityOptions) => any",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "Options including activity ID and final data",
+            "type": "EndActivityOptions"
+          }
+        ],
+        "returns": "any",
+        "tags": [
+          {
+            "name": "param",
+            "text": "options Options including activity ID and final data"
+          },
+          {
+            "name": "returns",
+            "text": "Promise that resolves when activity is ended"
+          }
+        ],
+        "docs": "End a Live Activity",
+        "complexTypes": [
+          "EndActivityOptions"
+        ],
+        "slug": "endactivity"
+      },
+      {
+        "name": "getAllActivities",
+        "signature": "() => any",
+        "parameters": [],
+        "returns": "any",
+        "tags": [
+          {
+            "name": "returns",
+            "text": "Promise with array of all active activities"
+          }
+        ],
+        "docs": "Get all active Live Activities",
+        "complexTypes": [
+          "ActivityInfo"
+        ],
+        "slug": "getallactivities"
+      },
+      {
+        "name": "debugActivities",
+        "signature": "() => any",
+        "parameters": [],
+        "returns": "any",
+        "tags": [
+          {
+            "name": "returns",
+            "text": "Promise with debug information and activity count"
+          }
+        ],
+        "docs": "Get debug information about Live Activities",
+        "complexTypes": [
+          "DebugActivities"
+        ],
+        "slug": "debugactivities"
+      },
+      {
+        "name": "saveImage",
+        "signature": "(options: { imageData: string; name: string; compressionQuality?: number; }) => any",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "Image save options",
+            "type": "{ imageData: string; name: string; compressionQuality?: number | undefined; }"
+          }
+        ],
+        "returns": "any",
+        "tags": [
+          {
+            "name": "param",
+            "text": "options Image save options"
+          },
+          {
+            "name": "returns",
+            "text": "Promise with success status and image name"
+          }
+        ],
+        "docs": "Save an image for use in Live Activities",
+        "complexTypes": [],
+        "slug": "saveimage"
+      },
+      {
+        "name": "removeImage",
+        "signature": "(options: { name: string; }) => any",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "Options with image name to remove",
+            "type": "{ name: string; }"
+          }
+        ],
+        "returns": "any",
+        "tags": [
+          {
+            "name": "param",
+            "text": "options Options with image name to remove"
+          },
+          {
+            "name": "returns",
+            "text": "Promise with success status"
+          }
+        ],
+        "docs": "Remove a saved image",
+        "complexTypes": [],
+        "slug": "removeimage"
+      },
+      {
+        "name": "listImages",
+        "signature": "() => any",
+        "parameters": [],
+        "returns": "any",
+        "tags": [
+          {
+            "name": "returns",
+            "text": "Promise with array of image names"
+          }
+        ],
+        "docs": "List all saved images",
+        "complexTypes": [],
+        "slug": "listimages"
+      },
+      {
+        "name": "cleanupImages",
+        "signature": "() => any",
+        "parameters": [],
+        "returns": "any",
+        "tags": [
+          {
+            "name": "returns",
+            "text": "Promise that resolves when cleanup is complete"
+          }
+        ],
+        "docs": "Clean up all saved images",
+        "complexTypes": [],
+        "slug": "cleanupimages"
+      }
+    ],
+    "properties": []
+  },
+  "interfaces": [
+    {
+      "name": "DynamicIslandLayout",
+      "slug": "dynamicislandlayout",
+      "docs": "Dynamic Island layout configuration for different states",
+      "tags": [],
+      "methods": [],
+      "properties": [
+        {
+          "name": "expanded",
+          "tags": [],
+          "docs": "Expanded state layout with multiple areas",
+          "complexTypes": [
+            "LayoutElement"
+          ],
+          "type": "{ leading?: LayoutElement | undefined; trailing?: LayoutElement | undefined; center?: LayoutElement | undefined; bottom?: LayoutElement | undefined; } | undefined"
+        },
+        {
+          "name": "compactLeading",
+          "tags": [],
+          "docs": "Compact leading state configuration",
+          "complexTypes": [
+            "LayoutElement"
+          ],
+          "type": "{ element: LayoutElement; } | undefined"
+        },
+        {
+          "name": "compactTrailing",
+          "tags": [],
+          "docs": "Compact trailing state configuration",
+          "complexTypes": [
+            "LayoutElement"
+          ],
+          "type": "{ element: LayoutElement; } | undefined"
+        },
+        {
+          "name": "minimal",
+          "tags": [],
+          "docs": "Minimal state configuration",
+          "complexTypes": [
+            "LayoutElement"
+          ],
+          "type": "{ element: LayoutElement; } | undefined"
+        }
+      ]
+    },
+    {
+      "name": "UpdateActivityOptions",
+      "slug": "updateactivityoptions",
+      "docs": "Options for updating an existing Live Activity",
+      "tags": [
+        {
+          "text": "Configuration Types",
+          "name": "category"
+        },
+        {
+          "text": "Configuration for updating an active Live Activity with new data and optional alert notifications.",
+          "name": "description"
+        },
+        {
+          "text": "```typescript\nconst updateOptions: UpdateActivityOptions = {\n  activityId: \"activity-123\",\n  data: { progress: 0.75, status: \"In Progress\" },\n  alertConfiguration: {\n    title: \"Progress Update\",\n    body: \"Task is 75% complete\",\n    sound: \"default\"\n  }\n};\n```",
+          "name": "example"
+        }
+      ],
+      "methods": [],
+      "properties": [
+        {
+          "name": "activityId",
+          "tags": [],
+          "docs": "ID of the activity to update",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "data",
+          "tags": [],
+          "docs": "New data for the activity",
+          "complexTypes": [
+            "Record"
+          ],
+          "type": "Record<string, any>"
+        },
+        {
+          "name": "alertConfiguration",
+          "tags": [],
+          "docs": "Alert configuration for the update (optional)",
+          "complexTypes": [],
+          "type": "{ title: string; body: string; sound?: string | undefined; } | undefined"
+        }
+      ]
+    },
+    {
+      "name": "EndActivityOptions",
+      "slug": "endactivityoptions",
+      "docs": "Options for ending a Live Activity",
+      "tags": [
+        {
+          "text": "Configuration Types",
+          "name": "category"
+        },
+        {
+          "text": "Configuration for ending an active Live Activity with final data.",
+          "name": "description"
+        },
+        {
+          "text": "```typescript\nconst endOptions: EndActivityOptions = {\n  activityId: \"activity-123\",\n  data: { status: \"Completed\", finalResult: \"Success\" }\n};\n```",
+          "name": "example"
+        }
+      ],
+      "methods": [],
+      "properties": [
+        {
+          "name": "activityId",
+          "tags": [],
+          "docs": "ID of the activity to end",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "data",
+          "tags": [],
+          "docs": "Final data for the activity",
+          "complexTypes": [
+            "Record"
+          ],
+          "type": "Record<string, any>"
+        }
+      ]
+    },
+    {
+      "name": "ActivityInfo",
+      "slug": "activityinfo",
+      "docs": "Information about an active Live Activity",
+      "tags": [
+        {
+          "text": "Data Types",
+          "name": "category"
+        },
+        {
+          "text": "Complete information about an active Live Activity including its configuration and current state.",
+          "name": "description"
+        }
+      ],
+      "methods": [],
+      "properties": [
+        {
+          "name": "id",
+          "tags": [],
+          "docs": "Unique identifier of the activity",
+          "complexTypes": [],
+          "type": "string"
+        },
+        {
+          "name": "layout",
+          "tags": [],
+          "docs": "Layout configuration of the activity",
+          "complexTypes": [
+            "ActivityLayout"
+          ],
+          "type": "ActivityLayout"
+        },
+        {
+          "name": "data",
+          "tags": [],
+          "docs": "Current data of the activity",
+          "complexTypes": [
+            "Record"
+          ],
+          "type": "Record<string, any>"
+        },
+        {
+          "name": "staleDate",
+          "tags": [],
+          "docs": "Date when the activity becomes stale (optional)",
+          "complexTypes": [],
+          "type": "number | undefined"
+        },
+        {
+          "name": "relevanceScore",
+          "tags": [],
+          "docs": "Relevance score of the activity (optional)",
+          "complexTypes": [],
+          "type": "number | undefined"
+        }
+      ]
+    },
+    {
+      "name": "DebugActivities",
+      "slug": "debugactivities",
+      "docs": "Debug information about Live Activities",
+      "tags": [
+        {
+          "text": "Data Types",
+          "name": "category"
+        },
+        {
+          "text": "Debugging information containing all active activities and their count.",
+          "name": "description"
+        }
+      ],
+      "methods": [],
+      "properties": [
+        {
+          "name": "activities",
+          "tags": [],
+          "docs": "Array of all activities",
+          "complexTypes": [
+            "ActivityInfo"
+          ],
+          "type": "{}"
+        },
+        {
+          "name": "count",
+          "tags": [],
+          "docs": "Total count of activities",
+          "complexTypes": [],
+          "type": "number"
+        }
+      ]
+    }
+  ],
+  "enums": [],
+  "typeAliases": [
+    {
+      "name": "LiveActivitiesOptions",
+      "slug": "liveactivitiesoptions",
+      "docs": "Configuration options for starting a Live Activity",
+      "types": [
+        {
+          "text": "{\n  /** Layout configuration for the activity */\n  layout: ActivityLayout;\n  /** Dynamic Island layout configuration (optional) */\n  dynamicIslandLayout?: DynamicIslandLayout;\n  /** Dynamic data to be displayed in the activity */\n  data: Record<string, any>;\n  /** Date when the activity becomes stale (optional) */\n  staleDate?: number;\n  /** Relevance score for activity prioritization (optional) */\n  relevanceScore?: number;\n  /** Behavior configuration for the activity */\n  behavior: LiveActivitiesBehavior;\n}",
+          "complexTypes": [
+            "ActivityLayout",
+            "DynamicIslandLayout",
+            "Record",
+            "LiveActivitiesBehavior"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ActivityLayout",
+      "slug": "activitylayout",
+      "docs": "Layout configuration for an activity",
+      "types": [
+        {
+          "text": "LayoutElement",
+          "complexTypes": [
+            "LayoutElement"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "LayoutElement",
+      "slug": "layoutelement",
+      "docs": "Union type representing any layout element with a unique ID",
+      "types": [
+        {
+          "text": "Prettify<\n  {\n    /** Unique identifier for the element */\n    id: string;\n  } & (LayoutElementContainer | LayoutElementText | LayoutElementImage | LayoutElementProgress | LayoutElementTimer)\n>",
+          "complexTypes": [
+            "Prettify",
+            "LayoutElementContainer",
+            "LayoutElementText",
+            "LayoutElementImage",
+            "LayoutElementProgress",
+            "LayoutElementTimer"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Prettify",
+      "slug": "prettify",
+      "docs": "Utility type to make complex types more readable in IntelliSense",
+      "types": [
+        {
+          "text": "{\n  [K in keyof T]: Prettify<T[K]>;\n} & {}",
+          "complexTypes": [
+            "T",
+            "Prettify",
+            "K"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "LayoutElementContainer",
+      "slug": "layoutelementcontainer",
+      "docs": "Container element that can hold other layout elements",
+      "types": [
+        {
+          "text": "Prettify<{\n  /** Element type identifier */\n  type: 'container';\n  /** Container properties as array of property objects */\n  properties?: ContainerPropertyObject;\n  /** Child elements contained within this container */\n  children: LayoutElement[];\n}>",
+          "complexTypes": [
+            "Prettify",
+            "ContainerPropertyObject",
+            "LayoutElement"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ContainerPropertyObject",
+      "slug": "containerpropertyobject",
+      "docs": "Container-specific property objects",
+      "types": [
+        {
+          "text": "(BasePropertyObject | ContainerPropertyObjectBase | ContainerPropertyObjectVertical)[]",
+          "complexTypes": [
+            "BasePropertyObject",
+            "ContainerPropertyObjectBase",
+            "ContainerPropertyObjectVertical"
+          ]
+        },
+        {
+          "text": "(BasePropertyObject | ContainerPropertyObjectBase | ContainerPropertyObjectHorizontal)[]",
+          "complexTypes": [
+            "BasePropertyObject",
+            "ContainerPropertyObjectBase",
+            "ContainerPropertyObjectHorizontal"
+          ]
+        },
+        {
+          "text": "(BasePropertyObject | ContainerPropertyObjectBase | ContainerPropertyObjectStack)[]",
+          "complexTypes": [
+            "BasePropertyObject",
+            "ContainerPropertyObjectBase",
+            "ContainerPropertyObjectStack"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "BasePropertyObject",
+      "slug": "basepropertyobject",
+      "docs": "Base properties that all layout elements can have as individual objects",
+      "types": [
+        {
+          "text": "{ offset: { x?: number; y?: number } }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ zIndex: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ opacity: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ rotation: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ scale: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ width: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ height: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ maxWidth: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ maxHeight: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ minWidth: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ minHeight: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ backgroundGradient: { colors: ColorString[]; startPoint: GradientPoint; endPoint: GradientPoint } }",
+          "complexTypes": [
+            "ColorString",
+            "GradientPoint"
+          ]
+        },
+        {
+          "text": "{ backgroundCapsule: { foregroundColor: ColorString } }",
+          "complexTypes": [
+            "ColorString"
+          ]
+        },
+        {
+          "text": "{ paddingVertical: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ paddingHorizontal: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ multilineTextAlignment: 'leading' | 'center' | 'trailing' | 'left' | 'right' }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ shadow: { color?: ColorString; radius?: number; x?: number; y?: number } }",
+          "complexTypes": [
+            "ColorString"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ColorString",
+      "slug": "colorstring",
+      "docs": "",
+      "types": [
+        {
+          "text": "'primary'",
+          "complexTypes": []
+        },
+        {
+          "text": "'secondary'",
+          "complexTypes": []
+        },
+        {
+          "text": "'accent'",
+          "complexTypes": []
+        },
+        {
+          "text": "'red'",
+          "complexTypes": []
+        },
+        {
+          "text": "'blue'",
+          "complexTypes": []
+        },
+        {
+          "text": "'green'",
+          "complexTypes": []
+        },
+        {
+          "text": "'yellow'",
+          "complexTypes": []
+        },
+        {
+          "text": "'orange'",
+          "complexTypes": []
+        },
+        {
+          "text": "'purple'",
+          "complexTypes": []
+        },
+        {
+          "text": "'pink'",
+          "complexTypes": []
+        },
+        {
+          "text": "'black'",
+          "complexTypes": []
+        },
+        {
+          "text": "'white'",
+          "complexTypes": []
+        },
+        {
+          "text": "'gray'",
+          "complexTypes": []
+        },
+        {
+          "text": "'clear'",
+          "complexTypes": []
+        },
+        {
+          "text": "`#${string}`",
+          "complexTypes": []
+        }
+      ]
+    },
+    {
+      "name": "GradientPoint",
+      "slug": "gradientpoint",
+      "docs": "Background Gradient point options for defining gradient direction",
+      "types": [
+        {
+          "text": "'top'",
+          "complexTypes": []
+        },
+        {
+          "text": "'bottom'",
+          "complexTypes": []
+        },
+        {
+          "text": "'leading'",
+          "complexTypes": []
+        },
+        {
+          "text": "'trailing'",
+          "complexTypes": []
+        },
+        {
+          "text": "'topLeading'",
+          "complexTypes": []
+        },
+        {
+          "text": "'topTrailing'",
+          "complexTypes": []
+        },
+        {
+          "text": "'bottomLeading'",
+          "complexTypes": []
+        },
+        {
+          "text": "'bottomTrailing'",
+          "complexTypes": []
+        },
+        {
+          "text": "'center'",
+          "complexTypes": []
+        }
+      ]
+    },
+    {
+      "name": "ContainerPropertyObjectBase",
+      "slug": "containerpropertyobjectbase",
+      "docs": "",
+      "types": [
+        {
+          "text": "{ spacing: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ padding: number | boolean }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ foregroundColor: ColorString }",
+          "complexTypes": [
+            "ColorString"
+          ]
+        },
+        {
+          "text": "{ backgroundColor: ColorString }",
+          "complexTypes": [
+            "ColorString"
+          ]
+        },
+        {
+          "text": "{ cornerRadius: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ borderWidth: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ borderColor: ColorString }",
+          "complexTypes": [
+            "ColorString"
+          ]
+        },
+        {
+          "text": "{ alignment: ContainerPropertyObjectStackAlignment }",
+          "complexTypes": [
+            "ContainerPropertyObjectStackAlignment"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ContainerPropertyObjectStackAlignment",
+      "slug": "containerpropertyobjectstackalignment",
+      "docs": "",
+      "types": [
+        {
+          "text": "'top'",
+          "complexTypes": []
+        },
+        {
+          "text": "'top-leading'",
+          "complexTypes": []
+        },
+        {
+          "text": "'top-trailing'",
+          "complexTypes": []
+        },
+        {
+          "text": "'top-left'",
+          "complexTypes": []
+        },
+        {
+          "text": "'top-right'",
+          "complexTypes": []
+        },
+        {
+          "text": "'bottom'",
+          "complexTypes": []
+        },
+        {
+          "text": "'bottom-left'",
+          "complexTypes": []
+        },
+        {
+          "text": "'bottom-right'",
+          "complexTypes": []
+        },
+        {
+          "text": "'center'",
+          "complexTypes": []
+        },
+        {
+          "text": "'center-first-text-baseline'",
+          "complexTypes": []
+        },
+        {
+          "text": "'center-last-text-baseline'",
+          "complexTypes": []
+        },
+        {
+          "text": "'leading'",
+          "complexTypes": []
+        },
+        {
+          "text": "'leading-first-text-baseline'",
+          "complexTypes": []
+        },
+        {
+          "text": "'leading-last-text-baseline'",
+          "complexTypes": []
+        },
+        {
+          "text": "'left'",
+          "complexTypes": []
+        },
+        {
+          "text": "'left-first-text-baseline'",
+          "complexTypes": []
+        },
+        {
+          "text": "'left-last-text-baseline'",
+          "complexTypes": []
+        },
+        {
+          "text": "'trailing'",
+          "complexTypes": []
+        },
+        {
+          "text": "'trailing-first-text-baseline'",
+          "complexTypes": []
+        },
+        {
+          "text": "'trailing-last-text-baseline'",
+          "complexTypes": []
+        },
+        {
+          "text": "'right'",
+          "complexTypes": []
+        },
+        {
+          "text": "'right-first-text-baseline'",
+          "complexTypes": []
+        },
+        {
+          "text": "'right-last-text-baseline'",
+          "complexTypes": []
+        }
+      ]
+    },
+    {
+      "name": "ContainerPropertyObjectVertical",
+      "slug": "containerpropertyobjectvertical",
+      "docs": "",
+      "types": [
+        {
+          "text": "{ direction: 'vertical' }",
+          "complexTypes": []
+        },
+        {
+          "text": "{\n      insideAlignment:\n        | 'center'\n        | 'leading'\n        | 'left'\n        | 'list-row-separator-leading'\n        | 'list-row-separator-trailing'\n        | 'list-row-separator-left'\n        | 'list-row-separator-right'\n        | 'trailing'\n        | 'right';\n    }",
+          "complexTypes": []
+        }
+      ]
+    },
+    {
+      "name": "ContainerPropertyObjectHorizontal",
+      "slug": "containerpropertyobjecthorizontal",
+      "docs": "",
+      "types": [
+        {
+          "text": "{ direction: 'horizontal' }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ insideAlignment: 'bottom' | 'center' | 'first-text-baseline' | 'last-text-baseline' | 'top' }",
+          "complexTypes": []
+        }
+      ]
+    },
+    {
+      "name": "ContainerPropertyObjectStack",
+      "slug": "containerpropertyobjectstack",
+      "docs": "",
+      "types": [
+        {
+          "text": "{ direction: 'stack' }",
+          "complexTypes": []
+        },
+        {
+          "text": "{\n      insideAlignment: ContainerPropertyObjectStackAlignment;\n    }",
+          "complexTypes": [
+            "ContainerPropertyObjectStackAlignment"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "LayoutElementText",
+      "slug": "layoutelementtext",
+      "docs": "Text element for displaying text content",
+      "types": [
+        {
+          "text": "Prettify<{\n  /** Element type identifier */\n  type: 'text';\n  /** Text properties as array of property objects */\n  properties: TextPropertyObject[];\n}>",
+          "complexTypes": [
+            "Prettify",
+            "TextPropertyObject"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "TextPropertyObject",
+      "slug": "textpropertyobject",
+      "docs": "Text-specific property objects",
+      "types": [
+        {
+          "text": "BasePropertyObject",
+          "complexTypes": [
+            "BasePropertyObject"
+          ]
+        },
+        {
+          "text": "{ text: string }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ fontSize: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ fontWeight: 'regular' | 'medium' | 'semibold' | 'bold' | 'heavy' | 'light' | 'thin' | 'black' }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ fontFamily: string }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ color: ColorString }",
+          "complexTypes": [
+            "ColorString"
+          ]
+        },
+        {
+          "text": "{ alignment: 'leading' | 'center' | 'trailing' | 'left' | 'right' }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ lineLimit: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ italic: boolean }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ underline: boolean }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ strikethrough: boolean }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ monospacedDigit: boolean }",
+          "complexTypes": []
+        }
+      ]
+    },
+    {
+      "name": "LayoutElementImage",
+      "slug": "layoutelementimage",
+      "docs": "Image element for displaying images from various sources",
+      "types": [
+        {
+          "text": "Prettify<{\n  /** Element type identifier */\n  type: 'image';\n  /** Image properties as array of property objects */\n  properties: ImagePropertyObject[];\n}>",
+          "complexTypes": [
+            "Prettify",
+            "ImagePropertyObject"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ImagePropertyObject",
+      "slug": "imagepropertyobject",
+      "docs": "Image-specific property objects",
+      "types": [
+        {
+          "text": "BasePropertyObject",
+          "complexTypes": [
+            "BasePropertyObject"
+          ]
+        },
+        {
+          "text": "{ contentMode: 'fit' | 'fill' }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ cornerRadius: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ systeName: string }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ color: ColorString }",
+          "complexTypes": [
+            "ColorString"
+          ]
+        },
+        {
+          "text": "{ url: string }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ appGroup: string }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ asset: string }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ base64: string }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ resizable: boolean }",
+          "complexTypes": []
+        }
+      ]
+    },
+    {
+      "name": "LayoutElementProgress",
+      "slug": "layoutelementprogress",
+      "docs": "Progress bar element for showing completion progress",
+      "types": [
+        {
+          "text": "Prettify<{\n  /** Element type identifier */\n  type: 'progress';\n  /** Progress bar properties as array of property objects */\n  properties: ProgressPropertyObject[];\n}>",
+          "complexTypes": [
+            "Prettify",
+            "ProgressPropertyObject"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ProgressPropertyObject",
+      "slug": "progresspropertyobject",
+      "docs": "Progress-specific property objects",
+      "types": [
+        {
+          "text": "BasePropertyObject",
+          "complexTypes": [
+            "BasePropertyObject"
+          ]
+        },
+        {
+          "text": "{ value: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ total: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ color: ColorString }",
+          "complexTypes": [
+            "ColorString"
+          ]
+        },
+        {
+          "text": "{ backgroundColor: ColorString }",
+          "complexTypes": [
+            "ColorString"
+          ]
+        },
+        {
+          "text": "{ height: number }",
+          "complexTypes": []
+        }
+      ]
+    },
+    {
+      "name": "LayoutElementTimer",
+      "slug": "layoutelementtimer",
+      "docs": "Timer element for displaying countdown or time information",
+      "types": [
+        {
+          "text": "Prettify<{\n  /** Element type identifier */\n  type: 'timer';\n  /** Timer properties as array of property objects */\n  properties: TimerPropertyObject[];\n}>",
+          "complexTypes": [
+            "Prettify",
+            "TimerPropertyObject"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "TimerPropertyObject",
+      "slug": "timerpropertyobject",
+      "docs": "Timer-specific property objects",
+      "types": [
+        {
+          "text": "TextPropertyObject",
+          "complexTypes": [
+            "TextPropertyObject"
+          ]
+        },
+        {
+          "text": "{ endTime: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ style: 'timer' | 'relative' | 'date' | 'time' | 'offset' | 'countdown' }",
+          "complexTypes": []
+        }
+      ]
+    },
+    {
+      "name": "LiveActivitiesBehavior",
+      "slug": "liveactivitiesbehavior",
+      "docs": "Behavior configuration for a Live Activity",
+      "types": [
+        {
+          "text": "{\n  backgroundTint?: ColorString;\n  systemActionForegroundColor: ColorString;\n  widgetUrl: string;\n  keyLineTint: ColorString;\n}",
+          "complexTypes": [
+            "ColorString"
+          ]
+        }
+      ]
+    }
+  ],
+  "pluginConfigs": []
+}
