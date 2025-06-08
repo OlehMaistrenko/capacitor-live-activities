@@ -45,7 +45,7 @@ extension JSONLayoutParser {
             // Asset do bundle
             Logger.viewCycle.error("📀 \(element.id) -> buildImageView -> asset: \(assetName)")
             imageView = AnyView(
-                Image(assetName)
+                Image(assetName).resizable()
             )
         } else if let base64String = getString(from: resolveValue(element.properties["base64"], with: data)) {
             // Base64
