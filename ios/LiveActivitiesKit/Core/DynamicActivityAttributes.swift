@@ -1,6 +1,9 @@
 import ActivityKit
 import Foundation
+import OSLog
+import Compression
 
+@available(iOS 16.2, *)
 public struct DynamicActivityAttributes: ActivityAttributes {
     @available(iOS 16.2, *)
     public struct ContentState: Codable, Hashable {
@@ -15,9 +18,13 @@ public struct DynamicActivityAttributes: ActivityAttributes {
     
     public var layoutJSON: String
     public var activityId: String
+    public var behavior: [String: AnyCodable]?
     
-    public init(layoutJSON: String, activityId: String) {
-        self.layoutJSON = layoutJSON
+    public init(layoutJSON: String, activityId: String, behavior: [String: AnyCodable]? = nil) {
         self.activityId = activityId
+        // Keep layout as-is (compressed or uncompressed)
+        // Decompression will happen in the widget parser
+        self.layoutJSON = layoutJSON
+        self.behavior = behavior
     }
 }

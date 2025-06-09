@@ -1,0 +1,142 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Container Examples</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Container Examples</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="content-container">
+    <!-- Header Info -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Container Layout Examples</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Explore complex layouts using VStack, HStack, ZStack with gradients, borders, and nested containers.</p>
+        @if (currentActivityId) {
+          <ion-chip color="success">
+            <ion-label>Active ID: {{ currentActivityId }}</ion-label>
+          </ion-chip>
+        }
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Stack Layout Example -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>ZStack with Gradient Background</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Demonstrates ZStack (overlay) layout with gradient background and content overlay using two containers.</p>
+        <ion-button expand="block" (click)="startStackLayoutExample()">
+          <fa-icon icon="play-circle" slot="start" />
+          Start Stack Layout
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Complex Layout Example -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Multi-Container Layout</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Complex layout combining VStack, HStack, and ZStack with gradient header, nested containers, and metric cards.</p>
+        <ion-button expand="block" (click)="startComplexLayoutExample()">
+          <fa-icon icon="play-circle" slot="start" />
+          Start Complex Layout
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Dashboard Example -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Analytics Dashboard Grid</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Dashboard-style layout with header and three-column grid showing statistics with icons, values, and labels.</p>
+        <ion-button expand="block" (click)="startDashboardExample()">
+          <fa-icon icon="play-circle" slot="start" />
+          Start Dashboard Layout
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Activity Controls -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Activity Controls</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item button (click)="updateActivity()" [disabled]="!currentActivityId">
+            <fa-icon icon="refresh" slot="start" />
+            <ion-label>Update Current Activity</ion-label>
+          </ion-item>
+
+          <ion-item button (click)="endActivity()" [disabled]="!currentActivityId">
+            <fa-icon icon="stop-circle" slot="start" />
+            <ion-label>End Current Activity</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Container Properties Reference -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Container Properties Used</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-label>
+              <h3>Layout Directions</h3>
+              <p>vertical (VStack), horizontal (HStack), stack (ZStack)</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <h3>Spacing & Padding</h3>
+              <p>spacing - Between children, padding - Inside container</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <h3>Background Effects</h3>
+              <p>backgroundColor, backgroundGradient, cornerRadius, borderWidth</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <h3>Alignment Options</h3>
+              <p>insideAlignment - How children align within container</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <h3>Gradient Points</h3>
+              <p>top, bottom, leading, trailing, topLeading, bottomTrailing, center</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <h3>Common Patterns</h3>
+              <p>Cards, headers, grids, overlays, metric displays, dashboards</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

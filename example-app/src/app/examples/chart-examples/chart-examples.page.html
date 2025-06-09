@@ -1,0 +1,219 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Chart Examples</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Charts</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="content-container">
+    <!-- Main Card -->
+    <ion-card class="main-card">
+      <ion-card-header>
+        <ion-card-title class="card-title">
+          <fa-icon icon="chart-line" class="title-icon"></fa-icon>
+          Chart Components
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p class="description">
+          Demonstra o novo componente `chart` que cria gráficos dinâmicos perfeitos para
+          Live Activities de finanças, fitness, analytics e muito mais.
+        </p>
+
+        <!-- Chart Types -->
+        <div class="chart-types">
+          <div class="chart-type">
+            <fa-icon icon="chart-line" color="primary"></fa-icon>
+            <div class="chart-info">
+              <strong>Line Chart</strong>
+              <p>Tendências e séries temporais</p>
+            </div>
+          </div>
+
+          <div class="chart-type">
+            <fa-icon icon="chart-bar" color="warning"></fa-icon>
+            <div class="chart-info">
+              <strong>Bar Chart</strong>
+              <p>Comparações e categorias</p>
+            </div>
+          </div>
+
+          <div class="chart-type">
+            <fa-icon icon="chart-line" color="success"></fa-icon>
+            <div class="chart-info">
+              <strong>Area Chart</strong>
+              <p>Volumes e distribuições</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Features -->
+        <div class="features">
+          <div class="feature">
+            <fa-icon icon="palette" color="primary"></fa-icon>
+            <span>Cores customizáveis</span>
+          </div>
+          <div class="feature">
+            <fa-icon icon="arrows-alt" color="primary"></fa-icon>
+            <span>Dimensões flexíveis</span>
+          </div>
+          <div class="feature">
+            <fa-icon icon="sliders-h" color="primary"></fa-icon>
+            <span>Smooth curves</span>
+          </div>
+          <div class="feature">
+            <fa-icon icon="dot-circle" color="primary"></fa-icon>
+            <span>Points opcionais</span>
+          </div>
+        </div>
+
+        <!-- Use Cases -->
+        <div class="use-cases">
+          <h4>Casos de Uso:</h4>
+          <ul>
+            <li><strong>📈 Finanças:</strong> Preços de ações, crypto, investimentos</li>
+            <li><strong>🏃 Fitness:</strong> Batimentos, passos, calorias</li>
+            <li><strong>📊 Analytics:</strong> Métricas, KPIs, performance</li>
+            <li><strong>🌡️ IoT:</strong> Temperatura, umidade, sensores</li>
+          </ul>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+          <ion-button
+            expand="block"
+            size="large"
+            (click)="startChartExample()"
+            [disabled]="currentActivityId !== null">
+            <fa-icon icon="play-circle" slot="start" />
+            Iniciar Exemplo
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Control Card -->
+    @if (currentActivityId) {
+    <ion-card class="control-card">
+      <ion-card-header>
+        <ion-card-title class="control-title">Controles Dinâmicos</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <div class="control-buttons">
+          <ion-button
+            expand="block"
+            fill="outline"
+            size="default"
+            (click)="changeData()">
+            <fa-icon icon="refresh" slot="start" />
+            Alterar Dados
+          </ion-button>
+
+          <ion-button
+            expand="block"
+            fill="clear"
+            color="danger"
+            size="default"
+            (click)="endExample()">
+            <fa-icon icon="stop-circle" slot="start" />
+            Parar Exemplo
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+    }
+
+    <!-- API Documentation -->
+    <ion-card class="docs-card">
+      <ion-card-header>
+        <ion-card-title class="docs-title">API Reference</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <div class="api-section">
+          <h4>Tipo: "chart"</h4>
+
+          <div class="property">
+            <strong>type</strong> <span class="type">"line" | "bar" | "area"</span>
+            <p>Tipo do gráfico</p>
+          </div>
+
+          <div class="property">
+            <strong>data</strong> <span class="type">number[] | string</span>
+            <p>Array de valores ou string separada por vírgulas</p>
+          </div>
+
+          <div class="property">
+            <strong>width</strong> <span class="type">number</span>
+            <p>Largura do gráfico em pontos</p>
+          </div>
+
+          <div class="property">
+            <strong>height</strong> <span class="type">number</span>
+            <p>Altura do gráfico em pontos</p>
+          </div>
+
+          <div class="property">
+            <strong>color</strong> <span class="type">string</span>
+            <p>Cor principal (linha/barras) em hex</p>
+          </div>
+
+          <div class="property">
+            <strong>fillColor</strong> <span class="type">string</span>
+            <p>Cor de preenchimento para área (hex)</p>
+          </div>
+
+          <div class="property">
+            <strong>strokeWidth</strong> <span class="type">number</span>
+            <p>Largura da linha</p>
+          </div>
+
+          <div class="property">
+            <strong>showPoints</strong> <span class="type">boolean</span>
+            <p>Mostrar pontos na linha</p>
+          </div>
+
+          <div class="property">
+            <strong>smooth</strong> <span class="type">boolean</span>
+            <p>Suavizar curvas</p>
+          </div>
+
+          <div class="property">
+            <strong>maxValue</strong> <span class="type">number</span>
+            <p>Valor máximo (auto-calculado se não fornecido)</p>
+          </div>
+        </div>
+
+        <!-- Example Code -->
+        <div class="code-example">
+          <h4>Exemplo de Uso:</h4>
+          <pre><code>{{ '{' }}
+  id: 'stock-chart',
+  type: 'chart',
+  properties: [
+    {{ '{' }} type: 'line' {{ '}' }},
+    {{ '{' }} data: [10, 25, 15, 30, 20] {{ '}' }},
+    {{ '{' }} width: 200 {{ '}' }},
+    {{ '{' }} height: 60 {{ '}' }},
+    {{ '{' }} color: '#007AFF' {{ '}' }},
+    {{ '{' }} strokeWidth: 2 {{ '}' }},
+    {{ '{' }} showPoints: true {{ '}' }},
+    {{ '{' }} smooth: true {{ '}' }}
+  ]
+{{ '}' }}</code></pre>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

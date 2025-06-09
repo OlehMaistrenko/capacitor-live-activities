@@ -1,0 +1,204 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Football Scoreboard</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Football Scoreboard</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="content-container">
+    <!-- Main Card -->
+    <ion-card class="main-card">
+      <ion-card-header>
+        <ion-card-title class="card-title">
+          <span class="football-icon">⚽</span>
+          Football Scoreboard Live Activity
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p class="description">
+          Complete football scoreboard with live indicators, team information,
+          and Dynamic Island integration for a complete sports experience.
+        </p>
+
+        <!-- Features -->
+        <div class="features">
+          <div class="feature">
+            <fa-icon icon="stopwatch" color="success" />
+            <div class="feature-info">
+              <strong>Live Match Timer</strong>
+              <p>Real-time match timer</p>
+            </div>
+          </div>
+
+          <div class="feature">
+            <fa-icon icon="trophy" color="medium" />
+            <div class="feature-info">
+              <strong>Team Scores</strong>
+              <p>Dynamic scoreboard and updates</p>
+            </div>
+          </div>
+
+          <div class="feature">
+            <fa-icon icon="mobile-screen" color="warning" />
+            <div class="feature-info">
+              <strong>Dynamic Island</strong>
+              <p>iPhone 14 Pro+ integration</p>
+            </div>
+          </div>
+        </div>
+
+        @if (currentActivityId) {
+          <ion-chip color="success" style="margin-bottom: 16px;">
+            <ion-label>Active ID: {{ currentActivityId }}</ion-label>
+          </ion-chip>
+        }
+
+        <!-- Controls -->
+        <div class="controls">
+          <ion-button
+            expand="block"
+            size="large"
+            (click)="startFootballScoreboardExample()"
+            [disabled]="currentActivityId !== null">
+            <fa-icon icon="play-circle" slot="start" />
+            Start El Clásico
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Main Scoreboard Example -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>El Clásico Live Match</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Real Madrid vs Barcelona with live score updates, match time, and professional dark theme layout.</p>
+        <ion-button expand="block" (click)="startFootballScoreboardExample()">
+          <fa-icon icon="play-circle" slot="start" />
+          Start Live Match (2-1, 67')
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Match Controls -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Match Events</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item button (click)="updateScore()" [disabled]="!currentActivityId">
+            <fa-icon icon="plus" slot="start" style="color: #30D158;" />
+            <ion-label>
+              <h3>Score Goal</h3>
+              <p>Update score to 3-1 (78')</p>
+            </ion-label>
+          </ion-item>
+
+          <ion-item button (click)="updateHalfTime()" [disabled]="!currentActivityId">
+            <fa-icon icon="pause-circle" slot="start" style="color: #FF9500;" />
+            <ion-label>
+              <h3>Half Time</h3>
+              <p>Update match time to HT</p>
+            </ion-label>
+          </ion-item>
+
+          <ion-item button (click)="endMatch()" [disabled]="!currentActivityId">
+            <fa-icon icon="stop-circle" slot="start" style="color: #FF3B30;" />
+            <ion-label>
+              <h3>End Match</h3>
+              <p>Final score 3-1 (FT)</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Dynamic Island Features -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Dynamic Island Integration</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-label>
+              <h3>Expanded State</h3>
+              <p>Team logos with scores on leading/trailing, match time in center</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <h3>Compact Leading</h3>
+              <p>Simple score format "2-1" when space is limited</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <h3>Minimal State</h3>
+              <p>Single sports icon indicating active match</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Layout Features -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Scoreboard Features Used</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-label>
+              <h3>Live Indicators</h3>
+              <p>Red "LIVE" badge with pulsing dot using containers and images</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <h3>Team Information</h3>
+              <p>Team logos (SF Symbols), names, and vertical alignment</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <h3>Score Display</h3>
+              <p>Large monospaced digits with colon separator for consistency</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <h3>Professional Theme</h3>
+              <p>Dark background (#1D1D1F) with proper contrast ratios</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <h3>Responsive Layout</h3>
+              <p>Horizontal team layout with centered score container</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <h3>Real-time Updates</h3>
+              <p>Match time, scores, and status can be updated dynamically</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

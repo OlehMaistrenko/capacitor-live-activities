@@ -1,0 +1,171 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Crypto Tracker</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Crypto Tracker</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="content-container">
+    <!-- Main Card -->
+    <ion-card class="main-card">
+      <ion-card-header>
+        <ion-card-title class="card-title">
+          <span class="bitcoin-icon">₿</span>
+          Bitcoin Live Activity
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p class="description">
+          Demonstrates a cryptocurrency tracker using real-time charts,
+          perfect for monitoring prices, trends, and trading volume.
+        </p>
+
+        <!-- Features -->
+        <div class="features">
+          <div class="feature">
+            <fa-icon icon="chart-line" color="success" />
+            <div class="feature-info">
+              <strong>Area Chart</strong>
+              <p>Smooth visualization of price trends</p>
+            </div>
+          </div>
+
+          <div class="feature">
+            <fa-icon icon="bar-chart" color="medium" />
+            <div class="feature-info">
+              <strong>Volume Bars</strong>
+              <p>Bar chart for trading volume</p>
+            </div>
+          </div>
+
+          <div class="feature">
+            <fa-icon icon="chart-simple" color="warning" />
+            <div class="feature-info">
+              <strong>Real-Time Metrics</strong>
+              <p>High, Low, Volume, Market Cap</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Activity Preview -->
+        <div class="preview-section">
+          <h4>What you will see in the Live Activity:</h4>
+          <ul>
+            <li><strong>📊 Current Price:</strong> $43,250 with percentage change</li>
+            <li><strong>📈 24H Chart:</strong> Area chart with trend</li>
+            <li><strong>📋 Statistics:</strong> High/Low/Volume/Market Cap</li>
+            <li><strong>📊 Volume Trend:</strong> Mini bar chart</li>
+            <li><strong>🎨 Dynamic Colors:</strong> Green for up, red for down</li>
+          </ul>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+          <ion-button
+            expand="block"
+            size="large"
+            (click)="startCryptoTracker()"
+            [disabled]="currentActivityId !== null">
+            <fa-icon icon="play-circle" slot="start" />
+            Start Crypto Tracker
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Control Card -->
+    @if (currentActivityId) {
+    <ion-card class="control-card">
+      <ion-card-header>
+        <ion-card-title class="control-title">Trading Simulation</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p class="control-description">
+          Simulate price changes to see the charts update in real-time.
+        </p>
+
+        <div class="control-buttons">
+          <ion-button
+            expand="block"
+            fill="outline"
+            size="default"
+            (click)="updatePrice()">
+            <fa-icon icon="refresh" slot="start" />
+            Simulate Price Change
+          </ion-button>
+
+          <ion-button
+            expand="block"
+            fill="clear"
+            color="danger"
+            size="default"
+            (click)="endTracker()">
+            <fa-icon icon="stop-circle" slot="start" />
+            Stop Tracker
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+    }
+
+    <!-- Technical Details -->
+    <ion-card class="tech-card">
+      <ion-card-header>
+        <ion-card-title class="tech-title">Technical Implementation</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <div class="tech-section">
+          <h4>Charts Used:</h4>
+
+          <div class="chart-detail">
+            <strong>Main Chart (Area):</strong>
+            <pre><code>{{ '{' }}
+  type: 'area',
+  data: [42800, 43100, 42950, 43250, 43180, 43320, 43250],
+  width: 300,
+  height: 60,
+  color: '#34C759', // Green for up, red for down
+  fillColor: '#34C759',
+  strokeWidth: 2,
+  smooth: true
+{{ '}' }}</code></pre>
+          </div>
+
+          <div class="chart-detail">
+            <strong>Volume Chart (Bar):</strong>
+            <pre><code>{{ '{' }}
+  type: 'bar',
+  data: [25, 30, 28, 35, 32, 40, 38],
+  width: 300,
+  height: 25,
+  color: '#48484A'
+{{ '}' }}</code></pre>
+          </div>
+        </div>
+
+        <div class="benefits">
+          <h4>Benefits for Crypto Apps:</h4>
+          <ul>
+            <li>📱 <strong>Passive Monitoring:</strong> User sees prices without opening the app</li>
+            <li>📊 <strong>Quick Visualization:</strong> Trends visible at a glance</li>
+            <li>🎨 <strong>Visual Feedback:</strong> Colors instantly indicate up/down</li>
+            <li>🔄 <strong>Automatic Updates:</strong> Data updated via push</li>
+            <li>🎯 <strong>Quick Action:</strong> Tap to open app and trade</li>
+          </ul>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

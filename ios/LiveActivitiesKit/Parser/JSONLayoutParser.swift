@@ -1,14 +1,29 @@
 import SwiftUI
 import WidgetKit
 import OSLog
+import Compression
 
 class JSONLayoutParser { }
 
 @available(iOS 16.2, *)
 extension JSONLayoutParser {    
     static func parseView(from json: String, with data: [String: AnyCodable]) -> AnyView {
+        var actualJson = json
+        
+        // Check if layout is compressed and decompress it
+        if json.hasPrefix("__COMPRESSED__:") {
+            let compressedBase64 = String(json.dropFirst("__COMPRESSED__:".count))
+            if let decompressedLayout = decompressLayoutJSON(compressedBase64) {
+                actualJson = decompressedLayout
+                print("✅ Widget: Layout decompressed successfully")
+            } else {
+                print("❌ Widget: Layout decompression failed")
+                return AnyView(Text("Decompression failed"))
+            }
+        }
+        
         // Usar uma abordagem customizada para preservar a ordem
-        guard let jsonData = json.data(using: .utf8) else {
+        guard let jsonData = actualJson.data(using: .utf8) else {
             return AnyView(Text("Invalid JSON"))
         }
         
@@ -77,5 +92,24 @@ extension JSONLayoutParser {
     
     enum ParserError: Error {
         case invalidJson
+    }
+    
+    private static func decompressLayoutJSON(_ base64String: String) -> String? {
+        guard let compressedData = Data(base64Encoded: base64String) else { return nil }
+        
+        let maxDecompressedSize = compressedData.count * 10 // Estimate 10x expansion
+        let destinationBuffer = UnsafeMutablePointer<UInt8>.allocate(capacity: maxDecompressedSize)
+        defer { destinationBuffer.deallocate() }
+        
+        let decompressedSize = compression_decode_buffer(
+            destinationBuffer, maxDecompressedSize,
+            compressedData.withUnsafeBytes { $0.bindMemory(to: UInt8.self).baseAddress! }, compressedData.count,
+            nil, COMPRESSION_ZLIB
+        )
+        
+        guard decompressedSize > 0 else { return nil }
+        
+        let decompressedData = Data(bytes: destinationBuffer, count: decompressedSize)
+        return String(data: decompressedData, encoding: .utf8)
     }
 }

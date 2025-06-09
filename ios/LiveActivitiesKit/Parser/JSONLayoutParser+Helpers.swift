@@ -129,25 +129,6 @@ extension View {
             self
         }
     }
-    
-    
-    @ViewBuilder
-    func ifLet2<T, Content: View>(
-      _ value: T?,
-      @ViewBuilder transform: (Self, T) -> Content
-    ) -> some View {
-      ifLetWhen(value, when: { _ in true }, transform: transform)
-    }
-    
-    /* func apply(_ modifiers: ElementModifiers?) -> some View {
-     self
-     .ifLet(modifiers?.color) { $0.foregroundColor(Color(hex: $1)) }
-     .ifLet(modifiers?.fontSize) { $0.font(.system(size: $1)) }
-     .ifLet(modifiers?.alignment) { $0.multilineTextAlignment($1) }
-     .ifLet(modifiers?.padding) { $0.padding($1) }
-     .ifLet(modifiers?.fontWeight) { $0.fontWeight($1) }
-     .ifLet(modifiers?.lineLimit) { $0.lineLimit($1) }
-     } */
 }
 
 

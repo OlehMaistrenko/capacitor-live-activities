@@ -328,6 +328,16 @@ extension JSONLayoutParser {
                 buildTimerView(element, data)
                     .modifier(ViewModifierChain(element: element, data: data))
             )
+        case "segmented-progress":
+            return AnyView(
+                buildSegmentedProgressView(element, data)
+                    .modifier(ViewModifierChain(element: element, data: data))
+            )
+        case "chart":
+            return AnyView(
+                buildChartView(element, data)
+                    .modifier(ViewModifierChain(element: element, data: data))
+            )
         case "container":
             return AnyView(
                 buildContainerView(element, data)

@@ -1,0 +1,211 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Image Examples</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Image Examples</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="content-container">
+    <!-- Main Card -->
+    <ion-card class="main-card">
+      <ion-card-header>
+        <ion-card-title class="card-title">
+          <span class="image-icon">🖼️</span>
+          Image Elements Live Activity
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p class="description">
+          Explore SF Symbols, image sizing, colors, e layout combinations para criar Live Activities visualmente ricas e
+          funcionais.
+        </p>
+
+        <!-- Features -->
+        <div class="features">
+          <div class="feature">
+            <fa-icon icon="icons" color="success" />
+            <div class="feature-info">
+              <strong>SF Symbols</strong>
+              <p>Ícones nativos do iOS com cores customizadas</p>
+            </div>
+          </div>
+
+          <div class="feature">
+            <fa-icon icon="maximize" color="medium" />
+            <div class="feature-info">
+              <strong>Sizing & Layout</strong>
+              <p>Dimensões flexíveis e arranjos adaptativos</p>
+            </div>
+          </div>
+
+          <div class="feature">
+            <fa-icon icon="droplet" color="warning" />
+            <div class="feature-info">
+              <strong>Dynamic Colors</strong>
+              <p>Cores que se adaptam ao contexto</p>
+            </div>
+          </div>
+        </div>
+
+        @if (currentActivityId) {
+        <ion-chip color="success" style="margin-bottom: 16px">
+          <ion-label>Active ID: {{ currentActivityId }}</ion-label>
+        </ion-chip>
+        }
+
+        <!-- Controls -->
+        <div class="controls">
+          <ion-button
+            expand="block"
+            size="large"
+            (click)="startSFSymbolsExample()"
+            [disabled]="currentActivityId !== null"
+          >
+            <fa-icon icon="play-circle" slot="start" />
+            Iniciar Image Examples
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>SF Symbols on Apple Developer</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Explore SF Symbols on the Apple Developer website for more information and resources.</p>
+        <ion-button expand="block" (click)="openSFSymbolsLink()">
+          <fa-icon icon="link" slot="start" />
+          Open Apple Developer
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- SF Symbols Example -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>SF Symbols with Text</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Demonstrates SF Symbols integration with custom colors and sizes combined with text in horizontal layout.</p>
+        <ion-button expand="block" (click)="startSFSymbolsExample()">
+          <fa-icon icon="play-circle" slot="start" />
+          Start SF Symbols Example
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Multiple Icons Example -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Multiple Icons Row</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Shows multiple SF Symbols with different colors arranged in a horizontal row layout.</p>
+        <ion-button expand="block" (click)="startMultipleIconsExample()">
+          <fa-icon icon="play-circle" slot="start" />
+          Start Multiple Icons Example
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Image Sizes Example -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Image Size Variations</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Demonstrates different image sizes (16pt to 48pt) with labels showing size progression.</p>
+        <ion-button expand="block" (click)="startImageSizesExample()">
+          <fa-icon icon="play-circle" slot="start" />
+          Start Image Sizes Example
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Rounded Images Example -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>User Profile with Avatar</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Shows rounded avatar images with status indicators and profile information in a dark theme.</p>
+        <ion-button expand="block" (click)="startRoundedImagesExample()">
+          <fa-icon icon="play-circle" slot="start" />
+          Start Rounded Images Example
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Activity Controls -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Activity Controls</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item button (click)="updateActivity()" [disabled]="!currentActivityId">
+            <fa-icon icon="refresh" slot="start" />
+            <ion-label>Update Current Activity</ion-label>
+          </ion-item>
+
+          <ion-item button (click)="endActivity()" [disabled]="!currentActivityId">
+            <fa-icon icon="stop-circle" slot="start" />
+            <ion-label>End Current Activity</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Image Properties Reference -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Image Properties Used</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-label>
+              <h3>SF Symbols</h3>
+              <p>systeName - Use any SF Symbol name (e.g., "heart.fill", "star.circle")</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <h3>Image Sources</h3>
+              <p>url, asset, base64, appGroup - Different ways to load images</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <h3>Styling Properties</h3>
+              <p>color, width, height, cornerRadius, contentMode</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <h3>Content Modes</h3>
+              <p>fit, fill - How image fits within bounds</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <h3>Common SF Symbols</h3>
+              <p>heart.fill, star.fill, checkmark.circle.fill, person.crop.circle.fill</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

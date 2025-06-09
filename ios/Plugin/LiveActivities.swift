@@ -1,4 +1,6 @@
 import Foundation
+import OSLog
+import SwiftUI
 
 #if canImport(ActivityKit)
 import ActivityKit
@@ -23,11 +25,11 @@ import ActivityKit
         #if canImport(ActivityKit)
         // Recuperar todas as activities ativas do sistema
         for activity in Activity<DynamicActivityAttributes>.activities {
-            // O activityId está armazenado nos attributes
+            // The activityId is stored in the attributes
             let activityId = activity.attributes.activityId
             activities[activityId] = activity
             
-            print("🔄 Recovered existing activity: \(activityId)")
+            Logger.viewCycle.error("🔄 Recovered existing activity: \(activityId)")
         }
         #endif
     }
@@ -36,14 +38,17 @@ import ActivityKit
         layout: String,
         data: [String: Any],
         staleDate: Date?,
-        relevanceScore: Double
+        relevanceScore: Double,
+        behavior: [String: Any]?
     ) throws -> String {
         let activityId = UUID().uuidString
         
         // Criar atributos usando tipos do framework
+        let behaviorAnyCodable = behavior?.mapValues { AnyCodable($0) }
         let attributes = DynamicActivityAttributes(
             layoutJSON: layout,
-            activityId: activityId
+            activityId: activityId,
+            behavior: behaviorAnyCodable
         )
         
         // Converter dados para AnyCodable do framework
@@ -67,13 +72,13 @@ import ActivityKit
             
             activities[activityId] = activity
             
-            print("✅ Started activity with custom ID: \(activityId)")
-            print("🔍 System ID: \(activity.id)")
-            print("📊 Total activities tracked: \(activities.count)")
+            Logger.viewCycle.error("✅ Started activity with custom ID: \(activityId)")
+            Logger.viewCycle.error("🔍 System ID: \(activity.id)")
+            Logger.viewCycle.error("📊 Total activities tracked: \(self.activities.count)")
             
             return activityId
         } catch {
-            print("❌ Failed to start activity: \(error)")
+            Logger.viewCycle.error("❌ Failed to start activity: \(error)")
             throw error
         }
     }
@@ -81,16 +86,17 @@ import ActivityKit
     @objc public func updateActivity(
         activityId: String,
         data: [String: Any],
-        alertConfig: [String: Any]?
+        alertConfig: [String: Any]?,
+        behavior: [String: Any]?
     ) async throws {
         guard let activity = activities[activityId] else {
-            // Se não encontrar, tentar recuperar do sistema
+            // If not found, try to retrieve from the system
             await syncExistingActivities()
             
             // Tentar novamente
             guard activities[activityId] != nil else {
-                print("❌ Activity not found: \(activityId)")
-                print("📊 Available activities: \(activities.keys)")
+                Logger.viewCycle.error("❌ Activity not found: \(activityId)")
+                Logger.viewCycle.error("📊 Available activities: \(self.activities.keys)")
                 throw LiveActivitiesError.activityNotFound
             }
             
@@ -118,17 +124,21 @@ import ActivityKit
             )
         }
         
+        let updateContent = ActivityContent(state: contentState, staleDate: nil)
+        
+        
         await activity.update(
-            ActivityContent(state: contentState, staleDate: nil),
+            updateContent,
             alertConfiguration: alertConfiguration
         )
         
-        print("✅ Updated activity: \(activityId)")
+        Logger.viewCycle.error("✅ Updated activity: \(activityId)")
     }
     
     @objc public func endActivity(
         activityId: String,
-        finalData: [String: Any]?
+        finalData: [String: Any]?,
+        behavior: [String: Any]?
     ) async throws {
         guard let activity = activities[activityId] else {
             // Tentar recuperar
@@ -153,13 +163,17 @@ import ActivityKit
             )
         }
         
+        let finalContent: ActivityContent<DynamicActivityAttributes.ContentState>? = finalContentState.map {
+            ActivityContent(state: $0, staleDate: nil)
+        }
+        
         await activity.end(
-            finalContentState.map { ActivityContent(state: $0, staleDate: nil) },
+            finalContent,
             dismissalPolicy: .default
         )
         
         activities.removeValue(forKey: activityId)
-        print("✅ Ended activity: \(activityId)")
+        Logger.viewCycle.error("✅ Ended activity: \(activityId)")
     }
     
     @objc public func getAllActivities() async -> [[String: Any]] {
@@ -215,25 +229,24 @@ import ActivityKit
     }
     
     @objc public func debugPrintActivities() {
-        print("🔍 === DEBUG ACTIVITIES ===")
+        Logger.viewCycle.error("🔍 === DEBUG ACTIVITIES ===")
            
-        print("📊 Tracked activities count: \(activities.count)")
+        Logger.viewCycle.error("📊 Tracked activities count: \(self.activities.count)")
         
         for (customId, activity) in activities {
-            print("Activity:")
-            print("  - Custom ID: \(customId)")
-            print("  - System ID: \(activity.id)")
-            print("  - State: \(activity.activityState)")
+            Logger.viewCycle.error("Activity:")
+            Logger.viewCycle.error("  - Custom ID: \(customId)")
+            Logger.viewCycle.error("  - System ID: \(activity.id)")
         }
         
-        print("\n📱 System activities:")
+        Logger.viewCycle.error("\n📱 System activities:")
         for activity in Activity<DynamicActivityAttributes>.activities {
-            print("  - System ID: \(activity.id)")
-            print("  - Our ID: \(activity.attributes.activityId)")
+            Logger.viewCycle.error("  - System ID: \(activity.id)")
+            Logger.viewCycle.error("  - Our ID: \(activity.attributes.activityId)")
         }
         
         
-        print("========================")
+        Logger.viewCycle.error("========================")
     }
     
     @objc func saveImageForLiveActivities(
@@ -244,11 +257,11 @@ import ActivityKit
         guard let containerURL = FileManager.default.containerURL(
             forSecurityApplicationGroupIdentifier: "group.\(Bundle.main.bundleIdentifier ?? "").LiveActivities"
         ) else {
-            print("❌ Failed to get App Group container")
+            Logger.viewCycle.error("❌ Failed to get App Group container")
             return false
         }
         
-        // Criar diretório se não existir
+        // Create directory if it does not exist
         let imagesDirectory = containerURL.appendingPathComponent("LiveActivitiesImages")
         try? FileManager.default.createDirectory(at: imagesDirectory, withIntermediateDirectories: true)
         
@@ -259,20 +272,20 @@ import ActivityKit
         if let jpegData = image.jpegData(compressionQuality: compressionQuality) {
             do {
                 try jpegData.write(to: imageURL)
-                print("✅ Saved image: \(name) (\(jpegData.count) bytes)")
+                Logger.viewCycle.error("✅ Saved image: \(name) (\(jpegData.count) bytes)")
                 return true
             } catch {
-                print("❌ Failed to save JPEG: \(error)")
+                Logger.viewCycle.error("❌ Failed to save JPEG: \(error)")
             }
         }
         
         if let pngData = image.pngData() {
             do {
                 try pngData.write(to: imageURL)
-                print("✅ Saved PNG image: \(name) (\(pngData.count) bytes)")
+                Logger.viewCycle.error("✅ Saved PNG image: \(name) (\(pngData.count) bytes)")
                 return true
             } catch {
-                print("❌ Failed to save PNG: \(error)")
+                Logger.viewCycle.error("❌ Failed to save PNG: \(error)")
             }
         }
         
@@ -293,10 +306,10 @@ import ActivityKit
         
         do {
             try FileManager.default.removeItem(at: imageURL)
-            print("✅ Removed image: \(name)")
+            Logger.viewCycle.error("✅ Removed image: \(name)")
             return true
         } catch {
-            print("❌ Failed to remove image: \(error)")
+            Logger.viewCycle.error("❌ Failed to remove image: \(error)")
             return false
         }
     }
@@ -339,15 +352,16 @@ import ActivityKit
                    let creationDate = attributes[.creationDate] as? Date,
                    creationDate < sevenDaysAgo {
                     try? fileManager.removeItem(at: file)
-                    print("🧹 Cleaned up old image: \(file.lastPathComponent)")
+                    Logger.viewCycle.error("🧹 Cleaned up old image: \(file.lastPathComponent)")
                 }
             }
         } catch {
-            print("❌ Failed to cleanup images: \(error)")
+            Logger.viewCycle.error("❌ Failed to cleanup images: \(error)")
         }
     }
     
 }
+
 
 enum LiveActivitiesError: LocalizedError {
     case activityNotFound

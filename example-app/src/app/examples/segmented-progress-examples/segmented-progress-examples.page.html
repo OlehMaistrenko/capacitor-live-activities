@@ -1,0 +1,190 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Segmented Progress Examples</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Segmented Progress</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="content-container">
+    <!-- Main Card -->
+    <ion-card class="main-card">
+      <ion-card-header>
+        <ion-card-title class="card-title">
+          <fa-icon icon="chart-line" class="title-icon" />
+          Segmented Progress Bar
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p class="description">
+          Demonstrates the new `segmented-progress` component that creates progress bars
+          divided into discrete segments, perfect for showing steps, levels, or phased progress.
+        </p>
+
+        <!-- Features -->
+        <div class="features">
+          <div class="feature">
+            <fa-icon icon="border-all" color="primary" />
+            <span>Configurable segments</span>
+          </div>
+          <div class="feature">
+            <fa-icon icon="paint-roller" color="primary" />
+            <span>Customizable colors</span>
+          </div>
+          <div class="feature">
+            <fa-icon icon="dot-circle" color="primary" />
+            <span>Solid or dashed stroke</span>
+          </div>
+          <div class="feature">
+            <fa-icon icon="up-right-and-down-left-from-center" color="primary" />
+            <span>Sizes and spacing</span>
+          </div>
+        </div>
+
+        <!-- Configuration Preview -->
+        <div class="config-preview">
+          <h4>Demonstrated Configurations:</h4>
+          <ul>
+            <li><strong>Basic:</strong> 5 segments, default blue</li>
+            <li><strong>Dashed Stroke:</strong> 6 segments, orange with outline</li>
+            <li><strong>Custom Green:</strong> 4 segments, green with solid outline</li>
+            <li><strong>Compact:</strong> 10 segments, pink, reduced height</li>
+          </ul>
+        </div>
+
+        <!-- Controls -->
+        <div class="controls">
+          <ion-button
+            expand="block"
+            size="large"
+            (click)="startSegmentedProgressExample()"
+            [disabled]="currentActivityId !== null">
+            <fa-icon icon="play-circle" slot="start" />
+            Start Example
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Control Card -->
+    @if (currentActivityId) {
+    <ion-card class="control-card">
+      <ion-card-header>
+        <ion-card-title class="control-title">Interactive Controls</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <div class="control-buttons">
+          <div class="progress-controls">
+            <ion-button
+              fill="outline"
+              size="default"
+              (click)="decreaseProgress()">
+              <fa-icon icon="remove" slot="start" />
+              Decrease
+            </ion-button>
+
+            <ion-button
+              fill="outline"
+              size="default"
+              (click)="increaseProgress()">
+              <fa-icon icon="add" slot="start" />
+              Increase
+            </ion-button>
+          </div>
+
+          <ion-button
+            fill="clear"
+            color="warning"
+            size="default"
+            (click)="resetProgress()">
+            <fa-icon icon="refresh" slot="start" />
+            Reset
+          </ion-button>
+
+          <ion-button
+            fill="clear"
+            color="danger"
+            size="default"
+            (click)="endExample()">
+            <fa-icon icon="stop-circle" slot="start" />
+            Stop
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+    }
+
+    <!-- API Documentation -->
+    <ion-card class="docs-card">
+      <ion-card-header>
+        <ion-card-title class="docs-title">API Reference</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <div class="api-section">
+          <h4>Type: "segmented-progress"</h4>
+
+          <div class="property">
+            <strong>segments</strong> <span class="type">number</span>
+            <p>Total number of segments in the bar</p>
+          </div>
+
+          <div class="property">
+            <strong>filled</strong> <span class="type">number</span>
+            <p>Number of filled segments</p>
+          </div>
+
+          <div class="property">
+            <strong>spacing</strong> <span class="type">number</span>
+            <p>Spacing between segments in points</p>
+          </div>
+
+          <div class="property">
+            <strong>height</strong> <span class="type">number</span>
+            <p>Height of each segment</p>
+          </div>
+
+          <div class="property">
+            <strong>cornerRadius</strong> <span class="type">number</span>
+            <p>Rounded corner radius</p>
+          </div>
+
+          <div class="property">
+            <strong>filledColor</strong> <span class="type">string</span>
+            <p>Color of filled segments (hex)</p>
+          </div>
+
+          <div class="property">
+            <strong>unfilledColor</strong> <span class="type">string</span>
+            <p>Color of unfilled segments (hex)</p>
+          </div>
+
+          <div class="property">
+            <strong>strokeColor</strong> <span class="type">string</span>
+            <p>Outline color (hex)</p>
+          </div>
+
+          <div class="property">
+            <strong>strokeDashed</strong> <span class="type">boolean</span>
+            <p>Whether the outline should be dashed</p>
+          </div>
+
+          <div class="property">
+            <strong>strokeWidth</strong> <span class="type">number</span>
+            <p>Outline width</p>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

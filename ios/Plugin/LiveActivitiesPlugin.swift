@@ -1,5 +1,6 @@
 import Foundation
 import Capacitor
+import Compression
 
 #if canImport(ActivityKit)
 import ActivityKit
@@ -29,15 +30,15 @@ public class LiveActivitiesPlugin: CAPPlugin, CAPBridgedPlugin {
             return
         }
         
-        #if canImport(ActivityKit)
+#if canImport(ActivityKit)
         guard ActivityAuthorizationInfo().areActivitiesEnabled else {
             call.reject("Live Activities are not enabled")
             return
         }
-        #else
+#else
         call.reject("ActivityKit not available")
         return
-        #endif
+#endif
         
         guard let layoutDict = call.getObject("layout"),
               let layoutJSON = try? JSONSerialization.data(withJSONObject: layoutDict),
@@ -47,24 +48,67 @@ public class LiveActivitiesPlugin: CAPPlugin, CAPBridgedPlugin {
             return
         }
         
+        // Calculate total payload size and determine if compression is needed
+        let totalPayload: [String: Any] = [
+            "layout": layoutDict,
+            "data": data
+        ]
+        
+        // Include optional parameters if present for accurate size calculation
+        var fullPayload = totalPayload
+        if let behavior = call.getObject("behavior") {
+            fullPayload["behavior"] = behavior
+        }
+        if let staleTimestamp = call.getDouble("staleDate") {
+            fullPayload["staleDate"] = staleTimestamp
+        }
+        if let relevanceScore = call.getDouble("relevanceScore") {
+            fullPayload["relevanceScore"] = relevanceScore
+        }
+        
+        guard let payloadJSON = try? JSONSerialization.data(withJSONObject: fullPayload),
+              let payloadString = String(data: payloadJSON, encoding: .utf8) else {
+            call.reject("Failed to serialize activity data")
+            return
+        }
+        
+        let payloadSize = payloadString.data(using: .utf8)?.count ?? 0
+        
+        print("📊 Activity payload size: \(payloadSize) bytes")
+        
+        // Use very conservative limit (3.5KB) due to ActivityKit overhead
+        let useCompression = payloadSize > 3500 // ~3.5KB to account for ActivityKit overhead
+        var finalLayoutString = layoutString
+        
+        if useCompression {
+            print("🗜️ Auto-enabling compression (payload > 3.5KB safety limit)")
+            if let compressedLayout = compressLayoutJSON(layoutString) {
+                finalLayoutString = compressedLayout
+                print("✅ Layout compressed successfully")
+            } else {
+                print("❌ Layout compression failed, using original")
+                call.reject("Failed to compress large activity data")
+                return
+            }
+        } else {
+            print("✅ Payload within 4KB limit, no compression needed")
+        }
+        
         let staleTimestamp = call.getDouble("staleDate")
         let staleDate = staleTimestamp.map { Date(timeIntervalSince1970: $0 / 1000) } // JS timestamp em ms
         let relevanceScore = call.getDouble("relevanceScore") ?? 0
+        let behavior = call.getObject("behavior")
         
         var activityId: String
         
         do {
-            if #available(iOS 16.2, *) {
-                activityId = try LiveActivities.shared.startActivity(
-                    layout: layoutString,
-                    data: data,
-                    staleDate: staleDate,
-                    relevanceScore: relevanceScore
-                )
-            } else {
-                call.reject("Not supported on iOS versions below 16.2")
-                return
-            }
+            activityId = try LiveActivities.shared.startActivity(
+                layout: finalLayoutString,
+                data: data,
+                staleDate: staleDate,
+                relevanceScore: relevanceScore,
+                behavior: behavior
+            )
             
             call.resolve([
                 "activityId": activityId
@@ -83,13 +127,15 @@ public class LiveActivitiesPlugin: CAPPlugin, CAPBridgedPlugin {
             }
             
             let alertConfig = call.getObject("alertConfiguration")
+            let behavior = call.getObject("behavior")
             
             Task {
                 do {
                     try await LiveActivities.shared.updateActivity(
                         activityId: activityId,
                         data: data,
-                        alertConfig: alertConfig
+                        alertConfig: alertConfig,
+                        behavior: behavior
                     )
                     
                     await MainActor.run {
@@ -114,12 +160,14 @@ public class LiveActivitiesPlugin: CAPPlugin, CAPBridgedPlugin {
             }
             
             let finalData = call.getObject("data")
+            let behavior = call.getObject("behavior")
             
             Task {
                 do {
                     try await LiveActivities.shared.endActivity(
                         activityId: activityId,
-                        finalData: finalData
+                        finalData: finalData,
+                        behavior: behavior
                     )
                     
                     await MainActor.run {
@@ -156,13 +204,13 @@ public class LiveActivitiesPlugin: CAPPlugin, CAPBridgedPlugin {
             return
         }
         
-        #if canImport(ActivityKit)
+#if canImport(ActivityKit)
         call.resolve([
             "enabled": ActivityAuthorizationInfo().areActivitiesEnabled
         ])
-        #else
+#else
         call.resolve(["enabled": false])
-        #endif
+#endif
     }
     
     @objc func debugActivities(_ call: CAPPluginCall) {
@@ -240,6 +288,32 @@ public class LiveActivitiesPlugin: CAPPlugin, CAPBridgedPlugin {
             LiveActivities.shared.cleanupOldImages()
         }
         call.resolve()
+    }
+    
+    // MARK: - Compression
+    
+    private func compressLayoutJSON(_ jsonString: String) -> String? {
+        guard let inputData = jsonString.data(using: .utf8) else { return nil }
+        
+        let bufferSize = inputData.count + 1024 // Extra space for compression overhead
+        let destinationBuffer = UnsafeMutablePointer<UInt8>.allocate(capacity: bufferSize)
+        defer { destinationBuffer.deallocate() }
+        
+        let compressedSize = compression_encode_buffer(
+            destinationBuffer, bufferSize,
+            inputData.withUnsafeBytes { $0.bindMemory(to: UInt8.self).baseAddress! }, inputData.count,
+            nil, COMPRESSION_ZLIB
+        )
+        
+        guard compressedSize > 0 else { return nil }
+        
+        let compressedData = Data(bytes: destinationBuffer, count: compressedSize)
+        let base64String = compressedData.base64EncodedString()
+        
+        print("📊 Compression: \(inputData.count) bytes -> \(compressedSize) bytes -> \(base64String.count) base64 chars")
+        
+        // Return with compression marker
+        return "__COMPRESSED__:\(base64String)"
     }
     
 }

@@ -1,0 +1,264 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Food Order</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Food Order</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="content-container">
+    <!-- Main Card -->
+    <ion-card class="main-card">
+      <ion-card-header>
+        <ion-card-title class="card-title">
+          <span class="food-icon">🍕</span>
+          Food Order Live Activity
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p class="description">
+          Complete Live Activity for food order tracking with progress stages,
+          delivery timer, and Dynamic Island integration.
+        </p>
+
+        <!-- Features -->
+        <div class="features">
+          <div class="feature">
+            <fa-icon icon="stopwatch" color="success" />
+            <div class="feature-info">
+              <strong>Delivery Timer</strong>
+              <p>Countdown to delivery</p>
+            </div>
+          </div>
+
+          <div class="feature">
+            <fa-icon icon="circle-check" color="medium" />
+            <div class="feature-info">
+              <strong>Progress Stages</strong>
+              <p>Confirmed, preparing, delivering</p>
+            </div>
+          </div>
+
+          <div class="feature">
+            <fa-icon icon="location" color="warning" />
+            <div class="feature-info">
+              <strong>Real-time Tracking</strong>
+              <p>Delivery person's location</p>
+            </div>
+          </div>
+        </div>
+
+        @if (currentActivityId) {
+          <ion-chip color="success" style="margin-bottom: 16px;">
+            <ion-label>Active Order: {{ currentActivityId }}</ion-label>
+          </ion-chip>
+        }
+
+        <!-- Controls -->
+        <div class="controls">
+          <ion-button
+            expand="block"
+            size="large"
+            (click)="startFoodOrderExample()"
+            [disabled]="currentActivityId !== null">
+            <fa-icon icon="play-circle" slot="start" />
+            Start Pizza Order
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Start Order Example -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Italian Pizzeria - Order #1247</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>Start an order with restaurant information, order number, visual progress, and estimated delivery time.</p>
+        <ion-button expand="block" (click)="startFoodOrderExample()">
+          <fa-icon icon="play-circle" slot="start" />
+          Start Order ($42.90)
+        </ion-button>
+
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Order Status Updates -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Order Updates</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item button (click)="updateToPreparing()" [disabled]="!currentActivityId">
+            <fa-icon icon="utensils" slot="start" style="color: #FF9500;" />
+            <ion-label>
+              <h3>Preparing Order</h3>
+              <p>Update to "Preparing" status with flame icon</p>
+            </ion-label>
+          </ion-item>
+
+          <ion-item button (click)="updateToReadyForDelivery()" [disabled]="!currentActivityId">
+            <fa-icon icon="bicycle" slot="start" style="color: #007AFF;" />
+            <ion-label>
+              <h3>Out for Delivery</h3>
+              <p>Order went out for delivery with delivery person</p>
+            </ion-label>
+          </ion-item>
+
+          <ion-item button (click)="updateToDelivered()" [disabled]="!currentActivityId">
+            <fa-icon icon="circle-check" slot="start" style="color: #34C759;" />
+            <ion-label>
+              <h3>Order Delivered</h3>
+              <p>Complete the order as successfully delivered</p>
+            </ion-label>
+          </ion-item>
+
+          <ion-item button (click)="endOrder()" [disabled]="!currentActivityId">
+            <fa-icon icon="stop-circle" slot="start" style="color: #FF3B30;" />
+            <ion-label>
+              <h3>End Order</h3>
+              <p>End order tracking</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Progress Stages -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Order Stages</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <fa-icon icon="circle-check" slot="start" style="color: #34C759;" />
+            <ion-label>
+              <h3>1. Order Confirmed</h3>
+              <p>Order received and confirmed by restaurant</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <fa-icon icon="utensils" slot="start" style="color: #FF9500;" />
+            <ion-label>
+              <h3>2. Preparing</h3>
+              <p>Food being prepared in the kitchen</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <fa-icon icon="bicycle" slot="start" style="color: #007AFF;" />
+            <ion-label>
+              <h3>3. Out for Delivery</h3>
+              <p>Delivery person on the way to your address</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <fa-icon icon="circle-check" slot="start" style="color: #34C759;" />
+            <ion-label>
+              <h3>4. Delivered</h3>
+              <p>Order delivered successfully</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Dynamic Island Features -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Dynamic Island - Food Order</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-label>
+              <h3>Expanded State</h3>
+              <p>Restaurant icon + order number | Central status | Delivery timer</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <h3>Compact Leading</h3>
+              <p>Restaurant icon for quick identification</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <h3>Compact Trailing</h3>
+              <p>Estimated delivery time in relative format</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <h3>Minimal State</h3>
+              <p>Simple restaurant icon indicating active order</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Features Used -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Implemented Features</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-label>
+              <h3>Restaurant Information</h3>
+              <p>Name, custom icon and order number</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <h3>Dynamic Status Badge</h3>
+              <p>Colored badge with icon and current status text</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <h3>Progress Bar</h3>
+              <p>Visual progress from 0% to 100% according to stages</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <h3>Stage Indicators</h3>
+              <p>4 icons showing progress: Order → Preparation → Delivery → Delivered</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <h3>Delivery Timer</h3>
+              <p>Estimated time in relative format (e.g. "in 35 minutes")</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <h3>Total Amount</h3>
+              <p>Order price always visible</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <h3>Contextual Notifications</h3>
+              <p>Specific alerts for each status change</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

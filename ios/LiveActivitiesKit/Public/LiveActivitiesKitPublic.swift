@@ -3,9 +3,10 @@ import WidgetKit
 import SwiftUI
 
 @available(iOS 16.2, *)
-public struct LiveActivitiesKitManager {  // Mudou de enum para struct
+public struct LiveActivitiesKitManager {  // Changed from enum to struct
     
-    private init() {} // Previne instanciação
+    // Prevent instantiation
+    private init() {}
     
     public static func createWidget() -> some Widget {
         return DynamicActivityWidget()
@@ -16,7 +17,7 @@ public struct LiveActivitiesKitManager {  // Mudou de enum para struct
     }
 }
 
-// SharedDataManager permanece internal
+// SharedDataManager remains internal
 @available(iOS 16.2, *)
 internal class SharedDataManager {
     static let shared = SharedDataManager()

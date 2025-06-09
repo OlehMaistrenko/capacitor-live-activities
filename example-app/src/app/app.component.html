@@ -1,0 +1,31 @@
+<ion-app>
+  <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay">
+      <ion-content>
+        <ion-list id="inbox-list" style="padding-top: var(--ion-safe-area-top)">
+          @for (group of appPages; track group) {
+            <ion-list-header>{{ group.title }}</ion-list-header>
+            <ion-note>{{ group.note }}</ion-note>
+
+            @for (p of group.childrens; track p; let i = $index) {
+              <ion-menu-toggle auto-hide="false">
+                <ion-item
+                  routerDirection="root"
+                  [routerLink]="[p.url]"
+                  lines="none"
+                  detail="false"
+                  routerLinkActive="selected"
+                >
+                  <fa-icon aria-hidden="true" slot="start" [icon]="p.icon" />
+                  <ion-label>{{ p.title }}</ion-label>
+                </ion-item>
+              </ion-menu-toggle>
+            }
+            <br />
+          }
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>
