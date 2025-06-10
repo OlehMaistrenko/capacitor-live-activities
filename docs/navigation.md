@@ -12,7 +12,8 @@
 
 ### 🏝️ **Dynamic Island (NEW!)**
 
-- **[Dynamic Island Layouts](./json-layout-guide.md#dynamic-island-layouts)** - Complete guide to Dynamic Island support
+- **[Dynamic Island Guide](./dynamic-island-guide.md)** - Complete guide to Dynamic Island layouts
+- **[Dynamic Island Layouts](./json-layout-guide.md#dynamic-island-layouts)** - Basic Dynamic Island concepts
 
 ### 📊 **New Elements (2024)**
 

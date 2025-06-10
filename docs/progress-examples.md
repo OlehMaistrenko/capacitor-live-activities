@@ -1,15 +1,16 @@
 # Progress Examples
 
-Progress elements provide visual feedback for ongoing operations, file transfers, system metrics, and completion status with customizable styling and colors.
+Progress elements provide visual feedback for ongoing operations, file transfers, system metrics, and completion status with customizable styling and colors. All examples include complete Dynamic Island layouts for enhanced user experience.
 
 ## 🎯 What You'll Learn
 
-- Progress bar configuration
+- Progress bar configuration with Dynamic Island support
 - Value and total properties
 - Custom colors and backgrounds
 - Progress bar heights and styling
 - Real-time progress updates
 - Multiple progress indicators
+- Dynamic Island layouts for all presentation states
 
 ## 📊 Basic Progress Example
 
@@ -20,7 +21,6 @@ Simple download progress with icon, progress bar, and percentage text.
 ```typescript
 const result = await LiveActivities.startActivity({
   layout: {
-    id: "basic-progress-example",
     type: "container",
     properties: [
       { direction: "vertical" },
@@ -31,7 +31,6 @@ const result = await LiveActivities.startActivity({
     ],
     children: [
       {
-        id: "header",
         type: "container",
         properties: [
           { direction: "horizontal" },
@@ -40,17 +39,15 @@ const result = await LiveActivities.startActivity({
         ],
         children: [
           {
-            id: "icon",
             type: "image",
             properties: [
-              { systeName: "arrow.down.circle.fill" },
+              { systemName: "arrow.down.circle.fill" },
               { color: "#007AFF" },
               { width: 24 },
               { height: 24 }
             ]
           },
           {
-            id: "title",
             type: "text",
             properties: [
               { text: "{{title}}" },
@@ -62,7 +59,6 @@ const result = await LiveActivities.startActivity({
         ]
       },
       {
-        id: "progress-bar",
         type: "progress",
         properties: [
           { value: 0.65 },
@@ -73,7 +69,6 @@ const result = await LiveActivities.startActivity({
         ]
       },
       {
-        id: "progress-text",
         type: "text",
         properties: [
           { text: "{{progressText}}" },
@@ -84,6 +79,87 @@ const result = await LiveActivities.startActivity({
         ]
       }
     ]
+  },
+  dynamicIslandLayout: {
+    expanded: {
+      leading: {
+        type: "container",
+        properties: [{ direction: "vertical" }, { spacing: 2 }],
+        children: [
+          {
+            type: "image",
+            properties: [
+              { systemName: "arrow.down.circle.fill" },
+              { color: "#007AFF" },
+              { width: 20 },
+              { height: 20 }
+            ]
+          },
+          {
+            type: "text",
+            properties: [
+              { text: "Download" },
+              { fontSize: 9 },
+              { color: "#8E8E93" }
+            ]
+          }
+        ]
+      },
+      trailing: {
+        type: "text",
+        properties: [
+          { text: "{{progressText}}" },
+          { fontSize: 12 },
+          { fontWeight: "semibold" },
+          { color: "#FFFFFF" }
+        ]
+      },
+      center: {
+        type: "text",
+        properties: [
+          { text: "{{title}}" },
+          { fontSize: 11 },
+          { fontWeight: "medium" },
+          { color: "#FFFFFF" }
+        ]
+      },
+      bottom: {
+        type: "progress",
+        properties: [
+          { value: 0.65 },
+          { total: 1.0 },
+          { color: "#007AFF" },
+          { height: 4 }
+        ]
+      }
+    },
+    compactLeading: {
+      type: "image",
+      properties: [
+        { systemName: "arrow.down.circle.fill" },
+        { color: "#007AFF" },
+        { width: 16 },
+        { height: 16 }
+      ]
+    },
+    compactTrailing: {
+      type: "text",
+      properties: [
+        { text: "65%" },
+        { fontSize: 12 },
+        { fontWeight: "semibold" },
+        { color: "#FFFFFF" }
+      ]
+    },
+    minimal: {
+      type: "image",
+      properties: [
+        { systemName: "arrow.down.circle.fill" },
+        { color: "#007AFF" },
+        { width: 12 },
+        { height: 12 }
+      ]
+    }
   },
   data: {
     title: "Download Progress",
@@ -104,6 +180,16 @@ const result = await LiveActivities.startActivity({
 - **Percentage Display**: Centered text with monospaced digits
 - **Light Background**: Clean, professional appearance
 
+### Dynamic Island Features
+
+- **Expanded Leading**: Download icon with label
+- **Expanded Trailing**: Progress percentage in white
+- **Expanded Center**: Activity title
+- **Expanded Bottom**: Thin progress bar (4pt height)
+- **Compact Leading**: Download icon (16pt)
+- **Compact Trailing**: Progress percentage 
+- **Minimal**: Small download icon (12pt)
+
 ## 🖥️ Multiple Progress Bars
 
 System monitor showing CPU and memory usage with different colors.
@@ -113,7 +199,6 @@ System monitor showing CPU and memory usage with different colors.
 ```typescript
 const result = await LiveActivities.startActivity({
   layout: {
-    id: "multiple-progress-example",
     type: "container",
     properties: [
       { direction: "vertical" },
@@ -126,7 +211,6 @@ const result = await LiveActivities.startActivity({
     ],
     children: [
       {
-        id: "title",
         type: "text",
         properties: [
           { text: "{{title}}" },
@@ -137,15 +221,10 @@ const result = await LiveActivities.startActivity({
         ]
       },
       {
-        id: "cpu-progress",
         type: "container",
-        properties: [
-          { direction: "vertical" },
-          { spacing: 6 }
-        ],
+        properties: [{ direction: "vertical" }, { spacing: 6 }],
         children: [
           {
-            id: "cpu-label",
             type: "container",
             properties: [
               { direction: "horizontal" },
@@ -154,17 +233,15 @@ const result = await LiveActivities.startActivity({
             ],
             children: [
               {
-                id: "cpu-icon",
                 type: "image",
                 properties: [
-                  { systeName: "cpu" },
+                  { systemName: "cpu" },
                   { color: "#FF6B35" },
                   { width: 16 },
                   { height: 16 }
                 ]
               },
               {
-                id: "cpu-text",
                 type: "text",
                 properties: [
                   { text: "CPU Usage" },
@@ -174,7 +251,6 @@ const result = await LiveActivities.startActivity({
                 ]
               },
               {
-                id: "cpu-value",
                 type: "text",
                 properties: [
                   { text: "{{cpuUsage}}" },
@@ -187,7 +263,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "cpu-bar",
             type: "progress",
             properties: [
               { value: 0.42 },
@@ -200,15 +275,10 @@ const result = await LiveActivities.startActivity({
         ]
       },
       {
-        id: "memory-progress",
         type: "container",
-        properties: [
-          { direction: "vertical" },
-          { spacing: 6 }
-        ],
+        properties: [{ direction: "vertical" }, { spacing: 6 }],
         children: [
           {
-            id: "memory-label",
             type: "container",
             properties: [
               { direction: "horizontal" },
@@ -217,17 +287,15 @@ const result = await LiveActivities.startActivity({
             ],
             children: [
               {
-                id: "memory-icon",
                 type: "image",
                 properties: [
-                  { systeName: "memorychip" },
+                  { systemName: "memorychip" },
                   { color: "#34C759" },
                   { width: 16 },
                   { height: 16 }
                 ]
               },
               {
-                id: "memory-text",
                 type: "text",
                 properties: [
                   { text: "Memory" },
@@ -237,7 +305,6 @@ const result = await LiveActivities.startActivity({
                 ]
               },
               {
-                id: "memory-value",
                 type: "text",
                 properties: [
                   { text: "{{memoryUsage}}" },
@@ -250,7 +317,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "memory-bar",
             type: "progress",
             properties: [
               { value: 0.78 },
@@ -263,6 +329,154 @@ const result = await LiveActivities.startActivity({
         ]
       }
     ]
+  },
+  dynamicIslandLayout: {
+    expanded: {
+      leading: {
+        type: "container",
+        properties: [{ direction: "vertical" }, { spacing: 2 }],
+        children: [
+          {
+            type: "image",
+            properties: [
+              { systemName: "cpu" },
+              { color: "#FF6B35" },
+              { width: 18 },
+              { height: 18 }
+            ]
+          },
+          {
+            type: "text",
+            properties: [
+              { text: "CPU" },
+              { fontSize: 9 },
+              { color: "#8E8E93" }
+            ]
+          }
+        ]
+      },
+      trailing: {
+        type: "container",
+        properties: [{ direction: "vertical" }, { spacing: 2 }],
+        children: [
+          {
+            type: "image",
+            properties: [
+              { systemName: "memorychip" },
+              { color: "#34C759" },
+              { width: 18 },
+              { height: 18 }
+            ]
+          },
+          {
+            type: "text",
+            properties: [
+              { text: "RAM" },
+              { fontSize: 9 },
+              { color: "#8E8E93" }
+            ]
+          }
+        ]
+      },
+      center: {
+        type: "container",
+        properties: [{ direction: "horizontal" }, { spacing: 8 }],
+        children: [
+          {
+            type: "text",
+            properties: [
+              { text: "{{cpuUsage}}" },
+              { fontSize: 12 },
+              { fontWeight: "semibold" },
+              { color: "#FF6B35" }
+            ]
+          },
+          {
+            type: "text",
+            properties: [
+              { text: "|" },
+              { fontSize: 12 },
+              { color: "#8E8E93" }
+            ]
+          },
+          {
+            type: "text",
+            properties: [
+              { text: "{{memoryUsage}}" },
+              { fontSize: 12 },
+              { fontWeight: "semibold" },
+              { color: "#34C759" }
+            ]
+          }
+        ]
+      },
+      bottom: {
+        type: "container",
+        properties: [{ direction: "vertical" }, { spacing: 3 }],
+        children: [
+          {
+            type: "progress",
+            properties: [
+              { value: 0.42 },
+              { total: 1.0 },
+              { color: "#FF6B35" },
+              { height: 3 }
+            ]
+          },
+          {
+            type: "progress",
+            properties: [
+              { value: 0.78 },
+              { total: 1.0 },
+              { color: "#34C759" },
+              { height: 3 }
+            ]
+          }
+        ]
+      }
+    },
+    compactLeading: {
+      type: "image",
+      properties: [
+        { systemName: "cpu" },
+        { color: "#FF6B35" },
+        { width: 16 },
+        { height: 16 }
+      ]
+    },
+    compactTrailing: {
+      type: "container",
+      properties: [{ direction: "horizontal" }, { spacing: 3 }],
+      children: [
+        {
+          type: "text",
+          properties: [
+            { text: "42%" },
+            { fontSize: 11 },
+            { fontWeight: "semibold" },
+            { color: "#FF6B35" }
+          ]
+        },
+        {
+          type: "text",
+          properties: [
+            { text: "78%" },
+            { fontSize: 11 },
+            { fontWeight: "semibold" },
+            { color: "#34C759" }
+          ]
+        }
+      ]
+    },
+    minimal: {
+      type: "image",
+      properties: [
+        { systemName: "cpu" },
+        { color: "#FF6B35" },
+        { width: 12 },
+        { height: 12 }
+      ]
+    }
   },
   data: {
     title: "System Monitor",
@@ -283,6 +497,16 @@ const result = await LiveActivities.startActivity({
 - **Icon Labels**: CPU and memory chip icons
 - **Thin Bars**: 6pt height for compact display
 - **Value Display**: Percentage values aligned to trailing edge
+
+### Dynamic Island Features
+
+- **Expanded Leading**: CPU icon with "CPU" label
+- **Expanded Trailing**: Memory chip icon with "RAM" label  
+- **Expanded Center**: CPU and memory percentages separated by "|"
+- **Expanded Bottom**: Dual stacked progress bars (3pt height each)
+- **Compact Leading**: CPU icon (16pt)
+- **Compact Trailing**: Both percentages side by side
+- **Minimal**: CPU icon (12pt)
 
 ## 📤 Upload Progress Example
 
@@ -618,7 +842,29 @@ await LiveActivities.updateActivity({
 { color: "#8E8E93" }  // Inactive/Disabled
 ```
 
-## 💡 Best Practices
+## 🏝️ Dynamic Island Best Practices
+
+1. **Size Guidelines**: 
+   - Expanded icons: 18-20pt for leading/trailing regions
+   - Compact icons: 16pt for leading/trailing
+   - Minimal icons: 12pt for minimal state
+   
+2. **Progress Bars in Dynamic Island**:
+   - Expanded bottom: 3-4pt height for thin progress bars
+   - Use same colors as main layout for consistency
+   - Stack multiple progress bars with 2-3pt spacing
+   
+3. **Text in Dynamic Island**:
+   - Expanded: 11-12pt for readable text in center
+   - Labels: 9pt for small labels under icons
+   - Percentages: 12pt semibold for prominence
+   
+4. **Color Usage**:
+   - White text (#FFFFFF) for center/trailing content
+   - Muted gray (#8E8E93) for labels and separators
+   - Maintain brand colors for icons and progress
+
+## 💡 General Best Practices
 
 1. **Value Range**: Keep values between 0 and total for proper display
 2. **Color Meaning**: Use consistent colors (green = good, red = warning, blue = info)
@@ -627,12 +873,43 @@ await LiveActivities.updateActivity({
 5. **Monospaced Text**: Use monospaced digits for percentage displays to prevent layout shifts
 6. **Real-time Updates**: Update progress frequently for smooth user experience
 7. **Accessibility**: Choose colors that work for color-blind users
+8. **Dynamic Island Consistency**: Keep Dynamic Island layouts visually related to main layout
+
+## ⚠️ Dynamic Island Validation
+
+The plugin automatically validates that at least one expanded region is provided:
+
+```typescript
+// ✅ Valid - has at least one expanded region
+dynamicIslandLayout: {
+  expanded: {
+    center: { /* your layout */ }
+    // leading, trailing, bottom are optional
+  },
+  compactLeading: { /* required */ },
+  compactTrailing: { /* required */ },
+  minimal: { /* required */ }
+}
+
+// ❌ Invalid - expanded object is empty
+dynamicIslandLayout: {
+  expanded: {
+    // No regions defined
+  },
+  // ...
+}
+```
+
+**Error Messages:**
+- `"Dynamic Island expanded layout is required"` - Missing expanded object
+- `"Dynamic Island expanded layout must have at least one region (leading, trailing, center, or bottom)"` - Empty expanded object
 
 ## 🔗 Navigation
 
 - [← Timer Examples](./timer-examples.md)
+- [🏝️ Dynamic Island Guide](./dynamic-island-guide.md) - Complete Dynamic Island reference
 - [Container Examples →](./container-examples.md)
 
 ---
 
-💡 **Next**: Learn how to create complex layouts with nested containers in the [Container Examples](./container-examples.md) section.
+💡 **Next**: Learn how to create complex layouts with nested containers in the [Container Examples](./container-examples.md) section, or explore the complete [Dynamic Island Guide](./dynamic-island-guide.md) for advanced Dynamic Island techniques.

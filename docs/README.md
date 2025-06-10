@@ -10,7 +10,9 @@ This documentation provides comprehensive examples and code snippets for the Cap
 
 - [**📋 JSON Layout Guide**](./json-layout-guide.md) - **Complete guide for creating layouts**
 
-- [**🏝️ Dynamic Island Layouts**](./json-layout-guide.md#dynamic-island-layouts) - **NEW! Complete Dynamic Island support**
+- [**🏝️ Dynamic Island Guide**](./dynamic-island-guide.md) - **NEW! Complete Dynamic Island guide with examples**
+
+- [**🏝️ Dynamic Island Layouts**](./json-layout-guide.md#dynamic-island-layouts) - **Basic Dynamic Island concepts**
 
 - [**⚡ Quick Reference**](./quick-reference.md) - **Quick reference and cheat sheet**
 
