@@ -50,7 +50,9 @@
     { "text": "{{dynamicText}}" },
     { "fontSize": 16 },
     { "fontWeight": "bold|medium|light" },
-    { "color": "#FFFFFF" }
+    { "color": "#FFFFFF" },
+    { "textAlignment": "leading|center|trailing" },
+    { "lineLimit": 2 }
   ]
 }
 ```
@@ -240,7 +242,7 @@ const commonSymbols = [
 
 ```typescript
 const dimensions = {
-  // Ícones
+  // Icons
   smallIcon: { width: 16, height: 16 },
   standardIcon: { width: 24, height: 24 },
   largeIcon: { width: 32, height: 32 },
@@ -290,7 +292,7 @@ const dimensions = {
     {
       "type": "image",
       "properties": [
-        { "systeName": "checkmark.circle.fill" },
+        { "systemName": "checkmark.circle.fill" },
         { "width": 24 },
         { "color": "#34C759" }
       ]
@@ -336,7 +338,7 @@ const dimensions = {
     {
       "type": "image",
       "properties": [
-        { "systeName": "{{appIcon}}" },
+        { "systemName": "{{appIcon}}" },
         { "width": 20 },
         { "color": "#007AFF" }
       ]

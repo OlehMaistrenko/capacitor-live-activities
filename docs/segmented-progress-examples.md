@@ -1,12 +1,12 @@
-# Segmented Progress Examples - Documentação Completa
+# Segmented Progress Examples - Complete Documentation
 
-## Visão Geral
+## Overview
 
-O elemento `segmentedProgress` permite criar barras de progresso divididas em segmentos, ideal para mostrar etapas de processos, fases de entrega, níveis de progresso e workflows sequenciais.
+The `segmented-progress` element allows creating progress bars divided into segments, ideal for showing process stages, delivery phases, progress levels, and sequential workflows.
 
-## Conceito Básico
+## Basic Concept
 
-O segmented progress divide uma barra de progresso em múltiplos segmentos, onde cada segmento pode ter diferentes estados: completo, em progresso, ou pendente.
+Segmented progress divides a progress bar into multiple segments, where each segment can have different states: complete, in progress, or pending.
 
 ```json
 {
@@ -28,16 +28,16 @@ O segmented progress divide uma barra de progresso em múltiplos segmentos, onde
 }
 ```
 
-## Propriedades Detalhadas
+## Detailed Properties
 
-### Propriedades Obrigatórias
+### Required Properties
 
-| Propriedade | Tipo | Descrição | Exemplo |
-|-------------|------|-----------|---------|
-| `segments` | Number | Número total de segmentos | `4` |
-| `filled` | Number | Número de segmentos preenchidos | `2` |
+| Property | Type | Description | Example |
+|----------|------|-------------|---------|
+| `segments` | Number | Total number of segments | `4` |
+| `filled` | Number | Number of filled segments | `2` |
 
-### Propriedades Visuais
+### Visual Properties
 
 | Property | Type | Default | Description |
 |----------|------|---------|-------------|
@@ -56,20 +56,20 @@ O segmented progress divide uma barra de progresso em múltiplos segmentos, onde
 | `strokeWidth` | Number | 1 | Border thickness |
 | `strokeDashed` | Boolean | false | Dashed border |
 
-## Estados dos Segmentos
+## Segment States
 
-### 1. Segmentos Completos
-Segmentos anteriores ao atual, totalmente preenchidos.
+### 1. Complete Segments
+Segments before the current one, fully filled.
 
-### 2. Segmento Atual
-Segmento em progresso, parcialmente preenchido baseado na propriedade `progress`.
+### 2. Current Segment
+Segment in progress, partially filled based on the `progress` property.
 
-### 3. Segmentos Pendentes
-Segmentos futuros, ainda não iniciados.
+### 3. Pending Segments
+Future segments, not yet started.
 
-## Exemplos Práticos
+## Practical Examples
 
-### Exemplo 1: Rastreamento de Entrega
+### Example 1: Delivery Tracking
 
 ```json
 {
@@ -97,7 +97,7 @@ Segmentos futuros, ainda não iniciados.
             "id": "delivery-icon",
             "type": "image",
             "properties": [
-              { "systeName": "shippingbox.fill" },
+              { "systemName": "shippingbox.fill" },
               { "width": 24 },
               { "height": 24 },
               { "color": "#FF9500" }
@@ -115,7 +115,7 @@ Segmentos futuros, ainda não iniciados.
                 "id": "order-title",
                 "type": "text",
                 "properties": [
-                  { "text": "Pedido #{{orderNumber}}" },
+                  { "text": "Order #{{orderNumber}}" },
                   { "fontSize": 16 },
                   { "fontWeight": "semibold" },
                   { "color": "#FFFFFF" }
@@ -170,7 +170,7 @@ Segmentos futuros, ainda não iniciados.
                 "id": "stage-1",
                 "type": "text",
                 "properties": [
-                  { "text": "Confirmado" },
+                  { "text": "Confirmed" },
                   { "fontSize": 11 },
                   { "color": "#34C759" }
                 ]
@@ -179,7 +179,7 @@ Segmentos futuros, ainda não iniciados.
                 "id": "stage-2",
                 "type": "text",
                 "properties": [
-                  { "text": "Preparando" },
+                  { "text": "Preparing" },
                   { "fontSize": 11 },
                   { "color": "{{stage2Color}}" }
                 ]
@@ -188,7 +188,7 @@ Segmentos futuros, ainda não iniciados.
                 "id": "stage-3",
                 "type": "text",
                 "properties": [
-                  { "text": "A caminho" },
+                  { "text": "On the way" },
                   { "fontSize": 11 },
                   { "color": "{{stage3Color}}" }
                 ]
@@ -197,7 +197,7 @@ Segmentos futuros, ainda não iniciados.
                 "id": "stage-4",
                 "type": "text",
                 "properties": [
-                  { "text": "Entregue" },
+                  { "text": "Delivered" },
                   { "fontSize": 11 },
                   { "color": "{{stage4Color}}" }
                 ]
@@ -219,7 +219,7 @@ Segmentos futuros, ainda não iniciados.
             "id": "clock-icon",
             "type": "image",
             "properties": [
-              { "systeName": "clock" },
+              { "systemName": "clock" },
               { "width": 14 },
               { "height": 14 },
               { "color": "#8E8E93" }
@@ -240,18 +240,17 @@ Segmentos futuros, ainda não iniciados.
   },
   "data": {
     "orderNumber": "1247",
-    "currentStatus": "Preparando seu pedido",
-    "currentSegment": 2,
-    "segmentProgress": 0.6,
+    "currentStatus": "Preparing your order",
+    "filledSegments": 2,
     "stage2Color": "#FF9500",
     "stage3Color": "#3A3A3C",
     "stage4Color": "#3A3A3C",
-    "etaText": "Entrega prevista para 15:30"
+    "etaText": "Expected delivery at 15:30"
   }
 }
 ```
 
-### Exemplo 2: Progresso de Instalação
+### Example 2: Installation Progress
 
 ```json
 {
@@ -279,7 +278,7 @@ Segmentos futuros, ainda não iniciados.
             "id": "app-icon",
             "type": "image",
             "properties": [
-              { "bundlePath": "{{appIcon}}" },
+              { "asset": "{{appIcon}}" },
               { "width": 32 },
               { "height": 32 },
               { "cornerRadius": 8 }
@@ -318,17 +317,15 @@ Segmentos futuros, ainda não iniciados.
       },
       {
         "id": "install-progress",
-        "type": "segmentedProgress",
+        "type": "segmented-progress",
         "properties": [
           { "segments": 5 },
-          { "currentSegment": "{{currentStep}}" },
-          { "progress": "{{stepProgress}}" },
+          { "filled": "{{currentStep}}" },
           { "width": 260 },
           { "height": 6 },
-          { "completedColor": "#34C759" },
-          { "currentColor": "#007AFF" },
-          { "pendingColor": "#2C2C2E" },
-          { "segmentSpacing": 3 },
+          { "filledColor": "#34C759" },
+          { "unfilledColor": "#2C2C2E" },
+          { "spacing": 3 },
           { "cornerRadius": 3 }
         ]
       },
@@ -353,7 +350,7 @@ Segmentos futuros, ainda não iniciados.
             "id": "step-2",
             "type": "text",
             "properties": [
-              { "text": "Verificando" },
+              { "text": "Verifying" },
               { "fontSize": 9 },
               { "color": "{{step2Color}}" }
             ]
@@ -362,7 +359,7 @@ Segmentos futuros, ainda não iniciados.
             "id": "step-3",
             "type": "text",
             "properties": [
-              { "text": "Instalando" },
+              { "text": "Installing" },
               { "fontSize": 9 },
               { "color": "{{step3Color}}" }
             ]
@@ -371,7 +368,7 @@ Segmentos futuros, ainda não iniciados.
             "id": "step-4",
             "type": "text",
             "properties": [
-              { "text": "Configurando" },
+              { "text": "Configuring" },
               { "fontSize": 9 },
               { "color": "{{step4Color}}" }
             ]
@@ -380,7 +377,7 @@ Segmentos futuros, ainda não iniciados.
             "id": "step-5",
             "type": "text",
             "properties": [
-              { "text": "Concluído" },
+              { "text": "Complete" },
               { "fontSize": 9 },
               { "color": "{{step5Color}}" }
             ]
@@ -392,9 +389,8 @@ Segmentos futuros, ainda não iniciados.
   "data": {
     "appName": "Awesome App",
     "appIcon": "app-icon.png",
-    "installStatus": "Verificando integridade...",
+    "installStatus": "Verifying integrity...",
     "currentStep": 2,
-    "stepProgress": 0.8,
     "step2Color": "#007AFF",
     "step3Color": "#2C2C2E",
     "step4Color": "#2C2C2E",
@@ -403,7 +399,7 @@ Segmentos futuros, ainda não iniciados.
 }
 ```
 
-### Exemplo 3: Níveis de Jogo
+### Example 3: Game Levels
 
 ```json
 {
@@ -459,7 +455,7 @@ Segmentos futuros, ainda não iniciados.
                 "id": "current-level",
                 "type": "text",
                 "properties": [
-                  { "text": "Nível {{currentLevel}}" },
+                  { "text": "Level {{currentLevel}}" },
                   { "fontSize": 13 },
                   { "color": "#A0A0A0" }
                 ]
@@ -489,7 +485,7 @@ Segmentos futuros, ainda não iniciados.
                 "id": "xp-next",
                 "type": "text",
                 "properties": [
-                  { "text": "{{nextLevelXP}} para próximo" },
+                  { "text": "{{nextLevelXP}} to next" },
                   { "fontSize": 11 },
                   { "color": "#A0A0A0" }
                 ]
@@ -500,17 +496,15 @@ Segmentos futuros, ainda não iniciados.
       },
       {
         "id": "level-progress",
-        "type": "segmentedProgress",
+        "type": "segmented-progress",
         "properties": [
           { "segments": 10 },
-          { "currentSegment": "{{currentLevelSegment}}" },
-          { "progress": "{{levelProgress}}" },
+          { "filled": "{{currentLevelSegment}}" },
           { "width": 280 },
           { "height": 10 },
-          { "completedColor": "#FFDE59" },
-          { "currentColor": "#FFB347" },
-          { "pendingColor": "#3C3C3C" },
-          { "segmentSpacing": 3 },
+          { "filledColor": "#FFDE59" },
+          { "unfilledColor": "#3C3C3C" },
+          { "spacing": 3 },
           { "cornerRadius": 5 }
         ]
       },
@@ -527,7 +521,7 @@ Segmentos futuros, ainda não iniciados.
             "id": "achievement-icon",
             "type": "image",
             "properties": [
-              { "systeName": "star.fill" },
+              { "systemName": "star.fill" },
               { "width": 14 },
               { "height": 14 },
               { "color": "#FFDE59" }
@@ -553,42 +547,41 @@ Segmentos futuros, ainda não iniciados.
     "currentXP": "8,450",
     "nextLevelXP": "1,550",
     "currentLevelSegment": 7,
-    "levelProgress": 0.4,
-    "recentAchievement": "Conquistou 'Master Explorer'"
+    "recentAchievement": "Achieved 'Master Explorer'"
   }
 }
 ```
 
-## Casos de Uso Comuns
+## Common Use Cases
 
-### 1. **E-commerce e Delivery**
-- Status de pedidos
-- Progresso de entrega
-- Etapas de pagamento
+### 1. **E-commerce and Delivery**
+- Order status
+- Delivery progress
+- Payment stages
 
-### 2. **Downloads e Instalações**
-- Progresso de download
-- Etapas de instalação
-- Updates de aplicativo
+### 2. **Downloads and Installations**
+- Download progress
+- Installation stages
+- App updates
 
-### 3. **Workflows e Processos**
-- Aprovações em etapas
-- Processos de onboarding
-- Pipelines de produção
+### 3. **Workflows and Processes**
+- Step-by-step approvals
+- Onboarding processes
+- Production pipelines
 
-### 4. **Gaming e Gamificação**
-- Progresso de níveis
-- Conquistas por etapas
-- Missões sequenciais
+### 4. **Gaming and Gamification**
+- Level progress
+- Step-by-step achievements
+- Sequential missions
 
-### 5. **Fitness e Objetivos**
-- Metas semanais
-- Progresso de treino
-- Challenges por etapas
+### 5. **Fitness and Goals**
+- Weekly goals
+- Training progress
+- Step-by-step challenges
 
-## Estados Dinâmicos
+## Dynamic States
 
-### Implementação TypeScript
+### TypeScript Implementation
 
 ```typescript
 interface SegmentedProgressState {
@@ -602,45 +595,43 @@ function updateProgress(state: SegmentedProgressState, newProgress: number) {
   return {
     layout: {
       id: "dynamic-progress",
-      type: "segmentedProgress",
+      type: "segmented-progress",
       properties: [
         { segments: state.totalSegments },
-        { currentSegment: state.currentSegment },
-        { progress: newProgress },
+        { filled: state.currentSegment },
         { width: 280 },
         { height: 8 },
-        { completedColor: "#34C759" },
-        { currentColor: "#007AFF" },
-        { pendingColor: "#3A3A3C" }
+        { filledColor: "#34C759" },
+        { unfilledColor: "#3A3A3C" }
       ]
     },
     data: {
       progressPercent: Math.round(newProgress * 100),
-      currentStage: state.labels?.[state.currentSegment - 1] || `Etapa ${state.currentSegment}`
+      currentStage: state.labels?.[state.currentSegment - 1] || `Stage ${state.currentSegment}`
     }
   };
 }
 
-// Exemplo de uso
+// Usage example
 const deliveryState = {
   totalSegments: 4,
   currentSegment: 2,
   progress: 0.6,
-  labels: ["Confirmado", "Preparando", "A caminho", "Entregue"]
+  labels: ["Confirmed", "Preparing", "On the way", "Delivered"]
 };
 
 const updatedLayout = updateProgress(deliveryState, 0.8);
 ```
 
-## Animações e Transições
+## Animations and Transitions
 
-O segmented progress suporta transições suaves quando:
+Segmented progress supports smooth transitions when:
 
-1. **Mudança de segmento**: Animação de preenchimento
-2. **Progresso interno**: Crescimento suave da barra
-3. **Estados de cor**: Transições entre cores
+1. **Segment change**: Fill animation
+2. **Internal progress**: Smooth bar growth
+3. **Color states**: Transitions between colors
 
-### Configuração de Animação
+### Animation Configuration
 
 ```json
 {
@@ -651,16 +642,16 @@ O segmented progress suporta transições suaves quando:
 }
 ```
 
-## Acessibilidade
+## Accessibility
 
-### Melhores Práticas
+### Best Practices
 
-- ✅ **Contraste de cores** adequado para visibilidade
-- ✅ **Labels descritivos** para cada etapa
-- ✅ **Informação textual** complementar ao visual
-- ✅ **Dimensões mínimas** para toque (44pt)
+- ✅ **Adequate color contrast** for visibility
+- ✅ **Descriptive labels** for each stage
+- ✅ **Textual information** complementing the visual
+- ✅ **Minimum dimensions** for touch (44pt)
 
-### Implementação Acessível
+### Accessible Implementation
 
 ```json
 {
@@ -675,43 +666,42 @@ O segmented progress suporta transições suaves quando:
       "id": "progress-label",
       "type": "text",
       "properties": [
-        { "text": "Progresso: {{currentStep}} de {{totalSteps}}" },
+        { "text": "Progress: {{currentStep}} of {{totalSteps}}" },
         { "fontSize": 14 },
         { "color": "#FFFFFF" }
       ]
     },
     {
       "id": "segmented-bar",
-      "type": "segmentedProgress",
+      "type": "segmented-progress",
       "properties": [
         { "segments": "{{totalSteps}}" },
-        { "currentSegment": "{{currentStep}}" },
-        { "progress": "{{stepProgress}}" }
+        { "filled": "{{currentStep}}" }
       ]
     }
   ]
 }
 ```
 
-## Performance e Limitações
+## Performance and Limitations
 
-### Recomendações
+### Recommendations
 
-- ✅ **Máximo 10 segmentos** para legibilidade
-- ✅ **Dimensões proporcionais** (largura ≥ 20x altura)
-- ✅ **Updates moderados** (não mais que 1/segundo)
-- ❌ Evite animações muito complexas
+- ✅ **Maximum 10 segments** for readability
+- ✅ **Proportional dimensions** (width ≥ 20x height)
+- ✅ **Moderate updates** (not more than 1/second)
+- ❌ Avoid very complex animations
 
-### Limitações Técnicas
+### Technical Limitations
 
-1. **Segmentos máximos**: 20 (recomendado: 10)
-2. **Progresso**: Valores entre 0.0 e 1.0
-3. **Renderização**: SwiftUI nativo
-4. **Interatividade**: Apenas tap para abrir app
+1. **Maximum segments**: 20 (recommended: 10)
+2. **Progress**: Values between 0.0 and 1.0
+3. **Rendering**: Native SwiftUI
+4. **Interactivity**: Tap only to open app
 
 ---
 
-Para mais informações sobre outros elementos, consulte:
-- [Guia Principal de Layouts JSON](./json-layout-guide.md)
-- [Chart Examples](./chart-examples.md)
-- [Progress Examples](./progress-examples.md)
+For more information about other elements, see:
+- [JSON Layout Guide](./json-layout-guide.md) - Main guide
+- [Chart Examples](./chart-examples.md) - Chart documentation
+- [Universal Properties](./universal-properties.md) - Universal properties

@@ -26,8 +26,8 @@
 
       <ion-card-content>
         <p class="description">
-          Demonstra o novo componente `chart` que cria gráficos dinâmicos perfeitos para
-          Live Activities de finanças, fitness, analytics e muito mais.
+          Demonstrates the new `chart` component that creates dynamic charts perfect for
+          finance, fitness, analytics Live Activities and much more.
         </p>
 
         <!-- Chart Types -->
@@ -36,7 +36,7 @@
             <fa-icon icon="chart-line" color="primary"></fa-icon>
             <div class="chart-info">
               <strong>Line Chart</strong>
-              <p>Tendências e séries temporais</p>
+              <p>Trends and time series</p>
             </div>
           </div>
 
@@ -44,7 +44,7 @@
             <fa-icon icon="chart-bar" color="warning"></fa-icon>
             <div class="chart-info">
               <strong>Bar Chart</strong>
-              <p>Comparações e categorias</p>
+              <p>Comparisons and categories</p>
             </div>
           </div>
 
@@ -52,7 +52,7 @@
             <fa-icon icon="chart-line" color="success"></fa-icon>
             <div class="chart-info">
               <strong>Area Chart</strong>
-              <p>Volumes e distribuições</p>
+              <p>Volumes and distributions</p>
             </div>
           </div>
         </div>
@@ -61,11 +61,11 @@
         <div class="features">
           <div class="feature">
             <fa-icon icon="palette" color="primary"></fa-icon>
-            <span>Cores customizáveis</span>
+            <span>Customizable colors</span>
           </div>
           <div class="feature">
             <fa-icon icon="arrows-alt" color="primary"></fa-icon>
-            <span>Dimensões flexíveis</span>
+            <span>Flexible dimensions</span>
           </div>
           <div class="feature">
             <fa-icon icon="sliders-h" color="primary"></fa-icon>
@@ -73,18 +73,18 @@
           </div>
           <div class="feature">
             <fa-icon icon="dot-circle" color="primary"></fa-icon>
-            <span>Points opcionais</span>
+            <span>Optional points</span>
           </div>
         </div>
 
         <!-- Use Cases -->
         <div class="use-cases">
-          <h4>Casos de Uso:</h4>
+          <h4>Use Cases:</h4>
           <ul>
-            <li><strong>📈 Finanças:</strong> Preços de ações, crypto, investimentos</li>
-            <li><strong>🏃 Fitness:</strong> Batimentos, passos, calorias</li>
-            <li><strong>📊 Analytics:</strong> Métricas, KPIs, performance</li>
-            <li><strong>🌡️ IoT:</strong> Temperatura, umidade, sensores</li>
+            <li><strong>📈 Finance:</strong> Stock prices, crypto, investments</li>
+            <li><strong>🏃 Fitness:</strong> Heart rate, steps, calories</li>
+            <li><strong>📊 Analytics:</strong> Metrics, KPIs, performance</li>
+            <li><strong>🌡️ IoT:</strong> Temperature, humidity, sensors</li>
           </ul>
         </div>
 
@@ -96,7 +96,7 @@
             (click)="startChartExample()"
             [disabled]="currentActivityId !== null">
             <fa-icon icon="play-circle" slot="start" />
-            Iniciar Exemplo
+            Start Example
           </ion-button>
         </div>
       </ion-card-content>
@@ -106,7 +106,7 @@
     @if (currentActivityId) {
     <ion-card class="control-card">
       <ion-card-header>
-        <ion-card-title class="control-title">Controles Dinâmicos</ion-card-title>
+        <ion-card-title class="control-title">Dynamic Controls</ion-card-title>
       </ion-card-header>
 
       <ion-card-content>
@@ -117,7 +117,7 @@
             size="default"
             (click)="changeData()">
             <fa-icon icon="refresh" slot="start" />
-            Alterar Dados
+            Change Data
           </ion-button>
 
           <ion-button
@@ -127,7 +127,7 @@
             size="default"
             (click)="endExample()">
             <fa-icon icon="stop-circle" slot="start" />
-            Parar Exemplo
+            Stop Example
           </ion-button>
         </div>
       </ion-card-content>
@@ -146,58 +146,58 @@
 
           <div class="property">
             <strong>type</strong> <span class="type">"line" | "bar" | "area"</span>
-            <p>Tipo do gráfico</p>
+            <p>Chart type</p>
           </div>
 
           <div class="property">
             <strong>data</strong> <span class="type">number[] | string</span>
-            <p>Array de valores ou string separada por vírgulas</p>
+            <p>Array of values or comma-separated string</p>
           </div>
 
           <div class="property">
             <strong>width</strong> <span class="type">number</span>
-            <p>Largura do gráfico em pontos</p>
+            <p>Chart width in points</p>
           </div>
 
           <div class="property">
             <strong>height</strong> <span class="type">number</span>
-            <p>Altura do gráfico em pontos</p>
+            <p>Chart height in points</p>
           </div>
 
           <div class="property">
             <strong>color</strong> <span class="type">string</span>
-            <p>Cor principal (linha/barras) em hex</p>
+            <p>Primary color (line/bars) in hex</p>
           </div>
 
           <div class="property">
             <strong>fillColor</strong> <span class="type">string</span>
-            <p>Cor de preenchimento para área (hex)</p>
+            <p>Fill color for area (hex)</p>
           </div>
 
           <div class="property">
             <strong>strokeWidth</strong> <span class="type">number</span>
-            <p>Largura da linha</p>
+            <p>Line width</p>
           </div>
 
           <div class="property">
             <strong>showPoints</strong> <span class="type">boolean</span>
-            <p>Mostrar pontos na linha</p>
+            <p>Show points on line</p>
           </div>
 
           <div class="property">
             <strong>smooth</strong> <span class="type">boolean</span>
-            <p>Suavizar curvas</p>
+            <p>Smooth curves</p>
           </div>
 
           <div class="property">
             <strong>maxValue</strong> <span class="type">number</span>
-            <p>Valor máximo (auto-calculado se não fornecido)</p>
+            <p>Maximum value (auto-calculated if not provided)</p>
           </div>
         </div>
 
         <!-- Example Code -->
         <div class="code-example">
-          <h4>Exemplo de Uso:</h4>
+          <h4>Usage Example:</h4>
           <pre><code>{{ '{' }}
   id: 'stock-chart',
   type: 'chart',
