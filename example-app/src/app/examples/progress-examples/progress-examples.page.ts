@@ -59,7 +59,6 @@ export class ProgressExamplesPage {
     try {
       const result = await LiveActivities.startActivity({
         layout: {
-          id: 'basic-progress-example',
           type: 'container',
           properties: [
             { direction: 'vertical' },
@@ -70,29 +69,25 @@ export class ProgressExamplesPage {
           ],
           children: [
             {
-              id: 'header',
               type: 'container',
               properties: [{ direction: 'horizontal' }, { spacing: 8 }, { insideAlignment: 'center' }],
               children: [
                 {
-                  id: 'icon',
                   type: 'image',
                   properties: [
-                    { systeName: 'arrow.down.circle.fill' },
+                    { systemName: 'arrow.down.circle.fill' },
                     { color: '#007AFF' },
                     { width: 24 },
                     { height: 24 },
                   ],
                 },
                 {
-                  id: 'title',
                   type: 'text',
                   properties: [{ text: '{{title}}' }, { fontSize: 16 }, { fontWeight: 'medium' }, { color: '#1a1a1a' }],
                 },
               ],
             },
             {
-              id: 'progress-bar',
               type: 'progress',
               properties: [
                 { value: 0.65 },
@@ -100,10 +95,9 @@ export class ProgressExamplesPage {
                 { color: '#007AFF' },
                 { backgroundColor: '#E5E5EA' },
                 { height: 8 },
-              ] as any,
+              ],
             },
             {
-              id: 'progress-text',
               type: 'text',
               properties: [
                 { text: '{{progressText}}' },
@@ -114,6 +108,58 @@ export class ProgressExamplesPage {
               ],
             },
           ],
+        },
+        dynamicIslandLayout: {
+          expanded: {
+            leading: {
+              type: 'container',
+              properties: [{ direction: 'vertical' }, { spacing: 2 }],
+              children: [
+                {
+                  type: 'image',
+                  properties: [
+                    { systemName: 'arrow.down.circle.fill' },
+                    { color: '#007AFF' },
+                    { width: 20 },
+                    { height: 20 },
+                  ],
+                },
+                {
+                  type: 'text',
+                  properties: [{ text: 'Download' }, { fontSize: 9 }, { color: '#8E8E93' }],
+                },
+              ],
+            },
+            trailing: {
+              type: 'text',
+              properties: [
+                { text: '{{progressText}}' },
+                { fontSize: 12 },
+                { fontWeight: 'semibold' },
+                { color: '#FFFFFF' },
+              ],
+            },
+            center: {
+              type: 'text',
+              properties: [{ text: '{{title}}' }, { fontSize: 11 }, { fontWeight: 'medium' }, { color: '#FFFFFF' }],
+            },
+            bottom: {
+              type: 'progress',
+              properties: [{ value: 0.65 }, { total: 1.0 }, { color: '#007AFF' }, { height: 4 }],
+            },
+          },
+          compactLeading: {
+            type: 'image',
+            properties: [{ systemName: 'arrow.down.circle.fill' }, { color: '#007AFF' }, { width: 16 }, { height: 16 }],
+          },
+          compactTrailing: {
+            type: 'text',
+            properties: [{ text: '65%' }, { fontSize: 12 }, { fontWeight: 'semibold' }, { color: '#FFFFFF' }],
+          },
+          minimal: {
+            type: 'image',
+            properties: [{ systemName: 'arrow.down.circle.fill' }, { color: '#007AFF' }, { width: 12 }, { height: 12 }],
+          },
         },
         data: {
           title: 'Download Progress',
@@ -138,7 +184,6 @@ export class ProgressExamplesPage {
     try {
       const result = await LiveActivities.startActivity({
         layout: {
-          id: 'multiple-progress-example',
           type: 'container',
           properties: [
             { direction: 'vertical' },
@@ -151,7 +196,6 @@ export class ProgressExamplesPage {
           ],
           children: [
             {
-              id: 'title',
               type: 'text',
               properties: [
                 { text: '{{title}}' },
@@ -162,22 +206,18 @@ export class ProgressExamplesPage {
               ],
             },
             {
-              id: 'cpu-progress',
               type: 'container',
               properties: [{ direction: 'vertical' }, { spacing: 6 }],
               children: [
                 {
-                  id: 'cpu-label',
                   type: 'container',
                   properties: [{ direction: 'horizontal' }, { spacing: 8 }, { insideAlignment: 'center' }],
                   children: [
                     {
-                      id: 'cpu-icon',
                       type: 'image',
-                      properties: [{ systeName: 'cpu' }, { color: '#FF6B35' }, { width: 16 }, { height: 16 }],
+                      properties: [{ systemName: 'cpu' }, { color: '#FF6B35' }, { width: 16 }, { height: 16 }],
                     },
                     {
-                      id: 'cpu-text',
                       type: 'text',
                       properties: [
                         { text: 'CPU Usage' },
@@ -187,7 +227,6 @@ export class ProgressExamplesPage {
                       ],
                     },
                     {
-                      id: 'cpu-value',
                       type: 'text',
                       properties: [
                         { text: '{{cpuUsage}}' },
@@ -200,7 +239,6 @@ export class ProgressExamplesPage {
                   ],
                 },
                 {
-                  id: 'cpu-bar',
                   type: 'progress',
                   properties: [
                     { value: 0.42 },
@@ -208,27 +246,23 @@ export class ProgressExamplesPage {
                     { color: '#FF6B35' },
                     { backgroundColor: '#F0F0F0' },
                     { height: 6 },
-                  ] as any,
+                  ],
                 },
               ],
             },
             {
-              id: 'memory-progress',
               type: 'container',
               properties: [{ direction: 'vertical' }, { spacing: 6 }],
               children: [
                 {
-                  id: 'memory-label',
                   type: 'container',
                   properties: [{ direction: 'horizontal' }, { spacing: 8 }, { insideAlignment: 'center' }],
                   children: [
                     {
-                      id: 'memory-icon',
                       type: 'image',
-                      properties: [{ systeName: 'memorychip' }, { color: '#34C759' }, { width: 16 }, { height: 16 }],
+                      properties: [{ systemName: 'memorychip' }, { color: '#34C759' }, { width: 16 }, { height: 16 }],
                     },
                     {
-                      id: 'memory-text',
                       type: 'text',
                       properties: [
                         { text: 'Memory' },
@@ -238,7 +272,6 @@ export class ProgressExamplesPage {
                       ],
                     },
                     {
-                      id: 'memory-value',
                       type: 'text',
                       properties: [
                         { text: '{{memoryUsage}}' },
@@ -251,7 +284,6 @@ export class ProgressExamplesPage {
                   ],
                 },
                 {
-                  id: 'memory-bar',
                   type: 'progress',
                   properties: [
                     { value: 0.78 },
@@ -259,11 +291,107 @@ export class ProgressExamplesPage {
                     { color: '#34C759' },
                     { backgroundColor: '#F0F0F0' },
                     { height: 6 },
-                  ] as any,
+                  ],
                 },
               ],
             },
           ],
+        },
+        dynamicIslandLayout: {
+          expanded: {
+            leading: {
+              type: 'container',
+              properties: [{ direction: 'vertical' }, { spacing: 2 }],
+              children: [
+                {
+                  type: 'image',
+                  properties: [{ systemName: 'cpu' }, { color: '#FF6B35' }, { width: 18 }, { height: 18 }],
+                },
+                {
+                  type: 'text',
+                  properties: [{ text: 'CPU' }, { fontSize: 9 }, { color: '#8E8E93' }],
+                },
+              ],
+            },
+            trailing: {
+              type: 'container',
+              properties: [{ direction: 'vertical' }, { spacing: 2 }],
+              children: [
+                {
+                  type: 'image',
+                  properties: [{ systemName: 'memorychip' }, { color: '#34C759' }, { width: 18 }, { height: 18 }],
+                },
+                {
+                  type: 'text',
+                  properties: [{ text: 'RAM' }, { fontSize: 9 }, { color: '#8E8E93' }],
+                },
+              ],
+            },
+            center: {
+              type: 'container',
+              properties: [{ direction: 'horizontal' }, { spacing: 8 }],
+              children: [
+                {
+                  type: 'text',
+                  properties: [
+                    { text: '{{cpuUsage}}' },
+                    { fontSize: 12 },
+                    { fontWeight: 'semibold' },
+                    { color: '#FF6B35' },
+                  ],
+                },
+                {
+                  type: 'text',
+                  properties: [{ text: '|' }, { fontSize: 12 }, { color: '#8E8E93' }],
+                },
+                {
+                  type: 'text',
+                  properties: [
+                    { text: '{{memoryUsage}}' },
+                    { fontSize: 12 },
+                    { fontWeight: 'semibold' },
+                    { color: '#34C759' },
+                  ],
+                },
+              ],
+            },
+            bottom: {
+              type: 'container',
+              properties: [{ direction: 'vertical' }, { spacing: 3 }],
+              children: [
+                {
+                  type: 'progress',
+                  properties: [{ value: 0.42 }, { total: 1.0 }, { color: '#FF6B35' }, { height: 3 }],
+                },
+                {
+                  type: 'progress',
+                  properties: [{ value: 0.78 }, { total: 1.0 }, { color: '#34C759' }, { height: 3 }],
+                },
+              ],
+            },
+          },
+          compactLeading: {
+            type: 'image',
+            properties: [{ systemName: 'cpu' }, { color: '#FF6B35' }, { width: 16 }, { height: 16 }],
+          },
+          compactTrailing: {
+            type: 'container',
+            properties: [{ direction: 'horizontal' }, { spacing: 3 }],
+            children: [
+              {
+                type: 'text',
+                properties: [{ text: '42%' }, { fontSize: 11 }, { fontWeight: 'semibold' }, { color: '#FF6B35' }],
+              },
+              {
+                type: 'text',
+                properties: [{ text: '78%' }, { fontSize: 11 }, { fontWeight: 'semibold' }, { color: '#34C759' }],
+              },
+            ],
+          },
+          minimal: {
+            type: 'image',
+            properties: [{ systemName: 'cpu' }, { color: '#FF6B35' }, { width: 12 }, { height: 12 }],
+          },
         },
         data: {
           title: 'System Monitor',
@@ -289,7 +417,6 @@ export class ProgressExamplesPage {
     try {
       const result = await LiveActivities.startActivity({
         layout: {
-          id: 'upload-progress-example',
           type: 'container',
           properties: [
             { direction: 'horizontal' },
@@ -301,22 +428,18 @@ export class ProgressExamplesPage {
           ],
           children: [
             {
-              id: 'upload-icon',
               type: 'image',
-              properties: [{ systeName: 'arrow.up.circle.fill' }, { color: '#3498DB' }, { width: 40 }, { height: 40 }],
+              properties: [{ systemName: 'arrow.up.circle.fill' }, { color: '#3498DB' }, { width: 40 }, { height: 40 }],
             },
             {
-              id: 'upload-content',
               type: 'container',
               properties: [{ direction: 'vertical' }, { spacing: 8 }],
               children: [
                 {
-                  id: 'upload-info',
                   type: 'container',
                   properties: [{ direction: 'horizontal' }, { spacing: 8 }, { insideAlignment: 'center' }],
                   children: [
                     {
-                      id: 'file-name',
                       type: 'text',
                       properties: [
                         { text: '{{fileName}}' },
@@ -326,7 +449,6 @@ export class ProgressExamplesPage {
                       ],
                     },
                     {
-                      id: 'upload-percentage',
                       type: 'text',
                       properties: [
                         { text: '{{uploadPercentage}}' },
@@ -339,7 +461,6 @@ export class ProgressExamplesPage {
                   ],
                 },
                 {
-                  id: 'upload-bar',
                   type: 'progress',
                   properties: [
                     { value: 0.85 },
@@ -347,10 +468,9 @@ export class ProgressExamplesPage {
                     { color: '#3498DB' },
                     { backgroundColor: '#34495E' },
                     { height: 4 },
-                  ] as any,
+                  ],
                 },
                 {
-                  id: 'upload-speed',
                   type: 'text',
                   properties: [
                     { text: '{{uploadSpeed}}' },
@@ -362,6 +482,68 @@ export class ProgressExamplesPage {
               ],
             },
           ],
+        },
+        dynamicIslandLayout: {
+          expanded: {
+            leading: {
+              type: 'container',
+              properties: [{ direction: 'vertical' }, { spacing: 2 }],
+              children: [
+                {
+                  type: 'image',
+                  properties: [
+                    { systemName: 'arrow.up.circle.fill' },
+                    { color: '#3498DB' },
+                    { width: 20 },
+                    { height: 20 },
+                  ],
+                },
+                {
+                  type: 'text',
+                  properties: [{ text: 'Upload' }, { fontSize: 9 }, { color: '#8E8E93' }],
+                },
+              ],
+            },
+            trailing: {
+              type: 'container',
+              properties: [{ direction: 'vertical' }, { spacing: 2 }, { insideAlignment: 'trailing' }],
+              children: [
+                {
+                  type: 'text',
+                  properties: [
+                    { text: '{{uploadPercentage}}' },
+                    { fontSize: 14 },
+                    { fontWeight: 'bold' },
+                    { color: '#FFFFFF' },
+                  ],
+                },
+                {
+                  type: 'text',
+                  properties: [{ text: '2.1 MB/s' }, { fontSize: 9 }, { color: '#3498DB' }],
+                },
+              ],
+            },
+            center: {
+              type: 'text',
+              properties: [{ text: '{{fileName}}' }, { fontSize: 10 }, { fontWeight: 'medium' }, { color: '#FFFFFF' }],
+            },
+            bottom: {
+              type: 'progress',
+              properties: [{ value: 0.85 }, { total: 1.0 }, { color: '#3498DB' }, { height: 4 }],
+            },
+          },
+          compactLeading: {
+            type: 'image',
+            properties: [{ systemName: 'arrow.up.circle.fill' }, { color: '#3498DB' }, { width: 16 }, { height: 16 }],
+          },
+          compactTrailing: {
+            type: 'text',
+            properties: [{ text: '85%' }, { fontSize: 12 }, { fontWeight: 'semibold' }, { color: '#FFFFFF' }],
+          },
+          minimal: {
+            type: 'image',
+            properties: [{ systemName: 'arrow.up.circle.fill' }, { color: '#3498DB' }, { width: 12 }, { height: 12 }],
+          },
         },
         data: {
           fileName: 'project_files.zip',
@@ -387,7 +569,6 @@ export class ProgressExamplesPage {
     try {
       const result = await LiveActivities.startActivity({
         layout: {
-          id: 'battery-progress-example',
           type: 'container',
           properties: [
             { direction: 'vertical' },
@@ -398,17 +579,14 @@ export class ProgressExamplesPage {
           ],
           children: [
             {
-              id: 'battery-header',
               type: 'container',
               properties: [{ direction: 'horizontal' }, { spacing: 10 }, { insideAlignment: 'center' }],
               children: [
                 {
-                  id: 'battery-icon',
                   type: 'image',
-                  properties: [{ systeName: 'battery.75' }, { color: '#30D158' }, { width: 28 }, { height: 28 }],
+                  properties: [{ systemName: 'battery.75' }, { color: '#30D158' }, { width: 28 }, { height: 28 }],
                 },
                 {
-                  id: 'battery-title',
                   type: 'text',
                   properties: [
                     { text: '{{batteryTitle}}' },
@@ -420,12 +598,10 @@ export class ProgressExamplesPage {
               ],
             },
             {
-              id: 'battery-level',
               type: 'container',
               properties: [{ direction: 'horizontal' }, { spacing: 12 }, { insideAlignment: 'center' }],
               children: [
                 {
-                  id: 'battery-bar',
                   type: 'progress',
                   properties: [
                     { value: 0.75 },
@@ -433,10 +609,9 @@ export class ProgressExamplesPage {
                     { color: '#30D158' },
                     { backgroundColor: '#2C2C2E' },
                     { height: 12 },
-                  ] as any,
+                  ],
                 },
                 {
-                  id: 'battery-percent',
                   type: 'text',
                   properties: [
                     { text: '{{batteryPercent}}' },
@@ -449,23 +624,97 @@ export class ProgressExamplesPage {
               ],
             },
             {
-              id: 'charging-info',
               type: 'container',
               properties: [{ direction: 'horizontal' }, { spacing: 6 }, { insideAlignment: 'center' }],
               children: [
                 {
-                  id: 'charging-icon',
                   type: 'image',
-                  properties: [{ systeName: 'bolt.fill' }, { color: '#FFCC02' }, { width: 12 }, { height: 12 }],
+                  properties: [{ systemName: 'bolt.fill' }, { color: '#FFCC02' }, { width: 12 }, { height: 12 }],
                 },
                 {
-                  id: 'charging-text',
                   type: 'text',
                   properties: [{ text: '{{chargingStatus}}' }, { fontSize: 12 }, { color: '#8E8E93' }],
                 },
               ],
             },
           ],
+        },
+        dynamicIslandLayout: {
+          expanded: {
+            leading: {
+              type: 'container',
+              properties: [{ direction: 'vertical' }, { spacing: 2 }],
+              children: [
+                {
+                  type: 'image',
+                  properties: [{ systemName: 'battery.75' }, { color: '#30D158' }, { width: 20 }, { height: 20 }],
+                },
+                {
+                  type: 'text',
+                  properties: [{ text: 'Battery' }, { fontSize: 9 }, { color: '#8E8E93' }],
+                },
+              ],
+            },
+            trailing: {
+              type: 'container',
+              properties: [{ direction: 'vertical' }, { spacing: 2 }, { insideAlignment: 'trailing' }],
+              children: [
+                {
+                  type: 'text',
+                  properties: [
+                    { text: '{{batteryPercent}}' },
+                    { fontSize: 14 },
+                    { fontWeight: 'bold' },
+                    { color: '#30D158' },
+                  ],
+                },
+                {
+                  type: 'image',
+                  properties: [{ systemName: 'bolt.fill' }, { color: '#FFCC02' }, { width: 12 }, { height: 12 }],
+                },
+              ],
+            },
+            center: {
+              type: 'text',
+              properties: [{ text: 'Charging' }, { fontSize: 11 }, { fontWeight: 'medium' }, { color: '#FFFFFF' }],
+            },
+            bottom: {
+              type: 'container',
+              properties: [{ direction: 'vertical' }, { spacing: 4 }],
+              children: [
+                {
+                  type: 'progress',
+                  properties: [{ value: 0.75 }, { total: 1.0 }, { color: '#30D158' }, { height: 4 }],
+                },
+                {
+                  type: 'text',
+                  properties: [{ text: '1h 20m until full' }, { fontSize: 10 }, { color: '#8E8E93' }],
+                },
+              ],
+            },
+          },
+          compactLeading: {
+            type: 'image',
+            properties: [{ systemName: 'battery.75' }, { color: '#30D158' }, { width: 16 }, { height: 16 }],
+          },
+          compactTrailing: {
+            type: 'container',
+            properties: [{ direction: 'horizontal' }, { spacing: 3 }],
+            children: [
+              {
+                type: 'text',
+                properties: [{ text: '75%' }, { fontSize: 12 }, { fontWeight: 'semibold' }, { color: '#30D158' }],
+              },
+              {
+                type: 'image',
+                properties: [{ systemName: 'bolt.fill' }, { color: '#FFCC02' }, { width: 10 }, { height: 10 }],
+              },
+            ],
+          },
+          minimal: {
+            type: 'image',
+            properties: [{ systemName: 'bolt.fill' }, { color: '#FFCC02' }, { width: 12 }, { height: 12 }],
+          },
         },
         data: {
           batteryTitle: 'Battery Status',

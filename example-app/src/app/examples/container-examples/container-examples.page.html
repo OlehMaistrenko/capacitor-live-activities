@@ -23,9 +23,9 @@
       <ion-card-content>
         <p>Explore complex layouts using VStack, HStack, ZStack with gradients, borders, and nested containers.</p>
         @if (currentActivityId) {
-          <ion-chip color="success">
-            <ion-label>Active ID: {{ currentActivityId }}</ion-label>
-          </ion-chip>
+        <ion-chip color="success">
+          <ion-label>Active ID: {{ currentActivityId }}</ion-label>
+        </ion-chip>
         }
       </ion-card-content>
     </ion-card>
@@ -50,7 +50,9 @@
         <ion-card-title>Multi-Container Layout</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <p>Complex layout combining VStack, HStack, and ZStack with gradient header, nested containers, and metric cards.</p>
+        <p>
+          Complex layout combining VStack, HStack, and ZStack with gradient header, nested containers, and metric cards.
+        </p>
         <ion-button expand="block" (click)="startComplexLayoutExample()">
           <fa-icon icon="play-circle" slot="start" />
           Start Complex Layout
@@ -64,7 +66,9 @@
         <ion-card-title>Analytics Dashboard Grid</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <p>Dashboard-style layout with header and three-column grid showing statistics with icons, values, and labels.</p>
+        <p>
+          Dashboard-style layout with header and three-column grid showing statistics with icons, values, and labels.
+        </p>
         <ion-button expand="block" (click)="startDashboardExample()">
           <fa-icon icon="play-circle" slot="start" />
           Start Dashboard Layout

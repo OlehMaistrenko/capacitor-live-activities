@@ -26,8 +26,8 @@
 
       <ion-card-content>
         <p class="description">
-          Track your workout with a Live Activity that shows the current exercise,
-          segmented progress, and the next exercise.
+          Track your workout with a Live Activity that shows the current exercise, segmented progress, and the next
+          exercise.
         </p>
 
         <!-- Features -->
@@ -48,11 +48,7 @@
 
         <!-- Controls -->
         <div class="controls">
-          <ion-button
-            expand="block"
-            size="large"
-            (click)="startGymWorkout()"
-            [disabled]="currentActivityId !== null">
+          <ion-button expand="block" size="large" (click)="startGymWorkout()" [disabled]="currentActivityId !== null">
             <fa-icon icon="play-circle" slot="start" />
             Start Workout
           </ion-button>
@@ -69,28 +65,17 @@
 
       <ion-card-content>
         <div class="control-buttons">
-          <ion-button
-            fill="outline"
-            size="default"
-            (click)="nextExercise()">
+          <ion-button fill="outline" size="default" (click)="nextExercise()">
             <fa-icon icon="refresh" slot="start" />
             Next Exercise
           </ion-button>
 
-          <ion-button
-            fill="solid"
-            color="success"
-            size="default"
-            (click)="completeWorkout()">
+          <ion-button fill="solid" color="success" size="default" (click)="completeWorkout()">
             <fa-icon icon="circle-check" slot="start" />
             Complete Workout
           </ion-button>
 
-          <ion-button
-            fill="clear"
-            color="danger"
-            size="default"
-            (click)="endWorkout()">
+          <ion-button fill="clear" color="danger" size="default" (click)="endWorkout()">
             <fa-icon icon="stop-circle" slot="start" />
             Stop
           </ion-button>

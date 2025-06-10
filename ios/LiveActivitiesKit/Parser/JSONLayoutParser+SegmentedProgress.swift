@@ -38,7 +38,7 @@ extension JSONLayoutParser {
             let strokeDashed = resolveValue(element.properties["strokeDashed"], with: data) as? Bool ?? false
             let strokeWidth = getDouble(from: resolveValue(element.properties["strokeWidth"], with: data)) ?? 1
             
-            Logger.viewCycle.error("📀 \(element.id) -> buildSegmentedProgressView -> segments: \(segments), filled: \(filled), spacing: \(spacing), height: \(height), cornerRadius: \(cornerRadius), filledColor: \(filledColor), unfilledColor: \(unfilledColor), strokeColor: \(strokeColor), strokeDashed: \(strokeDashed), strokeWidth: \(strokeWidth)")
+            Logger.viewCycle.error("📀 buildSegmentedProgressView -> segments: \(segments), filled: \(filled), spacing: \(spacing), height: \(height), cornerRadius: \(cornerRadius), filledColor: \(filledColor), unfilledColor: \(unfilledColor), strokeColor: \(strokeColor), strokeDashed: \(strokeDashed), strokeWidth: \(strokeWidth)")
             
             let segmentedProgressView = HStack(spacing: CGFloat(spacing)) {
                 ForEach(0..<segments, id: \.self) { index in

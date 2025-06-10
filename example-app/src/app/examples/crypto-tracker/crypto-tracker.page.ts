@@ -13,7 +13,7 @@ import {
   IonButton,
   IonIcon,
 } from '@ionic/angular/standalone';
-import { LiveActivities } from 'capacitor-live-activities';
+import { LiveActivities, LiveActivitiesOptions } from 'capacitor-live-activities';
 import { LiveActivitiesService } from '../../services/live-activities.service';
 import { playCircle, refresh, stopCircle, trendingUp, trendingDown } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
@@ -62,12 +62,11 @@ export class CryptoTrackerPage {
       const change = currentData.price - prevPrice;
       const changePercent = (change / prevPrice) * 100;
 
-      const activityData = {
+      const activityData: LiveActivitiesOptions = {
         layout: {
-          id: 'crypto-tracker',
-          type: 'container' as const,
+          type: 'container',
           properties: [
-            { direction: 'vertical' as const },
+            { direction: 'vertical' },
             { spacing: 16 },
             { padding: 20 },
             { backgroundColor: '#000000' },
@@ -76,23 +75,19 @@ export class CryptoTrackerPage {
           children: [
             // Header with crypto info
             {
-              id: 'header',
-              type: 'container' as const,
-              properties: [{ direction: 'horizontal' as const }, { spacing: 12 }, { insideAlignment: 'center' }],
+              type: 'container',
+              properties: [{ direction: 'horizontal' }, { spacing: 12 }, { insideAlignment: 'center' }],
               children: [
                 {
-                  id: 'crypto-icon',
-                  type: 'text' as const,
+                  type: 'text',
                   properties: [{ text: '₿' }, { fontSize: 24 }, { color: '#F7931A' }],
                 },
                 {
-                  id: 'crypto-info',
-                  type: 'container' as const,
-                  properties: [{ direction: 'vertical' as const }, { spacing: 2 }],
+                  type: 'container',
+                  properties: [{ direction: 'vertical' }, { spacing: 2 }],
                   children: [
                     {
-                      id: 'crypto-name',
-                      type: 'text' as const,
+                      type: 'text',
                       properties: [
                         { text: 'Bitcoin' },
                         { fontSize: 16 },
@@ -101,20 +96,17 @@ export class CryptoTrackerPage {
                       ],
                     },
                     {
-                      id: 'crypto-symbol',
-                      type: 'text' as const,
+                      type: 'text',
                       properties: [{ text: 'BTC/USD' }, { fontSize: 12 }, { color: '#8E8E93' }],
                     },
                   ],
                 },
                 {
-                  id: 'price-container',
-                  type: 'container' as const,
-                  properties: [{ direction: 'vertical' as const }, { spacing: 2 }, { insideAlignment: 'trailing' }],
+                  type: 'container',
+                  properties: [{ direction: 'vertical' }, { spacing: 2 }, { insideAlignment: 'trailing' }],
                   children: [
                     {
-                      id: 'current-price',
-                      type: 'text' as const,
+                      type: 'text',
                       properties: [
                         { text: '${{currentPrice}}' },
                         { fontSize: 18 },
@@ -123,27 +115,24 @@ export class CryptoTrackerPage {
                       ],
                     },
                     {
-                      id: 'price-change',
-                      type: 'container' as const,
-                      properties: [{ direction: 'horizontal' as const }, { spacing: 4 }, { insideAlignment: 'center' }],
+                      type: 'container',
+                      properties: [{ direction: 'horizontal' }, { spacing: 4 }, { insideAlignment: 'center' }],
                       children: [
                         {
-                          id: 'trend-icon',
-                          type: 'image' as const,
+                          type: 'image',
                           properties: [
-                            { systeName: '{{trendIcon}}' },
-                            { color: '{{trendColor}}' },
+                            { systemName: '{{trendIcon}}' },
+                            { color: '{{trendColor}}' as any },
                             { width: 12 },
                             { height: 12 },
                           ],
                         },
                         {
-                          id: 'change-amount',
-                          type: 'text' as const,
+                          type: 'text',
                           properties: [
                             { text: '{{changeText}}' },
                             { fontSize: 12 },
-                            { color: '{{trendColor}}' },
+                            { color: '{{trendColor}}' as any },
                             { fontWeight: 'medium' },
                           ],
                         },
@@ -156,37 +145,32 @@ export class CryptoTrackerPage {
 
             // Price Chart
             {
-              id: 'price-chart-section',
-              type: 'container' as const,
-              properties: [{ direction: 'vertical' as const }, { spacing: 8 }],
+              type: 'container',
+              properties: [{ direction: 'vertical' }, { spacing: 8 }],
               children: [
                 {
-                  id: 'chart-header',
-                  type: 'container' as const,
-                  properties: [{ direction: 'horizontal' as const }, { spacing: 8 }],
+                  type: 'container',
+                  properties: [{ direction: 'horizontal' }, { spacing: 8 }],
                   children: [
                     {
-                      id: 'chart-label',
-                      type: 'text' as const,
+                      type: 'text',
                       properties: [{ text: '24H Chart' }, { fontSize: 12 }, { color: '#8E8E93' }],
                     },
                     {
-                      id: 'chart-period',
-                      type: 'text' as const,
+                      type: 'text',
                       properties: [{ text: 'Last 7 points' }, { fontSize: 10 }, { color: '#48484A' }],
                     },
                   ],
                 },
                 {
-                  id: 'main-chart',
-                  type: 'chart' as const,
+                  type: 'chart',
                   properties: [
                     { type: 'area' },
-                    { data: '{{chartData}}' },
+                    { data: '{{chartData}}' as any },
                     { width: 300 },
                     { height: 60 },
-                    { color: '{{chartColor}}' },
-                    { fillColor: '{{chartColor}}' },
+                    { color: '{{chartColor}}' as any },
+                    { fillColor: '{{chartColor}}' as any },
                     { strokeWidth: 2 },
                     { smooth: true },
                   ],
@@ -196,10 +180,9 @@ export class CryptoTrackerPage {
 
             // Stats Row
             {
-              id: 'stats-row',
-              type: 'container' as const,
+              type: 'container',
               properties: [
-                { direction: 'horizontal' as const },
+                { direction: 'horizontal' },
                 { spacing: 12 },
                 { padding: 12 },
                 { backgroundColor: '#1C1C1E' },
@@ -207,18 +190,15 @@ export class CryptoTrackerPage {
               ],
               children: [
                 {
-                  id: 'high-stat',
-                  type: 'container' as const,
-                  properties: [{ direction: 'vertical' as const }, { spacing: 2 }],
+                  type: 'container',
+                  properties: [{ direction: 'vertical' }, { spacing: 2 }],
                   children: [
                     {
-                      id: 'high-label',
-                      type: 'text' as const,
+                      type: 'text',
                       properties: [{ text: '24H HIGH' }, { fontSize: 9 }, { color: '#8E8E93' }],
                     },
                     {
-                      id: 'high-value',
-                      type: 'text' as const,
+                      type: 'text',
                       properties: [
                         { text: '${{highPrice}}' },
                         { fontSize: 13 },
@@ -229,18 +209,15 @@ export class CryptoTrackerPage {
                   ],
                 },
                 {
-                  id: 'low-stat',
-                  type: 'container' as const,
-                  properties: [{ direction: 'vertical' as const }, { spacing: 2 }],
+                  type: 'container',
+                  properties: [{ direction: 'vertical' }, { spacing: 2 }],
                   children: [
                     {
-                      id: 'low-label',
-                      type: 'text' as const,
+                      type: 'text',
                       properties: [{ text: '24H LOW' }, { fontSize: 9 }, { color: '#8E8E93' }],
                     },
                     {
-                      id: 'low-value',
-                      type: 'text' as const,
+                      type: 'text',
                       properties: [
                         { text: '${{lowPrice}}' },
                         { fontSize: 13 },
@@ -251,18 +228,15 @@ export class CryptoTrackerPage {
                   ],
                 },
                 {
-                  id: 'volume-stat',
-                  type: 'container' as const,
-                  properties: [{ direction: 'vertical' as const }, { spacing: 2 }],
+                  type: 'container',
+                  properties: [{ direction: 'vertical' }, { spacing: 2 }],
                   children: [
                     {
-                      id: 'volume-label',
-                      type: 'text' as const,
+                      type: 'text',
                       properties: [{ text: 'VOLUME' }, { fontSize: 9 }, { color: '#8E8E93' }],
                     },
                     {
-                      id: 'volume-value',
-                      type: 'text' as const,
+                      type: 'text',
                       properties: [
                         { text: '{{volume}}' },
                         { fontSize: 13 },
@@ -273,18 +247,15 @@ export class CryptoTrackerPage {
                   ],
                 },
                 {
-                  id: 'market-cap-stat',
-                  type: 'container' as const,
-                  properties: [{ direction: 'vertical' as const }, { spacing: 2 }],
+                  type: 'container',
+                  properties: [{ direction: 'vertical' }, { spacing: 2 }],
                   children: [
                     {
-                      id: 'market-cap-label',
-                      type: 'text' as const,
+                      type: 'text',
                       properties: [{ text: 'MARKET CAP' }, { fontSize: 9 }, { color: '#8E8E93' }],
                     },
                     {
-                      id: 'market-cap-value',
-                      type: 'text' as const,
+                      type: 'text',
                       properties: [
                         { text: '{{marketCap}}' },
                         { fontSize: 13 },
@@ -299,21 +270,18 @@ export class CryptoTrackerPage {
 
             // Mini bar chart for volume
             {
-              id: 'volume-chart-section',
-              type: 'container' as const,
-              properties: [{ direction: 'vertical' as const }, { spacing: 6 }],
+              type: 'container',
+              properties: [{ direction: 'vertical' }, { spacing: 6 }],
               children: [
                 {
-                  id: 'volume-chart-label',
-                  type: 'text' as const,
+                  type: 'text',
                   properties: [{ text: 'Volume Trend' }, { fontSize: 10 }, { color: '#8E8E93' }],
                 },
                 {
-                  id: 'volume-chart',
-                  type: 'chart' as const,
+                  type: 'chart',
                   properties: [
                     { type: 'bar' },
-                    { data: '{{volumeData}}' },
+                    { data: '{{volumeData}}' as any },
                     { width: 300 },
                     { height: 25 },
                     { color: '#48484A' },
@@ -323,6 +291,102 @@ export class CryptoTrackerPage {
             },
           ],
         },
+        dynamicIslandLayout: {
+          expanded: {
+            leading: {
+              type: 'container',
+              properties: [{ direction: 'vertical' }, { spacing: 2 }],
+              children: [
+                {
+                  type: 'text',
+                  properties: [{ text: '₿' }, { fontSize: 20 }, { color: '#F7931A' }],
+                },
+                {
+                  type: 'text',
+                  properties: [{ text: 'BTC' }, { fontSize: 10 }, { color: '#8E8E93' }],
+                },
+              ],
+            },
+            trailing: {
+              type: 'container',
+              properties: [{ direction: 'vertical' }, { spacing: 2 }, { insideAlignment: 'trailing' }],
+              children: [
+                {
+                  type: 'text',
+                  properties: [
+                    { text: '${{currentPrice}}' },
+                    { fontSize: 14 },
+                    { fontWeight: 'bold' },
+                    { color: '#FFFFFF' },
+                  ],
+                },
+                {
+                  type: 'text',
+                  properties: [
+                    { text: '{{changeText}}' },
+                    { fontSize: 10 },
+                    { color: '{{trendColor}}' as any },
+                    { fontWeight: 'medium' },
+                  ],
+                },
+              ],
+            },
+            center: {
+              type: 'text',
+              properties: [{ text: 'Bitcoin' }, { fontSize: 12 }, { fontWeight: 'medium' }, { color: '#FFFFFF' }],
+            },
+            bottom: {
+              type: 'chart',
+              properties: [
+                { type: 'area' },
+                { data: '{{chartData}}' as any },
+                { width: 250 },
+                { height: 30 },
+                { color: '{{chartColor}}' as any },
+                { fillColor: '{{chartColor}}' as any },
+                { strokeWidth: 1 },
+                { smooth: true },
+              ],
+            },
+          },
+          compactLeading: {
+            type: 'text',
+            properties: [{ text: '₿' }, { fontSize: 16 }, { color: '#F7931A' }],
+          },
+          compactTrailing: {
+            type: 'container',
+            properties: [{ direction: 'horizontal' }, { spacing: 2 }],
+            children: [
+              {
+                type: 'text',
+                properties: [
+                  { text: '${{compactPrice}}' },
+                  { fontSize: 12 },
+                  { fontWeight: 'semibold' },
+                  { color: '#FFFFFF' },
+                ],
+              },
+              {
+                type: 'image',
+                properties: [
+                  { systemName: '{{trendIcon}}' },
+                  { color: '{{trendColor}}' as any },
+                  { width: 10 },
+                  { height: 10 },
+                ],
+              },
+            ],
+          },
+          minimal: {
+            type: 'image',
+            properties: [
+              { systemName: '{{trendIcon}}' },
+              { color: '{{trendColor}}' as any },
+              { width: 12 },
+              { height: 12 },
+            ],
+          },
+        },
         data: this.generateCryptoData(currentData, change, changePercent),
         behavior: {
           systemActionForegroundColor: '#F7931A',
@@ -331,7 +395,7 @@ export class CryptoTrackerPage {
         },
       };
 
-      const result = await LiveActivities.startActivity(activityData as any);
+      const result = await LiveActivities.startActivity(activityData);
       this.liveActivitiesService.setCurrentActivityId(result.activityId);
       this.liveActivitiesService.showToast('Crypto Tracker iniciado! ₿');
     } catch (error) {
@@ -367,6 +431,7 @@ export class CryptoTrackerPage {
 
     return {
       currentPrice: priceInfo.price.toLocaleString(),
+      compactPrice: (priceInfo.price / 1000).toFixed(1) + 'K',
       chartData: priceInfo.data.join(','),
       chartColor: isPositive ? '#34C759' : '#FF3B30',
       trendIcon: isPositive ? 'triangle.fill' : 'triangle.fill',

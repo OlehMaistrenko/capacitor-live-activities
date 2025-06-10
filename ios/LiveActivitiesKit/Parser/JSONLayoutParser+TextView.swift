@@ -87,7 +87,7 @@ extension JSONLayoutParser {
                     view.monospacedDigit()
                 }
             
-            Logger.viewCycle.error("📀 \(element.id) -> buildTextView -> fontSize: \(fontSize), fontWeight: \(fontWeight), color: \(color), fontFamily: \(fontFamily), alignment: \(alignment), lineLimit: \(lineLimit), monospacedDigit: \(monospacedDigit)")
+            Logger.viewCycle.error("📀 buildTextView -> fontSize: \(fontSize), fontWeight: \(fontWeight), color: \(color), fontFamily: \(fontFamily), alignment: \(alignment), lineLimit: \(lineLimit), monospacedDigit: \(monospacedDigit)")
             
             return textView
         }

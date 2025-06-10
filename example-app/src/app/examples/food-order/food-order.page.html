@@ -26,8 +26,8 @@
 
       <ion-card-content>
         <p class="description">
-          Complete Live Activity for food order tracking with progress stages,
-          delivery timer, and Dynamic Island integration.
+          Complete Live Activity for food order tracking with progress stages, delivery timer, and Dynamic Island
+          integration.
         </p>
 
         <!-- Features -->
@@ -58,9 +58,9 @@
         </div>
 
         @if (currentActivityId) {
-          <ion-chip color="success" style="margin-bottom: 16px;">
-            <ion-label>Active Order: {{ currentActivityId }}</ion-label>
-          </ion-chip>
+        <ion-chip color="success" style="margin-bottom: 16px">
+          <ion-label>Active Order: {{ currentActivityId }}</ion-label>
+        </ion-chip>
         }
 
         <!-- Controls -->
@@ -69,7 +69,8 @@
             expand="block"
             size="large"
             (click)="startFoodOrderExample()"
-            [disabled]="currentActivityId !== null">
+            [disabled]="currentActivityId !== null"
+          >
             <fa-icon icon="play-circle" slot="start" />
             Start Pizza Order
           </ion-button>
@@ -88,7 +89,6 @@
           <fa-icon icon="play-circle" slot="start" />
           Start Order ($42.90)
         </ion-button>
-
       </ion-card-content>
     </ion-card>
 
@@ -100,7 +100,7 @@
       <ion-card-content>
         <ion-list>
           <ion-item button (click)="updateToPreparing()" [disabled]="!currentActivityId">
-            <fa-icon icon="utensils" slot="start" style="color: #FF9500;" />
+            <fa-icon icon="utensils" slot="start" style="color: #ff9500" />
             <ion-label>
               <h3>Preparing Order</h3>
               <p>Update to "Preparing" status with flame icon</p>
@@ -108,7 +108,7 @@
           </ion-item>
 
           <ion-item button (click)="updateToReadyForDelivery()" [disabled]="!currentActivityId">
-            <fa-icon icon="bicycle" slot="start" style="color: #007AFF;" />
+            <fa-icon icon="bicycle" slot="start" style="color: #007aff" />
             <ion-label>
               <h3>Out for Delivery</h3>
               <p>Order went out for delivery with delivery person</p>
@@ -116,7 +116,7 @@
           </ion-item>
 
           <ion-item button (click)="updateToDelivered()" [disabled]="!currentActivityId">
-            <fa-icon icon="circle-check" slot="start" style="color: #34C759;" />
+            <fa-icon icon="circle-check" slot="start" style="color: #34c759" />
             <ion-label>
               <h3>Order Delivered</h3>
               <p>Complete the order as successfully delivered</p>
@@ -124,7 +124,7 @@
           </ion-item>
 
           <ion-item button (click)="endOrder()" [disabled]="!currentActivityId">
-            <fa-icon icon="stop-circle" slot="start" style="color: #FF3B30;" />
+            <fa-icon icon="stop-circle" slot="start" style="color: #ff3b30" />
             <ion-label>
               <h3>End Order</h3>
               <p>End order tracking</p>
@@ -142,28 +142,28 @@
       <ion-card-content>
         <ion-list>
           <ion-item>
-            <fa-icon icon="circle-check" slot="start" style="color: #34C759;" />
+            <fa-icon icon="circle-check" slot="start" style="color: #34c759" />
             <ion-label>
               <h3>1. Order Confirmed</h3>
               <p>Order received and confirmed by restaurant</p>
             </ion-label>
           </ion-item>
           <ion-item>
-            <fa-icon icon="utensils" slot="start" style="color: #FF9500;" />
+            <fa-icon icon="utensils" slot="start" style="color: #ff9500" />
             <ion-label>
               <h3>2. Preparing</h3>
               <p>Food being prepared in the kitchen</p>
             </ion-label>
           </ion-item>
           <ion-item>
-            <fa-icon icon="bicycle" slot="start" style="color: #007AFF;" />
+            <fa-icon icon="bicycle" slot="start" style="color: #007aff" />
             <ion-label>
               <h3>3. Out for Delivery</h3>
               <p>Delivery person on the way to your address</p>
             </ion-label>
           </ion-item>
           <ion-item>
-            <fa-icon icon="circle-check" slot="start" style="color: #34C759;" />
+            <fa-icon icon="circle-check" slot="start" style="color: #34c759" />
             <ion-label>
               <h3>4. Delivered</h3>
               <p>Order delivered successfully</p>

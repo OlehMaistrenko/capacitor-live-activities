@@ -1,7 +1,6 @@
 import { WebPlugin } from '@capacitor/core';
 
 import type {
-  ActivityInfo,
   EndActivityOptions,
   LiveActivitiesOptions,
   LiveActivitiesPlugin,
@@ -18,10 +17,10 @@ export class LiveActivitiesWeb extends WebPlugin implements LiveActivitiesPlugin
   endActivity(_: EndActivityOptions): Promise<void> {
     throw new Error('Method not implemented.');
   }
-  getAllActivities(): Promise<{ activities: ActivityInfo[] }> {
+  getAllActivities(): Promise<{ activities: LiveActivitiesOptions[] }> {
     throw new Error('Method not implemented.');
   }
-  debugActivities(): Promise<{ activities: ActivityInfo[]; count: number }> {
+  debugActivities(): Promise<{ activities: LiveActivitiesOptions[]; count: number }> {
     throw new Error('Method not implemented.');
   }
   saveImage(_: {

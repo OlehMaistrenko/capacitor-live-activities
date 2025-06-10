@@ -10,6 +10,10 @@
 
 ## 🧩 Specific Elements
 
+### 🏝️ **Dynamic Island (NEW!)**
+
+- **[Dynamic Island Layouts](./json-layout-guide.md#dynamic-island-layouts)** - Complete guide to Dynamic Island support
+
 ### 📊 **New Elements (2024)**
 
 - **[Chart Examples](./chart-examples.md)** - Line, area, and bar charts

@@ -8,9 +8,10 @@ extension JSONLayoutParser {
         let height = getDouble(from: resolveValue(element.properties["height"], with: data)) ?? 0
         let cornerRadius = getDouble(from: resolveValue(element.properties["cornerRadius"], with: data)) ?? 0
         let contentMode = getString(from: resolveValue(element.properties["contentMode"], with: data)) ?? ""
+        let resizable = resolveValue(element.properties["resizable"], with: data) as? Bool ?? false
         
-        Logger.viewCycle.error("📀 \(element.id) -> buildImageView -> width: \(width), height: \(height), cornerRadius: \(cornerRadius), contentMode: \(contentMode)")
-                
+        Logger.viewCycle.error("📀 buildImageView -> width: \(width), height: \(height), cornerRadius: \(cornerRadius), contentMode: \(contentMode)")
+        
         // Determinar fonte da imagem
         var imageView: AnyView
         
@@ -18,10 +19,12 @@ extension JSONLayoutParser {
             // SF Symbols
             let color = getString(from: resolveValue(element.properties["color"], with: data)) ?? ""
             
-            Logger.viewCycle.error("📀 \(element.id) -> buildImageView -> systemName: \(systemName), color: \(color)")
+            Logger.viewCycle.error("📀 buildImageView -> systemName: \(systemName), color: \(color)")
             
             imageView = AnyView(
-                Image(systemName: systemName)
+                Image(systemName: systemName).if(resizable){ view in
+                    view.resizable()
+                }
             )
             
             if color != "" {
@@ -30,35 +33,40 @@ extension JSONLayoutParser {
                 )
             }
         } else if let urlString = getString(from: resolveValue(element.properties["url"], with: data)) {
-            // URL remota
-            Logger.viewCycle.error("📀 \(element.id) -> buildImageView -> url: \(urlString)")
+            // Remote URL
+            Logger.viewCycle.error("📀 buildImageView -> url: \(urlString)")
             imageView = AnyView(
-                AsyncImageView(urlString: urlString)
+                AsyncImageView(urlString: urlString, resizable: resizable)
             )
         } else if let fileName = getString(from: resolveValue(element.properties["appGroup"], with: data)) {
-            // Imagem salva no App Group
-            Logger.viewCycle.error("📀 \(element.id) -> buildImageView -> appGroup: \(fileName)")
+            // Image saved to App Group
+            Logger.viewCycle.error("📀 buildImageView -> appGroup: \(fileName)")
             imageView = AnyView(
-                AppGroupImageView(fileName: fileName)
+                AppGroupImageView(fileName: fileName, resizable: resizable)
             )
         } else if let assetName = getString(from: resolveValue(element.properties["asset"], with: data)) {
-            // Asset do bundle
-            Logger.viewCycle.error("📀 \(element.id) -> buildImageView -> asset: \(assetName)")
+            
+            // Asset from bundle
+            Logger.viewCycle.error("📀 buildImageView -> asset: \(assetName)")
             imageView = AnyView(
-                Image(assetName).resizable()
+                Image(assetName).if(resizable){ view in
+                    view.resizable()
+                }
             )
         } else if let base64String = getString(from: resolveValue(element.properties["base64"], with: data)) {
             // Base64
-            Logger.viewCycle.error("📀 \(element.id) -> buildImageView -> base64: \(base64String)")
+            Logger.viewCycle.error("📀 buildImageView -> base64: \(base64String)")
             imageView = AnyView(
-                Base64ImageView(base64String: base64String)
+                Base64ImageView(base64String: base64String, resizable: resizable)
             )
         } else {
             // Fallback
-            Logger.viewCycle.error("📀 \(element.id) -> buildImageView -> fallback")
+            Logger.viewCycle.error("📀 buildImageView -> fallback")
             imageView = AnyView(
                 Image(systemName: "photo")
-                    .resizable()
+                    .if(resizable){ view in
+                        view.resizable()
+                    }
                     .foregroundColor(.gray)
             )
         }

@@ -33,13 +33,8 @@ export interface LiveActivitiesPlugin {
      * @returns Promise with array of all active activities
      */
     getAllActivities(): Promise<{
-        activities: ActivityInfo[];
+        activities: LiveActivitiesOptions[];
     }>;
-    /**
-     * Get debug information about Live Activities
-     * @returns Promise with debug information and activity count
-     */
-    debugActivities(): Promise<DebugActivities>;
     /**
      * Save an image for use in Live Activities
      * @param options Image save options
@@ -86,15 +81,15 @@ export declare type LiveActivitiesOptions = {
     /** Layout configuration for the activity */
     layout: ActivityLayout;
     /** Dynamic Island layout configuration (optional) */
-    dynamicIslandLayout?: DynamicIslandLayout;
+    dynamicIslandLayout: DynamicIslandLayout;
+    /** Behavior configuration for the activity */
+    behavior: LiveActivitiesBehavior;
     /** Dynamic data to be displayed in the activity */
     data: Record<string, any>;
     /** Date when the activity becomes stale (optional) */
     staleDate?: number;
     /** Relevance score for activity prioritization (optional) */
     relevanceScore?: number;
-    /** Behavior configuration for the activity */
-    behavior: LiveActivitiesBehavior;
 };
 /**
  * Behavior configuration for a Live Activity
@@ -102,10 +97,14 @@ export declare type LiveActivitiesOptions = {
  * @description Defines how the Live Activity behaves, including whether it should be pinned to the lock screen.
  */
 export declare type LiveActivitiesBehavior = {
-    backgroundTint?: ColorString;
-    systemActionForegroundColor: ColorString;
+    /** @property widgetUrl - URL for the widget */
     widgetUrl: string;
-    keyLineTint: ColorString;
+    /** @property backgroundTint - Background color for the widget */
+    backgroundTint?: ColorString;
+    /** @property systemActionForegroundColor - Foreground color for system actions */
+    systemActionForegroundColor?: ColorString;
+    /** @property keyLineTint - Color for the key line */
+    keyLineTint?: ColorString;
 };
 /**
  * Layout configuration for an activity
@@ -164,33 +163,10 @@ export interface EndActivityOptions {
     data: Record<string, any>;
 }
 /**
- * Information about an active Live Activity
- * @category Data Types
- * @description Complete information about an active Live Activity including its configuration and current state.
- */
-export interface ActivityInfo {
-    /** Unique identifier of the activity */
-    id: string;
-    /** Layout configuration of the activity */
-    layout: ActivityLayout;
-    /** Current data of the activity */
-    data: Record<string, any>;
-    /** Date when the activity becomes stale (optional) */
-    staleDate?: number;
-    /** Relevance score of the activity (optional) */
-    relevanceScore?: number;
-}
-/**
  * Debug information about Live Activities
  * @category Data Types
  * @description Debugging information containing all active activities and their count.
  */
-export interface DebugActivities {
-    /** Array of all activities */
-    activities: ActivityInfo[];
-    /** Total count of activities */
-    count: number;
-}
 declare type ColorString = 'primary' | 'secondary' | 'accent' | 'red' | 'blue' | 'green' | 'yellow' | 'orange' | 'purple' | 'pink' | 'black' | 'white' | 'gray' | 'clear' | `#${string}`;
 /**
  * Union type representing any layout element with a unique ID
@@ -207,10 +183,7 @@ declare type ColorString = 'primary' | 'secondary' | 'accent' | 'red' | 'blue' |
  * };
  * ```
  */
-export declare type LayoutElement = Prettify<{
-    /** Unique identifier for the element */
-    id: string;
-} & (LayoutElementContainer | LayoutElementText | LayoutElementImage | LayoutElementProgress | LayoutElementTimer)>;
+export declare type LayoutElement = Prettify<LayoutElementContainer | LayoutElementText | LayoutElementImage | LayoutElementProgress | LayoutElementTimer | LayoutElementChart | LayoutElementSegmentedProgress>;
 /**
  * Base properties that all layout elements can have as individual objects
  * @category Property Objects
@@ -264,6 +237,14 @@ declare type BasePropertyObject =
  | {
     minHeight: number;
 }
+/** @property idealWidth - Ideal width for the element @example { idealWidth: 150 } */
+ | {
+    idealWidth: number;
+}
+/** @property idealHeight - Ideal height for the element @example { idealHeight: 75 } */
+ | {
+    idealHeight: number;
+}
 /** @property backgroundGradient - Gradient background configuration @example { backgroundGradient: { colors: ["#ff0000", "#0000ff"], startPoint: "top", endPoint: "bottom" } } */
  | {
     backgroundGradient: {
@@ -290,6 +271,10 @@ declare type BasePropertyObject =
  | {
     multilineTextAlignment: 'leading' | 'center' | 'trailing' | 'left' | 'right';
 }
+/** @property padding - Padding inside the container @example { padding: 16 } */
+ | {
+    padding: number | boolean;
+}
 /** @property shadow - Shadow configuration @example { shadow: { color: "#000000", radius: 5, x: 2, y: 2 } } */
  | {
     shadow: {
@@ -310,10 +295,6 @@ declare type ContainerPropertyObjectBase =
 /** @property spacing - Spacing between child elements @example { spacing: 12 } */
 {
     spacing: number;
-}
-/** @property padding - Padding inside the container @example { padding: 16 } */
- | {
-    padding: number | boolean;
 }
 /** @property foregroundColor - Foreground color style of container @example { foregroundColor: "#ffffff" } */
  | {
@@ -388,7 +369,7 @@ declare type TextPropertyObject = BasePropertyObject
 }
 /** @property fontFamily - Font family name @example { fontFamily: "Helvetica" } */
  | {
-    fontFamily: string;
+    fontFamily: 'caption' | 'title' | 'headline' | 'body' | 'callout' | 'caption2' | 'footnote' | 'largeTitle' | 'subheadline' | 'title2' | 'title3';
 }
 /** @property color - Text color @example { color: "#333333" } */
  | {
@@ -433,9 +414,9 @@ declare type ImagePropertyObject = BasePropertyObject
  | {
     cornerRadius: number;
 }
-/** @property systeName - SF Symbols system name @example { systeName: "heart.fill" } */
+/** @property systemName - SF Symbols system name @example { systemName: "heart.fill" } */
  | {
-    systeName: string;
+    systemName: string;
 }
 /** @property color - Color tint for SF Symbols @example { color: "#ff0000" } */
  | {
@@ -662,12 +643,145 @@ export declare type LayoutElementTimer = Prettify<{
     /** Timer properties as array of property objects */
     properties: TimerPropertyObject[];
 }>;
+export declare type LayoutElementChart = Prettify<{
+    /** Element type identifier */
+    type: 'chart';
+    /** Chart properties as array of property objects */
+    properties: ChartPropertyObject[];
+}>;
+/**
+ * Chart-specific property objects
+ * @category Property Objects
+ * @description Properties specific to chart elements, including data series, styling, and chart type.
+ * @extends BasePropertyObject
+ */
+declare type ChartPropertyObject = BasePropertyObject
+/** @property type - Type of chart (e.g., "line", "bar", "pie") @example { type: "line" } */
+ | {
+    type: 'line' | 'bar' | 'pie' | 'area' | 'scatter';
+}
+/** @property data - Data series for the chart @example { data: [{ x: 1, y: 2 }, { x: 2, y: 3 }] } */
+ | {
+    data: Array<{
+        x: number;
+        y: number;
+    }>;
+}
+/** @property width - Width of the chart @example { width: 300 } */
+ | {
+    width: number;
+}
+/** @property height - Height of the chart @example { height: 200 } */
+ | {
+    height: number;
+}
+/** @property color - Color of the chart lines/bars @example { color: "#007AFF" } */
+ | {
+    color: ColorString;
+}
+/** @property fillColor - Fill color for area charts @example { fillColor: "#007AFF" } */
+ | {
+    fillColor: ColorString;
+}
+/** @property strokeWidth - Width of the chart lines @example { strokeWidth: 2 } */
+ | {
+    strokeWidth: number;
+}
+/** @property showPoints - Whether to show data points on the chart @example { showPoints: true } */
+ | {
+    showPoints: boolean;
+}
+/** @property pointRadius - Radius of data points @example { pointRadius: 4 } */
+ | {
+    smooth: boolean;
+}
+/** @property smooth - Whether to smooth the lines in line charts @example { smooth: true } */
+ | {
+    maxValue: number;
+};
+/**
+ * Segmented Progress bar element for showing progress in segments
+ * @category Layout Elements
+ * @description A segmented progress bar element that displays progress divided into segments with customizable styling.
+ * @example
+ * ```typescript
+ * const segmentedProgressElement: LayoutElementSegmentedProgress = {
+ *   id: "task-progress",
+ *   type: "segmented-progress",
+ *   properties: [
+ *     { segments: 5 },
+ *     { filled: 3 },
+ *     { spacing: 4 },
+ *     { height: 6 },
+ *     { cornerRadius: 3 },
+ *     { filledColor: "#007AFF" },
+ *     { unfilledColor: "#2C2C2E" },
+ *     { strokeColor: "#FFFFFF" },
+ *     { strokeDashed: true },
+ *     { strokeWidth: 1 }
+ *   ]
+ * };
+ * ```
+ */
+export declare type LayoutElementSegmentedProgress = Prettify<{
+    /** Element type identifier */
+    type: 'segmented-progress';
+    /** Segmented progress bar properties as array of property objects */
+    properties: SegmentedProgressPropertyObject[];
+}>;
+/**
+ * Segmented-progress property objects
+ * @category Property Objects
+ * @description Properties specific to segmented progress bar elements, including segment count, filled segments, spacing, height, corner radius, and colors.
+ * @extends BasePropertyObject
+ */
+declare type SegmentedProgressPropertyObject = BasePropertyObject
+/** @property segments - Total number of segments in the progress bar @example { segments: 5 } */
+ | {
+    segments: number;
+}
+/** @property filled - Number of filled segments @example { filled: 3 } */
+ | {
+    filled: number;
+}
+/** @property spacing - Spacing between segments @example { spacing: 4 } */
+ | {
+    spacing: number;
+}
+/** @property height - Height of the segmented progress bar @example { height: 6 } */
+ | {
+    height: number;
+}
+/** @property cornerRadius - Corner radius for rounded corners @example { cornerRadius: 3 } */
+ | {
+    cornerRadius: number;
+}
+/** @property filledColor - Color of filled segments @example { filledColor: "#007AFF" } */
+ | {
+    filledColor: ColorString;
+}
+/** @property unfilledColor - Color of unfilled segments @example { unfilledColor: "#2C2C2E" } */
+ | {
+    unfilledColor: ColorString;
+}
+/** @property strokeColor - Color of the segment stroke @example { strokeColor: "#FFFFFF" } */
+ | {
+    strokeColor: ColorString;
+}
+/** @property strokeDashed - Whether the segment stroke is dashed @example { strokeDashed: true } */
+ | {
+    strokeDashed: boolean;
+}
+/** @property strokeWidth - Width of the segment stroke @example { strokeWidth: 1 } */
+ | {
+    strokeWidth: number;
+};
 /**
  * Dynamic Island layout configuration for different states
  */
 export interface DynamicIslandLayout {
     /** Expanded state layout with multiple areas */
-    expanded?: {
+    expanded: {
         /** Leading area element */
         leading?: LayoutElement;
         /** Trailing area element */
@@ -678,19 +792,10 @@ export interface DynamicIslandLayout {
         bottom?: LayoutElement;
     };
     /** Compact leading state configuration */
-    compactLeading?: {
-        /** Element to display in compact leading state */
-        element: LayoutElement;
-    };
+    compactLeading: LayoutElement;
     /** Compact trailing state configuration */
-    compactTrailing?: {
-        /** Element to display in compact trailing state */
-        element: LayoutElement;
-    };
+    compactTrailing: LayoutElement;
     /** Minimal state configuration */
-    minimal?: {
-        /** Element to display in minimal state */
-        element: LayoutElement;
-    };
+    minimal: LayoutElement;
 }
 export {};

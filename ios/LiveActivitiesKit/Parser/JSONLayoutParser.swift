@@ -1,12 +1,15 @@
 import SwiftUI
 import WidgetKit
 import OSLog
-import Compression
 
 class JSONLayoutParser { }
 
 @available(iOS 16.2, *)
 extension JSONLayoutParser {    
+    static func parseView(from layoutElement: LayoutElementData, with data: [String: AnyCodable]) -> AnyView {
+        return buildView(from: layoutElement.toLayoutElement(), with: data)
+    }
+    
     static func parseView(from json: String, with data: [String: AnyCodable]) -> AnyView {
         var actualJson = json
         
@@ -52,8 +55,7 @@ extension JSONLayoutParser {
     }
     
     static func parseLayoutElement(from dict: [String: Any]) throws -> LayoutElement {
-        guard let id = dict["id"] as? String,
-              let type = dict["type"] as? String else {
+        guard let type = dict["type"] as? String else {
             throw ParserError.invalidJson
         }
         
@@ -82,7 +84,6 @@ extension JSONLayoutParser {
         }
         
         return LayoutElement(
-            id: id,
             type: type,
             properties: properties,
             propertiesKeysInOrder: propertiesKeysInOrder,
@@ -92,24 +93,5 @@ extension JSONLayoutParser {
     
     enum ParserError: Error {
         case invalidJson
-    }
-    
-    private static func decompressLayoutJSON(_ base64String: String) -> String? {
-        guard let compressedData = Data(base64Encoded: base64String) else { return nil }
-        
-        let maxDecompressedSize = compressedData.count * 10 // Estimate 10x expansion
-        let destinationBuffer = UnsafeMutablePointer<UInt8>.allocate(capacity: maxDecompressedSize)
-        defer { destinationBuffer.deallocate() }
-        
-        let decompressedSize = compression_decode_buffer(
-            destinationBuffer, maxDecompressedSize,
-            compressedData.withUnsafeBytes { $0.bindMemory(to: UInt8.self).baseAddress! }, compressedData.count,
-            nil, COMPRESSION_ZLIB
-        )
-        
-        guard decompressedSize > 0 else { return nil }
-        
-        let decompressedData = Data(bytes: destinationBuffer, count: decompressedSize)
-        return String(data: decompressedData, encoding: .utf8)
     }
 }

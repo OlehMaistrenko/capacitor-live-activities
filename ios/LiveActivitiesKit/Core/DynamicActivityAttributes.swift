@@ -16,15 +16,17 @@ public struct DynamicActivityAttributes: ActivityAttributes {
         }
     }
     
-    public var layoutJSON: String
     public var activityId: String
-    public var behavior: [String: AnyCodable]?
+    public var layoutJSON: String
+    public var dynamicIslandLayoutJSON: String
+    public var behaviorJSON: String
     
-    public init(layoutJSON: String, activityId: String, behavior: [String: AnyCodable]? = nil) {
+    public init(activityId: String, layoutJSON: String, dynamicIslandLayoutJSON: String, behaviorJSON: String) {
         self.activityId = activityId
         // Keep layout as-is (compressed or uncompressed)
         // Decompression will happen in the widget parser
         self.layoutJSON = layoutJSON
-        self.behavior = behavior
+        self.dynamicIslandLayoutJSON = dynamicIslandLayoutJSON
+        self.behaviorJSON = behaviorJSON
     }
 }

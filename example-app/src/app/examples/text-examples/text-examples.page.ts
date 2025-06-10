@@ -59,7 +59,6 @@ export class TextExamplesPage {
     try {
       const result = await LiveActivities.startActivity({
         layout: {
-          id: 'basic-text-example',
           type: 'container',
           properties: [
             { direction: 'vertical' },
@@ -70,7 +69,6 @@ export class TextExamplesPage {
           ],
           children: [
             {
-              id: 'title',
               type: 'text',
               properties: [
                 { text: '{{title}}' },
@@ -81,7 +79,6 @@ export class TextExamplesPage {
               ],
             },
             {
-              id: 'subtitle',
               type: 'text',
               properties: [
                 { text: '{{subtitle}}' },
@@ -92,7 +89,6 @@ export class TextExamplesPage {
               ],
             },
             {
-              id: 'status',
               type: 'text',
               properties: [
                 { text: '{{status}}' },
@@ -105,15 +101,49 @@ export class TextExamplesPage {
             },
           ],
         },
-        data: {
-          title: 'Basic Text Layout',
-          subtitle: 'Demonstrating different font sizes, weights, and colors',
-          status: 'Active',
+        dynamicIslandLayout: {
+          expanded: {
+            bottom: {
+              type: 'container',
+              properties: [{ direction: 'vertical' }],
+              children: [
+                {
+                  type: 'text',
+                  properties: [{ text: '{{title}}' }, { fontWeight: 'bold' }],
+                },
+                {
+                  type: 'text',
+                  properties: [{ text: '{{subtitle}}' }, { fontFamily: 'footnote' }],
+                },
+              ],
+            },
+            trailing: {
+              type: 'text',
+              properties: [{ text: '{{status}}' }],
+            },
+          },
+          minimal: {
+            type: 'text',
+            properties: [{ text: 'abc' }],
+          },
+          compactLeading: {
+            type: 'image',
+            properties: [{ systemName: 'textformat.size' }],
+          },
+          compactTrailing: {
+            type: 'image',
+            properties: [{ systemName: 'text.aligncenter' }],
+          },
         },
         behavior: {
           systemActionForegroundColor: '#007AFF',
           widgetUrl: 'https://example.com',
           keyLineTint: '#007AFF',
+        },
+        data: {
+          title: 'Basic Text Layout',
+          subtitle: 'Demonstrating different font sizes, weights, and colors',
+          status: 'Active',
         },
       });
 
@@ -129,7 +159,6 @@ export class TextExamplesPage {
     try {
       const result = await LiveActivities.startActivity({
         layout: {
-          id: 'typography-example',
           type: 'container',
           properties: [
             { direction: 'vertical' },
@@ -142,7 +171,6 @@ export class TextExamplesPage {
           ],
           children: [
             {
-              id: 'heading',
               type: 'text',
               properties: [
                 { text: '{{heading}}' },
@@ -153,7 +181,6 @@ export class TextExamplesPage {
               ],
             },
             {
-              id: 'body',
               type: 'text',
               properties: [
                 { text: '{{body}}' },
@@ -165,7 +192,6 @@ export class TextExamplesPage {
               ],
             },
             {
-              id: 'caption',
               type: 'text',
               properties: [
                 { text: '{{caption}}' },
@@ -177,7 +203,6 @@ export class TextExamplesPage {
               ],
             },
             {
-              id: 'monospace',
               type: 'text',
               properties: [
                 { text: '{{monospace}}' },
@@ -190,16 +215,50 @@ export class TextExamplesPage {
             },
           ],
         },
+        dynamicIslandLayout: {
+          expanded: {
+            bottom: {
+              type: 'container',
+              properties: [{ direction: 'vertical' }],
+              children: [
+                {
+                  type: 'text',
+                  properties: [{ text: '{{title}}' }, { fontWeight: 'bold' }],
+                },
+                {
+                  type: 'text',
+                  properties: [{ text: '{{subtitle}}' }, { fontFamily: 'footnote' }],
+                },
+              ],
+            },
+            trailing: {
+              type: 'text',
+              properties: [{ text: '{{status}}' }],
+            },
+          },
+          minimal: {
+            type: 'text',
+            properties: [{ text: 'abc' }],
+          },
+          compactLeading: {
+            type: 'image',
+            properties: [{ systemName: 'textformat.size' }],
+          },
+          compactTrailing: {
+            type: 'image',
+            properties: [{ systemName: 'text.aligncenter' }],
+          },
+        },
+        behavior: {
+          systemActionForegroundColor: '#007AFF',
+          widgetUrl: 'https://example.com',
+          keyLineTint: '#007AFF',
+        },
         data: {
           heading: 'Typography Showcase',
           body: 'This example demonstrates different font weights, sizes, and text alignments. Text can be leading, center, or trailing aligned.',
           caption: 'Caption with italic styling',
           monospace: '123.456.789',
-        },
-        behavior: {
-          systemActionForegroundColor: '#2c3e50',
-          widgetUrl: 'https://example.com',
-          keyLineTint: '#2c3e50',
         },
       });
 
@@ -215,18 +274,18 @@ export class TextExamplesPage {
     try {
       const result = await LiveActivities.startActivity({
         layout: {
-          id: 'formatting-example',
           type: 'container',
           properties: [
             { direction: 'vertical' },
             { spacing: 10 },
             { padding: 16 },
             { backgroundColor: '#f1f3f4' },
+            { maxWidth: -1 },
+            { maxHeight: -1 },
             { cornerRadius: 12 },
           ],
           children: [
             {
-              id: 'normal-text',
               type: 'text',
               properties: [
                 { text: '{{normalText}}' },
@@ -237,7 +296,6 @@ export class TextExamplesPage {
               ],
             },
             {
-              id: 'bold-text',
               type: 'text',
               properties: [
                 { text: '{{boldText}}' },
@@ -248,7 +306,6 @@ export class TextExamplesPage {
               ],
             },
             {
-              id: 'italic-text',
               type: 'text',
               properties: [
                 { text: '{{italicText}}' },
@@ -260,7 +317,6 @@ export class TextExamplesPage {
               ],
             },
             {
-              id: 'underline-text',
               type: 'text',
               properties: [
                 { text: '{{underlineText}}' },
@@ -272,7 +328,6 @@ export class TextExamplesPage {
               ],
             },
             {
-              id: 'strikethrough-text',
               type: 'text',
               properties: [
                 { text: '{{strikethroughText}}' },
@@ -285,17 +340,51 @@ export class TextExamplesPage {
             },
           ],
         },
+        dynamicIslandLayout: {
+          expanded: {
+            bottom: {
+              type: 'container',
+              properties: [{ direction: 'vertical' }],
+              children: [
+                {
+                  type: 'text',
+                  properties: [{ text: '{{title}}' }, { fontWeight: 'bold' }],
+                },
+                {
+                  type: 'text',
+                  properties: [{ text: '{{subtitle}}' }, { fontFamily: 'footnote' }],
+                },
+              ],
+            },
+            trailing: {
+              type: 'text',
+              properties: [{ text: '{{status}}' }],
+            },
+          },
+          minimal: {
+            type: 'text',
+            properties: [{ text: 'abc' }],
+          },
+          compactLeading: {
+            type: 'image',
+            properties: [{ systemName: 'textformat.size' }],
+          },
+          compactTrailing: {
+            type: 'image',
+            properties: [{ systemName: 'text.aligncenter' }],
+          },
+        },
+        behavior: {
+          systemActionForegroundColor: '#007AFF',
+          widgetUrl: 'https://example.com',
+          keyLineTint: '#007AFF',
+        },
         data: {
           normalText: 'Normal Text',
           boldText: 'Bold Text',
           italicText: 'Italic Text',
           underlineText: 'Underlined Text',
           strikethroughText: 'Strikethrough Text',
-        },
-        behavior: {
-          systemActionForegroundColor: '#007AFF',
-          widgetUrl: 'https://example.com',
-          keyLineTint: '#007AFF',
         },
       });
 

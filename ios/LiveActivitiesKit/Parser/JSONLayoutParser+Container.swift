@@ -13,7 +13,7 @@ extension JSONLayoutParser {
         let children = element.children ?? []
         // let children = [] as [LayoutElement]
         
-        Logger.viewCycle.error("📀 \(element.id) -> buildContainer -> direction: \(direction), spacing: \(spacing ?? 0), insideAlignment: \(insideAlignment), childrens: \(children.count)")
+        Logger.viewCycle.error("📀 buildContainer -> direction: \(direction), spacing: \(spacing ?? 0), insideAlignment: \(insideAlignment), childrens: \(children.count)")
         
         switch direction.lowercased() {
         case "horizontal":

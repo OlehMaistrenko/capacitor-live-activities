@@ -16,7 +16,7 @@ import {
   IonList,
   IonIcon,
 } from '@ionic/angular/standalone';
-import { LiveActivities } from 'capacitor-live-activities';
+import { LiveActivities, LiveActivitiesOptions } from 'capacitor-live-activities';
 import { LiveActivitiesService } from '../../services/live-activities.service';
 import { playCircle, refresh, stopCircle, fitness, timer, barbell } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
@@ -90,12 +90,11 @@ export class GymWorkoutPage {
         return { status, color, icon, name: exercise.name };
       });
 
-      const activityData = {
+      const activityData: LiveActivitiesOptions = {
         layout: {
-          id: 'workout',
-          type: 'container' as const,
+          type: 'container',
           properties: [
-            { direction: 'vertical' as const },
+            { direction: 'vertical' },
             { spacing: 12 },
             { padding: 16 },
             { backgroundColor: '#1C1C1E' },
@@ -104,28 +103,24 @@ export class GymWorkoutPage {
           children: [
             // Header with gym icon and workout status
             {
-              id: 'header',
-              type: 'container' as const,
-              properties: [{ direction: 'horizontal' as const }, { spacing: 12 }, { insideAlignment: 'center' }],
+              type: 'container',
+              properties: [{ direction: 'horizontal' }, { spacing: 12 }, { insideAlignment: 'center' }],
               children: [
                 {
-                  id: 'gym-icon',
-                  type: 'image' as const,
+                  type: 'image',
                   properties: [
-                    { systeName: 'figure.strengthtraining.traditional' },
+                    { systemName: 'figure.strengthtraining.traditional' },
                     { color: '#FF6B35' },
                     { width: 28 },
                     { height: 28 },
                   ],
                 },
                 {
-                  id: 'workout-info',
-                  type: 'container' as const,
-                  properties: [{ direction: 'vertical' as const }, { spacing: 2 }],
+                  type: 'container',
+                  properties: [{ direction: 'vertical' }, { spacing: 2 }],
                   children: [
                     {
-                      id: 'workout-title',
-                      type: 'text' as const,
+                      type: 'text',
                       properties: [
                         { text: 'Treino de Força' },
                         { fontSize: 16 },
@@ -134,17 +129,15 @@ export class GymWorkoutPage {
                       ],
                     },
                     {
-                      id: 'workout-status',
-                      type: 'text' as const,
+                      type: 'text',
                       properties: [{ text: '{{status}}' }, { fontSize: 12 }, { color: '#FF9500' }],
                     },
                   ],
                 },
                 {
-                  id: 'timer-badge',
-                  type: 'container' as const,
+                  type: 'container',
                   properties: [
-                    { direction: 'horizontal' as const },
+                    { direction: 'horizontal' },
                     { spacing: 4 },
                     { padding: 6 },
                     { backgroundColor: '#FF9500' },
@@ -152,13 +145,11 @@ export class GymWorkoutPage {
                   ],
                   children: [
                     {
-                      id: 'timer-icon',
-                      type: 'image' as const,
-                      properties: [{ systeName: 'timer' }, { color: '#FFFFFF' }, { width: 12 }, { height: 12 }],
+                      type: 'image',
+                      properties: [{ systemName: 'timer' }, { color: '#FFFFFF' }, { width: 12 }, { height: 12 }],
                     },
                     {
-                      id: 'workout-time',
-                      type: 'text' as const,
+                      type: 'text',
                       properties: [
                         { text: '{{workoutTime}}' },
                         { fontSize: 10 },
@@ -173,10 +164,9 @@ export class GymWorkoutPage {
 
             // Current Exercise Section
             {
-              id: 'current-exercise',
-              type: 'container' as const,
+              type: 'container',
               properties: [
-                { direction: 'vertical' as const },
+                { direction: 'vertical' },
                 { spacing: 8 },
                 { padding: 12 },
                 { backgroundColor: '#2C2C2E' },
@@ -184,8 +174,7 @@ export class GymWorkoutPage {
               ],
               children: [
                 {
-                  id: 'current-label',
-                  type: 'text' as const,
+                  type: 'text',
                   properties: [
                     { text: 'EXERCÍCIO ATUAL' },
                     { fontSize: 10 },
@@ -194,28 +183,24 @@ export class GymWorkoutPage {
                   ],
                 },
                 {
-                  id: 'current-exercise-info',
-                  type: 'container' as const,
-                  properties: [{ direction: 'horizontal' as const }, { spacing: 12 }, { insideAlignment: 'center' }],
+                  type: 'container',
+                  properties: [{ direction: 'horizontal' }, { spacing: 12 }, { insideAlignment: 'center' }],
                   children: [
                     {
-                      id: 'exercise-icon',
-                      type: 'image' as const,
+                      type: 'image',
                       properties: [
-                        { systeName: '{{currentExerciseIcon}}' },
+                        { systemName: '{{currentExerciseIcon}}' },
                         { color: '#FF9500' },
                         { width: 24 },
                         { height: 24 },
                       ],
                     },
                     {
-                      id: 'exercise-details',
-                      type: 'container' as const,
-                      properties: [{ direction: 'vertical' as const }, { spacing: 2 }],
+                      type: 'container',
+                      properties: [{ direction: 'vertical' }, { spacing: 2 }],
                       children: [
                         {
-                          id: 'exercise-name',
-                          type: 'text' as const,
+                          type: 'text',
                           properties: [
                             { text: '{{currentExerciseName}}' },
                             { fontSize: 16 },
@@ -224,8 +209,7 @@ export class GymWorkoutPage {
                           ],
                         },
                         {
-                          id: 'exercise-specs',
-                          type: 'text' as const,
+                          type: 'text',
                           properties: [{ text: '{{currentExerciseSpecs}}' }, { fontSize: 13 }, { color: '#8E8E93' }],
                         },
                       ],
@@ -237,23 +221,19 @@ export class GymWorkoutPage {
 
             // Progress Section
             {
-              id: 'progress-section',
-              type: 'container' as const,
-              properties: [{ direction: 'vertical' as const }, { spacing: 8 }],
+              type: 'container',
+              properties: [{ direction: 'vertical' }, { spacing: 8 }],
               children: [
                 {
-                  id: 'progress-header',
-                  type: 'container' as const,
-                  properties: [{ direction: 'horizontal' as const }, { spacing: 8 }],
+                  type: 'container',
+                  properties: [{ direction: 'horizontal' }, { spacing: 8 }],
                   children: [
                     {
-                      id: 'progress-label',
-                      type: 'text' as const,
+                      type: 'text',
                       properties: [{ text: 'Progresso do Treino' }, { fontSize: 12 }, { color: '#8E8E93' }],
                     },
                     {
-                      id: 'progress-count',
-                      type: 'text' as const,
+                      type: 'text',
                       properties: [
                         { text: '{{progressText}}' },
                         { fontSize: 12 },
@@ -264,11 +244,10 @@ export class GymWorkoutPage {
                   ],
                 },
                 {
-                  id: 'segmented-progress-bar',
-                  type: 'segmented-progress' as const,
+                  type: 'segmented-progress',
                   properties: [
                     { segments: 6 },
-                    { filled: '{{progressFilled}}' },
+                    { filled: '{{progressFilled}}' as any },
                     { spacing: 4 },
                     { height: 6 },
                     { cornerRadius: 3 },
@@ -281,15 +260,13 @@ export class GymWorkoutPage {
                 },
                 // Exercise dots showing progress
                 {
-                  id: 'exercise-dots',
-                  type: 'container' as const,
-                  properties: [{ direction: 'horizontal' as const }, { spacing: 6 }],
+                  type: 'container',
+                  properties: [{ direction: 'horizontal' }, { spacing: 6 }],
                   children: this.exercises.slice(0, 6).map((_, index) => ({
-                    id: `dot-${index}`,
-                    type: 'image' as const,
+                    type: 'image',
                     properties: [
-                      { systeName: `{{dot${index}Icon}}` },
-                      { color: `{{dot${index}Color}}` },
+                      { systemName: `{{dot${index}Icon}}` },
+                      { color: `{{dot${index}Color}}` as any },
                       { width: 12 },
                       { height: 12 },
                     ],
@@ -300,10 +277,9 @@ export class GymWorkoutPage {
 
             // Next Exercise Preview
             {
-              id: 'next-exercise',
-              type: 'container' as const,
+              type: 'container',
               properties: [
-                { direction: 'horizontal' as const },
+                { direction: 'horizontal' },
                 { spacing: 8 },
                 { padding: 8 },
                 { backgroundColor: '#1C1C1E' },
@@ -312,28 +288,24 @@ export class GymWorkoutPage {
               ],
               children: [
                 {
-                  id: 'next-icon',
-                  type: 'image' as const,
+                  type: 'image',
                   properties: [
-                    { systeName: 'arrow.right.circle' },
+                    { systemName: 'arrow.right.circle' },
                     { color: '#8E8E93' },
                     { width: 16 },
                     { height: 16 },
                   ],
                 },
                 {
-                  id: 'next-info',
-                  type: 'container' as const,
-                  properties: [{ direction: 'vertical' as const }, { spacing: 1 }],
+                  type: 'container',
+                  properties: [{ direction: 'vertical' }, { spacing: 1 }],
                   children: [
                     {
-                      id: 'next-label',
-                      type: 'text' as const,
+                      type: 'text',
                       properties: [{ text: 'Próximo:' }, { fontSize: 10 }, { color: '#8E8E93' }],
                     },
                     {
-                      id: 'next-exercise-name',
-                      type: 'text' as const,
+                      type: 'text',
                       properties: [
                         { text: '{{nextExerciseName}}' },
                         { fontSize: 12 },
@@ -346,6 +318,107 @@ export class GymWorkoutPage {
               ],
             },
           ],
+        },
+        dynamicIslandLayout: {
+          expanded: {
+            leading: {
+              type: 'container',
+              properties: [{ direction: 'vertical' }, { spacing: 2 }],
+              children: [
+                {
+                  type: 'image',
+                  properties: [
+                    { systemName: 'figure.strengthtraining.traditional' },
+                    { color: '#FF6B35' },
+                    { width: 20 },
+                    { height: 20 },
+                  ],
+                },
+                {
+                  type: 'text',
+                  properties: [{ text: 'Treino' }, { fontSize: 9 }, { color: '#8E8E93' }],
+                },
+              ],
+            },
+            trailing: {
+              type: 'container',
+              properties: [{ direction: 'vertical' }, { spacing: 2 }, { insideAlignment: 'trailing' }],
+              children: [
+                {
+                  type: 'text',
+                  properties: [
+                    { text: '{{workoutTime}}' },
+                    { fontSize: 14 },
+                    { fontWeight: 'bold' },
+                    { color: '#FFFFFF' },
+                  ],
+                },
+                {
+                  type: 'text',
+                  properties: [
+                    { text: '{{progressText}}' },
+                    { fontSize: 9 },
+                    { color: '#FF9500' },
+                    { fontWeight: 'medium' },
+                  ],
+                },
+              ],
+            },
+            center: {
+              type: 'text',
+              properties: [
+                { text: '{{currentExerciseName}}' },
+                { fontSize: 11 },
+                { fontWeight: 'medium' },
+                { color: '#FFFFFF' },
+              ],
+            },
+            bottom: {
+              type: 'segmented-progress',
+              properties: [
+                { segments: 6 },
+                { filled: '{{progressFilled}}' as any },
+                { spacing: 3 },
+                { height: 4 },
+                { cornerRadius: 2 },
+                { filledColor: '#FF9500' },
+                { unfilledColor: '#2C2C2E' },
+                { strokeWidth: 0 },
+              ],
+            },
+          },
+          compactLeading: {
+            type: 'image',
+            properties: [
+              { systemName: 'figure.strengthtraining.traditional' },
+              { color: '#FF6B35' },
+              { width: 16 },
+              { height: 16 },
+            ],
+          },
+          compactTrailing: {
+            type: 'container',
+            properties: [{ direction: 'horizontal' }, { spacing: 3 }],
+            children: [
+              {
+                type: 'text',
+                properties: [
+                  { text: '{{workoutTime}}' },
+                  { fontSize: 12 },
+                  { fontWeight: 'semibold' },
+                  { color: '#FFFFFF' },
+                ],
+              },
+              {
+                type: 'image',
+                properties: [{ systemName: 'flame.fill' }, { color: '#FF9500' }, { width: 10 }, { height: 10 }],
+              },
+            ],
+          },
+          minimal: {
+            type: 'image',
+            properties: [{ systemName: 'flame.fill' }, { color: '#FF9500' }, { width: 12 }, { height: 12 }],
+          },
         },
         data: {
           status: 'EM ANDAMENTO',
@@ -375,7 +448,7 @@ export class GymWorkoutPage {
         },
       };
 
-      const result = await LiveActivities.startActivity(activityData as any);
+      const result = await LiveActivities.startActivity(activityData);
       this.liveActivitiesService.setCurrentActivityId(result.activityId);
       this.liveActivitiesService.showToast('Treino iniciado! 💪');
     } catch (error) {

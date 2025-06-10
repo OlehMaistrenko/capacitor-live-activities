@@ -4,13 +4,16 @@ import SwiftUI
 extension JSONLayoutParser {
     struct AsyncImageView: View {
         let urlString: String
+        var resizable: Bool = false
         @State private var image: UIImage?
         
         var body: some View {
             Group {
                 if let image = image {
                     Image(uiImage: image)
-                        .resizable()
+                        .if(resizable){view in
+                            view.resizable()
+                        }
                 } else {
                     ProgressView()
                         .onAppear {
@@ -43,16 +46,21 @@ extension JSONLayoutParser {
     
     struct AppGroupImageView: View {
         let fileName: String
+        var resizable: Bool = false
         @State private var image: UIImage?
         
         var body: some View {
             Group {
                 if let image = image {
                     Image(uiImage: image)
-                        .resizable()
+                        .if(resizable){view in
+                            view.resizable()
+                        }
                 } else {
                     Image(systemName: "photo")
-                        .resizable()
+                        .if(resizable){view in
+                            view.resizable()
+                        }
                         .foregroundColor(.gray)
                         .onAppear {
                             loadImage()
@@ -78,16 +86,21 @@ extension JSONLayoutParser {
     @available(iOS 16.2, *)
     struct Base64ImageView: View {
         let base64String: String
+        var resizable: Bool = false
         @State private var image: UIImage?
         
         var body: some View {
             Group {
                 if let image = image {
                     Image(uiImage: image)
-                        .resizable()
+                        .if(resizable){view in
+                            view.resizable()
+                        }
                 } else {
                     Image(systemName: "photo")
-                        .resizable()
+                        .if(resizable){view in
+                            view.resizable()
+                        }
                         .foregroundColor(.gray)
                         .onAppear {
                             decodeImage()

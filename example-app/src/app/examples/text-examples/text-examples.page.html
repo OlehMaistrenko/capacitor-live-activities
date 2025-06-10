@@ -26,8 +26,8 @@
 
       <ion-card-content>
         <p class="description">
-          Explore different text styling, typography, and formatting options
-          to create elegant and functional Live Activities with text elements.
+          Explore different text styling, typography, and formatting options to create elegant and functional Live
+          Activities with text elements.
         </p>
 
         <!-- Features -->
@@ -58,22 +58,10 @@
         </div>
 
         @if (currentActivityId) {
-          <ion-chip color="success" style="margin-bottom: 16px;">
-            <ion-label>Active ID: {{ currentActivityId }}</ion-label>
-          </ion-chip>
+        <ion-chip color="success" style="margin-bottom: 16px">
+          <ion-label>Active ID: {{ currentActivityId }}</ion-label>
+        </ion-chip>
         }
-
-        <!-- Controls -->
-        <div class="controls">
-          <ion-button
-            expand="block"
-            size="large"
-            (click)="startBasicTextExample()"
-            [disabled]="currentActivityId !== null">
-            <fa-icon icon="play-circle" slot="start" />
-            Start Text Examples
-          </ion-button>
-        </div>
       </ion-card-content>
     </ion-card>
 
@@ -97,7 +85,10 @@
         <ion-card-title>Typography Showcase</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <p>Shows various font weights (heavy, regular, light), text alignments (leading, center, trailing), and line limits.</p>
+        <p>
+          Shows various font weights (heavy, regular, light), text alignments (leading, center, trailing), and line
+          limits.
+        </p>
         <ion-button expand="block" (click)="startTypographyExample()">
           <fa-icon icon="play-circle" slot="start" />
           Start Typography Example

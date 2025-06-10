@@ -17,7 +17,7 @@ import {
   IonChip,
   IonIcon,
 } from '@ionic/angular/standalone';
-import { LiveActivities } from 'capacitor-live-activities';
+import { LiveActivities, LiveActivitiesOptions } from 'capacitor-live-activities';
 import { LiveActivitiesService } from '../../services/live-activities.service';
 import { playCircle, refresh, stopCircle, checkmark, time, restaurant } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
@@ -62,12 +62,11 @@ export class FoodOrderPage {
       const estimatedDelivery = Date.now() + 35 * 60 * 1000; // 35 minutes from now
 
       // Complete original layout
-      const activityData = {
+      const activityData: LiveActivitiesOptions = {
         layout: {
-          id: 'order',
-          type: 'container' as const,
+          type: 'container',
           properties: [
-            { direction: 'vertical' as const },
+            { direction: 'vertical' },
             { spacing: 12 },
             { padding: 16 },
             { backgroundColor: '#fff' },
@@ -75,56 +74,48 @@ export class FoodOrderPage {
           ],
           children: [
             {
-              id: 'header',
-              type: 'container' as const,
-              properties: [{ direction: 'horizontal' as const }, { spacing: 12 }, { insideAlignment: 'center' }],
+              type: 'container',
+              properties: [{ direction: 'horizontal' }, { spacing: 12 }, { insideAlignment: 'center' }],
               children: [
                 {
-                  id: 'icon',
-                  type: 'image' as const,
+                  type: 'image',
                   properties: [
-                    { systeName: 'fork.knife.circle.fill' },
+                    { systemName: 'fork.knife.circle.fill' },
                     { color: '#FF6B35' },
                     { width: 32 },
                     { height: 32 },
                   ],
                 },
                 {
-                  id: 'info',
-                  type: 'container' as const,
-                  properties: [{ direction: 'vertical' as const }, { spacing: 2 }],
+                  type: 'container',
+                  properties: [{ direction: 'vertical' }, { spacing: 2 }],
                   children: [
                     {
-                      id: 'name',
-                      type: 'text' as const,
+                      type: 'text',
                       properties: [{ text: '{{restaurantName}}' }, { fontSize: 16 }, { fontWeight: 'semibold' }],
                     },
                     {
-                      id: 'num',
-                      type: 'text' as const,
+                      type: 'text',
                       properties: [{ text: '#{{orderNumber}}' }, { fontSize: 12 }, { color: '#666' }],
                     },
                   ],
                 },
                 {
-                  id: 'badge',
-                  type: 'container' as const,
+                  type: 'container',
                   properties: [
-                    { direction: 'horizontal' as const },
+                    { direction: 'horizontal' },
                     { spacing: 4 },
                     { padding: 6 },
-                    { backgroundColor: '{{statusColor}}' },
+                    { backgroundColor: '{{statusColor}}' as any },
                     { cornerRadius: 12 },
-                  ] as any,
+                  ],
                   children: [
                     {
-                      id: 'si',
-                      type: 'image' as const,
-                      properties: [{ systeName: '{{statusIcon}}' }, { color: '#fff' }, { width: 12 }, { height: 12 }],
+                      type: 'image',
+                      properties: [{ systemName: '{{statusIcon}}' }, { color: '#fff' }, { width: 12 }, { height: 12 }],
                     },
                     {
-                      id: 'st',
-                      type: 'text' as const,
+                      type: 'text',
                       properties: [{ text: '{{statusText}}' }, { fontSize: 10 }, { color: '#fff' }],
                     },
                   ],
@@ -132,115 +123,99 @@ export class FoodOrderPage {
               ],
             },
             {
-              id: 'prog',
-              type: 'container' as const,
-              properties: [{ direction: 'vertical' as const }, { spacing: 8 }],
+              type: 'container',
+              properties: [{ direction: 'vertical' }, { spacing: 8 }],
               children: [
                 {
-                  id: 'label',
-                  type: 'text' as const,
+                  type: 'text',
                   properties: [{ text: '{{progressLabel}}' }, { fontSize: 12 }, { color: '#666' }],
                 },
                 {
-                  id: 'bar',
-                  type: 'progress' as const,
+                  type: 'progress',
                   properties: [
-                    { value: '{{progressValue}}' },
+                    { value: '{{progressValue}}' as any },
                     { total: 1.0 },
                     { color: '#FF6B35' },
                     { height: 6 },
-                  ] as any,
+                  ],
                 },
                 {
-                  id: 'stages',
-                  type: 'container' as const,
-                  properties: [{ direction: 'horizontal' as const }, { spacing: 8 }],
+                  type: 'container',
+                  properties: [{ direction: 'horizontal' }, { spacing: 8 }],
                   children: [
                     {
-                      id: 's1',
-                      type: 'container' as const,
-                      properties: [{ direction: 'vertical' as const }, { spacing: 4 }],
+                      type: 'container',
+                      properties: [{ direction: 'vertical' }, { spacing: 4 }],
                       children: [
                         {
-                          id: 's1i',
-                          type: 'image' as const,
+                          type: 'image',
                           properties: [
-                            { systeName: 'checkmark.circle.fill' },
+                            { systemName: 'checkmark.circle.fill' },
                             { color: '#34C759' },
                             { width: 16 },
                             { height: 16 },
                           ],
                         },
                         {
-                          id: 's1l',
-                          type: 'text' as const,
+                          type: 'text',
                           properties: [{ text: 'Order' }, { fontSize: 9 }, { color: '#34C759' }],
                         },
                       ],
                     },
                     {
-                      id: 's2',
-                      type: 'container' as const,
-                      properties: [{ direction: 'vertical' as const }, { spacing: 4 }],
+                      type: 'container',
+                      properties: [{ direction: 'vertical' }, { spacing: 4 }],
                       children: [
                         {
-                          id: 's2i',
-                          type: 'image' as const,
+                          type: 'image',
                           properties: [
-                            { systeName: '{{stage2Icon}}' },
-                            { color: '{{stage2Color}}' },
+                            { systemName: '{{stage2Icon}}' },
+                            { color: '{{stage2Color}}' as any },
                             { width: 16 },
                             { height: 16 },
-                          ] as any,
+                          ],
                         },
                         {
-                          id: 's2l',
-                          type: 'text' as const,
-                          properties: [{ text: 'Preparation' }, { fontSize: 9 }, { color: '{{stage2Color}}' }] as any,
+                          type: 'text',
+                          properties: [{ text: 'Preparation' }, { fontSize: 9 }, { color: '{{stage2Color}}' as any }],
                         },
                       ],
                     },
                     {
-                      id: 's3',
-                      type: 'container' as const,
-                      properties: [{ direction: 'vertical' as const }, { spacing: 4 }],
+                      type: 'container',
+                      properties: [{ direction: 'vertical' }, { spacing: 4 }],
                       children: [
                         {
-                          id: 's3i',
-                          type: 'image' as const,
+                          type: 'image',
                           properties: [
-                            { systeName: '{{stage3Icon}}' },
+                            { systemName: '{{stage3Icon}}' },
                             { color: '{{stage3Color}}' },
                             { width: 16 },
                             { height: 16 },
-                          ] as any,
+                          ],
                         },
                         {
-                          id: 's3l',
-                          type: 'text' as const,
-                          properties: [{ text: 'Delivery' }, { fontSize: 9 }, { color: '{{stage3Color}}' }] as any,
+                          type: 'text',
+                          properties: [{ text: 'Delivery' }, { fontSize: 9 }, { color: '{{stage3Color}}' }],
                         },
                       ],
                     },
                     {
-                      id: 's4',
-                      type: 'container' as const,
-                      properties: [{ direction: 'vertical' as const }, { spacing: 4 }],
+                      type: 'container',
+                      properties: [{ direction: 'vertical' }, { spacing: 4 }],
                       children: [
                         {
-                          id: 's4i',
-                          type: 'image' as const,
+                          type: 'image',
                           properties: [
-                            { systeName: '{{stage4Icon}}' },
+                            { systemName: '{{stage4Icon}}' },
                             { color: '{{stage4Color}}' },
                             { width: 16 },
                             { height: 16 },
-                          ] as any,
+                          ],
                         },
                         {
-                          id: 's4l',
-                          type: 'text' as const,
-                          properties: [{ text: 'Delivered' }, { fontSize: 9 }, { color: '{{stage4Color}}' }] as any,
+                          type: 'text',
+                          properties: [{ text: 'Delivered' }, { fontSize: 9 }, { color: '{{stage4Color}}' }],
                         },
                       ],
                     },
@@ -249,40 +224,149 @@ export class FoodOrderPage {
               ],
             },
             {
-              id: 'bottom',
-              type: 'container' as const,
-              properties: [{ direction: 'horizontal' as const }, { spacing: 16 }],
+              type: 'container',
+              properties: [{ direction: 'horizontal' }, { spacing: 16 }],
               children: [
                 {
-                  id: 'time',
-                  type: 'container' as const,
-                  properties: [{ direction: 'horizontal' as const }, { spacing: 6 }],
+                  type: 'container',
+                  properties: [{ direction: 'horizontal' }, { spacing: 6 }],
                   children: [
                     {
-                      id: 'clock',
-                      type: 'image' as const,
-                      properties: [{ systeName: 'clock' }, { color: '#666' }, { width: 14 }, { height: 14 }],
+                      type: 'image',
+                      properties: [{ systemName: 'clock' }, { color: '#666' }, { width: 14 }, { height: 14 }],
                     },
                     {
-                      id: 'timer',
-                      type: 'timer' as const,
+                      type: 'timer',
                       properties: [
-                        { endTime: '{{deliveryTime}}' },
+                        { endTime: '{{deliveryTime}}' as any },
                         { style: 'relative' },
                         { fontSize: 12 },
                         { color: '#666' },
-                      ] as any,
+                      ],
                     },
                   ],
                 },
                 {
-                  id: 'total',
-                  type: 'text' as const,
+                  type: 'text',
                   properties: [{ text: '{{totalAmount}}' }, { fontSize: 12 }, { fontWeight: 'semibold' }],
                 },
               ],
             },
           ],
+        },
+        dynamicIslandLayout: {
+          expanded: {
+            leading: {
+              type: 'container',
+              properties: [{ direction: 'vertical' }, { spacing: 2 }],
+              children: [
+                {
+                  type: 'image',
+                  properties: [
+                    { systemName: 'fork.knife.circle.fill' },
+                    { color: '#FF6B35' },
+                    { width: 20 },
+                    { height: 20 },
+                  ],
+                },
+                {
+                  type: 'text',
+                  properties: [{ text: 'Pedido' }, { fontSize: 9 }, { color: '#8E8E93' }],
+                },
+              ],
+            },
+            trailing: {
+              type: 'container',
+              properties: [{ direction: 'vertical' }, { spacing: 2 }, { insideAlignment: 'trailing' }],
+              children: [
+                {
+                  type: 'timer',
+                  properties: [
+                    { endTime: '{{deliveryTime}}' as any },
+                    { style: 'relative' },
+                    { fontSize: 12 },
+                    { fontWeight: 'semibold' },
+                    { color: '#FFFFFF' },
+                  ],
+                },
+                {
+                  type: 'text',
+                  properties: [
+                    { text: '{{statusText}}' },
+                    { fontSize: 9 },
+                    { color: '{{statusColor}}' as any },
+                    { fontWeight: 'medium' },
+                  ],
+                },
+              ],
+            },
+            center: {
+              type: 'text',
+              properties: [
+                { text: '{{restaurantName}}' },
+                { fontSize: 11 },
+                { fontWeight: 'medium' },
+                { color: '#FFFFFF' },
+              ],
+            },
+            bottom: {
+              type: 'container',
+              properties: [{ direction: 'vertical' }, { spacing: 4 }],
+              children: [
+                {
+                  type: 'progress',
+                  properties: [
+                    { value: '{{progressValue}}' as any },
+                    { total: 1.0 },
+                    { color: '#FF6B35' },
+                    { height: 4 },
+                  ],
+                },
+                {
+                  type: 'text',
+                  properties: [{ text: '{{progressLabel}}' }, { fontSize: 10 }, { color: '#8E8E93' }],
+                },
+              ],
+            },
+          },
+          compactLeading: {
+            type: 'image',
+            properties: [{ systemName: 'fork.knife.circle.fill' }, { color: '#FF6B35' }, { width: 16 }, { height: 16 }],
+          },
+          compactTrailing: {
+            type: 'container',
+            properties: [{ direction: 'horizontal' }, { spacing: 3 }],
+            children: [
+              {
+                type: 'timer',
+                properties: [
+                  { endTime: '{{deliveryTime}}' as any },
+                  { style: 'relative' },
+                  { fontSize: 12 },
+                  { fontWeight: 'semibold' },
+                  { color: '#FFFFFF' },
+                ],
+              },
+              {
+                type: 'image',
+                properties: [
+                  { systemName: '{{statusIcon}}' },
+                  { color: '{{statusColor}}' as any },
+                  { width: 10 },
+                  { height: 10 },
+                ],
+              },
+            ],
+          },
+          minimal: {
+            type: 'image',
+            properties: [
+              { systemName: '{{statusIcon}}' },
+              { color: '{{statusColor}}' as any },
+              { width: 12 },
+              { height: 12 },
+            ],
+          },
         },
         data: {
           restaurantName: 'Italian Pizzeria',
@@ -308,7 +392,7 @@ export class FoodOrderPage {
         },
       };
 
-      const result = await LiveActivities.startActivity(activityData as any);
+      const result = await LiveActivities.startActivity(activityData);
 
       this.liveActivitiesService.setCurrentActivityId(result.activityId);
       this.liveActivitiesService.showToast('Food order started!');

@@ -26,8 +26,8 @@
 
       <ion-card-content>
         <p class="description">
-          Explore countdown timers, relative time display, and time formatting options
-          to create Live Activities with precise time control.
+          Explore countdown timers, relative time display, and time formatting options to create Live Activities with
+          precise time control.
         </p>
 
         <!-- Features -->
@@ -58,22 +58,10 @@
         </div>
 
         @if (currentActivityId) {
-          <ion-chip color="success" style="margin-bottom: 16px;">
-            <ion-label>Active ID: {{ currentActivityId }}</ion-label>
-          </ion-chip>
+        <ion-chip color="success" style="margin-bottom: 16px">
+          <ion-label>Active ID: {{ currentActivityId }}</ion-label>
+        </ion-chip>
         }
-
-        <!-- Controls -->
-        <div class="controls">
-          <ion-button
-            expand="block"
-            size="large"
-            (click)="startCountdownExample()"
-            [disabled]="currentActivityId !== null">
-            <fa-icon icon="play-circle" slot="start" />
-            Start Timer Examples
-          </ion-button>
-        </div>
       </ion-card-content>
     </ion-card>
 

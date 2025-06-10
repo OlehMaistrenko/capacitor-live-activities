@@ -26,8 +26,8 @@
 
       <ion-card-content>
         <p class="description">
-          Demonstrates a cryptocurrency tracker using real-time charts,
-          perfect for monitoring prices, trends, and trading volume.
+          Demonstrates a cryptocurrency tracker using real-time charts, perfect for monitoring prices, trends, and
+          trading volume.
         </p>
 
         <!-- Features -->
@@ -75,7 +75,8 @@
             expand="block"
             size="large"
             (click)="startCryptoTracker()"
-            [disabled]="currentActivityId !== null">
+            [disabled]="currentActivityId !== null"
+          >
             <fa-icon icon="play-circle" slot="start" />
             Start Crypto Tracker
           </ion-button>
@@ -91,26 +92,15 @@
       </ion-card-header>
 
       <ion-card-content>
-        <p class="control-description">
-          Simulate price changes to see the charts update in real-time.
-        </p>
+        <p class="control-description">Simulate price changes to see the charts update in real-time.</p>
 
         <div class="control-buttons">
-          <ion-button
-            expand="block"
-            fill="outline"
-            size="default"
-            (click)="updatePrice()">
+          <ion-button expand="block" fill="outline" size="default" (click)="updatePrice()">
             <fa-icon icon="refresh" slot="start" />
             Simulate Price Change
           </ion-button>
 
-          <ion-button
-            expand="block"
-            fill="clear"
-            color="danger"
-            size="default"
-            (click)="endTracker()">
+          <ion-button expand="block" fill="clear" color="danger" size="default" (click)="endTracker()">
             <fa-icon icon="stop-circle" slot="start" />
             Stop Tracker
           </ion-button>

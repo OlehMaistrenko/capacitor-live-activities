@@ -3,7 +3,7 @@ import { LiveActivities } from 'capacitor-live-activities';
 import { ToastController } from '@ionic/angular';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class LiveActivitiesService {
   private currentActivityId: string | null = null;
@@ -28,12 +28,15 @@ export class LiveActivitiesService {
       await LiveActivities.updateActivity({
         activityId: this.currentActivityId,
         data,
-        alertConfiguration: alertTitle && alertBody ? {
-          title: alertTitle,
-          body: alertBody
-        } : undefined
+        alertConfiguration:
+          alertTitle && alertBody
+            ? {
+                title: alertTitle,
+                body: alertBody,
+              }
+            : undefined,
       });
-      
+
       this.showToast('Live Activity updated successfully!');
     } catch (error) {
       console.error('Error updating activity:', error);
@@ -51,12 +54,12 @@ export class LiveActivitiesService {
       await LiveActivities.endActivity({
         activityId: this.currentActivityId,
         data: finalData || {
-          title: "Activity Completed",
-          subtitle: "This Live Activity has ended",
-          status: "Completed"
-        }
+          title: 'Activity Completed',
+          subtitle: 'This Live Activity has ended',
+          status: 'Completed',
+        },
       });
-      
+
       this.currentActivityId = null;
       this.showToast('Live Activity ended successfully!');
     } catch (error) {
@@ -81,7 +84,7 @@ export class LiveActivitiesService {
       message,
       duration: 3000,
       color,
-      position: 'bottom'
+      position: 'bottom',
     });
     await toast.present();
   }

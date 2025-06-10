@@ -37,7 +37,7 @@ extension JSONLayoutParser {
             let alignment = getString(from: resolveValue(element.properties["alignment"], with: data))
             
             
-            Logger.viewCycle.error("📀 \(element.id) -> frameModifier -> width: \(width?.formatted() ?? "nil"), height: \(height?.formatted() ?? "nil"), minWidth: \(minWidth?.formatted() ?? "nil"), idealWidth: \(idealWidth?.formatted() ?? "nil"), maxWidth: \(maxWidth?.formatted() ?? "nil"), minHeight: \(minHeight?.formatted() ?? "nil"), idealHeight: \(idealHeight?.formatted() ?? "nil"), maxHeight: \(maxHeight?.formatted() ?? "nil"), alignment: \(alignment ?? "nil")")
+            Logger.viewCycle.error("📀 frameModifier -> width: \(width?.formatted() ?? "nil"), height: \(height?.formatted() ?? "nil"), minWidth: \(minWidth?.formatted() ?? "nil"), idealWidth: \(idealWidth?.formatted() ?? "nil"), maxWidth: \(maxWidth?.formatted() ?? "nil"), minHeight: \(minHeight?.formatted() ?? "nil"), idealHeight: \(idealHeight?.formatted() ?? "nil"), maxHeight: \(maxHeight?.formatted() ?? "nil"), alignment: \(alignment ?? "nil")")
             
             let zAlignment: Alignment = {
                 switch alignment {
@@ -62,12 +62,12 @@ extension JSONLayoutParser {
             
             
             if alignment != nil && width == nil && height == nil && minWidth == nil && idealWidth == nil && maxWidth == nil && minHeight == nil && idealHeight == nil && maxHeight == nil {
-                Logger.viewCycle.error("📀 \(element.id) -> frameModifier -> Applied alignment: \(alignment ?? "nil")")
+                Logger.viewCycle.error("📀 frameModifier -> Applied alignment: \(alignment ?? "nil")")
                 return AnyView(content.frame(alignment: zAlignment))
             }
             
             if width != nil || height != nil {
-                Logger.viewCycle.error("📀 \(element.id) -> frameModifier -> Applied Width & Height: \(width?.formatted() ?? "nil"), \(height?.formatted() ?? "nil")")
+                Logger.viewCycle.error("📀 frameModifier -> Applied Width & Height: \(width?.formatted() ?? "nil"), \(height?.formatted() ?? "nil")")
                 return AnyView(content.frame(
                     width: width == nil ? nil : CGFloat(width!),
                     height: height == nil ? nil : CGFloat(height!),
@@ -76,7 +76,7 @@ extension JSONLayoutParser {
             }
             
             if minWidth != nil || idealWidth != nil || maxWidth != nil || minHeight != nil || idealHeight != nil || maxHeight != nil {
-                Logger.viewCycle.error("📀 \(element.id) -> frameModifier -> Applied All")
+                Logger.viewCycle.error("📀 frameModifier -> Applied All")
                 return AnyView(content
                     .frame(
                         minWidth: minWidth == nil ? nil : minWidth.map { $0 == -1 ? .infinity : CGFloat($0) },
@@ -102,20 +102,20 @@ extension JSONLayoutParser {
             
             if let paddingValue = element.properties["padding"] {
                 if let boolValue = paddingValue.value as? Bool, boolValue == true {
-                    Logger.viewCycle.error("📀 \(element.id) -> paddingModifier -> padding -> true")
+                    Logger.viewCycle.error("📀 paddingModifier -> padding -> true")
                     output = AnyView(output.padding())
                 } else if let padding = getDouble(from: resolveValue(paddingValue, with: data)) {
-                    Logger.viewCycle.error("📀 \(element.id) -> paddingModifier -> padding -> \(padding)")
+                    Logger.viewCycle.error("📀 paddingModifier -> padding -> \(padding)")
                     output = AnyView(output.padding(CGFloat(padding)))
                 }
             }
             
             if let paddingHValue = element.properties["paddingHorizontal"] {
                 if let boolValue = paddingHValue.value as? Bool, boolValue == true {
-                    Logger.viewCycle.error("📀 \(element.id) -> paddingModifier -> paddingHorizontal -> true")
+                    Logger.viewCycle.error("📀 paddingModifier -> paddingHorizontal -> true")
                     output = AnyView(output.padding(.horizontal))
                 } else if let padding = getDouble(from: resolveValue(paddingHValue, with: data)) {
-                    Logger.viewCycle.error("📀 \(element.id) -> paddingModifier -> paddingHorizontal -> \(padding)")
+                    Logger.viewCycle.error("📀 paddingModifier -> paddingHorizontal -> \(padding)")
                     output = AnyView(output.padding(.horizontal, CGFloat(padding)))
                     Logger.viewCycle.error("! paddingHorizontal \(padding)")
                 }
@@ -123,10 +123,10 @@ extension JSONLayoutParser {
             
             if let paddingVValue = element.properties["paddingVertical"] {
                 if let boolValue = paddingVValue.value as? Bool, boolValue == true {
-                    Logger.viewCycle.error("📀 \(element.id) -> paddingModifier -> paddingVertical -> true")
+                    Logger.viewCycle.error("📀 paddingModifier -> paddingVertical -> true")
                     output = AnyView(output.padding(.vertical))
                 } else if let padding = getDouble(from: resolveValue(paddingVValue, with: data)) {
-                    Logger.viewCycle.error("📀 \(element.id) -> paddingModifier -> paddingVertical -> \(padding)")
+                    Logger.viewCycle.error("📀 paddingModifier -> paddingVertical -> \(padding)")
                     output = AnyView(output.padding(.vertical, CGFloat(padding)))
                     Logger.viewCycle.error("! paddingVertical \(padding)")
                 }
@@ -145,7 +145,7 @@ extension JSONLayoutParser {
                let offsetDict = offsetValue.value as? [String: Any] {
                 let x = getDouble(from: offsetDict["x"]) ?? 0
                 let y = getDouble(from: offsetDict["y"]) ?? 0
-                Logger.viewCycle.error("📀 \(element.id) -> offsetModifier -> offset -> x: \(x), y: \(y)")
+                Logger.viewCycle.error("📀 offsetModifier -> offset -> x: \(x), y: \(y)")
                 return AnyView(content.offset(x: CGFloat(x), y: CGFloat(y)))
             }
             return AnyView(content)
@@ -162,21 +162,21 @@ extension JSONLayoutParser {
             // Opacity
             if let opacityValue = element.properties["opacity"],
                let opacity = getDouble(from: resolveValue(opacityValue, with: data)) {
-                Logger.viewCycle.error("📀 \(element.id) -> appearanceModifier -> opacity -> \(opacity)")
+                Logger.viewCycle.error("📀 appearanceModifier -> opacity -> \(opacity)")
                 modifiedContent = AnyView(modifiedContent.opacity(opacity))
             }
             
             // Z-Index
             if let zIndexValue = element.properties["zIndex"],
                let zIndex = getDouble(from: resolveValue(zIndexValue, with: data)) {
-                Logger.viewCycle.error("📀 \(element.id) -> appearanceModifier -> zIndex -> \(zIndex)")
+                Logger.viewCycle.error("📀 appearanceModifier -> zIndex -> \(zIndex)")
                 modifiedContent = AnyView(modifiedContent.zIndex(zIndex))
             }
             
             // Corner Radius
             if let radiusValue = element.properties["cornerRadius"],
                let radius = getDouble(from: resolveValue(radiusValue, with: data)) {
-                Logger.viewCycle.error("📀 \(element.id) -> appearanceModifier -> cornerRadius -> \(radius)")
+                Logger.viewCycle.error("📀 appearanceModifier -> cornerRadius -> \(radius)")
                 modifiedContent = AnyView(modifiedContent.cornerRadius(CGFloat(radius)))
             }
             
@@ -189,7 +189,7 @@ extension JSONLayoutParser {
                 let y = getDouble(from: shadowDict["y"]) ?? 2
                 
                 Logger.viewCycle.error(
-                    "📀 \(element.id) -> appearanceModifier -> shadow -> color \(color), radius \(radius), x \(x), y \(y)")
+                    "📀 appearanceModifier -> shadow -> color \(color), radius \(radius), x \(x), y \(y)")
                 
                 modifiedContent = AnyView(
                     modifiedContent.shadow(
@@ -215,14 +215,14 @@ extension JSONLayoutParser {
             // Rotation
             if let rotationValue = element.properties["rotation"],
                let rotation = getDouble(from: resolveValue(rotationValue, with: data)) {
-                Logger.viewCycle.error("📀 \(element.id) -> transformModifier -> rotation -> \(rotation)")
+                Logger.viewCycle.error("📀 transformModifier -> rotation -> \(rotation)")
                 modifiedContent = AnyView(modifiedContent.rotationEffect(.degrees(rotation)))
             }
             
             // Scale
             if let scaleValue = element.properties["scale"],
                let scale = getDouble(from: resolveValue(scaleValue, with: data)) {
-                Logger.viewCycle.error("📀 \(element.id) -> transformModifier -> scale -> \(scale)")
+                Logger.viewCycle.error("📀 transformModifier -> scale -> \(scale)")
                 modifiedContent = AnyView(modifiedContent.scaleEffect(CGFloat(scale)))
             }
             
@@ -236,7 +236,7 @@ extension JSONLayoutParser {
                     default: return .center
                     }
                 }()
-                Logger.viewCycle.error("📀 \(element.id) -> transformModifier -> multilineTextAlignment -> \(textAlignment)")
+                Logger.viewCycle.error("📀 transformModifier -> multilineTextAlignment -> \(textAlignment)")
                 modifiedContent = AnyView(modifiedContent.multilineTextAlignment(translatedAlignment))
             }
             
@@ -254,14 +254,14 @@ extension JSONLayoutParser {
             // Foreground Style
             if let fgValue = element.properties["foregroundColor"],
                let fgColor = getString(from: resolveValue(fgValue, with: data)) {
-                Logger.viewCycle.error("📀 \(element.id) -> styleModifier -> foregroundStyle -> \(fgColor)")
+                Logger.viewCycle.error("📀 styleModifier -> foregroundStyle -> \(fgColor)")
                 modifiedContent = AnyView(modifiedContent.foregroundStyle(.white))
             }
             
             // Background Color
             if let bgValue = element.properties["backgroundColor"],
                let bgColor = getString(from: resolveValue(bgValue, with: data)) {
-                Logger.viewCycle.error("📀 \(element.id) -> styleModifier -> backgroundColor -> \(bgColor)")
+                Logger.viewCycle.error("📀 styleModifier -> backgroundColor -> \(bgColor)")
                 modifiedContent = AnyView(modifiedContent.background(Color(hex: bgColor)))
             }
             
@@ -273,7 +273,7 @@ extension JSONLayoutParser {
                 let startPoint = getGradientPoint(from: getString(from: gradientDict["startPoint"])) ?? .bottomLeading
                 let endPoint = getGradientPoint(from: getString(from: gradientDict["endPoint"])) ?? .topTrailing
                 
-                Logger.viewCycle.error("📀 \(element.id) -> styleModifier -> backgroundGradient -> \(colors) -> \(gradientDict["startPoint"] as! String) -> \(gradientDict["endPoint"] as! String)")
+                Logger.viewCycle.error("📀 styleModifier -> backgroundGradient -> \(colors) -> \(gradientDict["startPoint"] as! String) -> \(gradientDict["endPoint"] as! String)")
                 
                 let gradient = LinearGradient(
                     gradient: Gradient(colors: colors.map { Color(hex: $0) }),
@@ -289,7 +289,7 @@ extension JSONLayoutParser {
                let capsuleDict = capsuleValue.value as? [String: Any],
                let foregroundColor = capsuleDict["foregroundColor"] as? String {
                 
-                Logger.viewCycle.error("📀 \(element.id) -> styleModifier -> backgroundCapsule -> \(foregroundColor)")
+                Logger.viewCycle.error("📀 styleModifier -> backgroundCapsule -> \(foregroundColor)")
                                 
                 let capsule = Capsule().foregroundColor(Color(hex: foregroundColor))
                 
@@ -304,7 +304,7 @@ extension JSONLayoutParser {
         from element: LayoutElement, with data: [String: AnyCodable]
     ) -> AnyView {
         Logger.viewCycle.error(
-            "📀 \(element.id) - BuildView -> \(element.type) - \(element.propertiesKeysInOrder)")
+            "📀 BuildView -> \(element.type) - \(element.propertiesKeysInOrder)")
         
         // Build da view baseado no tipo
         switch element.type {

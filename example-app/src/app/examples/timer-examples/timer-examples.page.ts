@@ -61,7 +61,6 @@ export class TimerExamplesPage {
 
       const result = await LiveActivities.startActivity({
         layout: {
-          id: 'countdown-example',
           type: 'container',
           properties: [
             { direction: 'vertical' },
@@ -72,7 +71,6 @@ export class TimerExamplesPage {
           ],
           children: [
             {
-              id: 'title',
               type: 'text',
               properties: [
                 { text: '{{title}}' },
@@ -83,7 +81,6 @@ export class TimerExamplesPage {
               ],
             },
             {
-              id: 'timer',
               type: 'timer',
               properties: [
                 { endTime: endTime },
@@ -93,10 +90,9 @@ export class TimerExamplesPage {
                 { color: '#ffffff' },
                 { alignment: 'center' },
                 { monospacedDigit: true },
-              ] as any,
+              ],
             },
             {
-              id: 'description',
               type: 'text',
               properties: [
                 { text: '{{description}}' },
@@ -107,6 +103,62 @@ export class TimerExamplesPage {
               ],
             },
           ],
+        },
+        dynamicIslandLayout: {
+          expanded: {
+            leading: {
+              type: 'container',
+              properties: [{ direction: 'vertical' }, { spacing: 2 }],
+              children: [
+                {
+                  type: 'image',
+                  properties: [{ systemName: 'timer' }, { color: '#FF3B30' }, { width: 20 }, { height: 20 }],
+                },
+                {
+                  type: 'text',
+                  properties: [{ text: 'Timer' }, { fontSize: 9 }, { color: '#8E8E93' }],
+                },
+              ],
+            },
+            trailing: {
+              type: 'timer',
+              properties: [
+                { endTime: endTime },
+                { style: 'timer' },
+                { fontSize: 14 },
+                { fontWeight: 'bold' },
+                { color: '#FFFFFF' },
+                { monospacedDigit: true },
+              ],
+            },
+            center: {
+              type: 'text',
+              properties: [{ text: '{{title}}' }, { fontSize: 11 }, { fontWeight: 'medium' }, { color: '#FFFFFF' }],
+            },
+            bottom: {
+              type: 'text',
+              properties: [{ text: '{{description}}' }, { fontSize: 10 }, { color: '#8E8E93' }],
+            },
+          },
+          compactLeading: {
+            type: 'image',
+            properties: [{ systemName: 'timer' }, { color: '#FF3B30' }, { width: 16 }, { height: 16 }],
+          },
+          compactTrailing: {
+            type: 'timer',
+            properties: [
+              { endTime: endTime },
+              { style: 'time' },
+              { fontSize: 12 },
+              { fontWeight: 'semibold' },
+              { color: '#FFFFFF' },
+              { monospacedDigit: true },
+            ],
+          },
+          minimal: {
+            type: 'image',
+            properties: [{ systemName: 'timer' }, { color: '#FF3B30' }, { width: 12 }, { height: 12 }],
+          },
         },
         data: {
           title: 'Countdown Timer',
@@ -133,7 +185,6 @@ export class TimerExamplesPage {
 
       const result = await LiveActivities.startActivity({
         layout: {
-          id: 'relative-time-example',
           type: 'container',
           properties: [
             { direction: 'horizontal' },
@@ -145,17 +196,14 @@ export class TimerExamplesPage {
           ],
           children: [
             {
-              id: 'clock-icon',
               type: 'image',
-              properties: [{ systeName: 'clock.fill' }, { color: '#ffffff' }, { width: 32 }, { height: 32 }],
+              properties: [{ systemName: 'clock.fill' }, { color: '#ffffff' }, { width: 32 }, { height: 32 }],
             },
             {
-              id: 'time-content',
               type: 'container',
               properties: [{ direction: 'vertical' }, { spacing: 4 }],
               children: [
                 {
-                  id: 'relative-timer',
                   type: 'timer',
                   properties: [
                     { endTime: endTime },
@@ -164,10 +212,9 @@ export class TimerExamplesPage {
                     { fontWeight: 'semibold' },
                     { color: '#ffffff' },
                     { alignment: 'leading' },
-                  ] as any,
+                  ],
                 },
                 {
-                  id: 'label',
                   type: 'text',
                   properties: [
                     { text: '{{label}}' },
@@ -181,13 +228,47 @@ export class TimerExamplesPage {
             },
           ],
         },
-        data: {
-          label: 'Time until completion',
+        dynamicIslandLayout: {
+          expanded: {
+            bottom: {
+              type: 'container',
+              properties: [{ direction: 'vertical' }],
+              children: [
+                {
+                  type: 'text',
+                  properties: [{ text: '{{title}}' }, { fontWeight: 'bold' }],
+                },
+                {
+                  type: 'text',
+                  properties: [{ text: '{{subtitle}}' }, { fontFamily: 'footnote' }],
+                },
+              ],
+            },
+            trailing: {
+              type: 'text',
+              properties: [{ text: '{{status}}' }],
+            },
+          },
+          minimal: {
+            type: 'text',
+            properties: [{ text: 'abc' }],
+          },
+          compactLeading: {
+            type: 'image',
+            properties: [{ systemName: 'textformat.size' }],
+          },
+          compactTrailing: {
+            type: 'image',
+            properties: [{ systemName: 'text.aligncenter' }],
+          },
         },
         behavior: {
-          systemActionForegroundColor: '#34C759',
+          systemActionForegroundColor: '#007AFF',
           widgetUrl: 'https://example.com',
-          keyLineTint: '#34C759',
+          keyLineTint: '#007AFF',
+        },
+        data: {
+          label: 'Time until completion',
         },
       });
 
@@ -205,7 +286,6 @@ export class TimerExamplesPage {
 
       const result = await LiveActivities.startActivity({
         layout: {
-          id: 'workout-timer-example',
           type: 'container',
           properties: [
             { direction: 'vertical' },
@@ -216,27 +296,23 @@ export class TimerExamplesPage {
           ],
           children: [
             {
-              id: 'workout-header',
               type: 'container',
               properties: [{ direction: 'horizontal' }, { spacing: 12 }, { insideAlignment: 'center' }],
               children: [
                 {
-                  id: 'workout-icon',
                   type: 'image',
                   properties: [
-                    { systeName: 'figure.run.circle.fill' },
+                    { systemName: 'figure.run.circle.fill' },
                     { color: '#FF6B35' },
                     { width: 40 },
                     { height: 40 },
                   ],
                 },
                 {
-                  id: 'workout-info',
                   type: 'container',
                   properties: [{ direction: 'vertical' }, { spacing: 2 }],
                   children: [
                     {
-                      id: 'workout-name',
                       type: 'text',
                       properties: [
                         { text: '{{workoutName}}' },
@@ -247,7 +323,6 @@ export class TimerExamplesPage {
                       ],
                     },
                     {
-                      id: 'workout-type',
                       type: 'text',
                       properties: [
                         { text: '{{workoutType}}' },
@@ -261,17 +336,14 @@ export class TimerExamplesPage {
               ],
             },
             {
-              id: 'timer-display',
               type: 'container',
               properties: [{ direction: 'horizontal' }, { spacing: 16 }, { insideAlignment: 'center' }],
               children: [
                 {
-                  id: 'time-remaining',
                   type: 'container',
                   properties: [{ direction: 'vertical' }, { spacing: 4 }, { insideAlignment: 'center' }],
                   children: [
                     {
-                      id: 'remaining-timer',
                       type: 'timer',
                       properties: [
                         { endTime: endTime },
@@ -281,10 +353,9 @@ export class TimerExamplesPage {
                         { color: '#FF6B35' },
                         { alignment: 'center' },
                         { monospacedDigit: true },
-                      ] as any,
+                      ],
                     },
                     {
-                      id: 'remaining-label',
                       type: 'text',
                       properties: [
                         { text: 'TIME LEFT' },
@@ -297,17 +368,14 @@ export class TimerExamplesPage {
                   ],
                 },
                 {
-                  id: 'stats',
                   type: 'container',
                   properties: [{ direction: 'vertical' }, { spacing: 8 }],
                   children: [
                     {
-                      id: 'calories',
                       type: 'container',
                       properties: [{ direction: 'vertical' }, { spacing: 2 }, { insideAlignment: 'center' }],
                       children: [
                         {
-                          id: 'calories-value',
                           type: 'text',
                           properties: [
                             { text: '{{calories}}' },
@@ -318,19 +386,16 @@ export class TimerExamplesPage {
                           ],
                         },
                         {
-                          id: 'calories-label',
                           type: 'text',
                           properties: [{ text: 'CAL' }, { fontSize: 9 }, { color: '#8E8E93' }, { alignment: 'center' }],
                         },
                       ],
                     },
                     {
-                      id: 'heart-rate',
                       type: 'container',
                       properties: [{ direction: 'vertical' }, { spacing: 2 }, { insideAlignment: 'center' }],
                       children: [
                         {
-                          id: 'hr-value',
                           type: 'text',
                           properties: [
                             { text: '{{heartRate}}' },
@@ -341,7 +406,6 @@ export class TimerExamplesPage {
                           ],
                         },
                         {
-                          id: 'hr-label',
                           type: 'text',
                           properties: [{ text: 'BPM' }, { fontSize: 9 }, { color: '#8E8E93' }, { alignment: 'center' }],
                         },
@@ -353,16 +417,50 @@ export class TimerExamplesPage {
             },
           ],
         },
+        dynamicIslandLayout: {
+          expanded: {
+            bottom: {
+              type: 'container',
+              properties: [{ direction: 'vertical' }],
+              children: [
+                {
+                  type: 'text',
+                  properties: [{ text: '{{title}}' }, { fontWeight: 'bold' }],
+                },
+                {
+                  type: 'text',
+                  properties: [{ text: '{{subtitle}}' }, { fontFamily: 'footnote' }],
+                },
+              ],
+            },
+            trailing: {
+              type: 'text',
+              properties: [{ text: '{{status}}' }],
+            },
+          },
+          minimal: {
+            type: 'text',
+            properties: [{ text: 'abc' }],
+          },
+          compactLeading: {
+            type: 'image',
+            properties: [{ systemName: 'textformat.size' }],
+          },
+          compactTrailing: {
+            type: 'image',
+            properties: [{ systemName: 'text.aligncenter' }],
+          },
+        },
+        behavior: {
+          systemActionForegroundColor: '#007AFF',
+          widgetUrl: 'https://example.com',
+          keyLineTint: '#007AFF',
+        },
         data: {
           workoutName: 'Morning Run',
           workoutType: 'Outdoor Running',
           calories: '245',
           heartRate: '142',
-        },
-        behavior: {
-          systemActionForegroundColor: '#FF6B35',
-          widgetUrl: 'https://example.com',
-          keyLineTint: '#FF6B35',
         },
       });
 
@@ -380,7 +478,6 @@ export class TimerExamplesPage {
 
       const result = await LiveActivities.startActivity({
         layout: {
-          id: 'meeting-timer-example',
           type: 'container',
           properties: [
             { direction: 'vertical' },
@@ -391,17 +488,14 @@ export class TimerExamplesPage {
           ],
           children: [
             {
-              id: 'meeting-header',
               type: 'container',
               properties: [{ direction: 'horizontal' }, { spacing: 10 }, { insideAlignment: 'center' }],
               children: [
                 {
-                  id: 'video-icon',
                   type: 'image',
-                  properties: [{ systeName: 'video.fill' }, { color: '#ffffff' }, { width: 20 }, { height: 20 }],
+                  properties: [{ systemName: 'video.fill' }, { color: '#ffffff' }, { width: 20 }, { height: 20 }],
                 },
                 {
-                  id: 'meeting-title',
                   type: 'text',
                   properties: [
                     { text: '{{meetingTitle}}' },
@@ -414,17 +508,14 @@ export class TimerExamplesPage {
               ],
             },
             {
-              id: 'timer-row',
               type: 'container',
               properties: [{ direction: 'horizontal' }, { spacing: 12 }, { insideAlignment: 'center' }],
               children: [
                 {
-                  id: 'time-icon',
                   type: 'image',
-                  properties: [{ systeName: 'clock' }, { color: '#ffffff' }, { width: 16 }, { height: 16 }],
+                  properties: [{ systemName: 'clock' }, { color: '#ffffff' }, { width: 16 }, { height: 16 }],
                 },
                 {
-                  id: 'meeting-timer',
                   type: 'timer',
                   properties: [
                     { endTime: endTime },
@@ -434,22 +525,19 @@ export class TimerExamplesPage {
                     { color: '#ffffff' },
                     { alignment: 'leading' },
                     { monospacedDigit: true },
-                  ] as any,
+                  ],
                 },
                 {
-                  id: 'status-dot',
                   type: 'image',
-                  properties: [{ systeName: 'circle.fill' }, { color: '#30D158' }, { width: 8 }, { height: 8 }],
+                  properties: [{ systemName: 'circle.fill' }, { color: '#30D158' }, { width: 8 }, { height: 8 }],
                 },
                 {
-                  id: 'live-text',
                   type: 'text',
                   properties: [{ text: 'LIVE' }, { fontSize: 10 }, { fontWeight: 'bold' }, { color: '#30D158' }],
                 },
               ],
             },
             {
-              id: 'participants',
               type: 'text',
               properties: [
                 { text: '{{participants}}' },
@@ -461,14 +549,48 @@ export class TimerExamplesPage {
             },
           ],
         },
+        dynamicIslandLayout: {
+          expanded: {
+            bottom: {
+              type: 'container',
+              properties: [{ direction: 'vertical' }],
+              children: [
+                {
+                  type: 'text',
+                  properties: [{ text: '{{title}}' }, { fontWeight: 'bold' }],
+                },
+                {
+                  type: 'text',
+                  properties: [{ text: '{{subtitle}}' }, { fontFamily: 'footnote' }],
+                },
+              ],
+            },
+            trailing: {
+              type: 'text',
+              properties: [{ text: '{{status}}' }],
+            },
+          },
+          minimal: {
+            type: 'text',
+            properties: [{ text: 'abc' }],
+          },
+          compactLeading: {
+            type: 'image',
+            properties: [{ systemName: 'textformat.size' }],
+          },
+          compactTrailing: {
+            type: 'image',
+            properties: [{ systemName: 'text.aligncenter' }],
+          },
+        },
+        behavior: {
+          systemActionForegroundColor: '#007AFF',
+          widgetUrl: 'https://example.com',
+          keyLineTint: '#007AFF',
+        },
         data: {
           meetingTitle: 'Team Standup',
           participants: '5 participants',
-        },
-        behavior: {
-          systemActionForegroundColor: '#5856D6',
-          widgetUrl: 'https://example.com',
-          keyLineTint: '#5856D6',
         },
       });
 

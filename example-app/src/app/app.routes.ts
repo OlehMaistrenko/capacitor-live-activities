@@ -7,24 +7,16 @@ export const routes: Routes = [
     pathMatch: 'full',
   },
   {
-    path: 'folder/:id',
-    loadComponent: () =>
-      import('./folder/folder.page').then((m) => m.FolderPage),
-  },
-  {
     path: 'text-examples',
-    loadComponent: () =>
-      import('./examples/text-examples/text-examples.page').then((m) => m.TextExamplesPage),
+    loadComponent: () => import('./examples/text-examples/text-examples.page').then((m) => m.TextExamplesPage),
   },
   {
     path: 'image-examples',
-    loadComponent: () =>
-      import('./examples/image-examples/image-examples.page').then((m) => m.ImageExamplesPage),
+    loadComponent: () => import('./examples/image-examples/image-examples.page').then((m) => m.ImageExamplesPage),
   },
   {
     path: 'timer-examples',
-    loadComponent: () =>
-      import('./examples/timer-examples/timer-examples.page').then((m) => m.TimerExamplesPage),
+    loadComponent: () => import('./examples/timer-examples/timer-examples.page').then((m) => m.TimerExamplesPage),
   },
   {
     path: 'progress-examples',
@@ -34,12 +26,13 @@ export const routes: Routes = [
   {
     path: 'segmented-progress-examples',
     loadComponent: () =>
-      import('./examples/segmented-progress-examples/segmented-progress-examples.page').then((m) => m.SegmentedProgressExamplesPage),
+      import('./examples/segmented-progress-examples/segmented-progress-examples.page').then(
+        (m) => m.SegmentedProgressExamplesPage,
+      ),
   },
   {
     path: 'chart-examples',
-    loadComponent: () =>
-      import('./examples/chart-examples/chart-examples.page').then((m) => m.ChartExamplesPage),
+    loadComponent: () => import('./examples/chart-examples/chart-examples.page').then((m) => m.ChartExamplesPage),
   },
   {
     path: 'container-examples',
@@ -53,17 +46,14 @@ export const routes: Routes = [
   },
   {
     path: 'food-order',
-    loadComponent: () =>
-      import('./examples/food-order/food-order.page').then((m) => m.FoodOrderPage),
+    loadComponent: () => import('./examples/food-order/food-order.page').then((m) => m.FoodOrderPage),
   },
   {
     path: 'gym-workout',
-    loadComponent: () =>
-      import('./examples/gym-workout/gym-workout.page').then((m) => m.GymWorkoutPage),
+    loadComponent: () => import('./examples/gym-workout/gym-workout.page').then((m) => m.GymWorkoutPage),
   },
   {
     path: 'crypto-tracker',
-    loadComponent: () =>
-      import('./examples/crypto-tracker/crypto-tracker.page').then((m) => m.CryptoTrackerPage),
+    loadComponent: () => import('./examples/crypto-tracker/crypto-tracker.page').then((m) => m.CryptoTrackerPage),
   },
 ];

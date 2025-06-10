@@ -36,7 +36,7 @@ extension JSONLayoutParser {
             let smooth = resolveValue(element.properties["smooth"], with: data) as? Bool ?? true
             let maxValue = getDouble(from: resolveValue(element.properties["maxValue"], with: data))
             
-            Logger.viewCycle.error("📀 \(element.id) -> buildChartView -> type: \(chartType), data: \(chartData), width: \(width), height: \(height), color: \(color), fillColor: \(fillColor), strokeWidth: \(strokeWidth), showPoints: \(showPoints), smooth: \(smooth), maxValue: \(maxValue?.formatted() ?? "auto")")
+            Logger.viewCycle.error("📀 buildChartView -> type: \(chartType), data: \(chartData), width: \(width), height: \(height), color: \(color), fillColor: \(fillColor), strokeWidth: \(strokeWidth), showPoints: \(showPoints), smooth: \(smooth), maxValue: \(maxValue?.formatted() ?? "auto")")
             
             let chartView = buildChart(
                 data: chartData,

@@ -16,6 +16,7 @@
 		50B271D11FEDC1A000F3C39B /* public in Resources */ = {isa = PBXBuildFile; fileRef = 50B271D01FEDC1A000F3C39B /* public */; };
 		A084ECDBA7D38E1E42DFC39D /* Pods_App.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF277DCFFFF123FFC6DF26C7 /* Pods_App.framework */; };
 		A4CC58341337E02F9B3F86C9 /* Pods_LiveActivitiesExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A48E93C3256C17F61E3AA5F2 /* Pods_LiveActivitiesExtension.framework */; };
+		FC352AA52DF8C38800DDC70E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 504EC30E1FED79650016851F /* Assets.xcassets */; };
 		FC83EF312DF5C44300AF09E1 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC83EF302DF5C44300AF09E1 /* WidgetKit.framework */; };
 		FC83EF332DF5C44300AF09E1 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC83EF322DF5C44300AF09E1 /* SwiftUI.framework */; };
 		FC83EF3E2DF5C44400AF09E1 /* LiveActivitiesExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = FC83EF2F2DF5C44300AF09E1 /* LiveActivitiesExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -266,6 +267,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC352AA52DF8C38800DDC70E /* Assets.xcassets in Resources */,
 				FC83EF492DF5C45F00AF09E1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -556,7 +558,7 @@
 				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ludufre.liveactivities-example.LiveActivities;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ludufre.liveactivities-example.LiveActivities";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
@@ -593,7 +595,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 1.0;
 				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.ludufre.liveactivities-example.LiveActivities;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ludufre.liveactivities-example.LiveActivities";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;

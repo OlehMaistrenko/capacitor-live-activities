@@ -1,8 +1,34 @@
 import SwiftUI
+import WidgetKit
 import OSLog
+import Compression
 
 @available(iOS 16.2, *)
 extension JSONLayoutParser {
+    public static func parseJsonCompressedIfNeeded<T: Decodable>(from json: String, as type: T.Type) -> T? {
+        var actualJson = json
+        
+        // Check if behavior is compressed and decompress it
+        if json.hasPrefix("__COMPRESSED__:") {
+            let compressedBase64 = String(json.dropFirst("__COMPRESSED__:".count))
+            if let decompressedBehavior = decompressLayoutJSON(compressedBase64) {
+                actualJson = decompressedBehavior
+                print("✅ Widget: Decompressed successfully")
+            } else {
+                print("❌ Widget: Decompression failed")
+                return nil
+            }
+        }
+        
+        guard let jsonData = actualJson.data(using: .utf8),
+              let decoded = try? JSONDecoder().decode(type, from: jsonData) else {
+            print("❌ Widget: Failed to decode JSON")
+            return nil
+        }
+        
+        return decoded
+    }
+    
     static func getDouble(from value: Any?) -> Double? {
         switch value {
         case let double as Double:
@@ -83,6 +109,25 @@ extension JSONLayoutParser {
         
         return value.value
     }
+    
+    static func decompressLayoutJSON(_ base64String: String) -> String? {
+        guard let compressedData = Data(base64Encoded: base64String) else { return nil }
+        
+        let maxDecompressedSize = compressedData.count * 10 // Estimate 10x expansion
+        let destinationBuffer = UnsafeMutablePointer<UInt8>.allocate(capacity: maxDecompressedSize)
+        defer { destinationBuffer.deallocate() }
+        
+        let decompressedSize = compression_decode_buffer(
+            destinationBuffer, maxDecompressedSize,
+            compressedData.withUnsafeBytes { $0.bindMemory(to: UInt8.self).baseAddress! }, compressedData.count,
+            nil, COMPRESSION_ZLIB
+        )
+        
+        guard decompressedSize > 0 else { return nil }
+        
+        let decompressedData = Data(bytes: destinationBuffer, count: decompressedSize)
+        return String(data: decompressedData, encoding: .utf8)
+    }
 }
 
 extension Logger {
@@ -90,15 +135,13 @@ extension Logger {
     private static var subsystem = Bundle.main.bundleIdentifier!
     
     /// Logs the view cycles like a view that appeared.
-    static let viewCycle = Logger(subsystem: subsystem, category: "viewcycle")
+    public static let viewCycle = Logger(subsystem: subsystem, category: "viewcycle")
     
     /// All logs related to tracking and analytics.
-    static let statistics = Logger(subsystem: subsystem, category: "statistics")
+    public static let statistics = Logger(subsystem: subsystem, category: "statistics")
 }
 
 extension View {
-    
-    
     @ViewBuilder
     func `if`<Content: View>(_ condition: Bool, transform: (Self) -> Content) -> some View {
         if condition {
@@ -127,6 +170,17 @@ extension View {
             transform(self, v)
         } else {
             self
+        }
+    }
+}
+
+@available(iOS 16.2, *)
+extension DynamicIsland {
+    func ifLet<T>(_ value: T?, transform: (DynamicIsland, T) -> DynamicIsland) -> DynamicIsland {
+        if let value = value {
+            return transform(self, value)
+        } else {
+            return self
         }
     }
 }

@@ -23,6 +23,92 @@ public class LiveActivitiesPlugin: CAPPlugin, CAPBridgedPlugin {
         CAPPluginMethod(name: "cleanupImages", returnType: CAPPluginReturnPromise)
     ]
     
+    // MARK: - Compression Analysis
+    
+    struct CompressionDecision {
+        let shouldCompress: Bool
+        let reason: String
+        let totalSize: Int
+        let layoutSize: Int
+        let dynamicIslandSize: Int
+    }
+    
+    private func analyzeCompressionNeeds(
+        layoutDict: [String: Any],
+        dynamicIslandDict: [String: Any],
+        behaviorDict: [String: Any],
+        data: [String: Any],
+        staleDate: Double?,
+        relevanceScore: Double?
+    ) -> CompressionDecision {
+        
+        // Calculate individual component sizes
+        let layoutJSON = try? JSONSerialization.data(withJSONObject: layoutDict)
+        let layoutSize = layoutJSON?.count ?? 0
+        
+        let dynamicIslandJSON = try? JSONSerialization.data(withJSONObject: dynamicIslandDict)
+        let dynamicIslandSize = dynamicIslandJSON?.count ?? 0
+        
+        let dataJSON = try? JSONSerialization.data(withJSONObject: data)
+        let dataSize = dataJSON?.count ?? 0
+        
+        let behaviorJSON = try? JSONSerialization.data(withJSONObject: behaviorDict)
+        let behaviorSize = behaviorJSON?.count ?? 0
+        
+        // Calculate total payload size including all components
+        var totalPayload: [String: Any] = [
+            "layout": layoutDict,
+            "data": data,
+            "dynamicIslandLayout": dynamicIslandDict,
+            "behavior": behaviorDict
+        ]
+        
+        if let staleDate = staleDate {
+            totalPayload["staleDate"] = staleDate
+        }
+        
+        if let relevanceScore = relevanceScore {
+            totalPayload["relevanceScore"] = relevanceScore
+        }
+        
+        guard let totalPayloadJSON = try? JSONSerialization.data(withJSONObject: totalPayload) else {
+            return CompressionDecision(
+                shouldCompress: false,
+                reason: "Failed to serialize payload for analysis",
+                totalSize: 0,
+                layoutSize: layoutSize,
+                dynamicIslandSize: dynamicIslandSize
+            )
+        }
+        
+        let totalSize = totalPayloadJSON.count
+        
+        print("📊 Payload Analysis:")
+        print("   • Main Layout: \(layoutSize) bytes")
+        print("   • Dynamic Island: \(dynamicIslandSize) bytes")
+        print("   • Data: \(dataSize) bytes")
+        print("   • Behavior: \(behaviorSize) bytes")
+        print("   • Total: \(totalSize) bytes")
+        
+        if totalSize > 3000 {
+            return CompressionDecision(
+                shouldCompress: true,
+                reason: "Total payload exceeds 3KB safety limit (\(totalSize) bytes)",
+                totalSize: totalSize,
+                layoutSize: layoutSize,
+                dynamicIslandSize: dynamicIslandSize
+            )
+        }
+        
+        // No compression needed
+        return CompressionDecision(
+            shouldCompress: false,
+            reason: "Payload within limits, no compression needed (\(totalSize) bytes)",
+            totalSize: totalSize,
+            layoutSize: layoutSize,
+            dynamicIslandSize: dynamicIslandSize
+        )
+    }
     
     @objc func startActivity(_ call: CAPPluginCall) {
         guard #available(iOS 16.2, *) else {
@@ -30,68 +116,88 @@ public class LiveActivitiesPlugin: CAPPlugin, CAPBridgedPlugin {
             return
         }
         
-#if canImport(ActivityKit)
         guard ActivityAuthorizationInfo().areActivitiesEnabled else {
             call.reject("Live Activities are not enabled")
             return
         }
-#else
-        call.reject("ActivityKit not available")
-        return
-#endif
+
         
         guard let layoutDict = call.getObject("layout"),
               let layoutJSON = try? JSONSerialization.data(withJSONObject: layoutDict),
               let layoutString = String(data: layoutJSON, encoding: .utf8),
+              let dynamicIslandDict = call.getObject("dynamicIslandLayout"),
+              let dynamicIslandJSON = try? JSONSerialization.data(withJSONObject: dynamicIslandDict),
+              let dynamicIslandString = String(data: dynamicIslandJSON, encoding: .utf8),
+              let behaviorDict = call.getObject("behavior"),
+              let behaviorJSON = try? JSONSerialization.data(withJSONObject: behaviorDict),
+              let behaviorString = String(data: behaviorJSON, encoding: .utf8),
               let data = call.getObject("data") else {
             call.reject("Invalid parameters")
             return
         }
         
-        // Calculate total payload size and determine if compression is needed
-        let totalPayload: [String: Any] = [
-            "layout": layoutDict,
-            "data": data
-        ]
-        
-        // Include optional parameters if present for accurate size calculation
-        var fullPayload = totalPayload
-        if let behavior = call.getObject("behavior") {
-            fullPayload["behavior"] = behavior
-        }
-        if let staleTimestamp = call.getDouble("staleDate") {
-            fullPayload["staleDate"] = staleTimestamp
-        }
-        if let relevanceScore = call.getDouble("relevanceScore") {
-            fullPayload["relevanceScore"] = relevanceScore
-        }
-        
-        guard let payloadJSON = try? JSONSerialization.data(withJSONObject: fullPayload),
-              let payloadString = String(data: payloadJSON, encoding: .utf8) else {
-            call.reject("Failed to serialize activity data")
+        // Validate Dynamic Island expanded regions
+        if let expandedDict = dynamicIslandDict["expanded"] as? [String: Any] {
+            let hasLeading = expandedDict["leading"] != nil
+            let hasTrailing = expandedDict["trailing"] != nil
+            let hasCenter = expandedDict["center"] != nil
+            let hasBottom = expandedDict["bottom"] != nil
+            
+            if !hasLeading && !hasTrailing && !hasCenter && !hasBottom {
+                call.reject("Dynamic Island expanded layout must have at least one region (leading, trailing, center, or bottom)")
+                return
+            }
+            
+            print("✅ Dynamic Island expanded validation passed - regions: leading:\(hasLeading), trailing:\(hasTrailing), center:\(hasCenter), bottom:\(hasBottom)")
+        } else {
+            call.reject("Dynamic Island expanded layout is required")
             return
         }
         
-        let payloadSize = payloadString.data(using: .utf8)?.count ?? 0
+        // Comprehensive payload analysis for intelligent compression
+        let compressionDecision = analyzeCompressionNeeds(
+            layoutDict: layoutDict,
+            dynamicIslandDict: dynamicIslandDict,
+            behaviorDict: behaviorDict,
+            data: data,
+            staleDate: call.getDouble("staleDate"),
+            relevanceScore: call.getDouble("relevanceScore")
+        )
         
-        print("📊 Activity payload size: \(payloadSize) bytes")
-        
-        // Use very conservative limit (3.5KB) due to ActivityKit overhead
-        let useCompression = payloadSize > 3500 // ~3.5KB to account for ActivityKit overhead
         var finalLayoutString = layoutString
+        var finalDynamicIslandString = dynamicIslandString
+        var finalBehaviorString = behaviorString
         
-        if useCompression {
-            print("🗜️ Auto-enabling compression (payload > 3.5KB safety limit)")
+        if compressionDecision.shouldCompress {
+            print("🗜️ Auto-enabling compression: \(compressionDecision.reason)")
+            
+            // Compress main layout
             if let compressedLayout = compressLayoutJSON(layoutString) {
                 finalLayoutString = compressedLayout
-                print("✅ Layout compressed successfully")
+                print("✅ Main layout compressed: \(layoutString.count) → \(compressedLayout.count) bytes")
             } else {
-                print("❌ Layout compression failed, using original")
+                print("❌ Main layout compression failed")
                 call.reject("Failed to compress large activity data")
                 return
             }
+            
+            // Compress Dynamic Island layout if present
+            if let compressedDynamicIsland = compressLayoutJSON(dynamicIslandString) {
+                finalDynamicIslandString = compressedDynamicIsland
+                print("✅ Dynamic Island layout compressed: \(dynamicIslandString.count) → \(compressedDynamicIsland.count) bytes")
+            } else {
+                print("⚠️ Dynamic Island compression failed, using original")
+            }
+            
+            if let compressedBehavior = compressLayoutJSON(behaviorString) {
+                finalBehaviorString = compressedBehavior
+                print("✅ Behavior compressed: \(dynamicIslandString.count) → \(compressedBehavior.count) bytes")
+            } else {
+                print("⚠️ Behavior compression failed, using original")
+            }
+            
         } else {
-            print("✅ Payload within 4KB limit, no compression needed")
+            print("✅ \(compressionDecision.reason)")
         }
         
         let staleTimestamp = call.getDouble("staleDate")
@@ -104,10 +210,11 @@ public class LiveActivitiesPlugin: CAPPlugin, CAPBridgedPlugin {
         do {
             activityId = try LiveActivities.shared.startActivity(
                 layout: finalLayoutString,
+                dynamicIslandLayout: finalDynamicIslandString,
+                behavior: finalBehaviorString,
                 data: data,
                 staleDate: staleDate,
-                relevanceScore: relevanceScore,
-                behavior: behavior
+                relevanceScore: relevanceScore
             )
             
             call.resolve([

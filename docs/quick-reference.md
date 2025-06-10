@@ -417,6 +417,110 @@ const dimensions = {
 }
 ```
 
+## 🏝️ Dynamic Island Quick Reference
+
+### Basic Structure
+
+```typescript
+{
+  layout: {
+    // Main Live Activity layout
+  },
+  dynamicIslandLayout: {
+    expanded: {
+      leading: { /* Left content */ },
+      trailing: { /* Right content */ },
+      center: { /* Center content */ },
+      bottom: { /* Main content area */ }
+    },
+    compactLeading: {
+      element: { /* Small leading icon */ }
+    },
+    compactTrailing: {
+      element: { /* Small trailing icon */ }
+    },
+    minimal: {
+      element: { /* Minimal state icon */ }
+    }
+  }
+}
+```
+
+### Dynamic Island Regions
+
+| Region | Description | Best For | Max Size |
+|--------|-------------|----------|----------|
+| `leading` | Top-left area | App icons, status | 44x44px |
+| `trailing` | Top-right area | Values, timers | 44x44px |
+| `center` | Middle area | Titles, names | Variable |
+| `bottom` | Main content | Progress, charts | ~160px height |
+
+### State Examples
+
+```typescript
+// Expanded
+expanded: {
+  leading: {
+    id: "icon",
+    type: "image",
+    properties: [
+      { systeName: "heart.fill" },
+      { color: "#FF3B30" },
+      { width: 20 },
+      { height: 20 }
+    ]
+  },
+  trailing: {
+    id: "value",
+    type: "text",
+    properties: [
+      { text: "{{value}}" },
+      { fontSize: 14 },
+      { fontWeight: "bold" },
+      { color: "#FFFFFF" }
+    ]
+  }
+}
+
+// Compact States
+compactLeading: {
+  element: {
+    id: "compact-icon",
+    type: "image",
+    properties: [
+      { systeName: "heart.fill" },
+      { color: "#FF3B30" },
+      { width: 16 },
+      { height: 16 }
+    ]
+  }
+}
+
+// Minimal State
+minimal: {
+  element: {
+    id: "minimal-icon",
+    type: "image",
+    properties: [
+      { systeName: "circle.fill" },
+      { color: "#FF3B30" },
+      { width: 12 },
+      { height: 12 }
+    ]
+  }
+}
+```
+
+### Design Guidelines
+
+- ✅ Use 16-20px icons for expanded regions
+- ✅ Use 16px icons for compact states  
+- ✅ Use 12px icons for minimal state
+- ✅ Keep text concise (max 2-3 words)
+- ✅ Test all states during development
+- ❌ Don't overcrowd compact layouts
+- ❌ Avoid complex nested containers
+
 ## ⚡ Development Commands
 
 ```bash

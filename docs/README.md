@@ -10,6 +10,8 @@ This documentation provides comprehensive examples and code snippets for the Cap
 
 - [**📋 JSON Layout Guide**](./json-layout-guide.md) - **Complete guide for creating layouts**
 
+- [**🏝️ Dynamic Island Layouts**](./json-layout-guide.md#dynamic-island-layouts) - **NEW! Complete Dynamic Island support**
+
 - [**⚡ Quick Reference**](./quick-reference.md) - **Quick reference and cheat sheet**
 
 - [**🔧 Universal Properties**](./universal-properties.md) - **Properties applicable to all elements**

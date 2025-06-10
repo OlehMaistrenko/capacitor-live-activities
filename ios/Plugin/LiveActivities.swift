@@ -10,45 +10,40 @@ import ActivityKit
 @objc public class LiveActivities: NSObject {
     @objc public static let shared = LiveActivities()
     
-    #if canImport(ActivityKit)
     private var activities: [String: Activity<DynamicActivityAttributes>] = [:]
-    #endif
     
     private override init() {
         super.init()
-        // Configurar App Group automaticamente
         let bundleId = Bundle.main.bundleIdentifier ?? "com.app"
-        LiveActivitiesKitManager.configure(withAppGroup: "group.\(bundleId).LiveActivities")
+        SharedDataManager.shared.appGroupIdentifier = "group.\(bundleId).liveactivities"
     }
     
     private func syncExistingActivities() async {
-        #if canImport(ActivityKit)
-        // Recuperar todas as activities ativas do sistema
         for activity in Activity<DynamicActivityAttributes>.activities {
-            // The activityId is stored in the attributes
             let activityId = activity.attributes.activityId
             activities[activityId] = activity
             
             Logger.viewCycle.error("🔄 Recovered existing activity: \(activityId)")
         }
-        #endif
     }
     
     @objc public func startActivity(
         layout: String,
+        dynamicIslandLayout: String,
+        behavior: String,
         data: [String: Any],
         staleDate: Date?,
         relevanceScore: Double,
-        behavior: [String: Any]?
+        
+        
     ) throws -> String {
         let activityId = UUID().uuidString
         
-        // Criar atributos usando tipos do framework
-        let behaviorAnyCodable = behavior?.mapValues { AnyCodable($0) }
         let attributes = DynamicActivityAttributes(
-            layoutJSON: layout,
             activityId: activityId,
-            behavior: behaviorAnyCodable
+            layoutJSON: layout,
+            dynamicIslandLayoutJSON: dynamicIslandLayout,
+            behaviorJSON: behavior
         )
         
         // Converter dados para AnyCodable do framework

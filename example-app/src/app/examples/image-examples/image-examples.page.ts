@@ -59,7 +59,6 @@ export class ImageExamplesPage {
     try {
       const result = await LiveActivities.startActivity({
         layout: {
-          id: 'sf-symbols-example',
           type: 'container',
           properties: [
             { direction: 'horizontal' },
@@ -71,17 +70,21 @@ export class ImageExamplesPage {
           ],
           children: [
             {
-              id: 'icon',
               type: 'image',
-              properties: [{ systeName: 'photo.circle.fill' }, { color: '#34C759' }, { width: 40 }, { height: 40 }],
+              properties: [
+                { systemName: 'photo.circle.fill' },
+                { color: '#34C759' },
+                { contentMode: 'fit' },
+                { resizable: true },
+                { width: 40 },
+                { height: 40 },
+              ],
             },
             {
-              id: 'content',
               type: 'container',
               properties: [{ direction: 'vertical' }, { spacing: 4 }],
               children: [
                 {
-                  id: 'title',
                   type: 'text',
                   properties: [
                     { text: '{{title}}' },
@@ -91,7 +94,6 @@ export class ImageExamplesPage {
                   ],
                 },
                 {
-                  id: 'description',
                   type: 'text',
                   properties: [{ text: '{{description}}' }, { fontSize: 13 }, { color: '#666666' }, { lineLimit: 1 }],
                 },
@@ -99,14 +101,48 @@ export class ImageExamplesPage {
             },
           ],
         },
+        dynamicIslandLayout: {
+          expanded: {
+            bottom: {
+              type: 'container',
+              properties: [{ direction: 'vertical' }],
+              children: [
+                {
+                  type: 'text',
+                  properties: [{ text: '{{title}}' }, { fontWeight: 'bold' }],
+                },
+                {
+                  type: 'text',
+                  properties: [{ text: '{{subtitle}}' }, { fontFamily: 'footnote' }],
+                },
+              ],
+            },
+            trailing: {
+              type: 'text',
+              properties: [{ text: '{{status}}' }],
+            },
+          },
+          minimal: {
+            type: 'text',
+            properties: [{ text: 'abc' }],
+          },
+          compactLeading: {
+            type: 'image',
+            properties: [{ systemName: 'textformat.size' }],
+          },
+          compactTrailing: {
+            type: 'image',
+            properties: [{ systemName: 'text.aligncenter' }],
+          },
+        },
+        behavior: {
+          systemActionForegroundColor: '#007AFF',
+          widgetUrl: 'https://example.com',
+          keyLineTint: '#007AFF',
+        },
         data: {
           title: 'SF Symbols Example',
           description: 'System icons with custom colors',
-        },
-        behavior: {
-          systemActionForegroundColor: '#34C759',
-          widgetUrl: 'https://example.com',
-          keyLineTint: '#34C759',
         },
       });
 
@@ -122,7 +158,6 @@ export class ImageExamplesPage {
     try {
       const result = await LiveActivities.startActivity({
         layout: {
-          id: 'multiple-icons-example',
           type: 'container',
           properties: [
             { direction: 'vertical' },
@@ -133,7 +168,6 @@ export class ImageExamplesPage {
           ],
           children: [
             {
-              id: 'header',
               type: 'text',
               properties: [
                 { text: '{{headerText}}' },
@@ -144,25 +178,21 @@ export class ImageExamplesPage {
               ],
             },
             {
-              id: 'icons-row',
               type: 'container',
               properties: [{ direction: 'horizontal' }, { spacing: 20 }, { insideAlignment: 'center' }],
               children: [
                 {
-                  id: 'heart-icon',
                   type: 'image',
-                  properties: [{ systeName: 'heart.fill' }, { color: '#FF3B30' }, { width: 32 }, { height: 32 }],
+                  properties: [{ systemName: 'heart.fill' }, { color: '#FF3B30' }, { width: 32 }, { height: 32 }],
                 },
                 {
-                  id: 'star-icon',
                   type: 'image',
-                  properties: [{ systeName: 'star.fill' }, { color: '#FF9500' }, { width: 32 }, { height: 32 }],
+                  properties: [{ systemName: 'star.fill' }, { color: '#FF9500' }, { width: 32 }, { height: 32 }],
                 },
                 {
-                  id: 'checkmark-icon',
                   type: 'image',
                   properties: [
-                    { systeName: 'checkmark.circle.fill' },
+                    { systemName: 'checkmark.circle.fill' },
                     { color: '#34C759' },
                     { width: 32 },
                     { height: 32 },
@@ -171,20 +201,53 @@ export class ImageExamplesPage {
               ],
             },
             {
-              id: 'status-text',
               type: 'text',
               properties: [{ text: '{{statusText}}' }, { fontSize: 14 }, { color: '#666666' }, { alignment: 'center' }],
             },
           ],
         },
+        dynamicIslandLayout: {
+          expanded: {
+            bottom: {
+              type: 'container',
+              properties: [{ direction: 'vertical' }],
+              children: [
+                {
+                  type: 'text',
+                  properties: [{ text: '{{title}}' }, { fontWeight: 'bold' }],
+                },
+                {
+                  type: 'text',
+                  properties: [{ text: '{{subtitle}}' }, { fontFamily: 'footnote' }],
+                },
+              ],
+            },
+            trailing: {
+              type: 'text',
+              properties: [{ text: '{{status}}' }],
+            },
+          },
+          minimal: {
+            type: 'text',
+            properties: [{ text: 'abc' }],
+          },
+          compactLeading: {
+            type: 'image',
+            properties: [{ systemName: 'textformat.size' }],
+          },
+          compactTrailing: {
+            type: 'image',
+            properties: [{ systemName: 'text.aligncenter' }],
+          },
+        },
+        behavior: {
+          systemActionForegroundColor: '#007AFF',
+          widgetUrl: 'https://example.com',
+          keyLineTint: '#007AFF',
+        },
         data: {
           headerText: 'Multiple Icons',
           statusText: 'Icons with different colors and sizes',
-        },
-        behavior: {
-          systemActionForegroundColor: '#FF9500',
-          widgetUrl: 'https://example.com',
-          keyLineTint: '#FF9500',
         },
       });
 
@@ -200,7 +263,6 @@ export class ImageExamplesPage {
     try {
       const result = await LiveActivities.startActivity({
         layout: {
-          id: 'image-sizes-example',
           type: 'container',
           properties: [
             { direction: 'vertical' },
@@ -213,7 +275,6 @@ export class ImageExamplesPage {
           ],
           children: [
             {
-              id: 'title',
               type: 'text',
               properties: [
                 { text: '{{title}}' },
@@ -224,39 +285,32 @@ export class ImageExamplesPage {
               ],
             },
             {
-              id: 'sizes-row',
               type: 'container',
               properties: [{ direction: 'horizontal' }, { spacing: 16 }, { insideAlignment: 'center' }],
               children: [
                 {
-                  id: 'small-icon',
                   type: 'image',
-                  properties: [{ systeName: 'circle.fill' }, { color: '#007AFF' }, { width: 16 }, { height: 16 }],
+                  properties: [{ systemName: 'circle.fill' }, { color: '#007AFF' }, { width: 16 }, { height: 16 }],
                 },
                 {
-                  id: 'medium-icon',
                   type: 'image',
-                  properties: [{ systeName: 'circle.fill' }, { color: '#007AFF' }, { width: 24 }, { height: 24 }],
+                  properties: [{ systemName: 'circle.fill' }, { color: '#007AFF' }, { width: 24 }, { height: 24 }],
                 },
                 {
-                  id: 'large-icon',
                   type: 'image',
-                  properties: [{ systeName: 'circle.fill' }, { color: '#007AFF' }, { width: 32 }, { height: 32 }],
+                  properties: [{ systemName: 'circle.fill' }, { color: '#007AFF' }, { width: 32 }, { height: 32 }],
                 },
                 {
-                  id: 'xlarge-icon',
                   type: 'image',
-                  properties: [{ systeName: 'circle.fill' }, { color: '#007AFF' }, { width: 48 }, { height: 48 }],
+                  properties: [{ systemName: 'circle.fill' }, { color: '#007AFF' }, { width: 48 }, { height: 48 }],
                 },
               ],
             },
             {
-              id: 'labels-row',
               type: 'container',
               properties: [{ direction: 'horizontal' }, { spacing: 16 }, { insideAlignment: 'center' }],
               children: [
                 {
-                  id: 'small-label',
                   type: 'text',
                   properties: [
                     { text: '16pt' },
@@ -267,7 +321,6 @@ export class ImageExamplesPage {
                   ],
                 },
                 {
-                  id: 'medium-label',
                   type: 'text',
                   properties: [
                     { text: '24pt' },
@@ -278,7 +331,6 @@ export class ImageExamplesPage {
                   ],
                 },
                 {
-                  id: 'large-label',
                   type: 'text',
                   properties: [
                     { text: '32pt' },
@@ -289,7 +341,6 @@ export class ImageExamplesPage {
                   ],
                 },
                 {
-                  id: 'xlarge-label',
                   type: 'text',
                   properties: [
                     { text: '48pt' },
@@ -303,13 +354,47 @@ export class ImageExamplesPage {
             },
           ],
         },
-        data: {
-          title: 'Different Image Sizes',
+        dynamicIslandLayout: {
+          expanded: {
+            bottom: {
+              type: 'container',
+              properties: [{ direction: 'vertical' }],
+              children: [
+                {
+                  type: 'text',
+                  properties: [{ text: '{{title}}' }, { fontWeight: 'bold' }],
+                },
+                {
+                  type: 'text',
+                  properties: [{ text: '{{subtitle}}' }, { fontFamily: 'footnote' }],
+                },
+              ],
+            },
+            trailing: {
+              type: 'text',
+              properties: [{ text: '{{status}}' }],
+            },
+          },
+          minimal: {
+            type: 'text',
+            properties: [{ text: 'abc' }],
+          },
+          compactLeading: {
+            type: 'image',
+            properties: [{ systemName: 'textformat.size' }],
+          },
+          compactTrailing: {
+            type: 'image',
+            properties: [{ systemName: 'text.aligncenter' }],
+          },
         },
         behavior: {
           systemActionForegroundColor: '#007AFF',
           widgetUrl: 'https://example.com',
           keyLineTint: '#007AFF',
+        },
+        data: {
+          title: 'Different Image Sizes',
         },
       });
 
@@ -325,7 +410,6 @@ export class ImageExamplesPage {
     try {
       const result = await LiveActivities.startActivity({
         layout: {
-          id: 'rounded-images-example',
           type: 'container',
           properties: [
             { direction: 'horizontal' },
@@ -333,26 +417,24 @@ export class ImageExamplesPage {
             { padding: 20 },
             { backgroundColor: '#2c3e50' },
             { cornerRadius: 16 },
+            { maxWidth: -1 },
           ],
           children: [
             {
-              id: 'avatar-section',
               type: 'container',
               properties: [{ direction: 'vertical' }, { spacing: 8 }, { insideAlignment: 'center' }],
               children: [
                 {
-                  id: 'avatar-image',
                   type: 'image',
                   properties: [
-                    { systeName: 'person.crop.circle.fill' },
-                    { color: '#3498db' },
+                    // { url: 'https://user-images.githubusercontent.com/236501/85893648-1c92e880-b7a8-11ea-926d-95355b8175c7.png' },
+                    { asset: 'arsenal' }, // Local image for demonstration
                     { width: 50 },
                     { height: 50 },
                     { cornerRadius: 25 },
                   ],
                 },
                 {
-                  id: 'avatar-label',
                   type: 'text',
                   properties: [
                     { text: '{{userName}}' },
@@ -364,22 +446,18 @@ export class ImageExamplesPage {
               ],
             },
             {
-              id: 'info-section',
               type: 'container',
               properties: [{ direction: 'vertical' }, { spacing: 4 }],
               children: [
                 {
-                  id: 'status-with-icon',
                   type: 'container',
                   properties: [{ direction: 'horizontal' }, { spacing: 8 }, { insideAlignment: 'center' }],
                   children: [
                     {
-                      id: 'status-icon',
                       type: 'image',
-                      properties: [{ systeName: 'circle.fill' }, { color: '#2ecc71' }, { width: 8 }, { height: 8 }],
+                      properties: [{ systemName: 'circle.fill' }, { color: '#2ecc71' }, { width: 8 }, { height: 8 }],
                     },
                     {
-                      id: 'status-text',
                       type: 'text',
                       properties: [
                         { text: '{{status}}' },
@@ -391,7 +469,6 @@ export class ImageExamplesPage {
                   ],
                 },
                 {
-                  id: 'description',
                   type: 'text',
                   properties: [{ text: '{{description}}' }, { fontSize: 12 }, { color: '#ecf0f1' }, { lineLimit: 2 }],
                 },
@@ -399,15 +476,49 @@ export class ImageExamplesPage {
             },
           ],
         },
+        dynamicIslandLayout: {
+          expanded: {
+            bottom: {
+              type: 'container',
+              properties: [{ direction: 'vertical' }],
+              children: [
+                {
+                  type: 'text',
+                  properties: [{ text: '{{title}}' }, { fontWeight: 'bold' }],
+                },
+                {
+                  type: 'text',
+                  properties: [{ text: '{{subtitle}}' }, { fontFamily: 'footnote' }],
+                },
+              ],
+            },
+            trailing: {
+              type: 'text',
+              properties: [{ text: '{{status}}' }],
+            },
+          },
+          minimal: {
+            type: 'text',
+            properties: [{ text: 'abc' }],
+          },
+          compactLeading: {
+            type: 'image',
+            properties: [{ systemName: 'textformat.size' }],
+          },
+          compactTrailing: {
+            type: 'image',
+            properties: [{ systemName: 'text.aligncenter' }],
+          },
+        },
+        behavior: {
+          systemActionForegroundColor: '#007AFF',
+          widgetUrl: 'https://example.com',
+          keyLineTint: '#007AFF',
+        },
         data: {
           userName: 'John Doe',
           status: 'Online',
           description: 'User profile with rounded avatar and status indicator',
-        },
-        behavior: {
-          systemActionForegroundColor: '#3498db',
-          widgetUrl: 'https://example.com',
-          keyLineTint: '#3498db',
         },
       });
 

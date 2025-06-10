@@ -16,7 +16,7 @@ import {
   IonSegmentButton,
   IonLabel,
 } from '@ionic/angular/standalone';
-import { LiveActivities } from 'capacitor-live-activities';
+import { LiveActivities, LiveActivitiesOptions } from 'capacitor-live-activities';
 import { LiveActivitiesService } from '../../services/live-activities.service';
 import { playCircle, refresh, stopCircle, trendingUp, barChart, analytics } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
@@ -53,7 +53,7 @@ export class ChartExamplesPage {
   private currentDataIndex = 0;
   private readonly dataSets = [
     [10, 25, 15, 30, 20, 35, 25], // Stock-like data
-    [5, 15, 25, 20, 30, 15, 40],  // Fitness data
+    [5, 15, 25, 20, 30, 15, 40], // Fitness data
     [20, 18, 22, 28, 24, 32, 30], // Revenue data
     [15, 10, 20, 25, 18, 28, 22], // Temperature data
   ];
@@ -62,12 +62,11 @@ export class ChartExamplesPage {
     try {
       const currentData = this.dataSets[this.currentDataIndex];
 
-      const activityData = {
+      const activityData: LiveActivitiesOptions = {
         layout: {
-          id: 'chart-demo',
-          type: 'container' as const,
+          type: 'container',
           properties: [
-            { direction: 'vertical' as const },
+            { direction: 'vertical' },
             { spacing: 16 },
             { padding: 20 },
             { backgroundColor: '#000000' },
@@ -76,62 +75,68 @@ export class ChartExamplesPage {
           children: [
             // Header
             {
-              id: 'header',
-              type: 'container' as const,
-              properties: [{ direction: 'horizontal' as const }, { spacing: 12 }, { insideAlignment: 'center' }],
+              type: 'container',
+              properties: [{ direction: 'horizontal' }, { spacing: 12 }, { insideAlignment: 'center' }],
               children: [
                 {
-                  id: 'icon',
-                  type: 'image' as const,
+                  type: 'image',
                   properties: [
-                    { systeName: 'chart.line.uptrend.xyaxis' },
+                    { systemName: 'chart.line.uptrend.xyaxis' },
                     { color: '#00D4AA' },
                     { width: 24 },
                     { height: 24 },
                   ],
                 },
                 {
-                  id: 'title',
-                  type: 'text' as const,
-                  properties: [{ text: 'Chart Examples' }, { fontSize: 18 }, { fontWeight: 'semibold' }, { color: '#FFFFFF' }],
+                  type: 'text',
+                  properties: [
+                    { text: 'Chart Examples' },
+                    { fontSize: 18 },
+                    { fontWeight: 'semibold' },
+                    { color: '#FFFFFF' },
+                  ],
                 },
                 {
-                  id: 'value',
-                  type: 'text' as const,
-                  properties: [{ text: '{{currentValue}}' }, { fontSize: 16 }, { fontWeight: 'medium' }, { color: '#00D4AA' }],
+                  type: 'text',
+                  properties: [
+                    { text: '{{currentValue}}' },
+                    { fontSize: 16 },
+                    { fontWeight: 'medium' },
+                    { color: '#00D4AA' },
+                  ],
                 },
               ],
             },
 
             // Line Chart Example
             {
-              id: 'line-section',
-              type: 'container' as const,
-              properties: [{ direction: 'vertical' as const }, { spacing: 8 }],
+              type: 'container',
+              properties: [{ direction: 'vertical' }, { spacing: 8 }],
               children: [
                 {
-                  id: 'line-header',
-                  type: 'container' as const,
-                  properties: [{ direction: 'horizontal' as const }, { spacing: 8 }, { insideAlignment: 'center' }],
+                  type: 'container',
+                  properties: [{ direction: 'horizontal' }, { spacing: 8 }, { insideAlignment: 'center' }],
                   children: [
                     {
-                      id: 'line-icon',
-                      type: 'image' as const,
-                      properties: [{ systeName: 'waveform.path' }, { color: '#007AFF' }, { width: 16 }, { height: 16 }],
+                      type: 'image',
+                      properties: [
+                        { systemName: 'waveform.path' },
+                        { color: '#007AFF' },
+                        { width: 16 },
+                        { height: 16 },
+                      ],
                     },
                     {
-                      id: 'line-label',
-                      type: 'text' as const,
+                      type: 'text',
                       properties: [{ text: 'Line Chart' }, { fontSize: 14 }, { color: '#8E8E93' }],
                     },
                   ],
                 },
                 {
-                  id: 'line-chart',
-                  type: 'chart' as const,
+                  type: 'chart',
                   properties: [
                     { type: 'line' },
-                    { data: '{{chartData}}' },
+                    { data: '{{chartData}}' as any },
                     { width: 280 },
                     { height: 50 },
                     { color: '#007AFF' },
@@ -145,33 +150,28 @@ export class ChartExamplesPage {
 
             // Bar Chart Example
             {
-              id: 'bar-section',
-              type: 'container' as const,
-              properties: [{ direction: 'vertical' as const }, { spacing: 8 }],
+              type: 'container',
+              properties: [{ direction: 'vertical' }, { spacing: 8 }],
               children: [
                 {
-                  id: 'bar-header',
-                  type: 'container' as const,
-                  properties: [{ direction: 'horizontal' as const }, { spacing: 8 }, { insideAlignment: 'center' }],
+                  type: 'container',
+                  properties: [{ direction: 'horizontal' }, { spacing: 8 }, { insideAlignment: 'center' }],
                   children: [
                     {
-                      id: 'bar-icon',
-                      type: 'image' as const,
-                      properties: [{ systeName: 'chart.bar' }, { color: '#FF9500' }, { width: 16 }, { height: 16 }],
+                      type: 'image',
+                      properties: [{ systemName: 'chart.bar' }, { color: '#FF9500' }, { width: 16 }, { height: 16 }],
                     },
                     {
-                      id: 'bar-label',
-                      type: 'text' as const,
+                      type: 'text',
                       properties: [{ text: 'Bar Chart' }, { fontSize: 14 }, { color: '#8E8E93' }],
                     },
                   ],
                 },
                 {
-                  id: 'bar-chart',
-                  type: 'chart' as const,
+                  type: 'chart',
                   properties: [
                     { type: 'bar' },
-                    { data: '{{chartData}}' },
+                    { data: '{{chartData}}' as any },
                     { width: 280 },
                     { height: 45 },
                     { color: '#FF9500' },
@@ -182,33 +182,33 @@ export class ChartExamplesPage {
 
             // Area Chart Example
             {
-              id: 'area-section',
-              type: 'container' as const,
-              properties: [{ direction: 'vertical' as const }, { spacing: 8 }],
+              type: 'container',
+              properties: [{ direction: 'vertical' }, { spacing: 8 }],
               children: [
                 {
-                  id: 'area-header',
-                  type: 'container' as const,
-                  properties: [{ direction: 'horizontal' as const }, { spacing: 8 }, { insideAlignment: 'center' }],
+                  type: 'container',
+                  properties: [{ direction: 'horizontal' }, { spacing: 8 }, { insideAlignment: 'center' }],
                   children: [
                     {
-                      id: 'area-icon',
-                      type: 'image' as const,
-                      properties: [{ systeName: 'chart.line.uptrend.xyaxis.circle' }, { color: '#34C759' }, { width: 16 }, { height: 16 }],
+                      type: 'image',
+                      properties: [
+                        { systemName: 'chart.line.uptrend.xyaxis.circle' },
+                        { color: '#34C759' },
+                        { width: 16 },
+                        { height: 16 },
+                      ],
                     },
                     {
-                      id: 'area-label',
-                      type: 'text' as const,
+                      type: 'text',
                       properties: [{ text: 'Area Chart' }, { fontSize: 14 }, { color: '#8E8E93' }],
                     },
                   ],
                 },
                 {
-                  id: 'area-chart',
-                  type: 'chart' as const,
+                  type: 'chart',
                   properties: [
                     { type: 'area' },
-                    { data: '{{chartData}}' },
+                    { data: '{{chartData}}' as any },
                     { width: 280 },
                     { height: 50 },
                     { color: '#34C759' },
@@ -222,10 +222,9 @@ export class ChartExamplesPage {
 
             // Stats Summary
             {
-              id: 'stats',
-              type: 'container' as const,
+              type: 'container',
               properties: [
-                { direction: 'horizontal' as const },
+                { direction: 'horizontal' },
                 { spacing: 16 },
                 { padding: 12 },
                 { backgroundColor: '#1C1C1E' },
@@ -233,76 +232,180 @@ export class ChartExamplesPage {
               ],
               children: [
                 {
-                  id: 'min-stat',
-                  type: 'container' as const,
-                  properties: [{ direction: 'vertical' as const }, { spacing: 2 }],
+                  type: 'container',
+                  properties: [{ direction: 'vertical' }, { spacing: 2 }],
                   children: [
                     {
-                      id: 'min-label',
-                      type: 'text' as const,
+                      type: 'text',
                       properties: [{ text: 'MIN' }, { fontSize: 10 }, { color: '#8E8E93' }],
                     },
                     {
-                      id: 'min-value',
-                      type: 'text' as const,
-                      properties: [{ text: '{{minValue}}' }, { fontSize: 16 }, { fontWeight: 'semibold' }, { color: '#FFFFFF' }],
+                      type: 'text',
+                      properties: [
+                        { text: '{{minValue}}' },
+                        { fontSize: 16 },
+                        { fontWeight: 'semibold' },
+                        { color: '#FFFFFF' },
+                      ],
                     },
                   ],
                 },
                 {
-                  id: 'max-stat',
-                  type: 'container' as const,
-                  properties: [{ direction: 'vertical' as const }, { spacing: 2 }],
+                  type: 'container',
+                  properties: [{ direction: 'vertical' }, { spacing: 2 }],
                   children: [
                     {
-                      id: 'max-label',
-                      type: 'text' as const,
+                      type: 'text',
                       properties: [{ text: 'MAX' }, { fontSize: 10 }, { color: '#8E8E93' }],
                     },
                     {
-                      id: 'max-value',
-                      type: 'text' as const,
-                      properties: [{ text: '{{maxValue}}' }, { fontSize: 16 }, { fontWeight: 'semibold' }, { color: '#FFFFFF' }],
+                      type: 'text',
+                      properties: [
+                        { text: '{{maxValue}}' },
+                        { fontSize: 16 },
+                        { fontWeight: 'semibold' },
+                        { color: '#FFFFFF' },
+                      ],
                     },
                   ],
                 },
                 {
-                  id: 'avg-stat',
-                  type: 'container' as const,
-                  properties: [{ direction: 'vertical' as const }, { spacing: 2 }],
+                  type: 'container',
+                  properties: [{ direction: 'vertical' }, { spacing: 2 }],
                   children: [
                     {
-                      id: 'avg-label',
-                      type: 'text' as const,
+                      type: 'text',
                       properties: [{ text: 'AVG' }, { fontSize: 10 }, { color: '#8E8E93' }],
                     },
                     {
-                      id: 'avg-value',
-                      type: 'text' as const,
-                      properties: [{ text: '{{avgValue}}' }, { fontSize: 16 }, { fontWeight: 'semibold' }, { color: '#FFFFFF' }],
+                      type: 'text',
+                      properties: [
+                        { text: '{{avgValue}}' },
+                        { fontSize: 16 },
+                        { fontWeight: 'semibold' },
+                        { color: '#FFFFFF' },
+                      ],
                     },
                   ],
                 },
                 {
-                  id: 'trend-stat',
-                  type: 'container' as const,
-                  properties: [{ direction: 'vertical' as const }, { spacing: 2 }],
+                  type: 'container',
+                  properties: [{ direction: 'vertical' }, { spacing: 2 }],
                   children: [
                     {
-                      id: 'trend-label',
-                      type: 'text' as const,
+                      type: 'text',
                       properties: [{ text: 'TREND' }, { fontSize: 10 }, { color: '#8E8E93' }],
                     },
                     {
-                      id: 'trend-value',
-                      type: 'text' as const,
-                      properties: [{ text: '{{trendValue}}' }, { fontSize: 16 }, { fontWeight: 'semibold' }, { color: '{{trendColor}}' }],
+                      type: 'text',
+                      properties: [
+                        { text: '{{trendValue}}' },
+                        { fontSize: 16 },
+                        { fontWeight: 'semibold' },
+                        { color: '{{trendColor}}' as any },
+                      ],
                     },
                   ],
                 },
               ],
             },
           ],
+        },
+        dynamicIslandLayout: {
+          expanded: {
+            leading: {
+              type: 'container',
+              properties: [{ direction: 'vertical' }, { spacing: 2 }],
+              children: [
+                {
+                  type: 'image',
+                  properties: [
+                    { systemName: 'chart.line.uptrend.xyaxis' },
+                    { color: '#00D4AA' },
+                    { width: 20 },
+                    { height: 20 },
+                  ],
+                },
+                {
+                  type: 'text',
+                  properties: [{ text: 'Charts' }, { fontSize: 9 }, { color: '#8E8E93' }],
+                },
+              ],
+            },
+            trailing: {
+              type: 'container',
+              properties: [{ direction: 'vertical' }, { spacing: 2 }, { insideAlignment: 'trailing' }],
+              children: [
+                {
+                  type: 'text',
+                  properties: [
+                    { text: '{{currentValue}}' },
+                    { fontSize: 14 },
+                    { fontWeight: 'bold' },
+                    { color: '#FFFFFF' },
+                  ],
+                },
+                {
+                  type: 'text',
+                  properties: [{ text: '{{trendValue}}' }, { fontSize: 12 }, { color: '{{trendColor}}' as any }],
+                },
+              ],
+            },
+            center: {
+              type: 'text',
+              properties: [
+                { text: 'Chart Analysis' },
+                { fontSize: 11 },
+                { fontWeight: 'medium' },
+                { color: '#FFFFFF' },
+              ],
+            },
+            bottom: {
+              type: 'chart',
+              properties: [
+                { type: 'line' },
+                { data: '{{chartData}}' as any },
+                { width: 220 },
+                { height: 30 },
+                { color: '#00D4AA' },
+                { strokeWidth: 2 },
+                { showPoints: false },
+                { smooth: true },
+              ],
+            },
+          },
+          compactLeading: {
+            type: 'image',
+            properties: [
+              { systemName: 'chart.line.uptrend.xyaxis' },
+              { color: '#00D4AA' },
+              { width: 16 },
+              { height: 16 },
+            ],
+          },
+          compactTrailing: {
+            type: 'container',
+            properties: [{ direction: 'horizontal' }, { spacing: 3 }],
+            children: [
+              {
+                type: 'text',
+                properties: [
+                  { text: '{{currentValue}}' },
+                  { fontSize: 12 },
+                  { fontWeight: 'semibold' },
+                  { color: '#FFFFFF' },
+                ],
+              },
+              {
+                type: 'text',
+                properties: [{ text: '{{trendValue}}' }, { fontSize: 10 }, { color: '{{trendColor}}' as any }],
+              },
+            ],
+          },
+          minimal: {
+            type: 'text',
+            properties: [{ text: '{{trendValue}}' }, { fontSize: 12 }, { color: '{{trendColor}}' as any }],
+          },
         },
         data: this.generateChartData(currentData),
         behavior: {
@@ -312,7 +415,7 @@ export class ChartExamplesPage {
         },
       };
 
-      const result = await LiveActivities.startActivity(activityData as any);
+      const result = await LiveActivities.startActivity(activityData);
       this.liveActivitiesService.setCurrentActivityId(result.activityId);
       this.liveActivitiesService.showToast('Charts iniciado! 📊');
     } catch (error) {
@@ -330,7 +433,7 @@ export class ChartExamplesPage {
     await this.liveActivitiesService.updateActivity(
       updateData,
       'Dados Atualizados',
-      `Novo conjunto de dados ${this.currentDataIndex + 1}`
+      `Novo conjunto de dados ${this.currentDataIndex + 1}`,
     );
   }
 

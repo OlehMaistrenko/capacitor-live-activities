@@ -17,12 +17,12 @@ let package = Package(
             name: "LiveActivitiesPlugin",
             dependencies: [
                 .product(name: "Capacitor", package: "capacitor-swift-pm"),
-                .product(name: "Cordova", package: "capacitor-swift-pm")
+                .product(name: "Cordova", package: "capacitor-swift-pm"),
+                "LiveActivitiesKit"
             ],
-            path: "ios/Sources/LiveActivitiesPlugin"),
-        .testTarget(
-            name: "LiveActivitiesPluginTests",
-            dependencies: ["LiveActivitiesPlugin"],
-            path: "ios/Tests/LiveActivitiesPluginTests")
+            path: "ios/Plugin"),
+        .target(
+            name: "LiveActivitiesKit",
+            path: "ios/LiveActivitiesKit")
     ]
 )

@@ -26,8 +26,8 @@
 
       <ion-card-content>
         <p class="description">
-          Explore SF Symbols, image sizing, colors, and layout combinations to create visually rich and
-          functional Live Activities.
+          Explore SF Symbols, image sizing, colors, and layout combinations to create visually rich and functional Live
+          Activities.
         </p>
 
         <!-- Features -->
@@ -62,19 +62,6 @@
           <ion-label>Active ID: {{ currentActivityId }}</ion-label>
         </ion-chip>
         }
-
-        <!-- Controls -->
-        <div class="controls">
-          <ion-button
-            expand="block"
-            size="large"
-            (click)="startSFSymbolsExample()"
-            [disabled]="currentActivityId !== null"
-          >
-            <fa-icon icon="play-circle" slot="start" />
-            Start Image Examples
-          </ion-button>
-        </div>
       </ion-card-content>
     </ion-card>
 
@@ -84,7 +71,7 @@
       </ion-card-header>
       <ion-card-content>
         <p>Explore SF Symbols on the Apple Developer website for more information and resources.</p>
-        <ion-button expand="block" (click)="openSFSymbolsLink()">
+        <ion-button fill="outline" expand="block" (click)="openSFSymbolsLink()">
           <fa-icon icon="link" slot="start" />
           Open Apple Developer
         </ion-button>

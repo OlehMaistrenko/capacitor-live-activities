@@ -99,26 +99,9 @@
         ],
         "docs": "Get all active Live Activities",
         "complexTypes": [
-          "ActivityInfo"
+          "LiveActivitiesOptions"
         ],
         "slug": "getallactivities"
-      },
-      {
-        "name": "debugActivities",
-        "signature": "() => any",
-        "parameters": [],
-        "returns": "any",
-        "tags": [
-          {
-            "name": "returns",
-            "text": "Promise with debug information and activity count"
-          }
-        ],
-        "docs": "Get debug information about Live Activities",
-        "complexTypes": [
-          "DebugActivities"
-        ],
-        "slug": "debugactivities"
       },
       {
         "name": "saveImage",
@@ -218,7 +201,7 @@
           "complexTypes": [
             "LayoutElement"
           ],
-          "type": "{ leading?: LayoutElement | undefined; trailing?: LayoutElement | undefined; center?: LayoutElement | undefined; bottom?: LayoutElement | undefined; } | undefined"
+          "type": "{ leading?: LayoutElement | undefined; trailing?: LayoutElement | undefined; center?: LayoutElement | undefined; bottom?: LayoutElement | undefined; }"
         },
         {
           "name": "compactLeading",
@@ -227,7 +210,7 @@
           "complexTypes": [
             "LayoutElement"
           ],
-          "type": "{ element: LayoutElement; } | undefined"
+          "type": "LayoutElement"
         },
         {
           "name": "compactTrailing",
@@ -236,7 +219,7 @@
           "complexTypes": [
             "LayoutElement"
           ],
-          "type": "{ element: LayoutElement; } | undefined"
+          "type": "LayoutElement"
         },
         {
           "name": "minimal",
@@ -245,7 +228,7 @@
           "complexTypes": [
             "LayoutElement"
           ],
-          "type": "{ element: LayoutElement; } | undefined"
+          "type": "LayoutElement"
         }
       ]
     },
@@ -331,97 +314,6 @@
           "type": "Record<string, any>"
         }
       ]
-    },
-    {
-      "name": "ActivityInfo",
-      "slug": "activityinfo",
-      "docs": "Information about an active Live Activity",
-      "tags": [
-        {
-          "text": "Data Types",
-          "name": "category"
-        },
-        {
-          "text": "Complete information about an active Live Activity including its configuration and current state.",
-          "name": "description"
-        }
-      ],
-      "methods": [],
-      "properties": [
-        {
-          "name": "id",
-          "tags": [],
-          "docs": "Unique identifier of the activity",
-          "complexTypes": [],
-          "type": "string"
-        },
-        {
-          "name": "layout",
-          "tags": [],
-          "docs": "Layout configuration of the activity",
-          "complexTypes": [
-            "ActivityLayout"
-          ],
-          "type": "ActivityLayout"
-        },
-        {
-          "name": "data",
-          "tags": [],
-          "docs": "Current data of the activity",
-          "complexTypes": [
-            "Record"
-          ],
-          "type": "Record<string, any>"
-        },
-        {
-          "name": "staleDate",
-          "tags": [],
-          "docs": "Date when the activity becomes stale (optional)",
-          "complexTypes": [],
-          "type": "number | undefined"
-        },
-        {
-          "name": "relevanceScore",
-          "tags": [],
-          "docs": "Relevance score of the activity (optional)",
-          "complexTypes": [],
-          "type": "number | undefined"
-        }
-      ]
-    },
-    {
-      "name": "DebugActivities",
-      "slug": "debugactivities",
-      "docs": "Debug information about Live Activities",
-      "tags": [
-        {
-          "text": "Data Types",
-          "name": "category"
-        },
-        {
-          "text": "Debugging information containing all active activities and their count.",
-          "name": "description"
-        }
-      ],
-      "methods": [],
-      "properties": [
-        {
-          "name": "activities",
-          "tags": [],
-          "docs": "Array of all activities",
-          "complexTypes": [
-            "ActivityInfo"
-          ],
-          "type": "{}"
-        },
-        {
-          "name": "count",
-          "tags": [],
-          "docs": "Total count of activities",
-          "complexTypes": [],
-          "type": "number"
-        }
-      ]
     }
   ],
   "enums": [],
@@ -432,12 +324,12 @@
       "docs": "Configuration options for starting a Live Activity",
       "types": [
         {
-          "text": "{\n  /** Layout configuration for the activity */\n  layout: ActivityLayout;\n  /** Dynamic Island layout configuration (optional) */\n  dynamicIslandLayout?: DynamicIslandLayout;\n  /** Dynamic data to be displayed in the activity */\n  data: Record<string, any>;\n  /** Date when the activity becomes stale (optional) */\n  staleDate?: number;\n  /** Relevance score for activity prioritization (optional) */\n  relevanceScore?: number;\n  /** Behavior configuration for the activity */\n  behavior: LiveActivitiesBehavior;\n}",
+          "text": "{\n  /** Layout configuration for the activity */\n  layout: ActivityLayout;\n  /** Dynamic Island layout configuration (optional) */\n  dynamicIslandLayout: DynamicIslandLayout;\n  /** Behavior configuration for the activity */\n  behavior: LiveActivitiesBehavior;\n  /** Dynamic data to be displayed in the activity */\n  data: Record<string, any>;\n  /** Date when the activity becomes stale (optional) */\n  staleDate?: number;\n  /** Relevance score for activity prioritization (optional) */\n  relevanceScore?: number;\n}",
           "complexTypes": [
             "ActivityLayout",
             "DynamicIslandLayout",
-            "Record",
-            "LiveActivitiesBehavior"
+            "LiveActivitiesBehavior",
+            "Record"
           ]
         }
       ]
@@ -461,14 +353,16 @@
       "docs": "Union type representing any layout element with a unique ID",
       "types": [
         {
-          "text": "Prettify<\n  {\n    /** Unique identifier for the element */\n    id: string;\n  } & (LayoutElementContainer | LayoutElementText | LayoutElementImage | LayoutElementProgress | LayoutElementTimer)\n>",
+          "text": "Prettify<\n  | LayoutElementContainer\n  | LayoutElementText\n  | LayoutElementImage\n  | LayoutElementProgress\n  | LayoutElementTimer\n  | LayoutElementChart\n  | LayoutElementSegmentedProgress\n>",
           "complexTypes": [
             "Prettify",
             "LayoutElementContainer",
             "LayoutElementText",
             "LayoutElementImage",
             "LayoutElementProgress",
-            "LayoutElementTimer"
+            "LayoutElementTimer",
+            "LayoutElementChart",
+            "LayoutElementSegmentedProgress"
           ]
         }
       ]
@@ -584,6 +478,14 @@
           "complexTypes": []
         },
         {
+          "text": "{ idealWidth: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ idealHeight: number }",
+          "complexTypes": []
+        },
+        {
           "text": "{ backgroundGradient: { colors: ColorString[]; startPoint: GradientPoint; endPoint: GradientPoint } }",
           "complexTypes": [
             "ColorString",
@@ -609,6 +511,10 @@
           "complexTypes": []
         },
         {
+          "text": "{ padding: number | boolean }",
+          "complexTypes": []
+        },
+        {
           "text": "{ shadow: { color?: ColorString; radius?: number; x?: number; y?: number } }",
           "complexTypes": [
             "ColorString"
@@ -619,7 +525,7 @@
     {
       "name": "ColorString",
       "slug": "colorstring",
-      "docs": "",
+      "docs": "Debug information about Live Activities",
       "types": [
         {
           "text": "'primary'",
@@ -733,10 +639,6 @@
       "types": [
         {
           "text": "{ spacing: number }",
-          "complexTypes": []
-        },
-        {
-          "text": "{ padding: number | boolean }",
           "complexTypes": []
         },
         {
@@ -957,7 +859,7 @@
           "complexTypes": []
         },
         {
-          "text": "{ fontFamily: string }",
+          "text": "{\n      fontFamily:\n        | 'caption'\n        | 'title'\n        | 'headline'\n        | 'body'\n        | 'callout'\n        | 'caption2'\n        | 'footnote'\n        | 'largeTitle'\n        | 'subheadline'\n        | 'title2'\n        | 'title3';\n    }",
           "complexTypes": []
         },
         {
@@ -1026,7 +928,7 @@
           "complexTypes": []
         },
         {
-          "text": "{ systeName: string }",
+          "text": "{ systemName: string }",
           "complexTypes": []
         },
         {
@@ -1144,12 +1046,158 @@
       ]
     },
     {
+      "name": "LayoutElementChart",
+      "slug": "layoutelementchart",
+      "docs": "",
+      "types": [
+        {
+          "text": "Prettify<{\n  /** Element type identifier */\n  type: 'chart';\n  /** Chart properties as array of property objects */\n  properties: ChartPropertyObject[];\n}>",
+          "complexTypes": [
+            "Prettify",
+            "ChartPropertyObject"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ChartPropertyObject",
+      "slug": "chartpropertyobject",
+      "docs": "Chart-specific property objects",
+      "types": [
+        {
+          "text": "BasePropertyObject",
+          "complexTypes": [
+            "BasePropertyObject"
+          ]
+        },
+        {
+          "text": "{ type: 'line' | 'bar' | 'pie' | 'area' | 'scatter' }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ data: Array<{ x: number; y: number }> }",
+          "complexTypes": [
+            "Array"
+          ]
+        },
+        {
+          "text": "{ width: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ height: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ color: ColorString }",
+          "complexTypes": [
+            "ColorString"
+          ]
+        },
+        {
+          "text": "{ fillColor: ColorString }",
+          "complexTypes": [
+            "ColorString"
+          ]
+        },
+        {
+          "text": "{ strokeWidth: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ showPoints: boolean }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ smooth: boolean }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ maxValue: number }",
+          "complexTypes": []
+        }
+      ]
+    },
+    {
+      "name": "LayoutElementSegmentedProgress",
+      "slug": "layoutelementsegmentedprogress",
+      "docs": "Segmented Progress bar element for showing progress in segments",
+      "types": [
+        {
+          "text": "Prettify<{\n  /** Element type identifier */\n  type: 'segmented-progress';\n  /** Segmented progress bar properties as array of property objects */\n  properties: SegmentedProgressPropertyObject[];\n}>",
+          "complexTypes": [
+            "Prettify",
+            "SegmentedProgressPropertyObject"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "SegmentedProgressPropertyObject",
+      "slug": "segmentedprogresspropertyobject",
+      "docs": "Segmented-progress property objects",
+      "types": [
+        {
+          "text": "BasePropertyObject",
+          "complexTypes": [
+            "BasePropertyObject"
+          ]
+        },
+        {
+          "text": "{ segments: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ filled: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ spacing: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ height: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ cornerRadius: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ filledColor: ColorString }",
+          "complexTypes": [
+            "ColorString"
+          ]
+        },
+        {
+          "text": "{ unfilledColor: ColorString }",
+          "complexTypes": [
+            "ColorString"
+          ]
+        },
+        {
+          "text": "{ strokeColor: ColorString }",
+          "complexTypes": [
+            "ColorString"
+          ]
+        },
+        {
+          "text": "{ strokeDashed: boolean }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ strokeWidth: number }",
+          "complexTypes": []
+        }
+      ]
+    },
+    {
       "name": "LiveActivitiesBehavior",
       "slug": "liveactivitiesbehavior",
       "docs": "Behavior configuration for a Live Activity",
       "types": [
         {
-          "text": "{\n  backgroundTint?: ColorString;\n  systemActionForegroundColor: ColorString;\n  widgetUrl: string;\n  keyLineTint: ColorString;\n}",
+          "text": "{\n  /** @property widgetUrl - URL for the widget */\n  widgetUrl: string;\n  /** @property backgroundTint - Background color for the widget */\n  backgroundTint?: ColorString;\n  /** @property systemActionForegroundColor - Foreground color for system actions */\n  systemActionForegroundColor?: ColorString;\n  /** @property keyLineTint - Color for the key line */\n  keyLineTint?: ColorString;\n}",
           "complexTypes": [
             "ColorString"
           ]

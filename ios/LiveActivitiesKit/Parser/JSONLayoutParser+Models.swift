@@ -1,39 +1,88 @@
 import SwiftUI
 
+// Structure for Dynamic Island Layout Data (Codable version of LayoutElement)
 @available(iOS 16.2, *)
-extension JSONLayoutParser {
-    struct LayoutElement {
-        let id: String
-        let type: String
-        let properties: [String: AnyCodable]
-        let children: [LayoutElement]?
-        let propertiesKeysInOrder: [String]
-                
-        enum CodingKeys: String, CodingKey {
-            case id, type, properties, children
+struct LayoutElementData: Codable {
+    let type: String
+    let properties: [[String: AnyCodable]]?
+    let children: [LayoutElementData]?
+    
+    func toLayoutElement() -> LayoutElement {
+        var propertiesKeysInOrder: [String] = []
+        var propertiesDict: [String: AnyCodable] = [:]
+        
+        if let props = properties {
+            props.forEach { item in
+                if let firstPair = item.first {
+                    propertiesKeysInOrder.append(firstPair.key)
+                    propertiesDict[firstPair.key] = firstPair.value
+                }
+            }
         }
         
-        init(
-            id: String,
-            type: String,
-            properties: [String: AnyCodable],
-            propertiesKeysInOrder: [String],
-            children: [LayoutElement]?
-        ) {
-            self.id = id
-            self.type = type
-            self.properties = properties
-            self.propertiesKeysInOrder = propertiesKeysInOrder
-            self.children = children
-        }
+        let childElements = children?.map { $0.toLayoutElement() }
         
+        return LayoutElement(
+            type: type,
+            properties: propertiesDict,
+            propertiesKeysInOrder: propertiesKeysInOrder,
+            children: childElements
+        )
     }
+}
+
+@available(iOS 16.2, *)
+struct DynamicIslandLayoutData: Codable {
+    struct ExpandedLayout: Codable {
+        let leading: LayoutElementData?
+        let trailing: LayoutElementData?
+        let center: LayoutElementData?
+        let bottom: LayoutElementData?
+    }
+    
+    let expanded: ExpandedLayout?
+    let compactLeading: LayoutElementData?
+    let compactTrailing: LayoutElementData?
+    let minimal: LayoutElementData?
+}
+
+@available(iOS 16.2, *)
+struct BehaviorLayoutData: Codable {
+    let keyLineTint: String?
+    let systemActionForegroundColor: String?
+    let backgroundTint: String?
+    let widgetUrl: String?
+}
+
+@available(iOS 16.2, *)
+struct LayoutElement {
+    let type: String
+    let properties: [String: AnyCodable]
+    let children: [LayoutElement]?
+    let propertiesKeysInOrder: [String]
+    
+    enum CodingKeys: String, CodingKey {
+        case id, type, properties, children
+    }
+    
+    init(
+        type: String,
+        properties: [String: AnyCodable],
+        propertiesKeysInOrder: [String],
+        children: [LayoutElement]?
+    ) {
+        self.type = type
+        self.properties = properties
+        self.propertiesKeysInOrder = propertiesKeysInOrder
+        self.children = children
+    }
+    
+}
         
-    struct LayoutGradient: Codable {
-        let colors: [String]
-        let startPoint: String
-        let endPoint: String
-    }
+struct LayoutGradient: Codable {
+    let colors: [String]
+    let startPoint: String
+    let endPoint: String
 }
 
 // Extension para converter hex para Color

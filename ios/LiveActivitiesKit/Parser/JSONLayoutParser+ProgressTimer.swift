@@ -9,7 +9,7 @@ extension JSONLayoutParser {
         let color = getString(from: resolveValue(element.properties["color"], with: data)) ?? "#007AFF"
         let height = getDouble(from: resolveValue(element.properties["height"], with: data)) ?? 4
         
-        Logger.viewCycle.error("📀 \(element.id) -> buildProgressView -> \(value)/\(total), \(color), \(height)")
+        Logger.viewCycle.error("📀 buildProgressView -> \(value)/\(total), \(color), \(height)")
         
         return AnyView(
             ProgressView(value: value, total: total)
@@ -43,7 +43,7 @@ extension JSONLayoutParser {
             }
         }()
         
-        Logger.viewCycle.error("📀 \(element.id) -> buildTimerView -> endDate: \(endDate) / style: \(style ?? "-")")
+        Logger.viewCycle.error("📀 buildTimerView -> endDate: \(endDate) / style: \(style ?? "-")")
         
         if(style == "countdown"){
             return AnyView(Text(

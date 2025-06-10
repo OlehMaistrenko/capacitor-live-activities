@@ -26,8 +26,8 @@
 
       <ion-card-content>
         <p class="description">
-          Demonstrates the new `segmented-progress` component that creates progress bars
-          divided into discrete segments, perfect for showing steps, levels, or phased progress.
+          Demonstrates the new `segmented-progress` component that creates progress bars divided into discrete segments,
+          perfect for showing steps, levels, or phased progress.
         </p>
 
         <!-- Features -->
@@ -67,7 +67,8 @@
             expand="block"
             size="large"
             (click)="startSegmentedProgressExample()"
-            [disabled]="currentActivityId !== null">
+            [disabled]="currentActivityId !== null"
+          >
             <fa-icon icon="play-circle" slot="start" />
             Start Example
           </ion-button>
@@ -85,37 +86,23 @@
       <ion-card-content>
         <div class="control-buttons">
           <div class="progress-controls">
-            <ion-button
-              fill="outline"
-              size="default"
-              (click)="decreaseProgress()">
+            <ion-button fill="outline" size="default" (click)="decreaseProgress()">
               <fa-icon icon="remove" slot="start" />
               Decrease
             </ion-button>
 
-            <ion-button
-              fill="outline"
-              size="default"
-              (click)="increaseProgress()">
+            <ion-button fill="outline" size="default" (click)="increaseProgress()">
               <fa-icon icon="add" slot="start" />
               Increase
             </ion-button>
           </div>
 
-          <ion-button
-            fill="clear"
-            color="warning"
-            size="default"
-            (click)="resetProgress()">
+          <ion-button fill="clear" color="warning" size="default" (click)="resetProgress()">
             <fa-icon icon="refresh" slot="start" />
             Reset
           </ion-button>
 
-          <ion-button
-            fill="clear"
-            color="danger"
-            size="default"
-            (click)="endExample()">
+          <ion-button fill="clear" color="danger" size="default" (click)="endExample()">
             <fa-icon icon="stop-circle" slot="start" />
             Stop
           </ion-button>

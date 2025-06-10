@@ -16,7 +16,7 @@ import {
   IonList,
   IonIcon,
 } from '@ionic/angular/standalone';
-import { LiveActivities } from 'capacitor-live-activities';
+import { LiveActivities, LiveActivitiesOptions } from 'capacitor-live-activities';
 import { LiveActivitiesService } from '../../services/live-activities.service';
 import { playCircle, refresh, stopCircle, add, remove } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
@@ -55,12 +55,11 @@ export class SegmentedProgressExamplesPage {
 
   async startSegmentedProgressExample() {
     try {
-      const activityData = {
+      const activityData: LiveActivitiesOptions = {
         layout: {
-          id: 'segmented-progress-demo',
-          type: 'container' as const,
+          type: 'container',
           properties: [
-            { direction: 'vertical' as const },
+            { direction: 'vertical' },
             { spacing: 20 },
             { padding: 20 },
             { backgroundColor: '#1C1C1E' },
@@ -69,18 +68,15 @@ export class SegmentedProgressExamplesPage {
           children: [
             // Header
             {
-              id: 'header',
-              type: 'container' as const,
-              properties: [{ direction: 'horizontal' as const }, { spacing: 12 }, { insideAlignment: 'center' }],
+              type: 'container',
+              properties: [{ direction: 'horizontal' }, { spacing: 12 }, { insideAlignment: 'center' }],
               children: [
                 {
-                  id: 'icon',
-                  type: 'image' as const,
-                  properties: [{ systeName: 'chart.bar.fill' }, { color: '#007AFF' }, { width: 28 }, { height: 28 }],
+                  type: 'image',
+                  properties: [{ systemName: 'chart.bar.fill' }, { color: '#007AFF' }, { width: 28 }, { height: 28 }],
                 },
                 {
-                  id: 'title',
-                  type: 'text' as const,
+                  type: 'text',
                   properties: [
                     { text: 'Segmented Progress' },
                     { fontSize: 18 },
@@ -93,21 +89,18 @@ export class SegmentedProgressExamplesPage {
 
             // Example 1: Basic Segmented Progress
             {
-              id: 'example1',
-              type: 'container' as const,
-              properties: [{ direction: 'vertical' as const }, { spacing: 8 }],
+              type: 'container',
+              properties: [{ direction: 'vertical' }, { spacing: 8 }],
               children: [
                 {
-                  id: 'example1-label',
-                  type: 'text' as const,
+                  type: 'text',
                   properties: [{ text: 'Básico ({{progress1}}/{{total1}})' }, { fontSize: 14 }, { color: '#8E8E93' }],
                 },
                 {
-                  id: 'progress1',
-                  type: 'segmented-progress' as const,
+                  type: 'segmented-progress',
                   properties: [
-                    { segments: '{{total1}}' },
-                    { filled: '{{progress1}}' },
+                    { segments: '{{total1}}' as any },
+                    { filled: '{{progress1}}' as any },
                     { spacing: 6 },
                     { height: 8 },
                     { cornerRadius: 4 },
@@ -120,13 +113,11 @@ export class SegmentedProgressExamplesPage {
 
             // Example 2: With Stroke (Dashed)
             {
-              id: 'example2',
-              type: 'container' as const,
-              properties: [{ direction: 'vertical' as const }, { spacing: 8 }],
+              type: 'container',
+              properties: [{ direction: 'vertical' }, { spacing: 8 }],
               children: [
                 {
-                  id: 'example2-label',
-                  type: 'text' as const,
+                  type: 'text',
                   properties: [
                     { text: 'Com Stroke Tracejado ({{progress2}}/{{total2}})' },
                     { fontSize: 14 },
@@ -134,11 +125,10 @@ export class SegmentedProgressExamplesPage {
                   ],
                 },
                 {
-                  id: 'progress2',
-                  type: 'segmented-progress' as const,
+                  type: 'segmented-progress',
                   properties: [
-                    { segments: '{{total2}}' },
-                    { filled: '{{progress2}}' },
+                    { segments: '{{total2}}' as any },
+                    { filled: '{{progress2}}' as any },
                     { spacing: 4 },
                     { height: 6 },
                     { cornerRadius: 3 },
@@ -153,13 +143,11 @@ export class SegmentedProgressExamplesPage {
 
             // Example 3: Different Colors and Styles
             {
-              id: 'example3',
-              type: 'container' as const,
-              properties: [{ direction: 'vertical' as const }, { spacing: 8 }],
+              type: 'container',
+              properties: [{ direction: 'vertical' }, { spacing: 8 }],
               children: [
                 {
-                  id: 'example3-label',
-                  type: 'text' as const,
+                  type: 'text',
                   properties: [
                     { text: 'Verde Personalizado ({{progress3}}/{{total3}})' },
                     { fontSize: 14 },
@@ -167,11 +155,10 @@ export class SegmentedProgressExamplesPage {
                   ],
                 },
                 {
-                  id: 'progress3',
-                  type: 'segmented-progress' as const,
+                  type: 'segmented-progress',
                   properties: [
-                    { segments: '{{total3}}' },
-                    { filled: '{{progress3}}' },
+                    { segments: '{{total3}}' as any },
+                    { filled: '{{progress3}}' as any },
                     { spacing: 3 },
                     { height: 10 },
                     { cornerRadius: 5 },
@@ -187,13 +174,11 @@ export class SegmentedProgressExamplesPage {
 
             // Example 4: Compact Style
             {
-              id: 'example4',
-              type: 'container' as const,
-              properties: [{ direction: 'vertical' as const }, { spacing: 8 }],
+              type: 'container',
+              properties: [{ direction: 'vertical' }, { spacing: 8 }],
               children: [
                 {
-                  id: 'example4-label',
-                  type: 'text' as const,
+                  type: 'text',
                   properties: [
                     { text: 'Estilo Compacto ({{progress4}}/{{total4}})' },
                     { fontSize: 14 },
@@ -201,11 +186,10 @@ export class SegmentedProgressExamplesPage {
                   ],
                 },
                 {
-                  id: 'progress4',
-                  type: 'segmented-progress' as const,
+                  type: 'segmented-progress',
                   properties: [
-                    { segments: '{{total4}}' },
-                    { filled: '{{progress4}}' },
+                    { segments: '{{total4}}' as any },
+                    { filled: '{{progress4}}' as any },
                     { spacing: 2 },
                     { height: 4 },
                     { cornerRadius: 2 },
@@ -218,10 +202,9 @@ export class SegmentedProgressExamplesPage {
 
             // Current Status
             {
-              id: 'status',
-              type: 'container' as const,
+              type: 'container',
               properties: [
-                { direction: 'horizontal' as const },
+                { direction: 'horizontal' },
                 { spacing: 8 },
                 { padding: 12 },
                 { backgroundColor: '#2C2C2E' },
@@ -230,13 +213,11 @@ export class SegmentedProgressExamplesPage {
               ],
               children: [
                 {
-                  id: 'status-icon',
-                  type: 'image' as const,
-                  properties: [{ systeName: 'info.circle' }, { color: '#007AFF' }, { width: 16 }, { height: 16 }],
+                  type: 'image',
+                  properties: [{ systemName: 'info.circle' }, { color: '#007AFF' }, { width: 16 }, { height: 16 }],
                 },
                 {
-                  id: 'status-text',
-                  type: 'text' as const,
+                  type: 'text',
                   properties: [
                     { text: 'Progresso: {{mainProgress}}/{{maxSegments}}' },
                     { fontSize: 12 },
@@ -246,6 +227,78 @@ export class SegmentedProgressExamplesPage {
               ],
             },
           ],
+        },
+        dynamicIslandLayout: {
+          expanded: {
+            bottom: {
+              type: 'container',
+              properties: [
+                { direction: 'vertical' },
+                { spacing: 12 },
+                { padding: 16 },
+                { backgroundColor: '#1C1C1E' },
+                { cornerRadius: 16 },
+              ],
+              children: [
+                {
+                  type: 'text',
+                  properties: [
+                    { text: 'Progresso: {{mainProgress}}/{{maxSegments}}' },
+                    { fontSize: 12 },
+                    { color: '#FFFFFF' },
+                  ],
+                },
+              ],
+            },
+          },
+          compactLeading: {
+            type: 'container',
+            properties: [
+              { direction: 'horizontal' },
+              { spacing: 8 },
+              { padding: 8 },
+              { backgroundColor: '#1C1C1E' },
+              { cornerRadius: 8 },
+            ],
+            children: [
+              {
+                type: 'image',
+                properties: [{ systemName: 'chart.bar.fill' }, { color: '#007AFF' }, { width: 20 }, { height: 20 }],
+              },
+            ],
+          },
+          compactTrailing: {
+            type: 'container',
+            properties: [
+              { direction: 'horizontal' },
+              { spacing: 8 },
+              { padding: 8 },
+              { backgroundColor: '#1C1C1E' },
+              { cornerRadius: 8 },
+            ],
+            children: [
+              {
+                type: 'image',
+                properties: [{ systemName: 'chart.bar.fill' }, { color: '#007AFF' }, { width: 20 }, { height: 20 }],
+              },
+            ],
+          },
+          minimal: {
+            type: 'container',
+            properties: [
+              { direction: 'horizontal' },
+              { spacing: 8 },
+              { padding: 8 },
+              { backgroundColor: '#1C1C1E' },
+              { cornerRadius: 8 },
+            ],
+            children: [
+              {
+                type: 'image',
+                properties: [{ systemName: 'chart.bar.fill' }, { color: '#007AFF' }, { width: 20 }, { height: 20 }],
+              },
+            ],
+          },
         },
         data: {
           progress1: this.currentProgress,
@@ -266,7 +319,7 @@ export class SegmentedProgressExamplesPage {
         },
       };
 
-      const result = await LiveActivities.startActivity(activityData as any);
+      const result = await LiveActivities.startActivity(activityData);
       this.liveActivitiesService.setCurrentActivityId(result.activityId);
       this.liveActivitiesService.showToast('Segmented Progress iniciado!');
     } catch (error) {

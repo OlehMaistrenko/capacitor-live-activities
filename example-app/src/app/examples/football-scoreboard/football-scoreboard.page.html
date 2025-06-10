@@ -26,8 +26,8 @@
 
       <ion-card-content>
         <p class="description">
-          Complete football scoreboard with live indicators, team information,
-          and Dynamic Island integration for a complete sports experience.
+          Complete football scoreboard with live indicators, team information, and Dynamic Island integration for a
+          complete sports experience.
         </p>
 
         <!-- Features -->
@@ -58,9 +58,9 @@
         </div>
 
         @if (currentActivityId) {
-          <ion-chip color="success" style="margin-bottom: 16px;">
-            <ion-label>Active ID: {{ currentActivityId }}</ion-label>
-          </ion-chip>
+        <ion-chip color="success" style="margin-bottom: 16px">
+          <ion-label>Active ID: {{ currentActivityId }}</ion-label>
+        </ion-chip>
         }
 
         <!-- Controls -->
@@ -69,7 +69,8 @@
             expand="block"
             size="large"
             (click)="startFootballScoreboardExample()"
-            [disabled]="currentActivityId !== null">
+            [disabled]="currentActivityId !== null"
+          >
             <fa-icon icon="play-circle" slot="start" />
             Start El Clásico
           </ion-button>
@@ -99,7 +100,7 @@
       <ion-card-content>
         <ion-list>
           <ion-item button (click)="updateScore()" [disabled]="!currentActivityId">
-            <fa-icon icon="plus" slot="start" style="color: #30D158;" />
+            <fa-icon icon="plus" slot="start" style="color: #30d158" />
             <ion-label>
               <h3>Score Goal</h3>
               <p>Update score to 3-1 (78')</p>
@@ -107,7 +108,7 @@
           </ion-item>
 
           <ion-item button (click)="updateHalfTime()" [disabled]="!currentActivityId">
-            <fa-icon icon="pause-circle" slot="start" style="color: #FF9500;" />
+            <fa-icon icon="pause-circle" slot="start" style="color: #ff9500" />
             <ion-label>
               <h3>Half Time</h3>
               <p>Update match time to HT</p>
@@ -115,7 +116,7 @@
           </ion-item>
 
           <ion-item button (click)="endMatch()" [disabled]="!currentActivityId">
-            <fa-icon icon="stop-circle" slot="start" style="color: #FF3B30;" />
+            <fa-icon icon="stop-circle" slot="start" style="color: #ff3b30" />
             <ion-label>
               <h3>End Match</h3>
               <p>Final score 3-1 (FT)</p>

@@ -1,91 +1,178 @@
 import WidgetKit
 import SwiftUI
 import ActivityKit
-
+import Foundation
 
 @available(iOS 16.2, *)
 public struct DynamicActivityWidget: Widget {
     public init() {}
-        
-    // DynamicIsland Behavior Modifier
-    struct DynamicIslandBehaviorModifier {
-        let context: ActivityViewContext<DynamicActivityAttributes>
-        
-        func apply(to content: DynamicIsland) -> DynamicIsland {
-            guard let behavior = context.attributes.behavior else { return content }
-            
-            var modifiedContent = content
-            
-            if let keyLineTint = behavior["keyLineTint"]?.value as? String {
-                modifiedContent = modifiedContent.keylineTint(Color(hex: keyLineTint))
-            }
-            
-            if let widgetUrl = behavior["widgetUrl"]?.value as? String,
-               let url = URL(string: widgetUrl) {
-                modifiedContent = modifiedContent.widgetURL(url)
-            }
-            
-            return modifiedContent
-        }
-    }
     
     public var body: some WidgetConfiguration {
         ActivityConfiguration(for: DynamicActivityAttributes.self) { context in
             // Recuperar layout do App Group se necessário
-            let layout = context.attributes.layoutJSON.isEmpty
+            let layout = context.attributes.layoutJSON/*.isEmpty
             ? SharedDataManager.shared.getLayoutData(for: context.attributes.activityId).layout ?? "{}"
-            : context.attributes.layoutJSON
+            : context.attributes.layoutJSON */
             
-            let behavior = context.attributes.behavior
-            let keyLineTint = behavior?["keyLineTint"]?.value as? String
-            let systemActionForegroundColor = behavior?["systemActionForegroundColor"]?.value as? String
-            let widgetUrl = behavior?["widgetUrl"]?.value as? String
-            
+            let behavior = JSONLayoutParser.parseJsonCompressedIfNeeded(from: context.attributes.behaviorJSON, as: BehaviorLayoutData.self) ?? BehaviorLayoutData(
+                keyLineTint: nil,
+                systemActionForegroundColor: nil,
+                backgroundTint: nil,
+                widgetUrl: nil
+            )
+                        
             JSONLayoutParser.parseView(
                 from: layout,
                 with: context.state.data
             )
-            .ifLet(keyLineTint) { view, color in
+            .ifLet(behavior.backgroundTint) { view, color in
                 view.activityBackgroundTint(Color(hex: color))
-            }.ifLet(systemActionForegroundColor) { view, color in
+            }.ifLet(behavior.systemActionForegroundColor) { view, color in
                 view.activitySystemActionForegroundColor(Color(hex: color))
-            }.ifLet(widgetUrl) { view, url in
+            }.ifLet(behavior.widgetUrl) { view, url in
                 view.widgetURL(URL(string: url))
             }
             
         } dynamicIsland: { context in
+            let dynamicIslandLayout = context.attributes.dynamicIslandLayoutJSON
             
-            DynamicIslandBehaviorModifier(context: context).apply(to: DynamicIsland {
+            let parsedLayout = JSONLayoutParser.parseJsonCompressedIfNeeded(from: dynamicIslandLayout, as: DynamicIslandLayoutData.self) ?? DynamicIslandLayoutData(
+                expanded: nil,
+                compactLeading: nil,
+                compactTrailing: nil,
+                minimal: nil
+            )
+            
+            let behavior = JSONLayoutParser.parseJsonCompressedIfNeeded(from: context.attributes.behaviorJSON, as: BehaviorLayoutData.self) ?? BehaviorLayoutData(
+                keyLineTint: nil,
+                systemActionForegroundColor: nil,
+                backgroundTint: nil,
+                widgetUrl: nil
+            )
+            
+            // Create Dynamic Island using helper functions
+            return DynamicIsland {
                 DynamicIslandExpandedRegion(.center) {
-                    /* JSONLayoutParser.parseView(
-                        from: context.attributes.layoutJSON,
+                    DynamicIslandLayoutParser.createExpandedCenter(
+                        from: parsedLayout,
                         with: context.state.data
-                    ) */
-                    Text("center")
+                    )
                 }
-                // Expanded UI goes here.  Compose the expanded UI through
-                // various regions, like leading/trailing/center/bottom
                 DynamicIslandExpandedRegion(.leading) {
-                    // Text("Leading")
-                    Image(systemName: "circle.fill")
-                        .resizable()
-                        .foregroundColor(.cyan)
+                    DynamicIslandLayoutParser.createExpandedLeading(
+                        from: parsedLayout,
+                        with: context.state.data
+                    )
                 }
                 DynamicIslandExpandedRegion(.trailing) {
-                    Text("Trailing")
+                    DynamicIslandLayoutParser.createExpandedTrailing(
+                        from: parsedLayout,
+                        with: context.state.data
+                    )
                 }
                 DynamicIslandExpandedRegion(.bottom) {
-                    Text("Bottom \(context.state.data.count)")
-                    // more content
+                    DynamicIslandLayoutParser.createExpandedBottom(
+                        from: parsedLayout,
+                        with: context.state.data
+                    )
                 }
             } compactLeading: {
-                Image(systemName: "app.fill")
+                DynamicIslandLayoutParser.createCompactLeading(
+                    from: parsedLayout,
+                    with: context.state.data
+                )
             } compactTrailing: {
-                Text("Live")
+                DynamicIslandLayoutParser.createCompactTrailing(
+                    from: parsedLayout,
+                    with: context.state.data
+                )
             } minimal: {
-                Image(systemName: "circle.fill")
-                    .foregroundColor(.cyan)
-            })
+                DynamicIslandLayoutParser.createMinimal(
+                    from: parsedLayout,
+                    with: context.state.data
+                )
+            }
+            .ifLet(behavior.widgetUrl) { view, url in
+                view.widgetURL(URL(string: url))
+            }
+            .ifLet(behavior.keyLineTint) { view, color in
+                view.keylineTint(Color(hex: color))
+            }
+        }
+    }
+}
+
+@available(iOS 16.2, *)
+public class SharedDataManager {
+    public static let shared = SharedDataManager()
+    public var appGroupIdentifier: String = ""
+    
+    private init() {}
+    
+    public var sharedDefaults: UserDefaults? {
+        return UserDefaults(suiteName: appGroupIdentifier)
+    }
+    
+    public func saveLayoutData(_ layout: String, data: [String: Any], for activityId: String) {
+        sharedDefaults?.set(layout, forKey: "\(activityId)_layout")
+        sharedDefaults?.set(data, forKey: "\(activityId)_data")
+    }
+    
+    public func getLayoutData(for activityId: String) -> (layout: String?, data: [String: Any]?) {
+        let layout = sharedDefaults?.string(forKey: "\(activityId)_layout")
+        let data = sharedDefaults?.dictionary(forKey: "\(activityId)_data")
+        return (layout, data)
+    }
+}
+
+@available(iOS 16.2, *)
+class DynamicIslandLayoutParser {
+    @ViewBuilder
+    static func createCompactLeading(from layout: DynamicIslandLayoutData, with data: [String: AnyCodable]) -> some View {
+        if let element = layout.compactLeading {
+            AnyView(JSONLayoutParser.parseView(from: element, with: data))
+        }
+    }
+    
+    @ViewBuilder
+    static func createCompactTrailing(from layout: DynamicIslandLayoutData, with data: [String: AnyCodable]) -> some View {
+        if let element = layout.compactTrailing {
+            AnyView(JSONLayoutParser.parseView(from: element, with: data))
+        }
+    }
+    
+    @ViewBuilder
+    static func createMinimal(from layout: DynamicIslandLayoutData, with data: [String: AnyCodable]) -> some View {
+        if let element = layout.minimal {
+            AnyView(JSONLayoutParser.parseView(from: element, with: data))
+        }
+    }
+    
+    @ViewBuilder
+    static func createExpandedBottom(from layout: DynamicIslandLayoutData, with data: [String: AnyCodable]) -> some View {
+        if let element = layout.expanded?.bottom {
+            JSONLayoutParser.parseView(from: element, with: data)
+        }
+    }
+    
+    @ViewBuilder
+    static func createExpandedLeading(from layout: DynamicIslandLayoutData, with data: [String: AnyCodable]) -> some View {
+        if let element = layout.expanded?.leading {
+            JSONLayoutParser.parseView(from: element, with: data)
+        }
+    }
+    
+    @ViewBuilder
+    static func createExpandedCenter(from layout: DynamicIslandLayoutData, with data: [String: AnyCodable]) -> some View {
+        if let element = layout.expanded?.center {
+            JSONLayoutParser.parseView(from: element, with: data)
+        }
+    }
+    
+    @ViewBuilder
+    static func createExpandedTrailing(from layout: DynamicIslandLayoutData, with data: [String: AnyCodable]) -> some View {
+        if let element = layout.expanded?.trailing {
+            JSONLayoutParser.parseView(from: element, with: data)
         }
     }
 }

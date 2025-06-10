@@ -59,12 +59,10 @@ export class ContainerExamplesPage {
     try {
       const result = await LiveActivities.startActivity({
         layout: {
-          id: 'stack-layout-example',
           type: 'container',
           properties: [{ direction: 'stack' }, { padding: 16 }, { cornerRadius: 12 }, { height: 80 }],
           children: [
             {
-              id: 'background-gradient',
               type: 'container',
               properties: [
                 { direction: 'horizontal' },
@@ -80,7 +78,6 @@ export class ContainerExamplesPage {
               children: [],
             },
             {
-              id: 'content-overlay',
               type: 'container',
               properties: [
                 { direction: 'horizontal' },
@@ -90,12 +87,10 @@ export class ContainerExamplesPage {
               ],
               children: [
                 {
-                  id: 'overlay-icon',
                   type: 'image',
-                  properties: [{ systeName: 'layers.fill' }, { color: '#ffffff' }, { width: 32 }, { height: 32 }],
+                  properties: [{ systemName: 'layers.fill' }, { color: '#ffffff' }, { width: 32 }, { height: 32 }],
                 },
                 {
-                  id: 'overlay-text',
                   type: 'text',
                   properties: [{ text: '{{title}}' }, { fontSize: 18 }, { fontWeight: 'bold' }, { color: '#ffffff' }],
                 },
@@ -103,13 +98,47 @@ export class ContainerExamplesPage {
             },
           ],
         },
-        data: {
-          title: 'ZStack with Gradient',
+        dynamicIslandLayout: {
+          expanded: {
+            bottom: {
+              type: 'container',
+              properties: [{ direction: 'vertical' }],
+              children: [
+                {
+                  type: 'text',
+                  properties: [{ text: '{{title}}' }, { fontWeight: 'bold' }],
+                },
+                {
+                  type: 'text',
+                  properties: [{ text: '{{subtitle}}' }, { fontFamily: 'footnote' }],
+                },
+              ],
+            },
+            trailing: {
+              type: 'text',
+              properties: [{ text: '{{status}}' }],
+            },
+          },
+          minimal: {
+            type: 'text',
+            properties: [{ text: 'abc' }],
+          },
+          compactLeading: {
+            type: 'image',
+            properties: [{ systemName: 'textformat.size' }],
+          },
+          compactTrailing: {
+            type: 'image',
+            properties: [{ systemName: 'text.aligncenter' }],
+          },
         },
         behavior: {
-          systemActionForegroundColor: '#667eea',
+          systemActionForegroundColor: '#007AFF',
           widgetUrl: 'https://example.com',
-          keyLineTint: '#667eea',
+          keyLineTint: '#007AFF',
+        },
+        data: {
+          title: 'ZStack with Gradient',
         },
       });
 
@@ -125,7 +154,6 @@ export class ContainerExamplesPage {
     try {
       const result = await LiveActivities.startActivity({
         layout: {
-          id: 'complex-layout-example',
           type: 'container',
           properties: [
             { direction: 'vertical' },
@@ -138,12 +166,10 @@ export class ContainerExamplesPage {
           ],
           children: [
             {
-              id: 'header-section',
               type: 'container',
               properties: [{ direction: 'stack' }, { height: 60 }],
               children: [
                 {
-                  id: 'header-background',
                   type: 'container',
                   properties: [
                     { direction: 'horizontal' },
@@ -159,7 +185,6 @@ export class ContainerExamplesPage {
                   children: [],
                 },
                 {
-                  id: 'header-content',
                   type: 'container',
                   properties: [
                     { direction: 'horizontal' },
@@ -169,22 +194,19 @@ export class ContainerExamplesPage {
                   ],
                   children: [
                     {
-                      id: 'app-icon',
                       type: 'image',
                       properties: [
-                        { systeName: 'star.circle.fill' },
+                        { systemName: 'star.circle.fill' },
                         { color: '#ffffff' },
                         { width: 32 },
                         { height: 32 },
                       ],
                     },
                     {
-                      id: 'header-text',
                       type: 'container',
                       properties: [{ direction: 'vertical' }, { spacing: 2 }],
                       children: [
                         {
-                          id: 'app-name',
                           type: 'text',
                           properties: [
                             { text: '{{appName}}' },
@@ -194,7 +216,6 @@ export class ContainerExamplesPage {
                           ],
                         },
                         {
-                          id: 'status',
                           type: 'text',
                           properties: [
                             { text: '{{status}}' },
@@ -210,17 +231,14 @@ export class ContainerExamplesPage {
               ],
             },
             {
-              id: 'main-content',
               type: 'container',
               properties: [{ direction: 'horizontal' }, { spacing: 16 }, { insideAlignment: 'top' }],
               children: [
                 {
-                  id: 'left-column',
                   type: 'container',
                   properties: [{ direction: 'vertical' }, { spacing: 8 }],
                   children: [
                     {
-                      id: 'metric-1',
                       type: 'container',
                       properties: [
                         { direction: 'vertical' },
@@ -231,7 +249,6 @@ export class ContainerExamplesPage {
                       ],
                       children: [
                         {
-                          id: 'metric-1-value',
                           type: 'text',
                           properties: [
                             { text: '{{metric1Value}}' },
@@ -242,7 +259,6 @@ export class ContainerExamplesPage {
                           ],
                         },
                         {
-                          id: 'metric-1-label',
                           type: 'text',
                           properties: [
                             { text: '{{metric1Label}}' },
@@ -256,12 +272,10 @@ export class ContainerExamplesPage {
                   ],
                 },
                 {
-                  id: 'right-column',
                   type: 'container',
                   properties: [{ direction: 'vertical' }, { spacing: 8 }],
                   children: [
                     {
-                      id: 'metric-2',
                       type: 'container',
                       properties: [
                         { direction: 'vertical' },
@@ -272,7 +286,6 @@ export class ContainerExamplesPage {
                       ],
                       children: [
                         {
-                          id: 'metric-2-value',
                           type: 'text',
                           properties: [
                             { text: '{{metric2Value}}' },
@@ -283,7 +296,6 @@ export class ContainerExamplesPage {
                           ],
                         },
                         {
-                          id: 'metric-2-label',
                           type: 'text',
                           properties: [
                             { text: '{{metric2Label}}' },
@@ -300,6 +312,45 @@ export class ContainerExamplesPage {
             },
           ],
         },
+        dynamicIslandLayout: {
+          expanded: {
+            bottom: {
+              type: 'container',
+              properties: [{ direction: 'vertical' }],
+              children: [
+                {
+                  type: 'text',
+                  properties: [{ text: '{{title}}' }, { fontWeight: 'bold' }],
+                },
+                {
+                  type: 'text',
+                  properties: [{ text: '{{subtitle}}' }, { fontFamily: 'footnote' }],
+                },
+              ],
+            },
+            trailing: {
+              type: 'text',
+              properties: [{ text: '{{status}}' }],
+            },
+          },
+          minimal: {
+            type: 'text',
+            properties: [{ text: 'abc' }],
+          },
+          compactLeading: {
+            type: 'image',
+            properties: [{ systemName: 'textformat.size' }],
+          },
+          compactTrailing: {
+            type: 'image',
+            properties: [{ systemName: 'text.aligncenter' }],
+          },
+        },
+        behavior: {
+          systemActionForegroundColor: '#007AFF',
+          widgetUrl: 'https://example.com',
+          keyLineTint: '#007AFF',
+        },
         data: {
           appName: 'Container Showcase',
           status: 'Multi-layout demo',
@@ -307,11 +358,6 @@ export class ContainerExamplesPage {
           metric1Label: 'Score',
           metric2Value: '98%',
           metric2Label: 'Accuracy',
-        },
-        behavior: {
-          systemActionForegroundColor: '#FF6B35',
-          widgetUrl: 'https://example.com',
-          keyLineTint: '#FF6B35',
         },
       });
 
@@ -327,7 +373,6 @@ export class ContainerExamplesPage {
     try {
       const result = await LiveActivities.startActivity({
         layout: {
-          id: 'dashboard-example',
           type: 'container',
           properties: [
             { direction: 'vertical' },
@@ -338,22 +383,19 @@ export class ContainerExamplesPage {
           ],
           children: [
             {
-              id: 'dashboard-header',
               type: 'container',
               properties: [{ direction: 'horizontal' }, { spacing: 10 }, { insideAlignment: 'center' }],
               children: [
                 {
-                  id: 'dashboard-icon',
                   type: 'image',
                   properties: [
-                    { systeName: 'chart.line.uptrend.xyaxis' },
+                    { systemName: 'chart.line.uptrend.xyaxis' },
                     { color: '#007AFF' },
                     { width: 24 },
                     { height: 24 },
                   ],
                 },
                 {
-                  id: 'dashboard-title',
                   type: 'text',
                   properties: [
                     { text: '{{dashboardTitle}}' },
@@ -365,12 +407,10 @@ export class ContainerExamplesPage {
               ],
             },
             {
-              id: 'stats-grid',
               type: 'container',
               properties: [{ direction: 'horizontal' }, { spacing: 12 }],
               children: [
                 {
-                  id: 'stat-1',
                   type: 'container',
                   properties: [
                     { direction: 'vertical' },
@@ -381,12 +421,15 @@ export class ContainerExamplesPage {
                   ],
                   children: [
                     {
-                      id: 'stat-1-icon',
                       type: 'image',
-                      properties: [{ systeName: 'person.3.fill' }, { color: '#30D158' }, { width: 16 }, { height: 16 }],
+                      properties: [
+                        { systemName: 'person.3.fill' },
+                        { color: '#30D158' },
+                        { width: 16 },
+                        { height: 16 },
+                      ],
                     },
                     {
-                      id: 'stat-1-value',
                       type: 'text',
                       properties: [
                         { text: '{{users}}' },
@@ -397,14 +440,12 @@ export class ContainerExamplesPage {
                       ],
                     },
                     {
-                      id: 'stat-1-label',
                       type: 'text',
                       properties: [{ text: 'Users' }, { fontSize: 10 }, { color: '#8e8e93' }, { alignment: 'center' }],
                     },
                   ],
                 },
                 {
-                  id: 'stat-2',
                   type: 'container',
                   properties: [
                     { direction: 'vertical' },
@@ -415,17 +456,15 @@ export class ContainerExamplesPage {
                   ],
                   children: [
                     {
-                      id: 'stat-2-icon',
                       type: 'image',
                       properties: [
-                        { systeName: 'dollarsign.circle.fill' },
+                        { systemName: 'dollarsign.circle.fill' },
                         { color: '#FFD60A' },
                         { width: 16 },
                         { height: 16 },
                       ],
                     },
                     {
-                      id: 'stat-2-value',
                       type: 'text',
                       properties: [
                         { text: '{{revenue}}' },
@@ -436,7 +475,6 @@ export class ContainerExamplesPage {
                       ],
                     },
                     {
-                      id: 'stat-2-label',
                       type: 'text',
                       properties: [
                         { text: 'Revenue' },
@@ -448,7 +486,6 @@ export class ContainerExamplesPage {
                   ],
                 },
                 {
-                  id: 'stat-3',
                   type: 'container',
                   properties: [
                     { direction: 'vertical' },
@@ -459,17 +496,15 @@ export class ContainerExamplesPage {
                   ],
                   children: [
                     {
-                      id: 'stat-3-icon',
                       type: 'image',
                       properties: [
-                        { systeName: 'arrow.up.right.circle.fill' },
+                        { systemName: 'arrow.up.right.circle.fill' },
                         { color: '#FF453A' },
                         { width: 16 },
                         { height: 16 },
                       ],
                     },
                     {
-                      id: 'stat-3-value',
                       type: 'text',
                       properties: [
                         { text: '{{growth}}' },
@@ -480,7 +515,6 @@ export class ContainerExamplesPage {
                       ],
                     },
                     {
-                      id: 'stat-3-label',
                       type: 'text',
                       properties: [{ text: 'Growth' }, { fontSize: 10 }, { color: '#8e8e93' }, { alignment: 'center' }],
                     },
@@ -490,16 +524,50 @@ export class ContainerExamplesPage {
             },
           ],
         },
-        data: {
-          dashboardTitle: 'Analytics Dashboard',
-          users: '1.2K',
-          revenue: '$5.4K',
-          growth: '+12%',
+        dynamicIslandLayout: {
+          expanded: {
+            bottom: {
+              type: 'container',
+              properties: [{ direction: 'vertical' }],
+              children: [
+                {
+                  type: 'text',
+                  properties: [{ text: '{{title}}' }, { fontWeight: 'bold' }],
+                },
+                {
+                  type: 'text',
+                  properties: [{ text: '{{subtitle}}' }, { fontFamily: 'footnote' }],
+                },
+              ],
+            },
+            trailing: {
+              type: 'text',
+              properties: [{ text: '{{status}}' }],
+            },
+          },
+          minimal: {
+            type: 'text',
+            properties: [{ text: 'abc' }],
+          },
+          compactLeading: {
+            type: 'image',
+            properties: [{ systemName: 'textformat.size' }],
+          },
+          compactTrailing: {
+            type: 'image',
+            properties: [{ systemName: 'text.aligncenter' }],
+          },
         },
         behavior: {
           systemActionForegroundColor: '#007AFF',
           widgetUrl: 'https://example.com',
           keyLineTint: '#007AFF',
+        },
+        data: {
+          dashboardTitle: 'Analytics Dashboard',
+          users: '1.2K',
+          revenue: '$5.4K',
+          growth: '+12%',
         },
       });
 

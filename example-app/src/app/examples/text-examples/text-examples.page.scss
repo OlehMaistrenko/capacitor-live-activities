@@ -4,7 +4,7 @@
 }
 
 .main-card {
-  --background: linear-gradient(135deg, #34C759 0%, #30D158 100%);
+  --background: linear-gradient(135deg, #34c759 0%, #30d158 100%);
   --color: white;
   margin-bottom: 16px;
   border-radius: 16px;
@@ -22,12 +22,12 @@
 
 .text-icon {
   font-size: 1.8rem;
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: bold;
 }
 
 .description {
-  color: rgba(255, 255, 255, 0.9);
+  // color: rgba(255, 255, 255, 0.9);
   line-height: 1.6;
   margin-bottom: 24px;
   font-size: 1rem;
@@ -37,7 +37,6 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-bottom: 24px;
   padding: 16px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
@@ -114,7 +113,7 @@ ion-card {
   ion-card-content {
     p {
       margin-bottom: 16px;
-      color: var(--ion-color-medium);
+      // color: var(--ion-color-medium);
       line-height: 1.5;
     }
 

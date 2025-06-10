@@ -4,7 +4,7 @@
 }
 
 .main-card {
-  --background: linear-gradient(135deg, #FF3B30 0%, #FF6B60 100%);
+  --background: linear-gradient(135deg, #ff3b30 0%, #ff6b60 100%);
   --color: white;
   margin-bottom: 16px;
   border-radius: 16px;
@@ -22,7 +22,7 @@
 
 .timer-icon {
   font-size: 1.8rem;
-  color: #FFFFFF;
+  color: #ffffff;
   font-weight: bold;
 }
 
@@ -37,7 +37,6 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  margin-bottom: 24px;
   padding: 16px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
@@ -114,7 +113,7 @@ ion-card {
   ion-card-content {
     p {
       margin-bottom: 16px;
-      color: var(--ion-color-medium);
+      // color: var(--ion-color-medium);
       line-height: 1.5;
     }
 

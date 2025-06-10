@@ -508,6 +508,441 @@ const behavior = {
 | `widgetUrl` | URL to open the app | `"myapp://details"` |
 | `keyLineTint` | Highlight line color | `"#FF0000"` |
 
+## Dynamic Island Layouts
+
+### Overview
+
+Dynamic Island layouts provide additional presentation states for Live Activities on iPhone 14 Pro and later models. You can define custom layouts for all Dynamic Island states:
+
+- **Expanded**: Full Dynamic Island view with multiple regions
+- **Compact Leading/Trailing**: Small icons on the sides 
+- **Minimal**: Single small element when multiple activities are active
+
+### Basic Structure
+
+```typescript
+{
+  layout: {
+    // Main Live Activity layout
+  },
+  dynamicIslandLayout: {
+    expanded: {
+      leading: { /* Left content */ },
+      trailing: { /* Right content */ },
+      center: { /* Center content */ },
+      bottom: { /* Main content area */ }
+    },
+    compactLeading: {
+      element: { /* Small leading icon */ }
+    },
+    compactTrailing: {
+      element: { /* Small trailing icon */ }
+    },
+    minimal: {
+      element: { /* Minimal state icon */ }
+    }
+  },
+  data: {
+    // Your data
+  }
+}
+```
+
+### Expanded Layout Regions
+
+The expanded Dynamic Island has four regions:
+
+#### 1. Leading Region
+Top-left area, ideal for branding or status icons:
+
+```json
+{
+  "leading": {
+    "id": "di-leading",
+    "type": "container",
+    "properties": [
+      { "direction": "vertical" },
+      { "spacing": 2 }
+    ],
+    "children": [
+      {
+        "id": "di-icon",
+        "type": "image",
+        "properties": [
+          { "systeName": "heart.fill" },
+          { "color": "#FF3B30" },
+          { "width": 20 },
+          { "height": 20 }
+        ]
+      },
+      {
+        "id": "di-label",
+        "type": "text",
+        "properties": [
+          { "text": "Health" },
+          { "fontSize": 9 },
+          { "color": "#8E8E93" }
+        ]
+      }
+    ]
+  }
+}
+```
+
+#### 2. Trailing Region
+Top-right area, perfect for status updates or values:
+
+```json
+{
+  "trailing": {
+    "id": "di-trailing",
+    "type": "container",
+    "properties": [
+      { "direction": "vertical" },
+      { "spacing": 2 },
+      { "insideAlignment": "trailing" }
+    ],
+    "children": [
+      {
+        "id": "di-value",
+        "type": "text",
+        "properties": [
+          { "text": "{{currentValue}}" },
+          { "fontSize": 14 },
+          { "fontWeight": "bold" },
+          { "color": "#FFFFFF" }
+        ]
+      },
+      {
+        "id": "di-status",
+        "type": "text",
+        "properties": [
+          { "text": "{{status}}" },
+          { "fontSize": 9 },
+          { "color": "#34C759" }
+        ]
+      }
+    ]
+  }
+}
+```
+
+#### 3. Center Region
+Middle area for titles or primary information:
+
+```json
+{
+  "center": {
+    "id": "di-center",
+    "type": "text",
+    "properties": [
+      { "text": "{{title}}" },
+      { "fontSize": 11 },
+      { "fontWeight": "medium" },
+      { "color": "#FFFFFF" }
+    ]
+  }
+}
+```
+
+#### 4. Bottom Region
+Main content area - largest space available:
+
+```json
+{
+  "bottom": {
+    "id": "di-bottom",
+    "type": "container",
+    "properties": [
+      { "direction": "vertical" },
+      { "spacing": 4 }
+    ],
+    "children": [
+      {
+        "id": "di-progress",
+        "type": "progress",
+        "properties": [
+          { "value": "{{progressValue}}" },
+          { "total": 1.0 },
+          { "color": "#007AFF" },
+          { "height": 4 }
+        ]
+      },
+      {
+        "id": "di-description",
+        "type": "text",
+        "properties": [
+          { "text": "{{description}}" },
+          { "fontSize": 10 },
+          { "color": "#8E8E93" }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Compact States
+
+#### Compact Leading
+Small icon on the left side when Dynamic Island is compact:
+
+```json
+{
+  "compactLeading": {
+    "element": {
+      "id": "di-compact-leading",
+      "type": "image",
+      "properties": [
+        { "systeName": "heart.fill" },
+        { "color": "#FF3B30" },
+        { "width": 16 },
+        { "height": 16 }
+      ]
+    }
+  }
+}
+```
+
+#### Compact Trailing
+Small content on the right side:
+
+```json
+{
+  "compactTrailing": {
+    "element": {
+      "id": "di-compact-trailing",
+      "type": "container",
+      "properties": [
+        { "direction": "horizontal" },
+        { "spacing": 3 }
+      ],
+      "children": [
+        {
+          "id": "di-compact-value",
+          "type": "text",
+          "properties": [
+            { "text": "{{shortValue}}" },
+            { "fontSize": 12 },
+            { "fontWeight": "semibold" },
+            { "color": "#FFFFFF" }
+          ]
+        },
+        {
+          "id": "di-compact-icon",
+          "type": "image",
+          "properties": [
+            { "systeName": "arrow.up" },
+            { "color": "#34C759" },
+            { "width": 10 },
+            { "height": 10 }
+          ]
+        }
+      ]
+    }
+  }
+}
+```
+
+### Minimal State
+
+When multiple Live Activities are active, only the minimal state is shown:
+
+```json
+{
+  "minimal": {
+    "element": {
+      "id": "di-minimal",
+      "type": "image",
+      "properties": [
+        { "systeName": "heart.fill" },
+        { "color": "#FF3B30" },
+        { "width": 12 },
+        { "height": 12 }
+      ]
+    }
+  }
+}
+```
+
+### Complete Example
+
+Here's a complete example showing a workout tracker with all Dynamic Island states:
+
+```typescript
+{
+  layout: {
+    // Main layout (regular Live Activity)
+    id: "workout-tracker",
+    type: "container",
+    properties: [
+      { direction: "vertical" },
+      { spacing: 12 },
+      { padding: 16 },
+      { backgroundColor: "#1C1C1E" },
+      { cornerRadius: 16 }
+    ],
+    children: [
+      // Main layout elements...
+    ]
+  },
+  dynamicIslandLayout: {
+    expanded: {
+      leading: {
+        id: "di-leading",
+        type: "container",
+        properties: [
+          { direction: "vertical" },
+          { spacing: 2 }
+        ],
+        children: [
+          {
+            id: "di-workout-icon",
+            type: "image",
+            properties: [
+              { systeName: "figure.strengthtraining.traditional" },
+              { color: "#FF6B35" },
+              { width: 20 },
+              { height: 20 }
+            ]
+          },
+          {
+            id: "di-workout-label",
+            type: "text",
+            properties: [
+              { text: "Workout" },
+              { fontSize: 9 },
+              { color: "#8E8E93" }
+            ]
+          }
+        ]
+      },
+      trailing: {
+        id: "di-trailing",
+        type: "container",
+        properties: [
+          { direction: "vertical" },
+          { spacing: 2 },
+          { insideAlignment: "trailing" }
+        ],
+        children: [
+          {
+            id: "di-timer",
+            type: "text",
+            properties: [
+              { text: "{{workoutTime}}" },
+              { fontSize: 14 },
+              { fontWeight: "bold" },
+              { color: "#FFFFFF" }
+            ]
+          },
+          {
+            id: "di-status",
+            type: "text",
+            properties: [
+              { text: "{{exerciseCount}}" },
+              { fontSize: 9 },
+              { color: "#FF9500" }
+            ]
+          }
+        ]
+      },
+      center: {
+        id: "di-center",
+        type: "text",
+        properties: [
+          { text: "{{currentExercise}}" },
+          { fontSize: 11 },
+          { fontWeight: "medium" },
+          { color: "#FFFFFF" }
+        ]
+      },
+      bottom: {
+        id: "di-bottom",
+        type: "progress",
+        properties: [
+          { value: "{{progressValue}}" },
+          { total: 1.0 },
+          { color: "#FF9500" },
+          { height: 4 }
+        ]
+      }
+    },
+    compactLeading: {
+      element: {
+        id: "di-compact-leading",
+        type: "image",
+        properties: [
+          { systeName: "figure.strengthtraining.traditional" },
+          { color: "#FF6B35" },
+          { width: 16 },
+          { height: 16 }
+        ]
+      }
+    },
+    compactTrailing: {
+      element: {
+        id: "di-compact-trailing",
+        type: "text",
+        properties: [
+          { text: "{{workoutTime}}" },
+          { fontSize: 12 },
+          { fontWeight: "semibold" },
+          { color: "#FFFFFF" }
+        ]
+      }
+    },
+    minimal: {
+      element: {
+        id: "di-minimal",
+        type: "image",
+        properties: [
+          { systeName: "flame.fill" },
+          { color: "#FF9500" },
+          { width: 12 },
+          { height: 12 }
+        ]
+      }
+    }
+  },
+  data: {
+    workoutTime: "25min",
+    currentExercise: "Push-ups",
+    exerciseCount: "3/6",
+    progressValue: 0.5
+  }
+}
+```
+
+### Dynamic Island Design Guidelines
+
+#### Size Constraints
+- **Expanded**: Maximum height ~160px
+- **Compact Leading/Trailing**: 44x44px area
+- **Minimal**: 24x24px area
+
+#### Content Recommendations
+- **Leading**: App branding, category icons
+- **Trailing**: Status indicators, values, timers
+- **Center**: Short titles, names
+- **Bottom**: Progress bars, charts, detailed info
+
+#### Best Practices
+- ✅ Use clear, high-contrast icons
+- ✅ Keep text concise and readable
+- ✅ Maintain consistent branding across states
+- ✅ Test all states during development
+- ❌ Don't overcrowd compact states
+- ❌ Avoid complex layouts in minimal state
+- ❌ Don't rely on tiny text in compact modes
+
+### Testing Dynamic Island
+
+1. **Device Requirements**: iPhone 14 Pro, iPhone 14 Pro Max, or later
+2. **Simulator**: Use Xcode simulator with Dynamic Island models
+3. **States**: Test expanded, compact, and minimal states
+4. **Interactions**: Verify tap actions work in all states
+
 ## Best Practices
 
 ### 1. Structure and Organization

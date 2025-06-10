@@ -1,5 +1,5 @@
 import { WebPlugin } from '@capacitor/core';
-import type { ActivityInfo, EndActivityOptions, LiveActivitiesOptions, LiveActivitiesPlugin, UpdateActivityOptions } from './definitions';
+import type { EndActivityOptions, LiveActivitiesOptions, LiveActivitiesPlugin, UpdateActivityOptions } from './definitions';
 export declare class LiveActivitiesWeb extends WebPlugin implements LiveActivitiesPlugin {
     startActivity(_: LiveActivitiesOptions): Promise<{
         activityId: string;
@@ -7,10 +7,10 @@ export declare class LiveActivitiesWeb extends WebPlugin implements LiveActiviti
     updateActivity(_: UpdateActivityOptions): Promise<void>;
     endActivity(_: EndActivityOptions): Promise<void>;
     getAllActivities(): Promise<{
-        activities: ActivityInfo[];
+        activities: LiveActivitiesOptions[];
     }>;
     debugActivities(): Promise<{
-        activities: ActivityInfo[];
+        activities: LiveActivitiesOptions[];
         count: number;
     }>;
     saveImage(_: {
