@@ -209,6 +209,8 @@ export type LayoutElement = Prettify<
   | LayoutElementTimer
   | LayoutElementChart
   | LayoutElementSegmentedProgress
+  | LayoutElementSpacer
+  | LayoutElementGauge
 >;
 
 /**
@@ -710,6 +712,99 @@ type SegmentedProgressPropertyObject =
   | { strokeDashed: boolean }
   /** @property strokeWidth - Width of the segment stroke @example { strokeWidth: 1 } */
   | { strokeWidth: number };
+
+/**
+ * Spacer-specific property objects
+ * @category Property Objects
+ * @description Properties specific to spacer elements.
+ * @extends BasePropertyObject
+ */
+type SpacerPropertyObject =
+  | BasePropertyObject
+  /** @property minLength - Minimum spacing @example { minLength: 8 } */
+  | { minLength: number };
+
+
+/**
+ * Gauge-specific property objects
+ * @category Property Objects
+ * @description Properties specific to gauge elements, including value configuration, angle settings, styling, and display options.
+ * @extends BasePropertyObject
+ */
+type GaugePropertyObject =
+  | BasePropertyObject
+  /** @property value - Current value (required) @example { value: 75 } */
+  | { value: number | string }
+  /** @property minValue - Minimum value @example { minValue: 0 } */
+  | { minValue: number }
+  /** @property maxValue - Maximum value @example { maxValue: 100 } */
+  | { maxValue: number }
+  /** @property startAngle - Start angle in degrees @example { startAngle: -90 } */
+  | { startAngle: number }
+  /** @property endAngle - End angle in degrees @example { endAngle: 270 } */
+  | { endAngle: number }
+  /** @property strokeWidth - Line thickness @example { strokeWidth: 8 } */
+  | { strokeWidth: number }
+  /** @property foregroundColor - Progress color @example { foregroundColor: "#007AFF" } */
+  | { foregroundColor: ColorString }
+  /** @property backgroundColor - Track color @example { backgroundColor: "#E5E5EA" } */
+  | { backgroundColor: ColorString }
+  /** @property showsCurrentValueLabel - Show value text @example { showsCurrentValueLabel: true } */
+  | { showsCurrentValueLabel: boolean };
+
+/**
+ * Spacer element for creating flexible spacing between elements
+ * @category Layout Elements
+ * @description A spacer element that creates flexible spacing with configurable minimum/maximum constraints and expansion priority.
+ * @example
+ * ```typescript
+ * const spacerElement: LayoutElementSpacer = {
+ *   id: "flex-spacer",
+ *   type: "spacer",
+ *   properties: [
+ *     { minLength: 8 },
+ *     { maxLength: 32 },
+ *     { priority: "medium" }
+ *   ]
+ * };
+ * ```
+ */
+export type LayoutElementSpacer = Prettify<{
+  /** Element type identifier */
+  type: 'spacer';
+  /** Spacer properties as array of property objects */
+  properties?: SpacerPropertyObject[];
+}>;
+
+/**
+ * Gauge element for displaying circular progress indicators
+ * @category Layout Elements
+ * @description A gauge element that displays circular progress with customizable angles, colors, and value display options.
+ * @example
+ * ```typescript
+ * const gaugeElement: LayoutElementGauge = {
+ *   id: "battery-gauge",
+ *   type: "gauge",
+ *   properties: [
+ *     { value: 75 },
+ *     { minValue: 0 },
+ *     { maxValue: 100 },
+ *     { startAngle: -90 },
+ *     { endAngle: 270 },
+ *     { strokeWidth: 8 },
+ *     { foregroundColor: "#30D158" },
+ *     { backgroundColor: "#2C2C2E" },
+ *     { showsCurrentValueLabel: true }
+ *   ]
+ * };
+ * ```
+ */
+export type LayoutElementGauge = Prettify<{
+  /** Element type identifier */
+  type: 'gauge';
+  /** Gauge properties as array of property objects */
+  properties: GaugePropertyObject[];
+}>;
 
 /**
  * Dynamic Island layout configuration for different states

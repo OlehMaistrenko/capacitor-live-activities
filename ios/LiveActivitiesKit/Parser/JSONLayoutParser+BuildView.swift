@@ -343,6 +343,16 @@ extension JSONLayoutParser {
                 buildContainerView(element, data)
                     .modifier(ViewModifierChain(element: element, data: data))
             )
+        case "spacer":
+            return AnyView(
+                buildSpacerView(element, data)
+                    .modifier(ViewModifierChain(element: element, data: data))
+            )
+        case "gauge":
+            return AnyView(
+                buildGaugeView(element, data)
+                    .modifier(ViewModifierChain(element: element, data: data))
+            )
         default:
             return AnyView(
                 EmptyView()
@@ -350,4 +360,5 @@ extension JSONLayoutParser {
             )
         }
     }
+    
 }

@@ -15,17 +15,49 @@
   </ion-header>
 
   <div class="content-container">
-    <!-- Header Info -->
-    <ion-card>
+    <!-- Main Card -->
+    <ion-card class="main-card">
       <ion-card-header>
-        <ion-card-title>Progress Element Examples</ion-card-title>
+        <ion-card-title class="card-title">
+          <span class="title-icon">📊</span>
+          Progress Elements Live Activity
+        </ion-card-title>
       </ion-card-header>
+
       <ion-card-content>
-        <p>
+        <p class="description">
           Explore progress bars, completion indicators, and various progress visualization options for Live Activities.
         </p>
+
+        <!-- Features -->
+        <div class="features">
+          <div class="feature">
+            <fa-icon icon="chart-bar" />
+            <div class="feature-info">
+              <strong>Progress Bars</strong>
+              <p>Linear progress indicators with customizable styling</p>
+            </div>
+          </div>
+
+          <div class="feature">
+            <fa-icon icon="check-circle" />
+            <div class="feature-info">
+              <strong>Completion States</strong>
+              <p>Visual feedback for task completion</p>
+            </div>
+          </div>
+
+          <div class="feature">
+            <fa-icon icon="clock" />
+            <div class="feature-info">
+              <strong>Real-time Updates</strong>
+              <p>Dynamic progress tracking with live updates</p>
+            </div>
+          </div>
+        </div>
+
         @if (currentActivityId) {
-        <ion-chip color="success">
+        <ion-chip color="success" style="margin-bottom: 16px">
           <ion-label>Active ID: {{ currentActivityId }}</ion-label>
         </ion-chip>
         }

@@ -1,2 +1,26 @@
-// For information on how to create your own theme, please see:
-// http://ionicframework.com/docs/theming/
+// Live Activities App - Design System
+// Primary brand colors
+:root {
+  --la-primary: #667eea;
+  --la-primary-light: #8b9afd;
+  --la-primary-dark: #4c63d2;
+  --la-accent: #764ba2;
+  --la-gradient: linear-gradient(135deg, var(--la-primary) 0%, var(--la-accent) 100%);
+
+  // Card styling
+  --la-card-radius: 16px;
+  --la-card-shadow: 0 8px 32px rgba(102, 126, 234, 0.15);
+  --la-card-shadow-hover: 0 12px 40px rgba(102, 126, 234, 0.2);
+
+  // Spacing
+  --la-spacing-xs: 8px;
+  --la-spacing-sm: 12px;
+  --la-spacing-md: 16px;
+  --la-spacing-lg: 24px;
+  --la-spacing-xl: 32px;
+
+  // Typography
+  --la-font-weight-medium: 500;
+  --la-font-weight-semibold: 600;
+  --la-font-weight-bold: 700;
+}

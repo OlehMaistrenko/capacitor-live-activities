@@ -56,4 +56,9 @@ export const routes: Routes = [
     path: 'crypto-tracker',
     loadComponent: () => import('./examples/crypto-tracker/crypto-tracker.page').then((m) => m.CryptoTrackerPage),
   },
+  {
+    path: 'layout-elements-examples',
+    loadComponent: () =>
+      import('./examples/layout-elements-examples/layout-elements-examples.page').then((m) => m.LayoutElementsExamplesPage),
+  },
 ];

@@ -3,55 +3,56 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Container Examples</ion-title>
+    <ion-title>Layout Elements</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Container Examples</ion-title>
+      <ion-title size="large">Layout Elements</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <div class="content-container">
     <!-- Main Card -->
-    <ion-card class="main-card">
+    <ion-card class="main-card layout-elements-gradient">
       <ion-card-header>
         <ion-card-title class="card-title">
-          <span class="title-icon">📦</span>
-          Container Layout Examples
+          <span class="title-icon">⚡</span>
+          Layout Elements Live Activity
         </ion-card-title>
       </ion-card-header>
 
       <ion-card-content>
         <p class="description">
-          Explore complex layouts using VStack, HStack, ZStack with gradients, borders, and nested containers.
+          Explore advanced layout elements including flexible spacers, visual dividers, and circular gauge components
+          for creating sophisticated Live Activity interfaces.
         </p>
 
         <!-- Features -->
         <div class="features">
           <div class="feature">
-            <fa-icon icon="border-all" />
+            <fa-icon icon="arrows-alt-v" color="success" />
             <div class="feature-info">
-              <strong>VStack & HStack</strong>
-              <p>Vertical and horizontal layout containers</p>
+              <strong>Flexible Spacers</strong>
+              <p>Adaptive spacing with priorities and constraints</p>
             </div>
           </div>
 
           <div class="feature">
-            <fa-icon icon="clone" />
+            <fa-icon icon="minus" color="medium" />
             <div class="feature-info">
-              <strong>ZStack</strong>
-              <p>Layered content with depth and positioning</p>
+              <strong>Visual Dividers</strong>
+              <p>Horizontal and vertical separation elements</p>
             </div>
           </div>
 
           <div class="feature">
-            <fa-icon icon="palette" />
+            <fa-icon icon="tachometer-alt" color="warning" />
             <div class="feature-info">
-              <strong>Styling</strong>
-              <p>Gradients, borders, and custom appearances</p>
+              <strong>Circular Gauges</strong>
+              <p>Progress indicators with customizable styling</p>
             </div>
           </div>
         </div>
@@ -64,48 +65,53 @@
       </ion-card-content>
     </ion-card>
 
-    <!-- Stack Layout Example -->
+    <!-- Spacer Elements Example -->
     <ion-card>
       <ion-card-header>
-        <ion-card-title>ZStack with Gradient Background</ion-card-title>
+        <ion-card-title>Spacer Elements</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <p>Demonstrates ZStack (overlay) layout with gradient background and content overlay using two containers.</p>
-        <ion-button expand="block" (click)="startStackLayoutExample()">
+        <p>
+          Demonstrates flexible spacer elements with different priorities, min/max length constraints, and adaptive
+          spacing in both vertical and horizontal layouts.
+        </p>
+        <ion-button expand="block" (click)="startSpacerExample()">
           <fa-icon icon="play-circle" slot="start" />
-          Start Stack Layout
+          Start Spacer Example
         </ion-button>
       </ion-card-content>
     </ion-card>
 
-    <!-- Complex Layout Example -->
+    <!-- Gauge Elements Example -->
     <ion-card>
       <ion-card-header>
-        <ion-card-title>Multi-Container Layout</ion-card-title>
+        <ion-card-title>Gauge Elements</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <p>
-          Complex layout combining VStack, HStack, and ZStack with gradient header, nested containers, and metric cards.
+          Demonstrates circular gauge components with customizable value ranges, start/end angles, stroke colors, and
+          optional value labels for progress visualization.
         </p>
-        <ion-button expand="block" (click)="startComplexLayoutExample()">
+        <ion-button expand="block" (click)="startGaugeExample()">
           <fa-icon icon="play-circle" slot="start" />
-          Start Complex Layout
+          Start Gauge Example
         </ion-button>
       </ion-card-content>
     </ion-card>
 
-    <!-- Dashboard Example -->
+    <!-- Combined Layout Example -->
     <ion-card>
       <ion-card-header>
-        <ion-card-title>Analytics Dashboard Grid</ion-card-title>
+        <ion-card-title>Combined Layout Elements</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <p>
-          Dashboard-style layout with header and three-column grid showing statistics with icons, values, and labels.
+          A comprehensive example combining spacers, dividers, and gauges in a system monitoring interface to
+          demonstrate advanced layout composition techniques.
         </p>
-        <ion-button expand="block" (click)="startDashboardExample()">
+        <ion-button expand="block" (click)="startCombinedLayoutExample()">
           <fa-icon icon="play-circle" slot="start" />
-          Start Dashboard Layout
+          Start Combined Example
         </ion-button>
       </ion-card-content>
     </ion-card>
@@ -130,47 +136,41 @@
       </ion-card-content>
     </ion-card>
 
-    <!-- Container Properties Reference -->
+    <!-- Layout Properties Reference -->
     <ion-card>
       <ion-card-header>
-        <ion-card-title>Container Properties Used</ion-card-title>
+        <ion-card-title>Layout Element Properties</ion-card-title>
       </ion-card-header>
       <ion-card-content>
         <ion-list>
           <ion-item>
             <ion-label>
-              <h3>Layout Directions</h3>
-              <p>vertical (VStack), horizontal (HStack), stack (ZStack)</p>
+              <h3>Spacer Properties</h3>
+              <p>minLength, maxLength, priority</p>
             </ion-label>
           </ion-item>
           <ion-item>
             <ion-label>
-              <h3>Spacing & Padding</h3>
-              <p>spacing - Between children, padding - Inside container</p>
+              <h3>Divider Properties</h3>
+              <p>orientation, color, thickness, marginTop/Bottom/Leading/Trailing</p>
             </ion-label>
           </ion-item>
           <ion-item>
             <ion-label>
-              <h3>Background Effects</h3>
-              <p>backgroundColor, backgroundGradient, cornerRadius, borderWidth</p>
+              <h3>Gauge Properties</h3>
+              <p>value, minValue, maxValue, startAngle, endAngle, strokeColor, strokeWidth</p>
             </ion-label>
           </ion-item>
           <ion-item>
             <ion-label>
-              <h3>Alignment Options</h3>
-              <p>insideAlignment - How children align within container</p>
+              <h3>Gauge Display Options</h3>
+              <p>showCurrentValueLabel, custom angle ranges (0-360°)</p>
             </ion-label>
           </ion-item>
           <ion-item>
             <ion-label>
-              <h3>Gradient Points</h3>
-              <p>top, bottom, leading, trailing, topLeading, bottomTrailing, center</p>
-            </ion-label>
-          </ion-item>
-          <ion-item>
-            <ion-label>
-              <h3>Common Patterns</h3>
-              <p>Cards, headers, grids, overlays, metric displays, dashboards</p>
+              <h3>Spacer Priority System</h3>
+              <p>Higher priority values take precedence in flexible layouts</p>
             </ion-label>
           </ion-item>
         </ion-list>

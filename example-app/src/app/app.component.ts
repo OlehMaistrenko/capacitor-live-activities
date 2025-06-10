@@ -73,6 +73,7 @@ export class AppComponent {
         { title: 'Segmented Progress', url: '/segmented-progress-examples', icon: 'chart-bar' },
         { title: 'Chart Examples', url: '/chart-examples', icon: 'chart-line' },
         { title: 'Container Examples', url: '/container-examples', icon: 'border-none' },
+        { title: 'Layout Elements', url: '/layout-elements-examples', icon: 'layer-group' },
       ],
     },
     {

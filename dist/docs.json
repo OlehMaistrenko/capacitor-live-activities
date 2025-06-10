@@ -353,7 +353,7 @@
       "docs": "Union type representing any layout element with a unique ID",
       "types": [
         {
-          "text": "Prettify<\n  | LayoutElementContainer\n  | LayoutElementText\n  | LayoutElementImage\n  | LayoutElementProgress\n  | LayoutElementTimer\n  | LayoutElementChart\n  | LayoutElementSegmentedProgress\n>",
+          "text": "Prettify<\n  | LayoutElementContainer\n  | LayoutElementText\n  | LayoutElementImage\n  | LayoutElementProgress\n  | LayoutElementTimer\n  | LayoutElementChart\n  | LayoutElementSegmentedProgress\n  | LayoutElementSpacer\n  | LayoutElementGauge\n>",
           "complexTypes": [
             "Prettify",
             "LayoutElementContainer",
@@ -362,7 +362,9 @@
             "LayoutElementProgress",
             "LayoutElementTimer",
             "LayoutElementChart",
-            "LayoutElementSegmentedProgress"
+            "LayoutElementSegmentedProgress",
+            "LayoutElementSpacer",
+            "LayoutElementGauge"
           ]
         }
       ]
@@ -1187,6 +1189,104 @@
         },
         {
           "text": "{ strokeWidth: number }",
+          "complexTypes": []
+        }
+      ]
+    },
+    {
+      "name": "LayoutElementSpacer",
+      "slug": "layoutelementspacer",
+      "docs": "Spacer element for creating flexible spacing between elements",
+      "types": [
+        {
+          "text": "Prettify<{\n  /** Element type identifier */\n  type: 'spacer';\n  /** Spacer properties as array of property objects */\n  properties?: SpacerPropertyObject[];\n}>",
+          "complexTypes": [
+            "Prettify",
+            "SpacerPropertyObject"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "SpacerPropertyObject",
+      "slug": "spacerpropertyobject",
+      "docs": "Spacer-specific property objects",
+      "types": [
+        {
+          "text": "BasePropertyObject",
+          "complexTypes": [
+            "BasePropertyObject"
+          ]
+        },
+        {
+          "text": "{ minLength: number }",
+          "complexTypes": []
+        }
+      ]
+    },
+    {
+      "name": "LayoutElementGauge",
+      "slug": "layoutelementgauge",
+      "docs": "Gauge element for displaying circular progress indicators",
+      "types": [
+        {
+          "text": "Prettify<{\n  /** Element type identifier */\n  type: 'gauge';\n  /** Gauge properties as array of property objects */\n  properties: GaugePropertyObject[];\n}>",
+          "complexTypes": [
+            "Prettify",
+            "GaugePropertyObject"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "GaugePropertyObject",
+      "slug": "gaugepropertyobject",
+      "docs": "Gauge-specific property objects",
+      "types": [
+        {
+          "text": "BasePropertyObject",
+          "complexTypes": [
+            "BasePropertyObject"
+          ]
+        },
+        {
+          "text": "{ value: number | string }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ minValue: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ maxValue: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ startAngle: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ endAngle: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ strokeWidth: number }",
+          "complexTypes": []
+        },
+        {
+          "text": "{ foregroundColor: ColorString }",
+          "complexTypes": [
+            "ColorString"
+          ]
+        },
+        {
+          "text": "{ backgroundColor: ColorString }",
+          "complexTypes": [
+            "ColorString"
+          ]
+        },
+        {
+          "text": "{ showsCurrentValueLabel: boolean }",
           "complexTypes": []
         }
       ]

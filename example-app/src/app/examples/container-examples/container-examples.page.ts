@@ -379,6 +379,7 @@ export class ContainerExamplesPage {
             { spacing: 14 },
             { padding: 18 },
             { backgroundColor: '#1a1a1a' },
+            { maxWidth: -1 },
             { cornerRadius: 14 },
           ],
           children: [

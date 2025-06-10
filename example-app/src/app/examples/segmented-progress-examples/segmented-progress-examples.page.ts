@@ -15,6 +15,7 @@ import {
   IonLabel,
   IonList,
   IonIcon,
+  IonChip,
 } from '@ionic/angular/standalone';
 import { LiveActivities, LiveActivitiesOptions } from 'capacitor-live-activities';
 import { LiveActivitiesService } from '../../services/live-activities.service';
@@ -39,6 +40,8 @@ import { FaIconComponent } from '@fortawesome/angular-fontawesome';
     IonCardContent,
     IonButton,
     FaIconComponent,
+    IonChip,
+    IonLabel,
   ],
 })
 export class SegmentedProgressExamplesPage {

@@ -82,6 +82,23 @@ extension JSONLayoutParser {
         }
     }
     
+    static func getBool(from value: Any?) -> Bool? {
+        switch value {
+        case let bool as Bool:
+            return bool
+        case let anyCodable as AnyCodable:
+            return getBool(from: anyCodable.value)
+        case let string as String:
+            return Bool(string)
+        case let int as Int:
+            return int != 0
+        case let double as Double:
+            return double != 0
+        default:
+            return nil
+        }
+    }
+    
     static func getGradientPoint(from value: String?) -> UnitPoint? {
         guard let value = value else { return nil }
         switch value {

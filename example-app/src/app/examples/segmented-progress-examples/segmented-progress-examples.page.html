@@ -19,7 +19,7 @@
     <ion-card class="main-card">
       <ion-card-header>
         <ion-card-title class="card-title">
-          <fa-icon icon="chart-line" class="title-icon" />
+          <span class="title-icon">📊</span>
           Segmented Progress Bar
         </ion-card-title>
       </ion-card-header>
@@ -33,46 +33,50 @@
         <!-- Features -->
         <div class="features">
           <div class="feature">
-            <fa-icon icon="border-all" color="primary" />
-            <span>Configurable segments</span>
+            <fa-icon icon="border-all" />
+            <div class="feature-info">
+              <strong>Configurable Segments</strong>
+              <p>Set any number of progress segments</p>
+            </div>
           </div>
+
           <div class="feature">
-            <fa-icon icon="paint-roller" color="primary" />
-            <span>Customizable colors</span>
+            <fa-icon icon="paint-roller" />
+            <div class="feature-info">
+              <strong>Customizable Colors</strong>
+              <p>Colors for filled and unfilled states</p>
+            </div>
           </div>
+
           <div class="feature">
-            <fa-icon icon="dot-circle" color="primary" />
-            <span>Solid or dashed stroke</span>
+            <fa-icon icon="dot-circle" />
+            <div class="feature-info">
+              <strong>Stroke Styles</strong>
+              <p>Solid or dashed outline options</p>
+            </div>
           </div>
+
           <div class="feature">
-            <fa-icon icon="up-right-and-down-left-from-center" color="primary" />
-            <span>Sizes and spacing</span>
+            <fa-icon icon="up-right-and-down-left-from-center" />
+            <div class="feature-info">
+              <strong>Sizing & Spacing</strong>
+              <p>Control height, spacing, and radius</p>
+            </div>
           </div>
         </div>
 
-        <!-- Configuration Preview -->
-        <div class="config-preview">
-          <h4>Demonstrated Configurations:</h4>
-          <ul>
-            <li><strong>Basic:</strong> 5 segments, default blue</li>
-            <li><strong>Dashed Stroke:</strong> 6 segments, orange with outline</li>
-            <li><strong>Custom Green:</strong> 4 segments, green with solid outline</li>
-            <li><strong>Compact:</strong> 10 segments, pink, reduced height</li>
-          </ul>
-        </div>
-
-        <!-- Controls -->
-        <div class="controls">
-          <ion-button
-            expand="block"
-            size="large"
-            (click)="startSegmentedProgressExample()"
-            [disabled]="currentActivityId !== null"
-          >
+        @if (currentActivityId) {
+        <ion-chip color="success" style="margin-bottom: 16px">
+          <ion-label>Active ID: {{ currentActivityId }}</ion-label>
+        </ion-chip>
+        } @else {
+        <div style="margin-top: 24px">
+          <ion-button expand="block" size="large" (click)="startSegmentedProgressExample()">
             <fa-icon icon="play-circle" slot="start" />
-            Start Example
+            Start Segmented Progress Example
           </ion-button>
         </div>
+        }
       </ion-card-content>
     </ion-card>
 
