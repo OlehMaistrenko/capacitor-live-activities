@@ -13,6 +13,7 @@ import LiveActivitiesKit
 struct LiveActivitiesBundle: WidgetBundle {
   var body: some Widget {
     LiveActivities()
+    DeliveryActivityWidget()
     DynamicActivityWidget()
   }
 }

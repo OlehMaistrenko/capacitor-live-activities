@@ -23,6 +23,7 @@
 		FC83EF492DF5C45F00AF09E1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC83EF442DF5C45F00AF09E1 /* Assets.xcassets */; };
 		FC83EF4B2DF5C45F00AF09E1 /* LiveActivities.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC83EF462DF5C45F00AF09E1 /* LiveActivities.swift */; };
 		FC83EF4C2DF5C45F00AF09E1 /* LiveActivitiesBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC83EF472DF5C45F00AF09E1 /* LiveActivitiesBundle.swift */; };
+		FC88471D2DF9CCCA000617C5 /* DeliveryActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC88471C2DF9CCCA000617C5 /* DeliveryActivity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		FC83EF472DF5C45F00AF09E1 /* LiveActivitiesBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivitiesBundle.swift; sourceTree = "<group>"; };
 		FC83EF4D2DF5C53200AF09E1 /* App.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = App.entitlements; sourceTree = "<group>"; };
 		FC83EF4E2DF5C57D00AF09E1 /* LiveActivitiesExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = LiveActivitiesExtension.entitlements; sourceTree = "<group>"; };
+		FC88471C2DF9CCCA000617C5 /* DeliveryActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryActivity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 				FC83EF442DF5C45F00AF09E1 /* Assets.xcassets */,
 				FC83EF452DF5C45F00AF09E1 /* Info.plist */,
 				FC83EF462DF5C45F00AF09E1 /* LiveActivities.swift */,
+				FC88471C2DF9CCCA000617C5 /* DeliveryActivity.swift */,
 				FC83EF472DF5C45F00AF09E1 /* LiveActivitiesBundle.swift */,
 			);
 			path = LiveActivities;
@@ -345,6 +348,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC88471D2DF9CCCA000617C5 /* DeliveryActivity.swift in Sources */,
 				FC83EF4B2DF5C45F00AF09E1 /* LiveActivities.swift in Sources */,
 				FC83EF4C2DF5C45F00AF09E1 /* LiveActivitiesBundle.swift in Sources */,
 			);
