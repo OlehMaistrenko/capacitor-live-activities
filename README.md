@@ -35,6 +35,26 @@
 - 📊 **Progress Tracking**: Visual progress bars and completion indicators
 - 🎯 **Multiple Examples**: Comprehensive examples including sports scoreboards and food delivery tracking
 
+## 🎯 JSON Layout System
+
+Create beautiful Live Activities using a declarative JSON structure:
+
+```typescript
+const result = await LiveActivities.startActivity({
+  layout: {
+    type: "container",
+    properties: [{ direction: "vertical" }, { spacing: 12 }],
+    children: [
+      {
+        type: "text",
+        properties: [{ text: "{{title}}" }, { fontSize: 18 }]
+      }
+    ]
+  },
+  data: { title: "Hello Live Activity!" }
+});
+```
+
 ## [🧑🏻‍🏫 Documentation & How-to](./docs/README.md)
 
 ## 🚀 Quick Start
@@ -176,13 +196,18 @@ await LiveActivities.endActivity({
 
 This plugin includes a comprehensive example app with multiple Live Activity implementations:
 
+### JSON Layout Examples
 - **Text Examples**: Typography, formatting, and styling
 - **Image Examples**: SF Symbols, sizing, and layouts  
 - **Timer Examples**: Countdown timers and time formatting
 - **Progress Examples**: Progress bars and completion tracking
 - **Container Examples**: Complex layouts with nested elements
+
+### Real-World Examples
 - **Football Scoreboard**: Complete sports scoreboard with Dynamic Island
 - **Food Order Tracking**: Real-world delivery tracking example
+- **Crypto Tracker**: Bitcoin price tracking with charts
+
 
 ### Run the Example App
 

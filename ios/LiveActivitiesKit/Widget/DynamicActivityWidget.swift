@@ -9,10 +9,8 @@ public struct DynamicActivityWidget: Widget {
     
     public var body: some WidgetConfiguration {
         ActivityConfiguration(for: DynamicActivityAttributes.self) { context in
-            // Recuperar layout do App Group se necessário
-            let layout = context.attributes.layoutJSON/*.isEmpty
-            ? SharedDataManager.shared.getLayoutData(for: context.attributes.activityId).layout ?? "{}"
-            : context.attributes.layoutJSON */
+            // Regular JSON layout activity
+            let layout = context.attributes.layoutJSON
             
             let behavior = JSONLayoutParser.parseJsonCompressedIfNeeded(from: context.attributes.behaviorJSON, as: BehaviorLayoutData.self) ?? BehaviorLayoutData(
                 keyLineTint: nil,
@@ -176,3 +174,5 @@ class DynamicIslandLayoutParser {
         }
     }
 }
+
+

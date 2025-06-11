@@ -203,7 +203,6 @@ public class LiveActivitiesPlugin: CAPPlugin, CAPBridgedPlugin {
         let staleTimestamp = call.getDouble("staleDate")
         let staleDate = staleTimestamp.map { Date(timeIntervalSince1970: $0 / 1000) } // JS timestamp em ms
         let relevanceScore = call.getDouble("relevanceScore") ?? 0
-        let behavior = call.getObject("behavior")
         
         var activityId: String
         
