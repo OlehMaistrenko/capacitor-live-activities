@@ -1,19 +1,19 @@
-# Troubleshooting Guide - Solução de Problemas
+# Troubleshooting Guide
 
-## 🚨 Problemas Comuns e Soluções
+## 🚨 Common Issues and Solutions
 
-### 1. Layout Não Aparece
+### 1. Layout Not Displayed
 
-#### ❌ **Problema**: Live Activity não é exibida
+#### ❌ **Issue**: Live Activity is not shown
 ```typescript
-// Layout não funciona
+// Layout not working
 const result = await LiveActivities.startActivity({
-  layout: undefined, // ❌ Layout vazio
+  layout: undefined, // ❌ Empty layout
   data: {}
 });
 ```
 
-#### ✅ **Solução**: Verificar estrutura básica
+#### ✅ **Solution**: Check basic structure
 ```typescript
 const result = await LiveActivities.startActivity({
   layout: {
@@ -34,50 +34,50 @@ const result = await LiveActivities.startActivity({
 });
 ```
 
-### 2. Propriedades Não Funcionam
+### 2. Properties Not Working
 
-#### ❌ **Problema**: Propriedades ignoradas
+#### ❌ **Issue**: Properties are ignored
 ```json
-// Propriedades incorretas
+// Incorrect properties
 {
   "type": "text",
   "properties": [
-    { "systeName": "heart.fill" },     // ❌ Propriedade de image em text
-    { "currentSegment": 2 },           // ❌ Propriedade que não existe
-    { "segmentSpacing": 4 }            // ❌ Nome incorreto
+    { "systeName": "heart.fill" },     // ❌ Image property in text
+    { "currentSegment": 2 },           // ❌ Non-existent property
+    { "segmentSpacing": 4 }            // ❌ Incorrect name
   ]
 }
 ```
 
-#### ✅ **Solução**: Usar propriedades corretas
+#### ✅ **Solution**: Use correct properties
 ```json
 {
   "type": "text",
   "properties": [
-    { "text": "Texto correto" },
+    { "text": "Correct text" },
     { "fontSize": 16 },
     { "color": "#FFFFFF" }
   ]
 }
 ```
 
-### 3. Dados Dinâmicos Não Substituem
+### 3. Dynamic Data Not Replacing
 
-#### ❌ **Problema**: Template variables não funcionam
+#### ❌ **Issue**: Template variables not working
 ```typescript
-// Dados não batem com template
+// Data mismatch with template
 const layout = {
   properties: [
-    { text: "{{userName}}" }  // Template espera userName
+    { text: "{{userName}}" }  // Template expects userName
   ]
 };
 
 const data = {
-  user: "João"  // ❌ Chave diferente
+  user: "John"  // ❌ Different key
 };
 ```
 
-#### ✅ **Solução**: Alinhar templates com dados
+#### ✅ **Solution**: Align templates with data
 ```typescript
 const layout = {
   properties: [
@@ -86,129 +86,129 @@ const layout = {
 };
 
 const data = {
-  userName: "João"  // ✅ Chave correta
+  userName: "John"  // ✅ Correct key
 };
 ```
 
-### 4. Segmented Progress Não Funciona
+### 4. Segmented Progress Not Working
 
-#### ❌ **Problema**: Propriedades incorretas
+#### ❌ **Issue**: Incorrect properties
 ```json
 {
-  "type": "segmentedProgress",  // ❌ Nome incorreto
+  "type": "segmentedProgress",  // ❌ Incorrect name
   "properties": [
-    { "currentSegment": 2 },    // ❌ Propriedade incorreta
-    { "completedColor": "#00FF00" }  // ❌ Nome incorreto
+    { "currentSegment": 2 },    // ❌ Incorrect property
+    { "completedColor": "#00FF00" }  // ❌ Incorrect name
   ]
 }
 ```
 
-#### ✅ **Solução**: Usar implementação correta
+#### ✅ **Solution**: Use correct implementation
 ```json
 {
-  "type": "segmented-progress",  // ✅ Nome correto
+  "type": "segmented-progress",  // ✅ Correct name
   "properties": [
     { "segments": 4 },
-    { "filled": 2 },             // ✅ Propriedade correta
-    { "filledColor": "#00FF00" }  // ✅ Nome correto
+    { "filled": 2 },             // ✅ Correct property
+    { "filledColor": "#00FF00" }  // ✅ Correct name
   ]
 }
 ```
 
-### 5. Charts Não Renderizam
+### 5. Charts Not Rendering
 
-#### ❌ **Problema**: Dados inválidos
+#### ❌ **Issue**: Invalid data
 ```json
 {
   "type": "chart",
   "properties": [
-    { "data": "abc,def,ghi" },  // ❌ Dados não numéricos
-    { "type": "pie" }           // ❌ Tipo não suportado
+    { "data": "abc,def,ghi" },  // ❌ Non-numeric data
+    { "type": "pie" }           // ❌ Unsupported type
   ]
 }
 ```
 
-#### ✅ **Solução**: Dados e tipos corretos
+#### ✅ **Solution**: Correct data and types
 ```json
 {
   "type": "chart",
   "properties": [
-    { "data": "10,20,15,25" },  // ✅ Dados numéricos
-    { "type": "line" }          // ✅ Tipo suportado: line|area|bar
+    { "data": "10,20,15,25" },  // ✅ Numeric data
+    { "type": "line" }          // ✅ Supported type: line|area|bar
   ]
 }
 ```
 
-### 6. Imagens Não Carregam
+### 6. Images Not Loading
 
-#### ❌ **Problema**: Propriedades conflitantes
+#### ❌ **Issue**: Conflicting properties
 ```json
 {
   "type": "image",
   "properties": [
-    { "systeName": "heart.fill" },    // ❌ Nome incorreto
-    { "url": "https://..." },         // ❌ Múltiplas fontes
-    { "bundlePath": "icon.png" }      // ❌ Nome incorreto
+    { "systeName": "heart.fill" },    // ❌ Incorrect name
+    { "url": "https://..." },         // ❌ Multiple sources
+    { "bundlePath": "icon.png" }      // ❌ Incorrect name
   ]
 }
 ```
 
-#### ✅ **Solução**: Uma fonte por vez
+#### ✅ **Solution**: Use one source at a time
 ```json
-// Para SF Symbols:
+// For SF Symbols:
 {
   "type": "image",
   "properties": [
-    { "systemName": "heart.fill" },   // ✅ Nome correto
+    { "systemName": "heart.fill" },   // ✅ Correct name
     { "color": "#FF0000" }
   ]
 }
 
-// Para assets:
+// For assets:
 {
   "type": "image", 
   "properties": [
-    { "asset": "icon.png" }           // ✅ Nome correto
+    { "asset": "icon.png" }           // ✅ Correct name
   ]
 }
 ```
 
 ## 🔍 Debugging Checklist
 
-### Verificação Básica
+### Basic Verification
 
-- [ ] **Layout tem ID único** para cada elemento
-- [ ] **Tipo de elemento** está correto (`text`, `image`, `container`, etc.)
-- [ ] **Propriedades são arrays** de objetos `[{ key: value }]`
-- [ ] **Template variables** batem com dados fornecidos
-- [ ] **Tipos de dados** estão corretos (Number, String, Boolean)
+- [ ] **Layout has unique ID** for each element
+- [ ] **Element type** is correct (`text`, `image`, `container`, etc.)
+- [ ] **Properties are arrays** of objects `[{ key: value }]`
+- [ ] **Template variables** match provided data
+- [ ] **Data types** are correct (Number, String, Boolean)
 
-### Verificação de Sintaxe
+### Syntax Verification
 
 ```typescript
-// ✅ Estrutura correta
+// ✅ Correct structure
 {
-  "type": "text",                 // String obrigatório  
-  "properties": [                 // Array obrigatório
-    { "text": "Hello" },          // Objetos com 1 propriedade
+  "type": "text",                 // Required string  
+  "properties": [                 // Required array
+    { "text": "Hello" },          // Objects with 1 property
     { "fontSize": 16 }
   ],
-  "children": []                  // Array (opcional, apenas containers)
+  "children": []                  // Array (optional, only for containers)
 }
 ```
 
-### Verificação de Performance
+### Performance Verification
 
-- [ ] **Charts**: Máximo 15 pontos de dados
-- [ ] **Segmented Progress**: Máximo 10 segmentos  
-- [ ] **Imagens**: URLs são otimizadas/acessíveis
-- [ ] **Updates**: Não mais que 1 por segundo
-- [ ] **Nesting**: Máximo 4 níveis de containers
+- [ ] **Charts**: Maximum 15 data points
+- [ ] **Segmented Progress**: Maximum 10 segments  
+- [ ] **Images**: URLs are optimized/accessible
+- [ ] **Updates**: No more than 1 per second
+- [ ] **Nesting**: Maximum 4 levels of containers
 
-## 📋 Nomenclatura Correta
+## 📋 Correct Naming
 
-### Elementos
-| ✅ Correto | ❌ Incorreto |
+### Elements
+| ✅ Correct | ❌ Incorrect |
 |------------|--------------|
 | `text` | `label`, `textView` |
 | `image` | `icon`, `picture` |
@@ -218,27 +218,27 @@ const data = {
 | `chart` | `graph`, `plot` |
 | `segmented-progress` | `segmentedProgress` |
 
-### Propriedades de Image
-| ✅ Correto | ❌ Incorreto |
+### Image Properties
+| ✅ Correct | ❌ Incorrect |
 |------------|--------------|
 | `systemName` | `systeName`, `sfSymbol` |
 | `asset` | `bundlePath`, `imageName` |
 | `width` | `imageWidth`, `size` |
 | `height` | `imageHeight`, `size` |
 
-### Propriedades de Segmented Progress
-| ✅ Correto | ❌ Incorreto |
+### Segmented Progress Properties
+| ✅ Correct | ❌ Incorrect |
 |------------|--------------|
 | `filled` | `currentSegment`, `completed` |
 | `filledColor` | `completedColor`, `activeColor` |
 | `unfilledColor` | `pendingColor`, `inactiveColor` |
 | `spacing` | `segmentSpacing`, `gap` |
 
-## 🛠️ Ferramentas de Debug
+## 🛠️ Debugging Tools
 
 ### 1. Console Logs
 ```typescript
-// Verificar dados antes de enviar
+// Check data before sending
 console.log('Layout:', JSON.stringify(layout, null, 2));
 console.log('Data:', JSON.stringify(data, null, 2));
 
@@ -250,7 +250,7 @@ const result = await LiveActivities.startActivity({
 console.log('Result:', result);
 ```
 
-### 2. Validação de Template Variables
+### 2. Template Variables Validation
 ```typescript
 function validateTemplateVariables(layout: any, data: any) {
   const layoutString = JSON.stringify(layout);
@@ -265,7 +265,7 @@ function validateTemplateVariables(layout: any, data: any) {
 }
 ```
 
-### 3. Estrutura de Layout Validator
+### 3. Layout Structure Validator
 ```typescript
 function validateLayout(element: any): boolean {
   if (!element.id || !element.type) {
@@ -287,47 +287,47 @@ function validateLayout(element: any): boolean {
 }
 ```
 
-## 🚑 Soluções para Erros Específicos
+## 🚑 Specific Error Solutions
 
 ### "Activity failed to start"
-1. Verificar permissões iOS (Settings > Live Activities)
-2. Confirmar iOS 16.2+ 
-3. Verificar estrutura do layout
-4. Testar com layout simples primeiro
+1. Check iOS permissions (Settings > Live Activities)
+2. Confirm iOS 16.2+ 
+3. Verify layout structure
+4. Test with a simple layout first
 
 ### "Template variables not replaced"
-1. Verificar ortografia das chaves
-2. Confirmar tipos de dados
-3. Testar com dados estáticos primeiro
-4. Verificar se data object não está vazio
+1. Check key spelling
+2. Confirm data types
+3. Test with static data first
+4. Ensure data object is not empty
 
 ### "Properties ignored"
-1. Consultar [Universal Properties](./universal-properties.md)
-2. Verificar nomenclatura específica do elemento
-3. Confirmar tipo de valor (String, Number, Boolean)
-4. Testar propriedade isoladamente
+1. Refer to [Universal Properties](./universal-properties.md)
+2. Verify element-specific naming
+3. Confirm value type (String, Number, Boolean)
+4. Test property in isolation
 
 ### "Images not loading"
-1. Para SF Symbols: usar `systemName` correto
-2. Para URLs: verificar conectividade e HTTPS
-3. Para assets: confirmar arquivo no bundle
-4. Verificar dimensões razoáveis (não muito grandes)
+1. For SF Symbols: use correct `systemName`
+2. For URLs: check connectivity and HTTPS
+3. For assets: confirm file in bundle
+4. Verify reasonable dimensions (not too large)
 
 ### "Performance issues"
-1. Reduzir número de elementos
-2. Limitar dados de charts
-3. Otimizar imagens
-4. Evitar updates muito frequentes
-5. Simplificar hierarquia de containers
+1. Reduce number of elements
+2. Limit chart data
+3. Optimize images
+4. Avoid frequent updates
+5. Simplify container hierarchy
 
-## 🔗 Links Úteis
+## 🔗 Useful Links
 
-- [Universal Properties](./universal-properties.md) - Propriedades aplicáveis a todos elementos
-- [Quick Reference](./quick-reference.md) - Sintaxe rápida
-- [JSON Layout Guide](./json-layout-guide.md) - Guia completo
-- [Chart Examples](./chart-examples.md) - Troubleshooting específico de charts
-- [Segmented Progress](./segmented-progress-examples.md) - Propriedades corretas
+- [Universal Properties](./universal-properties.md) - Properties applicable to all elements
+- [Quick Reference](./quick-reference.md) - Quick syntax guide
+- [JSON Layout Guide](./json-layout-guide.md) - Complete guide
+- [Chart Examples](./chart-examples.md) - Chart-specific troubleshooting
+- [Segmented Progress](./segmented-progress-examples.md) - Correct properties
 
 ---
 
-💡 **Dica**: Sempre teste com layouts simples primeiro e adicione complexidade gradualmente!
+💡 **Tip**: Always test with simple layouts first and gradually add complexity!
