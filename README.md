@@ -75,15 +75,18 @@ npx cap sync
    - **Product Name:** `LiveActivities` (exactly as shown)
    - **Uncheck all options:** `Include Live Activity`, `Include Control`, `Include Configuration App Intent`
    - Click "Finish"
+   - Choose `Don't Activate` when prompted
 
-<img src="example-app/src/assets/target-1.png" width="400" />  
-<img src="example-app/src/assets/target-2.png" width="400" />  
+<img src="docs/assets/target-1.png" width="400" />  
+<img src="docs/assets/target-2.png" width="400" />  
+<img src="docs/assets/target-3.png" />  
+<img src="docs/assets/target-4.png" />  
 
-3. **Convert to Folder:**
+3. **Convert to Group:**
    - Right-click on `LiveActivities` folder in Xcode
-   - Select "Convert to Folder"
+   - Select "Convert to Group"
 
-<img src="example-app/src/assets/convert-target.png" width="400" />
+<img src="docs/assets/convert-target.png" width="400" />
 
 ### 3. Configure Podfile
 
@@ -131,10 +134,12 @@ struct LiveActivitiesBundle: WidgetBundle {
    - Example: `group.com.example.myapp.liveactivities`
 5. **Repeat for Widget Extension target**
 
-<img src="example-app/src/assets/capability-1.png" width="400" />  
-<img src="example-app/src/assets/capability-2.png" width="400" />  
+<img src="docs/assets/capability-1.png" width="400" />  
+<img src="docs/assets/capability-2.png" width="400" />  
 
 ### 7. Basic Usage
+
+<img src="docs/assets/example.png" width="400" />  
 
 ```typescript
 import { LiveActivities } from 'capacitor-live-activities';
@@ -142,37 +147,68 @@ import { LiveActivities } from 'capacitor-live-activities';
 // Start a Live Activity
 const result = await LiveActivities.startActivity({
   layout: {
-    id: "main",
-    type: "container",
+    type: 'container',
     properties: [
-      { direction: "vertical" },
+      { direction: 'vertical' },
       { spacing: 12 },
       { padding: 16 },
-      { backgroundColor: "#ffffff" },
-      { cornerRadius: 12 }
+      { backgroundColor: '#ffffff' },
+      { cornerRadius: 12 },
     ],
     children: [
       {
-        id: "title",
-        type: "text",
+        type: 'text',
         properties: [
-          { text: "{{title}}" },
+          { text: '{{title}}' },
           { fontSize: 18 },
-          { fontWeight: "bold" },
-          { color: "#1a1a1a" },
-          { alignment: "center" }
-        ]
-      }
-    ]
+          { fontWeight: 'bold' },
+          { color: '#1a1a1a' },
+          { alignment: 'center' },
+        ],
+      },
+    ],
+  },
+  dynamicIslandLayout: {
+    expanded: {
+      leading: {
+        type: 'text',
+        properties: [{ text: 'Left' }],
+      },
+      center: {
+        type: 'text',
+        properties: [{ text: 'Center' }],
+      },
+      trailing: {
+        type: 'text',
+        properties: [{ text: 'Right' }],
+      },
+
+      bottom: {
+        type: 'text',
+        properties: [{ text: '{{title}}' }],
+      },
+    },
+    compactLeading: {
+      type: 'image',
+      properties: [{ systemName: 'face.smiling' }],
+    },
+    compactTrailing: {
+      type: 'image',
+      properties: [{ systemName: 'figure.walk.diamond.fill' }],
+    },
+    minimal: {
+      type: 'text',
+      properties: [{ text: 'Hi!' }],
+    },
   },
   data: {
-    title: "Hello Live Activity!"
+    title: 'Hello Live Activity!',
   },
   behavior: {
-    systemActionForegroundColor: "#007AFF",
-    widgetUrl: "https://example.com",
-    keyLineTint: "#007AFF"
-  }
+    systemActionForegroundColor: '#007AFF',
+    widgetUrl: 'https://example.com',
+    keyLineTint: '#007AFF',
+  },
 });
 
 // Update the activity
