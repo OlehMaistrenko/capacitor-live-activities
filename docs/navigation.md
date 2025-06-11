@@ -82,13 +82,13 @@
 ### **I Need...**
 
 **🎨 To customize colors**
-→ [Quick Reference - iOS Common Colors](./quick-reference.md#🎨-cores-comuns-ios)
+→ [Quick Reference - iOS Common Colors](./quick-reference.md#-common-ios-colors)
 
 **📐 Recommended dimensions**
-→ [Quick Reference - Dimensions](./quick-reference.md#📏-dimensões-recomendadas)
+→ [Quick Reference - Dimensions](./quick-reference.md#-recommended-dimensions)
 
 **🔧 SF Symbols**
-→ [Quick Reference - Symbols](./quick-reference.md#🔧-sf-symbols-populares)
+→ [Quick Reference - Symbols](./quick-reference.md#-popular-sf-symbols)
 
 **📊 To create charts**
 → [Chart Examples](./chart-examples.md)
