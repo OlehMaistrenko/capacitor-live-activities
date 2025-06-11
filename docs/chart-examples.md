@@ -218,6 +218,9 @@ const data = {
       }
     ]
   },
+  "dynamicIslandLayout": {
+    ...
+  },
   "data": {
     "cpuPercentage": 67,
     "cpuColor": "#FF9500",

@@ -8,19 +8,32 @@ The Capacitor Live Activities JSON layout system allows you to create complex an
 
 ### Anatomy of a Layout
 
-Each JSON layout has three main components:
+Each JSON layout has four main components:
 
 ```typescript
 {
   layout: {
     // Definition of the visual structure
   },
-  data: {
-    // Dynamic data for substitution
+  dynamicIslandLayout: {
+    // Expanded state layout for Dynamic Island      
+    expanded: {
+      leading: { /* Leading region content */ },
+      trailing: { /* Trailing region content */ },
+      center: { /* Center region content */ },
+      bottom: { /* Bottom region content */ }
+    },
+    compactLeading: { /* Compact leading content */ },
+    compactTrailing: { /* Compact trailing content */ },
+    minimal: { /* Minimal state content */ }
   },
-  behavior: {
-    // Behaviors and actions of the Live Activity
-  }
+  // Dynamic Island configuration
+},
+behavior: {
+  // Behaviors and actions of the Live Activity
+},
+data: {
+  // Dynamic data for substitution
 }
 ```
 

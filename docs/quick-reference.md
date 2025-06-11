@@ -11,6 +11,9 @@
     ],
     children: [] // only for containers
   },
+  dynamicIslandLayout: {
+    // Dynamic Island configuration
+  },
   data: {
     variableName: "value"
   },

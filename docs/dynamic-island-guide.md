@@ -151,6 +151,162 @@ dynamicIslandLayout: {
 }
 ```
 
+### Card & Metric Dynamic Island
+
+This example combines the **Simple Card**, **Header with Action**, and **Metric with Chart** patterns from the quick reference to build a full Dynamic Island layout.
+
+```typescript
+dynamicIslandLayout: {
+  expanded: {
+    leading: {
+      type: "container",
+      properties: [{ direction: "horizontal" }, { spacing: 8 }],
+      children: [
+        {
+          type: "image",
+          properties: [
+            { systemName: "checkmark.circle.fill" },
+            { width: 20 },
+            { color: "#34C759" }
+          ]
+        },
+        {
+          type: "text",
+          properties: [
+            { text: "{{title}}" },
+            { fontSize: 14 },
+            { fontWeight: "semibold" },
+            { color: "#FFFFFF" }
+          ]
+        }
+      ]
+    },
+    trailing: {
+      type: "container",
+      properties: [{ direction: "horizontal" }, { spacing: 8 }],
+      children: [
+        {
+          type: "text",
+          properties: [
+            { text: "{{metricValue}}" },
+            { fontSize: 14 },
+            { fontWeight: "bold" },
+            { color: "#FFFFFF" }
+          ]
+        },
+        {
+          type: "chart",
+          properties: [
+            { type: "area" },
+            { data: "{{chartData}}" },
+            { width: 60 },
+            { height: 20 },
+            { color: "#34C759" },
+            { smooth: true }
+          ]
+        }
+      ]
+    },
+    center: {
+      type: "container",
+      properties: [{ direction: "horizontal" }, { spacing: 12 }, { insideAlignment: "center" }],
+      children: [
+        {
+          type: "image",
+          properties: [
+            { systemName: "{{appIcon}}" },
+            { width: 20 },
+            { color: "#007AFF" }
+          ]
+        },
+        {
+          type: "text",
+          properties: [
+            { text: "{{status}}" },
+            { fontSize: 12 },
+            { color: "#8E8E93" }
+          ]
+        }
+      ]
+    },
+    bottom: {
+      type: "container",
+      properties: [
+        { direction: "horizontal" },
+        { spacing: 12 },
+        { padding: 16 },
+        { backgroundColor: "#1C1C1E" },
+        { cornerRadius: 12 }
+      ],
+      children: [
+        {
+          type: "image",
+          properties: [
+            { systemName: "checkmark.circle.fill" },
+            { width: 24 },
+            { color: "#34C759" }
+          ]
+        },
+        {
+          type: "container",
+          properties: [{ direction: "vertical" }, { spacing: 4 }],
+          children: [
+            {
+              type: "text",
+              properties: [
+                { text: "{{title}}" },
+                { fontSize: 16 },
+                { fontWeight: "semibold" },
+                { color: "#FFFFFF" }
+              ]
+            },
+            {
+              type: "text",
+              properties: [
+                { text: "{{subtitle}}" },
+                { fontSize: 14 },
+                { color: "#8E8E93" }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  compactLeading: {
+    element: {
+      type: "image",
+      properties: [
+        { systemName: "checkmark.circle.fill" },
+        { width: 16 },
+        { color: "#34C759" }
+      ]
+    }
+  },
+  compactTrailing: {
+    element: {
+      type: "text",
+      properties: [
+        { text: "{{metricValue}}" },
+        { fontSize: 12 },
+        { fontWeight: "bold" },
+        { color: "#FFFFFF" }
+      ]
+    }
+  },
+  minimal: {
+    element: {
+      type: "image",
+      properties: [
+        { systemName: "checkmark.circle.fill" },
+        { width: 12 },
+        { color: "#34C759" }
+      ]
+    }
+  }
+}
+```
+
 ### Multi-Value Dynamic Island
 
 ```typescript
