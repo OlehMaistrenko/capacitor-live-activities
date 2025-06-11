@@ -75,7 +75,7 @@ The `image` element supports SF Symbols, URLs, and assets.
 {
   "type": "image",
   "properties": [
-    { "systeName": "star.fill" },
+    { "systemName": "star.fill" },
     { "color": "#FFD700" },
     { "width": 24 },
     { "height": 24 }
@@ -87,7 +87,7 @@ The `image` element supports SF Symbols, URLs, and assets.
 
 | Property | Type | Description | Example |
 |-------------|------|-----------|---------|
-| `systeName` | String | SF Symbol name | `"heart.fill"` |
+| `systemName` | String | SF Symbol name | `"heart.fill"` |
 | `url` | String | Image URL | `"https://example.com/image.png"` |
 | `base64` | String | Base64 image | `"data:image/png;base64,..."` |
 | `bundlePath` | String | Path in bundle | `"icon.png"` |
@@ -255,7 +255,7 @@ const data = {
       {
         "type": "image",
         "properties": [
-          { "systeName": "checkmark.circle.fill" },
+          { "systemName": "checkmark.circle.fill" },
           { "width": 24 },
           { "height": 24 },
           { "color": "#34C759" }
@@ -320,7 +320,7 @@ const data = {
           {
             "type": "image",
             "properties": [
-              { "systeName": "app.fill" },
+              { "systemName": "app.fill" },
               { "width": 20 },
               { "height": 20 },
               { "color": "#007AFF" }
@@ -540,7 +540,7 @@ Top-left area, ideal for branding or status icons:
       {
         "type": "image",
         "properties": [
-          { "systeName": "heart.fill" },
+          { "systemName": "heart.fill" },
           { "color": "#FF3B30" },
           { "width": 20 },
           { "height": 20 }
@@ -656,7 +656,7 @@ Small icon on the left side when Dynamic Island is compact:
     "element": {
       "type": "image",
       "properties": [
-        { "systeName": "heart.fill" },
+        { "systemName": "heart.fill" },
         { "color": "#FF3B30" },
         { "width": 16 },
         { "height": 16 }
@@ -691,7 +691,7 @@ Small content on the right side:
         {
           "type": "image",
           "properties": [
-            { "systeName": "arrow.up" },
+            { "systemName": "arrow.up" },
             { "color": "#34C759" },
             { "width": 10 },
             { "height": 10 }
@@ -713,7 +713,7 @@ When multiple Live Activities are active, only the minimal state is shown:
     "element": {
       "type": "image",
       "properties": [
-        { "systeName": "heart.fill" },
+        { "systemName": "heart.fill" },
         { "color": "#FF3B30" },
         { "width": 12 },
         { "height": 12 }
@@ -755,7 +755,7 @@ Here's a complete example showing a workout tracker with all Dynamic Island stat
           {
             type: "image",
             properties: [
-              { systeName: "figure.strengthtraining.traditional" },
+              { systemName: "figure.strengthtraining.traditional" },
               { color: "#FF6B35" },
               { width: 20 },
               { height: 20 }
@@ -821,7 +821,7 @@ Here's a complete example showing a workout tracker with all Dynamic Island stat
       element: {
         type: "image",
         properties: [
-          { systeName: "figure.strengthtraining.traditional" },
+          { systemName: "figure.strengthtraining.traditional" },
           { color: "#FF6B35" },
           { width: 16 },
           { height: 16 }
@@ -843,7 +843,7 @@ Here's a complete example showing a workout tracker with all Dynamic Island stat
       element: {
         type: "image",
         properties: [
-          { systeName: "flame.fill" },
+          { systemName: "flame.fill" },
           { color: "#FF9500" },
           { width: 12 },
           { height: 12 }

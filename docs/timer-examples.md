@@ -108,7 +108,7 @@ const result = await LiveActivities.startActivity({
       {
         type: "image",
         properties: [
-          { systeName: "clock.fill" },
+          { systemName: "clock.fill" },
           { color: "#ffffff" },
           { width: 32 },
           { height: 32 }
@@ -195,7 +195,7 @@ const result = await LiveActivities.startActivity({
           {
             type: "image",
             properties: [
-              { systeName: "figure.run.circle.fill" },
+              { systemName: "figure.run.circle.fill" },
               { color: "#FF6B35" },
               { width: 40 },
               { height: 40 }
@@ -395,7 +395,7 @@ const result = await LiveActivities.startActivity({
           {
             type: "image",
             properties: [
-              { systeName: "video.fill" },
+              { systemName: "video.fill" },
               { color: "#ffffff" },
               { width: 20 },
               { height: 20 }
@@ -424,7 +424,7 @@ const result = await LiveActivities.startActivity({
           {
             type: "image",
             properties: [
-              { systeName: "clock" },
+              { systemName: "clock" },
               { color: "#ffffff" },
               { width: 16 },
               { height: 16 }
@@ -445,7 +445,7 @@ const result = await LiveActivities.startActivity({
           {
             type: "image",
             properties: [
-              { systeName: "circle.fill" },
+              { systemName: "circle.fill" },
               { color: "#30D158" },
               { width: 8 },
               { height: 8 }

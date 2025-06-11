@@ -44,7 +44,7 @@ const result = await LiveActivities.startActivity({
           {
             type: "image",
             properties: [
-              { systeName: "fork.knife.circle.fill" },
+              { systemName: "fork.knife.circle.fill" },
               { color: "#FF6B35" },
               { width: 32 },
               { height: 32 }
@@ -90,7 +90,7 @@ const result = await LiveActivities.startActivity({
               {
                 type: "image",
                 properties: [
-                  { systeName: "{{statusIcon}}" },
+                  { systemName: "{{statusIcon}}" },
                   { color: "#ffffff" },
                   { width: 12 },
                   { height: 12 }
@@ -162,7 +162,7 @@ const result = await LiveActivities.startActivity({
                   {
                     type: "image",
                     properties: [
-                      { systeName: "checkmark.circle.fill" },
+                      { systemName: "checkmark.circle.fill" },
                       { color: "#34C759" },
                       { width: 16 },
                       { height: 16 }
@@ -190,7 +190,7 @@ const result = await LiveActivities.startActivity({
                   {
                     type: "image",
                     properties: [
-                      { systeName: "{{stage2Icon}}" },
+                      { systemName: "{{stage2Icon}}" },
                       { color: "{{stage2Color}}" },
                       { width: 16 },
                       { height: 16 }
@@ -218,7 +218,7 @@ const result = await LiveActivities.startActivity({
                   {
                     type: "image",
                     properties: [
-                      { systeName: "{{stage3Icon}}" },
+                      { systemName: "{{stage3Icon}}" },
                       { color: "{{stage3Color}}" },
                       { width: 16 },
                       { height: 16 }
@@ -246,7 +246,7 @@ const result = await LiveActivities.startActivity({
                   {
                     type: "image",
                     properties: [
-                      { systeName: "{{stage4Icon}}" },
+                      { systemName: "{{stage4Icon}}" },
                       { color: "{{stage4Color}}" },
                       { width: 16 },
                       { height: 16 }
@@ -286,7 +286,7 @@ const result = await LiveActivities.startActivity({
               {
                 type: "image",
                 properties: [
-                  { systeName: "clock" },
+                  { systemName: "clock" },
                   { color: "#666666" },
                   { width: 14 },
                   { height: 14 }
@@ -358,7 +358,7 @@ dynamicIslandLayout: {
         {
           type: "image",
           properties: [
-            { systeName: "fork.knife.circle.fill" },
+            { systemName: "fork.knife.circle.fill" },
             { color: "#FF6B35" },
             { width: 20 },
             { height: 20 }
@@ -386,7 +386,7 @@ dynamicIslandLayout: {
         {
           type: "image",
           properties: [
-            { systeName: "clock" },
+            { systemName: "clock" },
             { color: "#ffffff" },
             { width: 16 },
             { height: 16 }
@@ -419,7 +419,7 @@ dynamicIslandLayout: {
     element: {
       type: "image",
       properties: [
-        { systeName: "fork.knife.circle.fill" },
+        { systemName: "fork.knife.circle.fill" },
         { color: "#FF6B35" },
         { width: 16 },
         { height: 16 }
@@ -441,7 +441,7 @@ dynamicIslandLayout: {
     element: {
       type: "image",
       properties: [
-        { systeName: "fork.knife.circle.fill" },
+        { systemName: "fork.knife.circle.fill" },
         { color: "#FF6B35" },
         { width: 16 },
         { height: 16 }

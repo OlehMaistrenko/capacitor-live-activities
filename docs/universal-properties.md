@@ -247,7 +247,7 @@ The system supports named colors in addition to hexadecimal values:
 {
   "type": "image",
   "properties": [
-    { "systemName": "heart.fill" },  // Not systeName
+    { "systemName": "heart.fill" }, 
     { "asset": "icon.png" }          // Not bundlePath
   ]
 }

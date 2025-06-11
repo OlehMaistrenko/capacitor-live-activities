@@ -530,7 +530,7 @@ const result = await LiveActivities.startActivity({
       {
         type: "image",
         properties: [
-          { systeName: "arrow.up.circle.fill" },
+          { systemName: "arrow.up.circle.fill" },
           { color: "#3498DB" },
           { width: 40 },
           { height: 40 }
@@ -645,7 +645,7 @@ const result = await LiveActivities.startActivity({
           {
             type: "image",
             properties: [
-              { systeName: "battery.75" },
+              { systemName: "battery.75" },
               { color: "#30D158" },
               { width: 28 },
               { height: 28 }
@@ -703,7 +703,7 @@ const result = await LiveActivities.startActivity({
           {
             type: "image",
             properties: [
-              { systeName: "bolt.fill" },
+              { systemName: "bolt.fill" },
               { color: "#FFCC02" },
               { width: 12 },
               { height: 12 }

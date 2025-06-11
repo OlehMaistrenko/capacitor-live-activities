@@ -33,7 +33,7 @@ const result = await LiveActivities.startActivity({
       {
         type: "image",
         properties: [
-          { systeName: "photo.circle.fill" },
+          { systemName: "photo.circle.fill" },
           { color: "#34C759" },
           { width: 40 },
           { height: 40 }
@@ -126,7 +126,7 @@ const result = await LiveActivities.startActivity({
           {
             type: "image",
             properties: [
-              { systeName: "heart.fill" },
+              { systemName: "heart.fill" },
               { color: "#FF3B30" },
               { width: 32 },
               { height: 32 }
@@ -135,7 +135,7 @@ const result = await LiveActivities.startActivity({
           {
             type: "image",
             properties: [
-              { systeName: "star.fill" },
+              { systemName: "star.fill" },
               { color: "#FF9500" },
               { width: 32 },
               { height: 32 }
@@ -144,7 +144,7 @@ const result = await LiveActivities.startActivity({
           {
             type: "image",
             properties: [
-              { systeName: "checkmark.circle.fill" },
+              { systemName: "checkmark.circle.fill" },
               { color: "#34C759" },
               { width: 32 },
               { height: 32 }
@@ -224,7 +224,7 @@ const result = await LiveActivities.startActivity({
           {
             type: "image",
             properties: [
-              { systeName: "circle.fill" },
+              { systemName: "circle.fill" },
               { color: "#007AFF" },
               { width: 16 },
               { height: 16 }
@@ -233,7 +233,7 @@ const result = await LiveActivities.startActivity({
           {
             type: "image",
             properties: [
-              { systeName: "circle.fill" },
+              { systemName: "circle.fill" },
               { color: "#007AFF" },
               { width: 24 },
               { height: 24 }
@@ -242,7 +242,7 @@ const result = await LiveActivities.startActivity({
           {
             type: "image",
             properties: [
-              { systeName: "circle.fill" },
+              { systemName: "circle.fill" },
               { color: "#007AFF" },
               { width: 32 },
               { height: 32 }
@@ -251,7 +251,7 @@ const result = await LiveActivities.startActivity({
           {
             type: "image",
             properties: [
-              { systeName: "circle.fill" },
+              { systemName: "circle.fill" },
               { color: "#007AFF" },
               { width: 48 },
               { height: 48 }
@@ -358,7 +358,7 @@ const result = await LiveActivities.startActivity({
           {
             type: "image",
             properties: [
-              { systeName: "person.crop.circle.fill" },
+              { systemName: "person.crop.circle.fill" },
               { color: "#3498db" },
               { width: 50 },
               { height: 50 },
@@ -394,7 +394,7 @@ const result = await LiveActivities.startActivity({
               {
                 type: "image",
                 properties: [
-                  { systeName: "circle.fill" },
+                  { systemName: "circle.fill" },
                   { color: "#2ecc71" },
                   { width: 8 },
                   { height: 8 }
@@ -471,7 +471,7 @@ await LiveActivities.updateActivity({
 ### SF Symbols Properties
 | Property | Type | Description |
 |----------|------|-------------|
-| `systeName` | string | SF Symbol name (e.g., "heart.fill", "star", "person.circle") |
+| `systemName` | string | SF Symbol name (e.g., "heart.fill", "star", "person.circle") |
 | `color` | ColorString | Icon color (hex, color names, or system colors) |
 | `width` | number | Image width in points |
 | `height` | number | Image height in points |

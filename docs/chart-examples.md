@@ -177,7 +177,7 @@ const data = {
           {
             "type": "image",
             "properties": [
-              { "systeName": "cpu" },
+              { "systemName": "cpu" },
               { "width": 16 },
               { "height": 16 },
               { "color": "#007AFF" }
@@ -278,7 +278,7 @@ const data = {
               {
                 "type": "image",
                 "properties": [
-                  { "systeName": "{{trendIcon}}" },
+                  { "systemName": "{{trendIcon}}" },
                   { "width": 12 },
                   { "height": 12 },
                   { "color": "{{trendColor}}" }

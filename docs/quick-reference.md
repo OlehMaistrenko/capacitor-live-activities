@@ -462,7 +462,7 @@ expanded: {
   leading: {
     type: "image",
     properties: [
-      { systeName: "heart.fill" },
+      { systemName: "heart.fill" },
       { color: "#FF3B30" },
       { width: 20 },
       { height: 20 }
@@ -484,7 +484,7 @@ compactLeading: {
   element: {
     type: "image",
     properties: [
-      { systeName: "heart.fill" },
+      { systemName: "heart.fill" },
       { color: "#FF3B30" },
       { width: 16 },
       { height: 16 }
@@ -497,7 +497,7 @@ minimal: {
   element: {
     type: "image",
     properties: [
-      { systeName: "circle.fill" },
+      { systemName: "circle.fill" },
       { color: "#FF3B30" },
       { width: 12 },
       { height: 12 }

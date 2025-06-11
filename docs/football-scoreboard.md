@@ -51,7 +51,7 @@ const result = await LiveActivities.startActivity({
               {
                 type: "image",
                 properties: [
-                  { systeName: "circle.fill" },
+                  { systemName: "circle.fill" },
                   { color: "#ffffff" },
                   { width: 6 },
                   { height: 6 }
@@ -98,7 +98,7 @@ const result = await LiveActivities.startActivity({
               {
                 type: "image",
                 properties: [
-                  { systeName: "sportscourt.fill" },
+                  { systemName: "sportscourt.fill" },
                   { color: "#007AFF" },
                   { width: 32 },
                   { height: 32 }
@@ -168,7 +168,7 @@ const result = await LiveActivities.startActivity({
               {
                 type: "image",
                 properties: [
-                  { systeName: "sportscourt.fill" },
+                  { systemName: "sportscourt.fill" },
                   { color: "#FF3B30" },
                   { width: 32 },
                   { height: 32 }
@@ -222,7 +222,7 @@ dynamicIslandLayout: {
         {
           type: "image",
           properties: [
-            { systeName: "sportscourt.fill" },
+            { systemName: "sportscourt.fill" },
             { color: "#007AFF" },
             { width: 24 },
             { height: 24 }
@@ -250,7 +250,7 @@ dynamicIslandLayout: {
         {
           type: "image",
           properties: [
-            { systeName: "sportscourt.fill" },
+            { systemName: "sportscourt.fill" },
             { color: "#FF3B30" },
             { width: 24 },
             { height: 24 }
@@ -316,7 +316,7 @@ dynamicIslandLayout: {
         {
           type: "image",
           properties: [
-            { systeName: "circle.fill" },
+            { systemName: "circle.fill" },
             { color: "#FF3B30" },
             { width: 6 },
             { height: 6 }
@@ -367,7 +367,7 @@ minimal: {
   element: {
     type: "image",
     properties: [
-      { systeName: "sportscourt.fill" },
+      { systemName: "sportscourt.fill" },
       { color: "#007AFF" },
       { width: 16 },
       { height: 16 }

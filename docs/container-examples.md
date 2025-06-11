@@ -75,7 +75,7 @@ const result = await LiveActivities.startActivity({
           {
             type: "image",
             properties: [
-              { systeName: "layers.fill" },
+              { systemName: "layers.fill" },
               { color: "#ffffff" },
               { width: 32 },
               { height: 32 }
@@ -166,7 +166,7 @@ const result = await LiveActivities.startActivity({
               {
                 type: "image",
                 properties: [
-                  { systeName: "star.circle.fill" },
+                  { systemName: "star.circle.fill" },
                   { color: "#ffffff" },
                   { width: 32 },
                   { height: 32 }
@@ -348,7 +348,7 @@ const result = await LiveActivities.startActivity({
           {
             type: "image",
             properties: [
-              { systeName: "chart.line.uptrend.xyaxis" },
+              { systemName: "chart.line.uptrend.xyaxis" },
               { color: "#007AFF" },
               { width: 24 },
               { height: 24 }
@@ -385,7 +385,7 @@ const result = await LiveActivities.startActivity({
               {
                 type: "image",
                 properties: [
-                  { systeName: "person.3.fill" },
+                  { systemName: "person.3.fill" },
                   { color: "#30D158" },
                   { width: 16 },
                   { height: 16 }
@@ -425,7 +425,7 @@ const result = await LiveActivities.startActivity({
               {
                 type: "image",
                 properties: [
-                  { systeName: "dollarsign.circle.fill" },
+                  { systemName: "dollarsign.circle.fill" },
                   { color: "#FFD60A" },
                   { width: 16 },
                   { height: 16 }
@@ -465,7 +465,7 @@ const result = await LiveActivities.startActivity({
               {
                 type: "image",
                 properties: [
-                  { systeName: "arrow.up.right.circle.fill" },
+                  { systemName: "arrow.up.right.circle.fill" },
                   { color: "#FF453A" },
                   { width: 16 },
                   { height: 16 }

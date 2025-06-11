@@ -290,19 +290,19 @@ type ContainerPropertyObjectBase =
   | { borderWidth: number }
   /** @property borderColor - Border color @example { borderColor: "#cccccc" } */
   | { borderColor: ColorString }
-  /** @property insideAlignment - Frame alignment within the container @example { insideAlignment: "center" } */
+  /** @property alignment - Frame alignment within the container @example { alignment: "center" } */
   | { alignment: ContainerPropertyObjectStackAlignment };
 
 type ContainerPropertyObjectHorizontal =
   /** @property direction - Container layout direction @example { direction: "horizontal" / HStack } */
   | { direction: 'horizontal' }
-  /** @property alignment - Vertical alignment within container @example { alignment: "center" } */
+  /** @property insideAlignment - Vertical alignment within container @example { insideAlignment: "center" } */
   | { insideAlignment: 'bottom' | 'center' | 'first-text-baseline' | 'last-text-baseline' | 'top' };
 
 type ContainerPropertyObjectVertical =
   /** @property direction - Container layout direction @example { direction: "vertical" / VStack } */
   | { direction: 'vertical' }
-  /** @property alignment - Horizontal alignment within container @example { alignment: "center" } */
+  /** @property insideAlignment - Horizontal alignment within container @example { insideAlignment: "center" } */
   | {
       insideAlignment:
         | 'center'

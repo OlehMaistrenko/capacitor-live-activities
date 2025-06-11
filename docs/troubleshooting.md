@@ -42,7 +42,7 @@ const result = await LiveActivities.startActivity({
 {
   "type": "text",
   "properties": [
-    { "systeName": "heart.fill" },     // ❌ Image property in text
+    { "systemName": "heart.fill" },     // ❌ Image property in text
     { "currentSegment": 2 },           // ❌ Non-existent property
     { "segmentSpacing": 4 }            // ❌ Incorrect name
   ]
