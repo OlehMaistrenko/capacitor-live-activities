@@ -22,7 +22,6 @@ const estimatedDelivery = Date.now() + (35 * 60 * 1000); // 35 minutes from now
 
 const result = await LiveActivities.startActivity({
   layout: {
-    id: "food-order-tracking",
     type: "container",
     properties: [
       { direction: "vertical" },
@@ -35,7 +34,6 @@ const result = await LiveActivities.startActivity({
     ],
     children: [
       {
-        id: "order-header",
         type: "container",
         properties: [
           { direction: "horizontal" },
@@ -44,7 +42,6 @@ const result = await LiveActivities.startActivity({
         ],
         children: [
           {
-            id: "restaurant-icon",
             type: "image",
             properties: [
               { systeName: "fork.knife.circle.fill" },
@@ -54,7 +51,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "order-info",
             type: "container",
             properties: [
               { direction: "vertical" },
@@ -62,7 +58,6 @@ const result = await LiveActivities.startActivity({
             ],
             children: [
               {
-                id: "restaurant-name",
                 type: "text",
                 properties: [
                   { text: "{{restaurantName}}" },
@@ -72,7 +67,6 @@ const result = await LiveActivities.startActivity({
                 ]
               },
               {
-                id: "order-number",
                 type: "text",
                 properties: [
                   { text: "Order #{{orderNumber}}" },
@@ -83,7 +77,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "status-badge",
             type: "container",
             properties: [
               { direction: "horizontal" },
@@ -95,7 +88,6 @@ const result = await LiveActivities.startActivity({
             ],
             children: [
               {
-                id: "status-icon",
                 type: "image",
                 properties: [
                   { systeName: "{{statusIcon}}" },
@@ -105,7 +97,6 @@ const result = await LiveActivities.startActivity({
                 ]
               },
               {
-                id: "status-text",
                 type: "text",
                 properties: [
                   { text: "{{statusText}}" },
@@ -119,7 +110,6 @@ const result = await LiveActivities.startActivity({
         ]
       },
       {
-        id: "progress-section",
         type: "container",
         properties: [
           { direction: "vertical" },
@@ -127,7 +117,6 @@ const result = await LiveActivities.startActivity({
         ],
         children: [
           {
-            id: "progress-bar-container",
             type: "container",
             properties: [
               { direction: "vertical" },
@@ -135,7 +124,6 @@ const result = await LiveActivities.startActivity({
             ],
             children: [
               {
-                id: "progress-label",
                 type: "text",
                 properties: [
                   { text: "{{progressLabel}}" },
@@ -145,7 +133,6 @@ const result = await LiveActivities.startActivity({
                 ]
               },
               {
-                id: "progress-bar",
                 type: "progress",
                 properties: [
                   { value: "{{progressValue}}" },
@@ -158,7 +145,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "stages-container",
             type: "container",
             properties: [
               { direction: "horizontal" },
@@ -166,7 +152,6 @@ const result = await LiveActivities.startActivity({
             ],
             children: [
               {
-                id: "stage-1",
                 type: "container",
                 properties: [
                   { direction: "vertical" },
@@ -175,7 +160,6 @@ const result = await LiveActivities.startActivity({
                 ],
                 children: [
                   {
-                    id: "stage-1-icon",
                     type: "image",
                     properties: [
                       { systeName: "checkmark.circle.fill" },
@@ -185,7 +169,6 @@ const result = await LiveActivities.startActivity({
                     ]
                   },
                   {
-                    id: "stage-1-label",
                     type: "text",
                     properties: [
                       { text: "Order Placed" },
@@ -197,7 +180,6 @@ const result = await LiveActivities.startActivity({
                 ]
               },
               {
-                id: "stage-2",
                 type: "container",
                 properties: [
                   { direction: "vertical" },
@@ -206,7 +188,6 @@ const result = await LiveActivities.startActivity({
                 ],
                 children: [
                   {
-                    id: "stage-2-icon",
                     type: "image",
                     properties: [
                       { systeName: "{{stage2Icon}}" },
@@ -216,7 +197,6 @@ const result = await LiveActivities.startActivity({
                     ]
                   },
                   {
-                    id: "stage-2-label",
                     type: "text",
                     properties: [
                       { text: "Preparing" },
@@ -228,7 +208,6 @@ const result = await LiveActivities.startActivity({
                 ]
               },
               {
-                id: "stage-3",
                 type: "container",
                 properties: [
                   { direction: "vertical" },
@@ -237,7 +216,6 @@ const result = await LiveActivities.startActivity({
                 ],
                 children: [
                   {
-                    id: "stage-3-icon",
                     type: "image",
                     properties: [
                       { systeName: "{{stage3Icon}}" },
@@ -247,7 +225,6 @@ const result = await LiveActivities.startActivity({
                     ]
                   },
                   {
-                    id: "stage-3-label",
                     type: "text",
                     properties: [
                       { text: "Out for Delivery" },
@@ -259,7 +236,6 @@ const result = await LiveActivities.startActivity({
                 ]
               },
               {
-                id: "stage-4",
                 type: "container",
                 properties: [
                   { direction: "vertical" },
@@ -268,7 +244,6 @@ const result = await LiveActivities.startActivity({
                 ],
                 children: [
                   {
-                    id: "stage-4-icon",
                     type: "image",
                     properties: [
                       { systeName: "{{stage4Icon}}" },
@@ -278,7 +253,6 @@ const result = await LiveActivities.startActivity({
                     ]
                   },
                   {
-                    id: "stage-4-label",
                     type: "text",
                     properties: [
                       { text: "Delivered" },
@@ -294,7 +268,6 @@ const result = await LiveActivities.startActivity({
         ]
       },
       {
-        id: "delivery-info",
         type: "container",
         properties: [
           { direction: "horizontal" },
@@ -303,7 +276,6 @@ const result = await LiveActivities.startActivity({
         ],
         children: [
           {
-            id: "time-info",
             type: "container",
             properties: [
               { direction: "horizontal" },
@@ -312,7 +284,6 @@ const result = await LiveActivities.startActivity({
             ],
             children: [
               {
-                id: "clock-icon",
                 type: "image",
                 properties: [
                   { systeName: "clock" },
@@ -322,7 +293,6 @@ const result = await LiveActivities.startActivity({
                 ]
               },
               {
-                id: "delivery-time",
                 type: "timer",
                 properties: [
                   { endTime: estimatedDelivery },
@@ -335,7 +305,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "total-info",
             type: "container",
             properties: [
               { direction: "horizontal" },
@@ -344,7 +313,6 @@ const result = await LiveActivities.startActivity({
             ],
             children: [
               {
-                id: "total-label",
                 type: "text",
                 properties: [
                   { text: "Total:" },
@@ -353,7 +321,6 @@ const result = await LiveActivities.startActivity({
                 ]
               },
               {
-                id: "total-value",
                 type: "text",
                 properties: [
                   { text: "{{totalAmount}}" },
@@ -381,7 +348,6 @@ Complete Dynamic Island support for food delivery tracking:
 dynamicIslandLayout: {
   expanded: {
     leading: {
-      id: "di-restaurant-info",
       type: "container",
       properties: [
         { direction: "vertical" },
@@ -390,7 +356,6 @@ dynamicIslandLayout: {
       ],
       children: [
         {
-          id: "di-restaurant-icon",
           type: "image",
           properties: [
             { systeName: "fork.knife.circle.fill" },
@@ -400,7 +365,6 @@ dynamicIslandLayout: {
           ]
         },
         {
-          id: "di-order-number",
           type: "text",
           properties: [
             { text: "#{{orderNumber}}" },
@@ -412,7 +376,6 @@ dynamicIslandLayout: {
       ]
     },
     trailing: {
-      id: "di-delivery-time",
       type: "container",
       properties: [
         { direction: "vertical" },
@@ -421,7 +384,6 @@ dynamicIslandLayout: {
       ],
       children: [
         {
-          id: "di-clock-icon",
           type: "image",
           properties: [
             { systeName: "clock" },
@@ -431,7 +393,6 @@ dynamicIslandLayout: {
           ]
         },
         {
-          id: "di-time-text",
           type: "timer",
           properties: [
             { endTime: estimatedDelivery },
@@ -444,7 +405,6 @@ dynamicIslandLayout: {
       ]
     },
     center: {
-      id: "di-status",
       type: "text",
       properties: [
         { text: "{{statusText}}" },
@@ -457,7 +417,6 @@ dynamicIslandLayout: {
   },
   compactLeading: {
     element: {
-      id: "di-compact-restaurant",
       type: "image",
       properties: [
         { systeName: "fork.knife.circle.fill" },
@@ -469,7 +428,6 @@ dynamicIslandLayout: {
   },
   compactTrailing: {
     element: {
-      id: "di-compact-time",
       type: "timer",
       properties: [
         { endTime: estimatedDelivery },
@@ -481,7 +439,6 @@ dynamicIslandLayout: {
   },
   minimal: {
     element: {
-      id: "di-minimal-icon",
       type: "image",
       properties: [
         { systeName: "fork.knife.circle.fill" },

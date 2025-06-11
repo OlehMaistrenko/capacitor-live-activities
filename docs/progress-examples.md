@@ -517,7 +517,6 @@ File upload progress with dark theme and detailed information.
 ```typescript
 const result = await LiveActivities.startActivity({
   layout: {
-    id: "upload-progress-example",
     type: "container",
     properties: [
       { direction: "horizontal" },
@@ -529,7 +528,6 @@ const result = await LiveActivities.startActivity({
     ],
     children: [
       {
-        id: "upload-icon",
         type: "image",
         properties: [
           { systeName: "arrow.up.circle.fill" },
@@ -539,7 +537,6 @@ const result = await LiveActivities.startActivity({
         ]
       },
       {
-        id: "upload-content",
         type: "container",
         properties: [
           { direction: "vertical" },
@@ -547,7 +544,6 @@ const result = await LiveActivities.startActivity({
         ],
         children: [
           {
-            id: "upload-info",
             type: "container",
             properties: [
               { direction: "horizontal" },
@@ -556,7 +552,6 @@ const result = await LiveActivities.startActivity({
             ],
             children: [
               {
-                id: "file-name",
                 type: "text",
                 properties: [
                   { text: "{{fileName}}" },
@@ -566,7 +561,6 @@ const result = await LiveActivities.startActivity({
                 ]
               },
               {
-                id: "upload-percentage",
                 type: "text",
                 properties: [
                   { text: "{{uploadPercentage}}" },
@@ -579,7 +573,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "upload-bar",
             type: "progress",
             properties: [
               { value: 0.85 },
@@ -590,7 +583,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "upload-speed",
             type: "text",
             properties: [
               { text: "{{uploadSpeed}}" },
@@ -633,7 +625,6 @@ Battery level indicator with charging status and dark theme.
 ```typescript
 const result = await LiveActivities.startActivity({
   layout: {
-    id: "battery-progress-example",
     type: "container",
     properties: [
       { direction: "vertical" },
@@ -644,7 +635,6 @@ const result = await LiveActivities.startActivity({
     ],
     children: [
       {
-        id: "battery-header",
         type: "container",
         properties: [
           { direction: "horizontal" },
@@ -653,7 +643,6 @@ const result = await LiveActivities.startActivity({
         ],
         children: [
           {
-            id: "battery-icon",
             type: "image",
             properties: [
               { systeName: "battery.75" },
@@ -663,7 +652,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "battery-title",
             type: "text",
             properties: [
               { text: "{{batteryTitle}}" },
@@ -675,7 +663,6 @@ const result = await LiveActivities.startActivity({
         ]
       },
       {
-        id: "battery-level",
         type: "container",
         properties: [
           { direction: "horizontal" },
@@ -684,7 +671,6 @@ const result = await LiveActivities.startActivity({
         ],
         children: [
           {
-            id: "battery-bar",
             type: "progress",
             properties: [
               { value: 0.75 },
@@ -695,7 +681,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "battery-percent",
             type: "text",
             properties: [
               { text: "{{batteryPercent}}" },
@@ -708,7 +693,6 @@ const result = await LiveActivities.startActivity({
         ]
       },
       {
-        id: "charging-info",
         type: "container",
         properties: [
           { direction: "horizontal" },
@@ -717,7 +701,6 @@ const result = await LiveActivities.startActivity({
         ],
         children: [
           {
-            id: "charging-icon",
             type: "image",
             properties: [
               { systeName: "bolt.fill" },
@@ -727,7 +710,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "charging-text",
             type: "text",
             properties: [
               { text: "{{chargingStatus}}" },

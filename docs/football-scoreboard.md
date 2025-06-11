@@ -20,7 +20,6 @@ This example demonstrates a full-featured sports scoreboard with live game updat
 ```typescript
 const result = await LiveActivities.startActivity({
   layout: {
-    id: "football-scoreboard",
     type: "container",
     properties: [
       { direction: "vertical" },
@@ -31,7 +30,6 @@ const result = await LiveActivities.startActivity({
     ],
     children: [
       {
-        id: "match-header",
         type: "container",
         properties: [
           { direction: "horizontal" },
@@ -40,7 +38,6 @@ const result = await LiveActivities.startActivity({
         ],
         children: [
           {
-            id: "live-indicator",
             type: "container",
             properties: [
               { direction: "horizontal" },
@@ -52,7 +49,6 @@ const result = await LiveActivities.startActivity({
             ],
             children: [
               {
-                id: "live-dot",
                 type: "image",
                 properties: [
                   { systeName: "circle.fill" },
@@ -62,7 +58,6 @@ const result = await LiveActivities.startActivity({
                 ]
               },
               {
-                id: "live-text",
                 type: "text",
                 properties: [
                   { text: "LIVE" },
@@ -74,7 +69,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "match-time",
             type: "text",
             properties: [
               { text: "{{matchTime}}" },
@@ -86,7 +80,6 @@ const result = await LiveActivities.startActivity({
         ]
       },
       {
-        id: "teams-container",
         type: "container",
         properties: [
           { direction: "horizontal" },
@@ -95,7 +88,6 @@ const result = await LiveActivities.startActivity({
         ],
         children: [
           {
-            id: "home-team",
             type: "container",
             properties: [
               { direction: "vertical" },
@@ -104,7 +96,6 @@ const result = await LiveActivities.startActivity({
             ],
             children: [
               {
-                id: "home-logo",
                 type: "image",
                 properties: [
                   { systeName: "sportscourt.fill" },
@@ -114,7 +105,6 @@ const result = await LiveActivities.startActivity({
                 ]
               },
               {
-                id: "home-name",
                 type: "text",
                 properties: [
                   { text: "{{homeTeam}}" },
@@ -127,7 +117,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "score-container",
             type: "container",
             properties: [
               { direction: "horizontal" },
@@ -136,7 +125,6 @@ const result = await LiveActivities.startActivity({
             ],
             children: [
               {
-                id: "home-score",
                 type: "text",
                 properties: [
                   { text: "{{homeScore}}" },
@@ -148,7 +136,6 @@ const result = await LiveActivities.startActivity({
                 ]
               },
               {
-                id: "score-separator",
                 type: "text",
                 properties: [
                   { text: "-" },
@@ -158,7 +145,6 @@ const result = await LiveActivities.startActivity({
                 ]
               },
               {
-                id: "away-score",
                 type: "text",
                 properties: [
                   { text: "{{awayScore}}" },
@@ -172,7 +158,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "away-team",
             type: "container",
             properties: [
               { direction: "vertical" },
@@ -181,7 +166,6 @@ const result = await LiveActivities.startActivity({
             ],
             children: [
               {
-                id: "away-logo",
                 type: "image",
                 properties: [
                   { systeName: "sportscourt.fill" },
@@ -191,7 +175,6 @@ const result = await LiveActivities.startActivity({
                 ]
               },
               {
-                id: "away-name",
                 type: "text",
                 properties: [
                   { text: "{{awayTeam}}" },
@@ -206,7 +189,6 @@ const result = await LiveActivities.startActivity({
         ]
       },
       {
-        id: "match-status",
         type: "text",
         properties: [
           { text: "{{matchStatus}}" },
@@ -230,7 +212,6 @@ The football scoreboard includes complete Dynamic Island support for all states:
 dynamicIslandLayout: {
   expanded: {
     leading: {
-      id: "di-home-team",
       type: "container",
       properties: [
         { direction: "vertical" },
@@ -239,7 +220,6 @@ dynamicIslandLayout: {
       ],
       children: [
         {
-          id: "di-home-logo",
           type: "image",
           properties: [
             { systeName: "sportscourt.fill" },
@@ -249,7 +229,6 @@ dynamicIslandLayout: {
           ]
         },
         {
-          id: "di-home-name",
           type: "text",
           properties: [
             { text: "{{homeTeam}}" },
@@ -261,7 +240,6 @@ dynamicIslandLayout: {
       ]
     },
     trailing: {
-      id: "di-away-team",
       type: "container",
       properties: [
         { direction: "vertical" },
@@ -270,7 +248,6 @@ dynamicIslandLayout: {
       ],
       children: [
         {
-          id: "di-away-logo",
           type: "image",
           properties: [
             { systeName: "sportscourt.fill" },
@@ -280,7 +257,6 @@ dynamicIslandLayout: {
           ]
         },
         {
-          id: "di-away-name",
           type: "text",
           properties: [
             { text: "{{awayTeam}}" },
@@ -292,7 +268,6 @@ dynamicIslandLayout: {
       ]
     },
     center: {
-      id: "di-score",
       type: "container",
       properties: [
         { direction: "horizontal" },
@@ -301,7 +276,6 @@ dynamicIslandLayout: {
       ],
       children: [
         {
-          id: "di-home-score",
           type: "text",
           properties: [
             { text: "{{homeScore}}" },
@@ -312,7 +286,6 @@ dynamicIslandLayout: {
           ]
         },
         {
-          id: "di-score-sep",
           type: "text",
           properties: [
             { text: "-" },
@@ -321,7 +294,6 @@ dynamicIslandLayout: {
           ]
         },
         {
-          id: "di-away-score",
           type: "text",
           properties: [
             { text: "{{awayScore}}" },
@@ -334,7 +306,6 @@ dynamicIslandLayout: {
       ]
     },
     bottom: {
-      id: "di-live-indicator",
       type: "container",
       properties: [
         { direction: "horizontal" },
@@ -343,7 +314,6 @@ dynamicIslandLayout: {
       ],
       children: [
         {
-          id: "di-live-dot",
           type: "image",
           properties: [
             { systeName: "circle.fill" },
@@ -353,7 +323,6 @@ dynamicIslandLayout: {
           ]
         },
         {
-          id: "di-match-time",
           type: "text",
           properties: [
             { text: "{{matchTime}}" },
@@ -372,7 +341,6 @@ dynamicIslandLayout: {
 ```typescript
 compactLeading: {
   element: {
-    id: "di-compact-home",
     type: "text",
     properties: [
       { text: "{{homeScore}}" },
@@ -385,7 +353,6 @@ compactLeading: {
 },
 compactTrailing: {
   element: {
-    id: "di-compact-away",
     type: "text",
     properties: [
       { text: "{{awayScore}}" },
@@ -398,7 +365,6 @@ compactTrailing: {
 },
 minimal: {
   element: {
-    id: "di-minimal-indicator",
     type: "image",
     properties: [
       { systeName: "sportscourt.fill" },

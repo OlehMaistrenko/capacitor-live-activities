@@ -10,7 +10,6 @@ Segmented progress divides a progress bar into multiple segments, where each seg
 
 ```json
 {
-  "id": "delivery-progress",
   "type": "segmented-progress",
   "properties": [
     { "segments": 4 },
@@ -74,7 +73,6 @@ Future segments, not yet started.
 ```json
 {
   "layout": {
-    "id": "delivery-tracker",
     "type": "container",
     "properties": [
       { "direction": "vertical" },
@@ -85,7 +83,6 @@ Future segments, not yet started.
     ],
     "children": [
       {
-        "id": "header",
         "type": "container",
         "properties": [
           { "direction": "horizontal" },
@@ -94,7 +91,6 @@ Future segments, not yet started.
         ],
         "children": [
           {
-            "id": "delivery-icon",
             "type": "image",
             "properties": [
               { "systemName": "shippingbox.fill" },
@@ -104,7 +100,6 @@ Future segments, not yet started.
             ]
           },
           {
-            "id": "order-info",
             "type": "container",
             "properties": [
               { "direction": "vertical" },
@@ -112,7 +107,6 @@ Future segments, not yet started.
             ],
             "children": [
               {
-                "id": "order-title",
                 "type": "text",
                 "properties": [
                   { "text": "Order #{{orderNumber}}" },
@@ -122,7 +116,6 @@ Future segments, not yet started.
                 ]
               },
               {
-                "id": "current-status",
                 "type": "text",
                 "properties": [
                   { "text": "{{currentStatus}}" },
@@ -135,7 +128,6 @@ Future segments, not yet started.
         ]
       },
       {
-        "id": "progress-section",
         "type": "container",
         "properties": [
           { "direction": "vertical" },
@@ -143,7 +135,6 @@ Future segments, not yet started.
         ],
         "children": [
           {
-            "id": "delivery-progress",
             "type": "segmented-progress",
             "properties": [
               { "segments": 4 },
@@ -159,7 +150,6 @@ Future segments, not yet started.
             ]
           },
           {
-            "id": "stages",
             "type": "container",
             "properties": [
               { "direction": "horizontal" },
@@ -167,7 +157,6 @@ Future segments, not yet started.
             ],
             "children": [
               {
-                "id": "stage-1",
                 "type": "text",
                 "properties": [
                   { "text": "Confirmed" },
@@ -176,7 +165,6 @@ Future segments, not yet started.
                 ]
               },
               {
-                "id": "stage-2",
                 "type": "text",
                 "properties": [
                   { "text": "Preparing" },
@@ -185,7 +173,6 @@ Future segments, not yet started.
                 ]
               },
               {
-                "id": "stage-3",
                 "type": "text",
                 "properties": [
                   { "text": "On the way" },
@@ -194,7 +181,6 @@ Future segments, not yet started.
                 ]
               },
               {
-                "id": "stage-4",
                 "type": "text",
                 "properties": [
                   { "text": "Delivered" },
@@ -207,7 +193,6 @@ Future segments, not yet started.
         ]
       },
       {
-        "id": "eta-info",
         "type": "container",
         "properties": [
           { "direction": "horizontal" },
@@ -216,7 +201,6 @@ Future segments, not yet started.
         ],
         "children": [
           {
-            "id": "clock-icon",
             "type": "image",
             "properties": [
               { "systemName": "clock" },
@@ -226,7 +210,6 @@ Future segments, not yet started.
             ]
           },
           {
-            "id": "eta-text",
             "type": "text",
             "properties": [
               { "text": "{{etaText}}" },
@@ -255,7 +238,6 @@ Future segments, not yet started.
 ```json
 {
   "layout": {
-    "id": "installation-progress",
     "type": "container",
     "properties": [
       { "direction": "vertical" },
@@ -266,7 +248,6 @@ Future segments, not yet started.
     ],
     "children": [
       {
-        "id": "app-header",
         "type": "container",
         "properties": [
           { "direction": "horizontal" },
@@ -275,7 +256,6 @@ Future segments, not yet started.
         ],
         "children": [
           {
-            "id": "app-icon",
             "type": "image",
             "properties": [
               { "asset": "{{appIcon}}" },
@@ -285,7 +265,6 @@ Future segments, not yet started.
             ]
           },
           {
-            "id": "app-info",
             "type": "container",
             "properties": [
               { "direction": "vertical" },
@@ -293,7 +272,6 @@ Future segments, not yet started.
             ],
             "children": [
               {
-                "id": "app-name",
                 "type": "text",
                 "properties": [
                   { "text": "{{appName}}" },
@@ -303,7 +281,6 @@ Future segments, not yet started.
                 ]
               },
               {
-                "id": "install-status",
                 "type": "text",
                 "properties": [
                   { "text": "{{installStatus}}" },
@@ -316,7 +293,6 @@ Future segments, not yet started.
         ]
       },
       {
-        "id": "install-progress",
         "type": "segmented-progress",
         "properties": [
           { "segments": 5 },
@@ -330,7 +306,6 @@ Future segments, not yet started.
         ]
       },
       {
-        "id": "steps-info",
         "type": "container",
         "properties": [
           { "direction": "horizontal" },
@@ -338,7 +313,6 @@ Future segments, not yet started.
         ],
         "children": [
           {
-            "id": "step-1",
             "type": "text",
             "properties": [
               { "text": "Download" },
@@ -347,7 +321,6 @@ Future segments, not yet started.
             ]
           },
           {
-            "id": "step-2",
             "type": "text",
             "properties": [
               { "text": "Verifying" },
@@ -356,7 +329,6 @@ Future segments, not yet started.
             ]
           },
           {
-            "id": "step-3",
             "type": "text",
             "properties": [
               { "text": "Installing" },
@@ -365,7 +337,6 @@ Future segments, not yet started.
             ]
           },
           {
-            "id": "step-4",
             "type": "text",
             "properties": [
               { "text": "Configuring" },
@@ -374,7 +345,6 @@ Future segments, not yet started.
             ]
           },
           {
-            "id": "step-5",
             "type": "text",
             "properties": [
               { "text": "Complete" },
@@ -404,7 +374,6 @@ Future segments, not yet started.
 ```json
 {
   "layout": {
-    "id": "game-progress",
     "type": "container",
     "properties": [
       { "direction": "vertical" },
@@ -415,7 +384,6 @@ Future segments, not yet started.
     ],
     "children": [
       {
-        "id": "player-header",
         "type": "container",
         "properties": [
           { "direction": "horizontal" },
@@ -424,7 +392,6 @@ Future segments, not yet started.
         ],
         "children": [
           {
-            "id": "avatar",
             "type": "image",
             "properties": [
               { "url": "{{avatarUrl}}" },
@@ -434,7 +401,6 @@ Future segments, not yet started.
             ]
           },
           {
-            "id": "player-info",
             "type": "container",
             "properties": [
               { "direction": "vertical" },
@@ -442,7 +408,6 @@ Future segments, not yet started.
             ],
             "children": [
               {
-                "id": "player-name",
                 "type": "text",
                 "properties": [
                   { "text": "{{playerName}}" },
@@ -452,7 +417,6 @@ Future segments, not yet started.
                 ]
               },
               {
-                "id": "current-level",
                 "type": "text",
                 "properties": [
                   { "text": "Level {{currentLevel}}" },
@@ -463,7 +427,6 @@ Future segments, not yet started.
             ]
           },
           {
-            "id": "xp-info",
             "type": "container",
             "properties": [
               { "direction": "vertical" },
@@ -472,7 +435,6 @@ Future segments, not yet started.
             ],
             "children": [
               {
-                "id": "xp-current",
                 "type": "text",
                 "properties": [
                   { "text": "{{currentXP}} XP" },
@@ -482,7 +444,6 @@ Future segments, not yet started.
                 ]
               },
               {
-                "id": "xp-next",
                 "type": "text",
                 "properties": [
                   { "text": "{{nextLevelXP}} to next" },
@@ -495,7 +456,6 @@ Future segments, not yet started.
         ]
       },
       {
-        "id": "level-progress",
         "type": "segmented-progress",
         "properties": [
           { "segments": 10 },
@@ -509,7 +469,6 @@ Future segments, not yet started.
         ]
       },
       {
-        "id": "achievements",
         "type": "container",
         "properties": [
           { "direction": "horizontal" },
@@ -518,7 +477,6 @@ Future segments, not yet started.
         ],
         "children": [
           {
-            "id": "achievement-icon",
             "type": "image",
             "properties": [
               { "systemName": "star.fill" },
@@ -528,7 +486,6 @@ Future segments, not yet started.
             ]
           },
           {
-            "id": "achievement-text",
             "type": "text",
             "properties": [
               { "text": "{{recentAchievement}}" },
@@ -594,7 +551,6 @@ interface SegmentedProgressState {
 function updateProgress(state: SegmentedProgressState, newProgress: number) {
   return {
     layout: {
-      id: "dynamic-progress",
       type: "segmented-progress",
       properties: [
         { segments: state.totalSegments },
@@ -655,7 +611,6 @@ Segmented progress supports smooth transitions when:
 
 ```json
 {
-  "id": "accessible-progress",
   "type": "container",
   "properties": [
     { "direction": "vertical" },
@@ -663,7 +618,6 @@ Segmented progress supports smooth transitions when:
   ],
   "children": [
     {
-      "id": "progress-label",
       "type": "text",
       "properties": [
         { "text": "Progress: {{currentStep}} of {{totalSteps}}" },
@@ -672,7 +626,6 @@ Segmented progress supports smooth transitions when:
       ]
     },
     {
-      "id": "segmented-bar",
       "type": "segmented-progress",
       "properties": [
         { "segments": "{{totalSteps}}" },

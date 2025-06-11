@@ -30,7 +30,6 @@ Every element in the layout has:
 
 ```json
 {
-  "id": "unique-identifier",
   "type": "text|image|container|timer|progress|chart",
   "properties": [
     { "propertyName": "value" }
@@ -47,7 +46,6 @@ The `text` element allows you to display fully formatted text.
 
 ```json
 {
-  "id": "title",
   "type": "text",
   "properties": [
     { "text": "Hello, World!" },
@@ -75,7 +73,6 @@ The `image` element supports SF Symbols, URLs, and assets.
 
 ```json
 {
-  "id": "icon",
   "type": "image",
   "properties": [
     { "systeName": "star.fill" },
@@ -104,7 +101,6 @@ The `container` element groups other elements.
 
 ```json
 {
-  "id": "layout",
   "type": "container",
   "properties": [
     { "direction": "vertical" },
@@ -112,8 +108,8 @@ The `container` element groups other elements.
     { "padding": 16 }
   ],
   "children": [
-    { "id": "title", "type": "text", "properties": [ { "text": "Header" } ] },
-    { "id": "content", "type": "text", "properties": [ { "text": "Body text here." } ] }
+    { "type": "text", "properties": [ { "text": "Header" } ] },
+    { "type": "text", "properties": [ { "text": "Body text here." } ] }
   ]
 }
 ```
@@ -135,7 +131,6 @@ The `timer` element displays dynamic counters and times.
 
 ```json
 {
-  "id": "countdown",
   "type": "timer",
   "properties": [
     { "endDate": "{{endTime}}" },
@@ -161,7 +156,6 @@ The `progress` element displays linear progress bars.
 
 ```json
 {
-  "id": "download-progress",
   "type": "progress",
   "properties": [
     { "value": "{{currentValue}}" },
@@ -189,7 +183,6 @@ The `chart` element allows you to create line, area, and bar charts.
 
 ```json
 {
-  "id": "price-chart",
   "type": "chart",
   "properties": [
     { "type": "area" },
@@ -223,7 +216,6 @@ Use the `{{variableName}}` syntax to insert dynamic data:
 
 ```json
 {
-  "id": "dynamic-text",
   "type": "text",
   "properties": [
     { "text": "Price: ${{currentPrice}}" },
@@ -251,7 +243,6 @@ const data = {
 ```json
 {
   "layout": {
-    "id": "info-card",
     "type": "container",
     "properties": [
       { "direction": "horizontal" },
@@ -262,7 +253,6 @@ const data = {
     ],
     "children": [
       {
-        "id": "icon",
         "type": "image",
         "properties": [
           { "systeName": "checkmark.circle.fill" },
@@ -272,7 +262,6 @@ const data = {
         ]
       },
       {
-        "id": "info",
         "type": "container",
         "properties": [
           { "direction": "vertical" },
@@ -280,7 +269,6 @@ const data = {
         ],
         "children": [
           {
-            "id": "title",
             "type": "text",
             "properties": [
               { "text": "{{title}}" },
@@ -290,7 +278,6 @@ const data = {
             ]
           },
           {
-            "id": "subtitle",
             "type": "text",
             "properties": [
               { "text": "{{subtitle}}" },
@@ -314,7 +301,6 @@ const data = {
 ```json
 {
   "layout": {
-    "id": "dashboard",
     "type": "container",
     "properties": [
       { "direction": "vertical" },
@@ -325,7 +311,6 @@ const data = {
     ],
     "children": [
       {
-        "id": "header",
         "type": "container",
         "properties": [
           { "direction": "horizontal" },
@@ -333,7 +318,6 @@ const data = {
         ],
         "children": [
           {
-            "id": "app-icon",
             "type": "image",
             "properties": [
               { "systeName": "app.fill" },
@@ -343,7 +327,6 @@ const data = {
             ]
           },
           {
-            "id": "app-name",
             "type": "text",
             "properties": [
               { "text": "{{appName}}" },
@@ -355,7 +338,6 @@ const data = {
         ]
       },
       {
-        "id": "progress-section",
         "type": "container",
         "properties": [
           { "direction": "vertical" },
@@ -363,7 +345,6 @@ const data = {
         ],
         "children": [
           {
-            "id": "progress-label",
             "type": "text",
             "properties": [
               { "text": "{{progressLabel}}" },
@@ -372,7 +353,6 @@ const data = {
             ]
           },
           {
-            "id": "progress-bar",
             "type": "progress",
             "properties": [
               { "value": "{{progress}}" },
@@ -383,7 +363,6 @@ const data = {
             ]
           },
           {
-            "id": "progress-text",
             "type": "text",
             "properties": [
               { "text": "{{progressText}}" },
@@ -410,7 +389,6 @@ const data = {
 ```json
 {
   "layout": {
-    "id": "financial-widget",
     "type": "container",
     "properties": [
       { "direction": "vertical" },
@@ -421,7 +399,6 @@ const data = {
     ],
     "children": [
       {
-        "id": "stock-info",
         "type": "container",
         "properties": [
           { "direction": "horizontal" },
@@ -430,7 +407,6 @@ const data = {
         ],
         "children": [
           {
-            "id": "stock-symbol",
             "type": "text",
             "properties": [
               { "text": "{{symbol}}" },
@@ -440,7 +416,6 @@ const data = {
             ]
           },
           {
-            "id": "price",
             "type": "text",
             "properties": [
               { "text": "${{price}}" },
@@ -450,7 +425,6 @@ const data = {
             ]
           },
           {
-            "id": "change",
             "type": "text",
             "properties": [
               { "text": "{{change}}" },
@@ -461,7 +435,6 @@ const data = {
         ]
       },
       {
-        "id": "chart",
         "type": "chart",
         "properties": [
           { "type": "area" },
@@ -558,7 +531,6 @@ Top-left area, ideal for branding or status icons:
 ```json
 {
   "leading": {
-    "id": "di-leading",
     "type": "container",
     "properties": [
       { "direction": "vertical" },
@@ -566,7 +538,6 @@ Top-left area, ideal for branding or status icons:
     ],
     "children": [
       {
-        "id": "di-icon",
         "type": "image",
         "properties": [
           { "systeName": "heart.fill" },
@@ -576,7 +547,6 @@ Top-left area, ideal for branding or status icons:
         ]
       },
       {
-        "id": "di-label",
         "type": "text",
         "properties": [
           { "text": "Health" },
@@ -595,7 +565,6 @@ Top-right area, perfect for status updates or values:
 ```json
 {
   "trailing": {
-    "id": "di-trailing",
     "type": "container",
     "properties": [
       { "direction": "vertical" },
@@ -604,7 +573,6 @@ Top-right area, perfect for status updates or values:
     ],
     "children": [
       {
-        "id": "di-value",
         "type": "text",
         "properties": [
           { "text": "{{currentValue}}" },
@@ -614,7 +582,6 @@ Top-right area, perfect for status updates or values:
         ]
       },
       {
-        "id": "di-status",
         "type": "text",
         "properties": [
           { "text": "{{status}}" },
@@ -633,7 +600,6 @@ Middle area for titles or primary information:
 ```json
 {
   "center": {
-    "id": "di-center",
     "type": "text",
     "properties": [
       { "text": "{{title}}" },
@@ -651,7 +617,6 @@ Main content area - largest space available:
 ```json
 {
   "bottom": {
-    "id": "di-bottom",
     "type": "container",
     "properties": [
       { "direction": "vertical" },
@@ -659,7 +624,6 @@ Main content area - largest space available:
     ],
     "children": [
       {
-        "id": "di-progress",
         "type": "progress",
         "properties": [
           { "value": "{{progressValue}}" },
@@ -669,7 +633,6 @@ Main content area - largest space available:
         ]
       },
       {
-        "id": "di-description",
         "type": "text",
         "properties": [
           { "text": "{{description}}" },
@@ -691,7 +654,6 @@ Small icon on the left side when Dynamic Island is compact:
 {
   "compactLeading": {
     "element": {
-      "id": "di-compact-leading",
       "type": "image",
       "properties": [
         { "systeName": "heart.fill" },
@@ -711,7 +673,6 @@ Small content on the right side:
 {
   "compactTrailing": {
     "element": {
-      "id": "di-compact-trailing",
       "type": "container",
       "properties": [
         { "direction": "horizontal" },
@@ -719,7 +680,6 @@ Small content on the right side:
       ],
       "children": [
         {
-          "id": "di-compact-value",
           "type": "text",
           "properties": [
             { "text": "{{shortValue}}" },
@@ -729,7 +689,6 @@ Small content on the right side:
           ]
         },
         {
-          "id": "di-compact-icon",
           "type": "image",
           "properties": [
             { "systeName": "arrow.up" },
@@ -752,7 +711,6 @@ When multiple Live Activities are active, only the minimal state is shown:
 {
   "minimal": {
     "element": {
-      "id": "di-minimal",
       "type": "image",
       "properties": [
         { "systeName": "heart.fill" },
@@ -773,7 +731,6 @@ Here's a complete example showing a workout tracker with all Dynamic Island stat
 {
   layout: {
     // Main layout (regular Live Activity)
-    id: "workout-tracker",
     type: "container",
     properties: [
       { direction: "vertical" },
@@ -789,7 +746,6 @@ Here's a complete example showing a workout tracker with all Dynamic Island stat
   dynamicIslandLayout: {
     expanded: {
       leading: {
-        id: "di-leading",
         type: "container",
         properties: [
           { direction: "vertical" },
@@ -797,7 +753,6 @@ Here's a complete example showing a workout tracker with all Dynamic Island stat
         ],
         children: [
           {
-            id: "di-workout-icon",
             type: "image",
             properties: [
               { systeName: "figure.strengthtraining.traditional" },
@@ -807,7 +762,6 @@ Here's a complete example showing a workout tracker with all Dynamic Island stat
             ]
           },
           {
-            id: "di-workout-label",
             type: "text",
             properties: [
               { text: "Workout" },
@@ -818,7 +772,6 @@ Here's a complete example showing a workout tracker with all Dynamic Island stat
         ]
       },
       trailing: {
-        id: "di-trailing",
         type: "container",
         properties: [
           { direction: "vertical" },
@@ -827,7 +780,6 @@ Here's a complete example showing a workout tracker with all Dynamic Island stat
         ],
         children: [
           {
-            id: "di-timer",
             type: "text",
             properties: [
               { text: "{{workoutTime}}" },
@@ -837,7 +789,6 @@ Here's a complete example showing a workout tracker with all Dynamic Island stat
             ]
           },
           {
-            id: "di-status",
             type: "text",
             properties: [
               { text: "{{exerciseCount}}" },
@@ -848,7 +799,6 @@ Here's a complete example showing a workout tracker with all Dynamic Island stat
         ]
       },
       center: {
-        id: "di-center",
         type: "text",
         properties: [
           { text: "{{currentExercise}}" },
@@ -858,7 +808,6 @@ Here's a complete example showing a workout tracker with all Dynamic Island stat
         ]
       },
       bottom: {
-        id: "di-bottom",
         type: "progress",
         properties: [
           { value: "{{progressValue}}" },
@@ -870,7 +819,6 @@ Here's a complete example showing a workout tracker with all Dynamic Island stat
     },
     compactLeading: {
       element: {
-        id: "di-compact-leading",
         type: "image",
         properties: [
           { systeName: "figure.strengthtraining.traditional" },
@@ -882,7 +830,6 @@ Here's a complete example showing a workout tracker with all Dynamic Island stat
     },
     compactTrailing: {
       element: {
-        id: "di-compact-trailing",
         type: "text",
         properties: [
           { text: "{{workoutTime}}" },
@@ -894,7 +841,6 @@ Here's a complete example showing a workout tracker with all Dynamic Island stat
     },
     minimal: {
       element: {
-        id: "di-minimal",
         type: "image",
         properties: [
           { systeName: "flame.fill" },

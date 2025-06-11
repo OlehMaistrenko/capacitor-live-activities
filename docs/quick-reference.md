@@ -5,7 +5,6 @@
 ```typescript
 {
   layout: {
-    id: "unique-id",
     type: "container|text|image|timer|progress|chart|segmentedProgress",
     properties: [
       { propertyName: "value" }
@@ -461,7 +460,6 @@ const dimensions = {
 // Expanded
 expanded: {
   leading: {
-    id: "icon",
     type: "image",
     properties: [
       { systeName: "heart.fill" },
@@ -471,7 +469,6 @@ expanded: {
     ]
   },
   trailing: {
-    id: "value",
     type: "text",
     properties: [
       { text: "{{value}}" },
@@ -485,7 +482,6 @@ expanded: {
 // Compact States
 compactLeading: {
   element: {
-    id: "compact-icon",
     type: "image",
     properties: [
       { systeName: "heart.fill" },
@@ -499,7 +495,6 @@ compactLeading: {
 // Minimal State
 minimal: {
   element: {
-    id: "minimal-icon",
     type: "image",
     properties: [
       { systeName: "circle.fill" },

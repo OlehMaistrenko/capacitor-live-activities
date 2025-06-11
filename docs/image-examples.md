@@ -20,7 +20,6 @@ Basic example showing how to use Apple's SF Symbols with custom colors and sizes
 ```typescript
 const result = await LiveActivities.startActivity({
   layout: {
-    id: "sf-symbols-example",
     type: "container",
     properties: [
       { direction: "horizontal" },
@@ -32,7 +31,6 @@ const result = await LiveActivities.startActivity({
     ],
     children: [
       {
-        id: "icon",
         type: "image",
         properties: [
           { systeName: "photo.circle.fill" },
@@ -42,7 +40,6 @@ const result = await LiveActivities.startActivity({
         ]
       },
       {
-        id: "content",
         type: "container",
         properties: [
           { direction: "vertical" },
@@ -50,7 +47,6 @@ const result = await LiveActivities.startActivity({
         ],
         children: [
           {
-            id: "title",
             type: "text",
             properties: [
               { text: "{{title}}" },
@@ -60,7 +56,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "description",
             type: "text",
             properties: [
               { text: "{{description}}" },
@@ -101,7 +96,6 @@ Showcase multiple SF Symbols with different colors and styles.
 ```typescript
 const result = await LiveActivities.startActivity({
   layout: {
-    id: "multiple-icons-example",
     type: "container",
     properties: [
       { direction: "vertical" },
@@ -112,7 +106,6 @@ const result = await LiveActivities.startActivity({
     ],
     children: [
       {
-        id: "header",
         type: "text",
         properties: [
           { text: "{{headerText}}" },
@@ -123,7 +116,6 @@ const result = await LiveActivities.startActivity({
         ]
       },
       {
-        id: "icons-row",
         type: "container",
         properties: [
           { direction: "horizontal" },
@@ -132,7 +124,6 @@ const result = await LiveActivities.startActivity({
         ],
         children: [
           {
-            id: "heart-icon",
             type: "image",
             properties: [
               { systeName: "heart.fill" },
@@ -142,7 +133,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "star-icon",
             type: "image",
             properties: [
               { systeName: "star.fill" },
@@ -152,7 +142,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "checkmark-icon",
             type: "image",
             properties: [
               { systeName: "checkmark.circle.fill" },
@@ -164,7 +153,6 @@ const result = await LiveActivities.startActivity({
         ]
       },
       {
-        id: "status-text",
         type: "text",
         properties: [
           { text: "{{statusText}}" },
@@ -204,7 +192,6 @@ Demonstrate different image sizes with the same icon.
 ```typescript
 const result = await LiveActivities.startActivity({
   layout: {
-    id: "image-sizes-example",
     type: "container",
     properties: [
       { direction: "vertical" },
@@ -217,7 +204,6 @@ const result = await LiveActivities.startActivity({
     ],
     children: [
       {
-        id: "title",
         type: "text",
         properties: [
           { text: "{{title}}" },
@@ -228,7 +214,6 @@ const result = await LiveActivities.startActivity({
         ]
       },
       {
-        id: "sizes-row",
         type: "container",
         properties: [
           { direction: "horizontal" },
@@ -237,7 +222,6 @@ const result = await LiveActivities.startActivity({
         ],
         children: [
           {
-            id: "small-icon",
             type: "image",
             properties: [
               { systeName: "circle.fill" },
@@ -247,7 +231,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "medium-icon",
             type: "image",
             properties: [
               { systeName: "circle.fill" },
@@ -257,7 +240,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "large-icon",
             type: "image",
             properties: [
               { systeName: "circle.fill" },
@@ -267,7 +249,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "xlarge-icon",
             type: "image",
             properties: [
               { systeName: "circle.fill" },
@@ -279,7 +260,6 @@ const result = await LiveActivities.startActivity({
         ]
       },
       {
-        id: "labels-row",
         type: "container",
         properties: [
           { direction: "horizontal" },
@@ -288,7 +268,6 @@ const result = await LiveActivities.startActivity({
         ],
         children: [
           {
-            id: "small-label",
             type: "text",
             properties: [
               { text: "16pt" },
@@ -299,7 +278,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "medium-label",
             type: "text",
             properties: [
               { text: "24pt" },
@@ -310,7 +288,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "large-label",
             type: "text",
             properties: [
               { text: "32pt" },
@@ -321,7 +298,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "xlarge-label",
             type: "text",
             properties: [
               { text: "48pt" },
@@ -362,7 +338,6 @@ User profile layout with rounded avatar and status indicators.
 ```typescript
 const result = await LiveActivities.startActivity({
   layout: {
-    id: "rounded-images-example",
     type: "container",
     properties: [
       { direction: "horizontal" },
@@ -373,7 +348,6 @@ const result = await LiveActivities.startActivity({
     ],
     children: [
       {
-        id: "avatar-section",
         type: "container",
         properties: [
           { direction: "vertical" },
@@ -382,7 +356,6 @@ const result = await LiveActivities.startActivity({
         ],
         children: [
           {
-            id: "avatar-image",
             type: "image",
             properties: [
               { systeName: "person.crop.circle.fill" },
@@ -393,7 +366,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "avatar-label",
             type: "text",
             properties: [
               { text: "{{userName}}" },
@@ -405,7 +377,6 @@ const result = await LiveActivities.startActivity({
         ]
       },
       {
-        id: "info-section",
         type: "container",
         properties: [
           { direction: "vertical" },
@@ -413,7 +384,6 @@ const result = await LiveActivities.startActivity({
         ],
         children: [
           {
-            id: "status-with-icon",
             type: "container",
             properties: [
               { direction: "horizontal" },
@@ -422,7 +392,6 @@ const result = await LiveActivities.startActivity({
             ],
             children: [
               {
-                id: "status-icon",
                 type: "image",
                 properties: [
                   { systeName: "circle.fill" },
@@ -432,7 +401,6 @@ const result = await LiveActivities.startActivity({
                 ]
               },
               {
-                id: "status-text",
                 type: "text",
                 properties: [
                   { text: "{{status}}" },
@@ -444,7 +412,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "description",
             type: "text",
             properties: [
               { text: "{{description}}" },

@@ -21,7 +21,6 @@ A simple layout demonstrating different text sizes, weights, and alignments.
 ```typescript
 const result = await LiveActivities.startActivity({
   layout: {
-    id: "basic-text-example",
     type: "container",
     properties: [
       { direction: "vertical" },
@@ -32,7 +31,6 @@ const result = await LiveActivities.startActivity({
     ],
     children: [
       {
-        id: "title",
         type: "text",
         properties: [
           { text: "{{title}}" },
@@ -43,7 +41,6 @@ const result = await LiveActivities.startActivity({
         ]
       },
       {
-        id: "subtitle",
         type: "text",
         properties: [
           { text: "{{subtitle}}" },
@@ -54,7 +51,6 @@ const result = await LiveActivities.startActivity({
         ]
       },
       {
-        id: "status",
         type: "text",
         properties: [
           { text: "{{status}}" },
@@ -95,7 +91,6 @@ Advanced typography example showing different font weights and text alignments.
 ```typescript
 const result = await LiveActivities.startActivity({
   layout: {
-    id: "typography-example",
     type: "container",
     properties: [
       { direction: "vertical" },
@@ -108,7 +103,6 @@ const result = await LiveActivities.startActivity({
     ],
     children: [
       {
-        id: "heading",
         type: "text",
         properties: [
           { text: "{{heading}}" },
@@ -119,7 +113,6 @@ const result = await LiveActivities.startActivity({
         ]
       },
       {
-        id: "body",
         type: "text",
         properties: [
           { text: "{{body}}" },
@@ -131,7 +124,6 @@ const result = await LiveActivities.startActivity({
         ]
       },
       {
-        id: "caption",
         type: "text",
         properties: [
           { text: "{{caption}}" },
@@ -143,7 +135,6 @@ const result = await LiveActivities.startActivity({
         ]
       },
       {
-        id: "monospace",
         type: "text",
         properties: [
           { text: "{{monospace}}" },
@@ -186,7 +177,6 @@ Comprehensive example showing all text formatting capabilities.
 ```typescript
 const result = await LiveActivities.startActivity({
   layout: {
-    id: "formatting-example",
     type: "container",
     properties: [
       { direction: "vertical" },
@@ -197,7 +187,6 @@ const result = await LiveActivities.startActivity({
     ],
     children: [
       {
-        id: "normal-text",
         type: "text",
         properties: [
           { text: "{{normalText}}" },
@@ -208,7 +197,6 @@ const result = await LiveActivities.startActivity({
         ]
       },
       {
-        id: "bold-text",
         type: "text",
         properties: [
           { text: "{{boldText}}" },
@@ -219,7 +207,6 @@ const result = await LiveActivities.startActivity({
         ]
       },
       {
-        id: "italic-text",
         type: "text",
         properties: [
           { text: "{{italicText}}" },
@@ -231,7 +218,6 @@ const result = await LiveActivities.startActivity({
         ]
       },
       {
-        id: "underline-text",
         type: "text",
         properties: [
           { text: "{{underlineText}}" },
@@ -243,7 +229,6 @@ const result = await LiveActivities.startActivity({
         ]
       },
       {
-        id: "strikethrough-text",
         type: "text",
         properties: [
           { text: "{{strikethroughText}}" },

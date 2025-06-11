@@ -193,7 +193,6 @@ type ColorString =
  * @example
  * ```typescript
  * const element: LayoutElement = {
- *   id: "unique-element-id",
  *   type: "text",
  *   properties: [
  *     { text: "Hello World" }
@@ -460,7 +459,6 @@ type TimerPropertyObject =
  * @example
  * ```typescript
  * const container: LayoutElementContainer = {
- *   id: "main-container",
  *   type: "container",
  *   properties: [
  *     { direction: "vertical" },
@@ -521,7 +519,6 @@ type GradientPoint =
  * @example
  * ```typescript
  * const textElement: LayoutElementText = {
- *   id: "title-text",
  *   type: "text",
  *   properties: [
  *     { text: "Welcome to Live Activities" },
@@ -547,7 +544,6 @@ export type LayoutElementText = Prettify<{
  * @example
  * ```typescript
  * const imageElement: LayoutElementImage = {
- *   id: "profile-image",
  *   type: "image",
  *   properties: [
  *     { url: "https://example.com/avatar.jpg" },
@@ -573,7 +569,6 @@ export type LayoutElementImage = Prettify<{
  * @example
  * ```typescript
  * const progressElement: LayoutElementProgress = {
- *   id: "download-progress",
  *   type: "progress",
  *   properties: [
  *     { value: 0.75 },
@@ -599,7 +594,6 @@ export type LayoutElementProgress = Prettify<{
  * @example
  * ```typescript
  * const timerElement: LayoutElementTimer = {
- *   id: "countdown-timer",
  *   type: "timer",
  *   properties: [
  *     { endTime: Date.now() + 3600000 }, // 1 hour from now
@@ -660,7 +654,6 @@ type ChartPropertyObject =
  * @example
  * ```typescript
  * const segmentedProgressElement: LayoutElementSegmentedProgress = {
- *   id: "task-progress",
  *   type: "segmented-progress",
  *   properties: [
  *     { segments: 5 },
@@ -759,7 +752,6 @@ type GaugePropertyObject =
  * @example
  * ```typescript
  * const spacerElement: LayoutElementSpacer = {
- *   id: "flex-spacer",
  *   type: "spacer",
  *   properties: [
  *     { minLength: 8 },
@@ -783,7 +775,6 @@ export type LayoutElementSpacer = Prettify<{
  * @example
  * ```typescript
  * const gaugeElement: LayoutElementGauge = {
- *   id: "battery-gauge",
  *   type: "gauge",
  *   properties: [
  *     { value: 75 },

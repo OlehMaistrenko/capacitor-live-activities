@@ -40,7 +40,6 @@ Creates layered layouts with gradient backgrounds and overlaid content.
 ```typescript
 const result = await LiveActivities.startActivity({
   layout: {
-    id: "stack-layout-example",
     type: "container",
     properties: [
       { direction: "stack" },
@@ -50,7 +49,6 @@ const result = await LiveActivities.startActivity({
     ],
     children: [
       {
-        id: "background-gradient",
         type: "container",
         properties: [
           { direction: "horizontal" },
@@ -66,7 +64,6 @@ const result = await LiveActivities.startActivity({
         children: []
       },
       {
-        id: "content-overlay",
         type: "container",
         properties: [
           { direction: "horizontal" },
@@ -76,7 +73,6 @@ const result = await LiveActivities.startActivity({
         ],
         children: [
           {
-            id: "overlay-icon",
             type: "image",
             properties: [
               { systeName: "layers.fill" },
@@ -86,7 +82,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "overlay-text",
             type: "text",
             properties: [
               { text: "{{title}}" },
@@ -126,7 +121,6 @@ Advanced layout combining multiple container types with gradient headers and met
 ```typescript
 const result = await LiveActivities.startActivity({
   layout: {
-    id: "complex-layout-example",
     type: "container",
     properties: [
       { direction: "vertical" },
@@ -139,7 +133,6 @@ const result = await LiveActivities.startActivity({
     ],
     children: [
       {
-        id: "header-section",
         type: "container",
         properties: [
           { direction: "stack" },
@@ -147,7 +140,6 @@ const result = await LiveActivities.startActivity({
         ],
         children: [
           {
-            id: "header-background",
             type: "container",
             properties: [
               { direction: "horizontal" },
@@ -163,7 +155,6 @@ const result = await LiveActivities.startActivity({
             children: []
           },
           {
-            id: "header-content",
             type: "container",
             properties: [
               { direction: "horizontal" },
@@ -173,7 +164,6 @@ const result = await LiveActivities.startActivity({
             ],
             children: [
               {
-                id: "app-icon",
                 type: "image",
                 properties: [
                   { systeName: "star.circle.fill" },
@@ -183,7 +173,6 @@ const result = await LiveActivities.startActivity({
                 ]
               },
               {
-                id: "header-text",
                 type: "container",
                 properties: [
                   { direction: "vertical" },
@@ -191,7 +180,6 @@ const result = await LiveActivities.startActivity({
                 ],
                 children: [
                   {
-                    id: "app-name",
                     type: "text",
                     properties: [
                       { text: "{{appName}}" },
@@ -201,7 +189,6 @@ const result = await LiveActivities.startActivity({
                     ]
                   },
                   {
-                    id: "status",
                     type: "text",
                     properties: [
                       { text: "{{status}}" },
@@ -217,7 +204,6 @@ const result = await LiveActivities.startActivity({
         ]
       },
       {
-        id: "main-content",
         type: "container",
         properties: [
           { direction: "horizontal" },
@@ -226,7 +212,6 @@ const result = await LiveActivities.startActivity({
         ],
         children: [
           {
-            id: "left-column",
             type: "container",
             properties: [
               { direction: "vertical" },
@@ -234,7 +219,6 @@ const result = await LiveActivities.startActivity({
             ],
             children: [
               {
-                id: "metric-1",
                 type: "container",
                 properties: [
                   { direction: "vertical" },
@@ -245,7 +229,6 @@ const result = await LiveActivities.startActivity({
                 ],
                 children: [
                   {
-                    id: "metric-1-value",
                     type: "text",
                     properties: [
                       { text: "{{metric1Value}}" },
@@ -256,7 +239,6 @@ const result = await LiveActivities.startActivity({
                     ]
                   },
                   {
-                    id: "metric-1-label",
                     type: "text",
                     properties: [
                       { text: "{{metric1Label}}" },
@@ -270,7 +252,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "right-column",
             type: "container",
             properties: [
               { direction: "vertical" },
@@ -278,7 +259,6 @@ const result = await LiveActivities.startActivity({
             ],
             children: [
               {
-                id: "metric-2",
                 type: "container",
                 properties: [
                   { direction: "vertical" },
@@ -289,7 +269,6 @@ const result = await LiveActivities.startActivity({
                 ],
                 children: [
                   {
-                    id: "metric-2-value",
                     type: "text",
                     properties: [
                       { text: "{{metric2Value}}" },
@@ -300,7 +279,6 @@ const result = await LiveActivities.startActivity({
                     ]
                   },
                   {
-                    id: "metric-2-label",
                     type: "text",
                     properties: [
                       { text: "{{metric2Label}}" },
@@ -350,7 +328,6 @@ Professional dashboard layout with dark theme and statistics grid.
 ```typescript
 const result = await LiveActivities.startActivity({
   layout: {
-    id: "dashboard-example",
     type: "container",
     properties: [
       { direction: "vertical" },
@@ -361,7 +338,6 @@ const result = await LiveActivities.startActivity({
     ],
     children: [
       {
-        id: "dashboard-header",
         type: "container",
         properties: [
           { direction: "horizontal" },
@@ -370,7 +346,6 @@ const result = await LiveActivities.startActivity({
         ],
         children: [
           {
-            id: "dashboard-icon",
             type: "image",
             properties: [
               { systeName: "chart.line.uptrend.xyaxis" },
@@ -380,7 +355,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "dashboard-title",
             type: "text",
             properties: [
               { text: "{{dashboardTitle}}" },
@@ -392,7 +366,6 @@ const result = await LiveActivities.startActivity({
         ]
       },
       {
-        id: "stats-grid",
         type: "container",
         properties: [
           { direction: "horizontal" },
@@ -400,7 +373,6 @@ const result = await LiveActivities.startActivity({
         ],
         children: [
           {
-            id: "stat-1",
             type: "container",
             properties: [
               { direction: "vertical" },
@@ -411,7 +383,6 @@ const result = await LiveActivities.startActivity({
             ],
             children: [
               {
-                id: "stat-1-icon",
                 type: "image",
                 properties: [
                   { systeName: "person.3.fill" },
@@ -421,7 +392,6 @@ const result = await LiveActivities.startActivity({
                 ]
               },
               {
-                id: "stat-1-value",
                 type: "text",
                 properties: [
                   { text: "{{users}}" },
@@ -432,7 +402,6 @@ const result = await LiveActivities.startActivity({
                 ]
               },
               {
-                id: "stat-1-label",
                 type: "text",
                 properties: [
                   { text: "Users" },
@@ -444,7 +413,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "stat-2",
             type: "container",
             properties: [
               { direction: "vertical" },
@@ -455,7 +423,6 @@ const result = await LiveActivities.startActivity({
             ],
             children: [
               {
-                id: "stat-2-icon",
                 type: "image",
                 properties: [
                   { systeName: "dollarsign.circle.fill" },
@@ -465,7 +432,6 @@ const result = await LiveActivities.startActivity({
                 ]
               },
               {
-                id: "stat-2-value",
                 type: "text",
                 properties: [
                   { text: "{{revenue}}" },
@@ -476,7 +442,6 @@ const result = await LiveActivities.startActivity({
                 ]
               },
               {
-                id: "stat-2-label",
                 type: "text",
                 properties: [
                   { text: "Revenue" },
@@ -488,7 +453,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "stat-3",
             type: "container",
             properties: [
               { direction: "vertical" },
@@ -499,7 +463,6 @@ const result = await LiveActivities.startActivity({
             ],
             children: [
               {
-                id: "stat-3-icon",
                 type: "image",
                 properties: [
                   { systeName: "arrow.up.right.circle.fill" },
@@ -509,7 +472,6 @@ const result = await LiveActivities.startActivity({
                 ]
               },
               {
-                id: "stat-3-value",
                 type: "text",
                 properties: [
                   { text: "{{growth}}" },
@@ -520,7 +482,6 @@ const result = await LiveActivities.startActivity({
                 ]
               },
               {
-                id: "stat-3-label",
                 type: "text",
                 properties: [
                   { text: "Growth" },

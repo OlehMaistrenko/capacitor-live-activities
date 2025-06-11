@@ -12,7 +12,6 @@ Ideal for showing trends over time.
 
 ```json
 {
-  "id": "line-chart",
   "type": "chart",
   "properties": [
     { "type": "line" },
@@ -43,7 +42,6 @@ Combines line with fill, excellent for volumes or comparisons.
 
 ```json
 {
-  "id": "area-chart",
   "type": "chart",
   "properties": [
     { "type": "area" },
@@ -74,7 +72,6 @@ Ideal for categorical comparisons and discrete values.
 
 ```json
 {
-  "id": "bar-chart",
   "type": "chart",
   "properties": [
     { "type": "bar" },
@@ -161,7 +158,6 @@ const data = {
 ```json
 {
   "layout": {
-    "id": "system-monitor",
     "type": "container",
     "properties": [
       { "direction": "vertical" },
@@ -172,7 +168,6 @@ const data = {
     ],
     "children": [
       {
-        "id": "header",
         "type": "container",
         "properties": [
           { "direction": "horizontal" },
@@ -180,7 +175,6 @@ const data = {
         ],
         "children": [
           {
-            "id": "cpu-icon",
             "type": "image",
             "properties": [
               { "systeName": "cpu" },
@@ -190,7 +184,6 @@ const data = {
             ]
           },
           {
-            "id": "title",
             "type": "text",
             "properties": [
               { "text": "CPU Usage" },
@@ -200,7 +193,6 @@ const data = {
             ]
           },
           {
-            "id": "percentage",
             "type": "text",
             "properties": [
               { "text": "{{cpuPercentage}}%" },
@@ -212,7 +204,6 @@ const data = {
         ]
       },
       {
-        "id": "cpu-chart",
         "type": "chart",
         "properties": [
           { "type": "area" },
@@ -241,7 +232,6 @@ const data = {
 ```json
 {
   "layout": {
-    "id": "financial-dashboard",
     "type": "container",
     "properties": [
       { "direction": "vertical" },
@@ -252,7 +242,6 @@ const data = {
     ],
     "children": [
       {
-        "id": "stock-header",
         "type": "container",
         "properties": [
           { "direction": "horizontal" },
@@ -261,7 +250,6 @@ const data = {
         ],
         "children": [
           {
-            "id": "stock-symbol",
             "type": "text",
             "properties": [
               { "text": "{{symbol}}" },
@@ -271,7 +259,6 @@ const data = {
             ]
           },
           {
-            "id": "current-price",
             "type": "text",
             "properties": [
               { "text": "${{price}}" },
@@ -281,7 +268,6 @@ const data = {
             ]
           },
           {
-            "id": "price-change",
             "type": "container",
             "properties": [
               { "direction": "horizontal" },
@@ -290,7 +276,6 @@ const data = {
             ],
             "children": [
               {
-                "id": "trend-icon",
                 "type": "image",
                 "properties": [
                   { "systeName": "{{trendIcon}}" },
@@ -300,7 +285,6 @@ const data = {
                 ]
               },
               {
-                "id": "change-text",
                 "type": "text",
                 "properties": [
                   { "text": "{{changeText}}" },
@@ -313,7 +297,6 @@ const data = {
         ]
       },
       {
-        "id": "price-chart",
         "type": "chart",
         "properties": [
           { "type": "area" },
@@ -327,7 +310,6 @@ const data = {
         ]
       },
       {
-        "id": "volume-section",
         "type": "container",
         "properties": [
           { "direction": "vertical" },
@@ -335,7 +317,6 @@ const data = {
         ],
         "children": [
           {
-            "id": "volume-label",
             "type": "text",
             "properties": [
               { "text": "Volume" },
@@ -344,7 +325,6 @@ const data = {
             ]
           },
           {
-            "id": "volume-chart",
             "type": "chart",
             "properties": [
               { "type": "bar" },
@@ -377,7 +357,6 @@ const data = {
 ```json
 {
   "layout": {
-    "id": "analytics-widget",
     "type": "container",
     "properties": [
       { "direction": "vertical" },
@@ -388,7 +367,6 @@ const data = {
     ],
     "children": [
       {
-        "id": "metrics-row",
         "type": "container",
         "properties": [
           { "direction": "horizontal" },
@@ -396,7 +374,6 @@ const data = {
         ],
         "children": [
           {
-            "id": "visitors-metric",
             "type": "container",
             "properties": [
               { "direction": "vertical" },
@@ -404,7 +381,6 @@ const data = {
             ],
             "children": [
               {
-                "id": "visitors-label",
                 "type": "text",
                 "properties": [
                   { "text": "Visitors" },
@@ -413,7 +389,6 @@ const data = {
                 ]
               },
               {
-                "id": "visitors-value",
                 "type": "text",
                 "properties": [
                   { "text": "{{visitorsCount}}" },
@@ -423,7 +398,6 @@ const data = {
                 ]
               },
               {
-                "id": "visitors-chart",
                 "type": "chart",
                 "properties": [
                   { "type": "line" },
@@ -438,7 +412,6 @@ const data = {
             ]
           },
           {
-            "id": "revenue-metric",
             "type": "container",
             "properties": [
               { "direction": "vertical" },
@@ -446,7 +419,6 @@ const data = {
             ],
             "children": [
               {
-                "id": "revenue-label",
                 "type": "text",
                 "properties": [
                   { "text": "Revenue" },
@@ -455,7 +427,6 @@ const data = {
                 ]
               },
               {
-                "id": "revenue-value",
                 "type": "text",
                 "properties": [
                   { "text": "${{revenue}}" },
@@ -465,7 +436,6 @@ const data = {
                 ]
               },
               {
-                "id": "revenue-chart",
                 "type": "chart",
                 "properties": [
                   { "type": "bar" },
@@ -547,7 +517,6 @@ function generateChartLayout(data: ChartData) {
   
   return {
     layout: {
-      id: "crypto-chart",
       type: "container",
       properties: [
         { direction: "vertical" },
@@ -558,7 +527,6 @@ function generateChartLayout(data: ChartData) {
       ],
       children: [
         {
-          id: "price-chart",
           type: "chart",
           properties: [
             { type: "area" },
@@ -572,7 +540,6 @@ function generateChartLayout(data: ChartData) {
           ]
         },
         {
-          id: "volume-chart",
           type: "chart",
           properties: [
             { type: "bar" },

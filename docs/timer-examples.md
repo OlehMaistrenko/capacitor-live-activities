@@ -22,7 +22,6 @@ const endTime = Date.now() + (15 * 60 * 1000); // 15 minutes from now
 
 const result = await LiveActivities.startActivity({
   layout: {
-    id: "countdown-example",
     type: "container",
     properties: [
       { direction: "vertical" },
@@ -33,7 +32,6 @@ const result = await LiveActivities.startActivity({
     ],
     children: [
       {
-        id: "title",
         type: "text",
         properties: [
           { text: "{{title}}" },
@@ -44,7 +42,6 @@ const result = await LiveActivities.startActivity({
         ]
       },
       {
-        id: "timer",
         type: "timer",
         properties: [
           { endTime: endTime },
@@ -57,7 +54,6 @@ const result = await LiveActivities.startActivity({
         ]
       },
       {
-        id: "description",
         type: "text",
         properties: [
           { text: "{{description}}" },
@@ -99,7 +95,6 @@ const endTime = Date.now() + (2 * 60 * 60 * 1000); // 2 hours from now
 
 const result = await LiveActivities.startActivity({
   layout: {
-    id: "relative-time-example",
     type: "container",
     properties: [
       { direction: "horizontal" },
@@ -111,7 +106,6 @@ const result = await LiveActivities.startActivity({
     ],
     children: [
       {
-        id: "clock-icon",
         type: "image",
         properties: [
           { systeName: "clock.fill" },
@@ -121,7 +115,6 @@ const result = await LiveActivities.startActivity({
         ]
       },
       {
-        id: "time-content",
         type: "container",
         properties: [
           { direction: "vertical" },
@@ -129,7 +122,6 @@ const result = await LiveActivities.startActivity({
         ],
         children: [
           {
-            id: "relative-timer",
             type: "timer",
             properties: [
               { endTime: endTime },
@@ -141,7 +133,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "label",
             type: "text",
             properties: [
               { text: "{{label}}" },
@@ -184,7 +175,6 @@ const endTime = Date.now() + (45 * 60 * 1000); // 45 minutes from now
 
 const result = await LiveActivities.startActivity({
   layout: {
-    id: "workout-timer-example",
     type: "container",
     properties: [
       { direction: "vertical" },
@@ -195,7 +185,6 @@ const result = await LiveActivities.startActivity({
     ],
     children: [
       {
-        id: "workout-header",
         type: "container",
         properties: [
           { direction: "horizontal" },
@@ -204,7 +193,6 @@ const result = await LiveActivities.startActivity({
         ],
         children: [
           {
-            id: "workout-icon",
             type: "image",
             properties: [
               { systeName: "figure.run.circle.fill" },
@@ -214,7 +202,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "workout-info",
             type: "container",
             properties: [
               { direction: "vertical" },
@@ -222,7 +209,6 @@ const result = await LiveActivities.startActivity({
             ],
             children: [
               {
-                id: "workout-name",
                 type: "text",
                 properties: [
                   { text: "{{workoutName}}" },
@@ -233,7 +219,6 @@ const result = await LiveActivities.startActivity({
                 ]
               },
               {
-                id: "workout-type",
                 type: "text",
                 properties: [
                   { text: "{{workoutType}}" },
@@ -247,7 +232,6 @@ const result = await LiveActivities.startActivity({
         ]
       },
       {
-        id: "timer-display",
         type: "container",
         properties: [
           { direction: "horizontal" },
@@ -256,7 +240,6 @@ const result = await LiveActivities.startActivity({
         ],
         children: [
           {
-            id: "time-remaining",
             type: "container",
             properties: [
               { direction: "vertical" },
@@ -265,7 +248,6 @@ const result = await LiveActivities.startActivity({
             ],
             children: [
               {
-                id: "remaining-timer",
                 type: "timer",
                 properties: [
                   { endTime: endTime },
@@ -278,7 +260,6 @@ const result = await LiveActivities.startActivity({
                 ]
               },
               {
-                id: "remaining-label",
                 type: "text",
                 properties: [
                   { text: "TIME LEFT" },
@@ -291,7 +272,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "stats",
             type: "container",
             properties: [
               { direction: "vertical" },
@@ -299,7 +279,6 @@ const result = await LiveActivities.startActivity({
             ],
             children: [
               {
-                id: "calories",
                 type: "container",
                 properties: [
                   { direction: "vertical" },
@@ -308,7 +287,6 @@ const result = await LiveActivities.startActivity({
                 ],
                 children: [
                   {
-                    id: "calories-value",
                     type: "text",
                     properties: [
                       { text: "{{calories}}" },
@@ -319,7 +297,6 @@ const result = await LiveActivities.startActivity({
                     ]
                   },
                   {
-                    id: "calories-label",
                     type: "text",
                     properties: [
                       { text: "CAL" },
@@ -331,7 +308,6 @@ const result = await LiveActivities.startActivity({
                 ]
               },
               {
-                id: "heart-rate",
                 type: "container",
                 properties: [
                   { direction: "vertical" },
@@ -340,7 +316,6 @@ const result = await LiveActivities.startActivity({
                 ],
                 children: [
                   {
-                    id: "hr-value",
                     type: "text",
                     properties: [
                       { text: "{{heartRate}}" },
@@ -351,7 +326,6 @@ const result = await LiveActivities.startActivity({
                     ]
                   },
                   {
-                    id: "hr-label",
                     type: "text",
                     properties: [
                       { text: "BPM" },
@@ -401,7 +375,6 @@ const endTime = Date.now() + (30 * 60 * 1000); // 30 minutes from now
 
 const result = await LiveActivities.startActivity({
   layout: {
-    id: "meeting-timer-example",
     type: "container",
     properties: [
       { direction: "vertical" },
@@ -412,7 +385,6 @@ const result = await LiveActivities.startActivity({
     ],
     children: [
       {
-        id: "meeting-header",
         type: "container",
         properties: [
           { direction: "horizontal" },
@@ -421,7 +393,6 @@ const result = await LiveActivities.startActivity({
         ],
         children: [
           {
-            id: "video-icon",
             type: "image",
             properties: [
               { systeName: "video.fill" },
@@ -431,7 +402,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "meeting-title",
             type: "text",
             properties: [
               { text: "{{meetingTitle}}" },
@@ -444,7 +414,6 @@ const result = await LiveActivities.startActivity({
         ]
       },
       {
-        id: "timer-row",
         type: "container",
         properties: [
           { direction: "horizontal" },
@@ -453,7 +422,6 @@ const result = await LiveActivities.startActivity({
         ],
         children: [
           {
-            id: "time-icon",
             type: "image",
             properties: [
               { systeName: "clock" },
@@ -463,7 +431,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "meeting-timer",
             type: "timer",
             properties: [
               { endTime: endTime },
@@ -476,7 +443,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "status-dot",
             type: "image",
             properties: [
               { systeName: "circle.fill" },
@@ -486,7 +452,6 @@ const result = await LiveActivities.startActivity({
             ]
           },
           {
-            id: "live-text",
             type: "text",
             properties: [
               { text: "LIVE" },
@@ -498,7 +463,6 @@ const result = await LiveActivities.startActivity({
         ]
       },
       {
-        id: "participants",
         type: "text",
         properties: [
           { text: "{{participants}}" },

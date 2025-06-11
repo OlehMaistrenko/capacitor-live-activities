@@ -17,14 +17,12 @@ const result = await LiveActivities.startActivity({
 ```typescript
 const result = await LiveActivities.startActivity({
   layout: {
-    id: "main-container",
     type: "container",
     properties: [
       { direction: "vertical" }
     ],
     children: [
       {
-        id: "text-element",
         type: "text",
         properties: [
           { text: "Hello World" }
@@ -190,7 +188,6 @@ const data = {
 ```typescript
 // ✅ Estrutura correta
 {
-  "id": "unique-id",              // String obrigatório
   "type": "text",                 // String obrigatório  
   "properties": [                 // Array obrigatório
     { "text": "Hello" },          // Objetos com 1 propriedade

@@ -259,7 +259,6 @@ The system supports named colors in addition to hexadecimal values:
 
 ```json
 {
-  "id": "fancy-card",
   "type": "container",
   "properties": [
     { "direction": "vertical" },
@@ -276,7 +275,6 @@ The system supports named colors in addition to hexadecimal values:
   ],
   "children": [
     {
-      "id": "title",
       "type": "text",
       "properties": [
         { "text": "{{title}}" },
@@ -294,7 +292,6 @@ The system supports named colors in addition to hexadecimal values:
 
 ```json
 {
-  "id": "rotated-badge",
   "type": "container",
   "properties": [
     { "direction": "horizontal" },
@@ -310,7 +307,6 @@ The system supports named colors in addition to hexadecimal values:
 
 ```json
 {
-  "id": "responsive-container",
   "type": "container",
   "properties": [
     { "direction": "horizontal" },
@@ -323,7 +319,6 @@ The system supports named colors in addition to hexadecimal values:
   ],
   "children": [
     {
-      "id": "flexible-image",
       "type": "image",
       "properties": [
         { "systemName": "star.fill" },
@@ -334,7 +329,6 @@ The system supports named colors in addition to hexadecimal values:
       ]
     },
     {
-      "id": "flexible-text",
       "type": "text",
       "properties": [
         { "text": "{{dynamicText}}" },
