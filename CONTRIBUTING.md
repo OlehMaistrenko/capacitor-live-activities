@@ -1,52 +1,40 @@
 # Contributing
 
-This guide provides instructions for contributing to this Capacitor plugin.
+We're thrilled that you're interested in contributing! This document outlines the process for contributing and some guidelines to follow.
 
-## Developing
+## Getting Started
 
-### Local Setup
+1. Fork the repository on GitHub.
+2. Clone your fork locally: `git clone https://github.com/ludufre/capacitor-live-activities.git`
+3. Create a new branch for your feature or bug fix: `git checkout -b feature/your-feature-name`
 
-1. Fork and clone the repo.
-1. Install the dependencies.
+## Making Changes
 
-    ```shell
-    npm install
-    ```
+1. Make your changes in your branch.
+2. Follow the coding style of the project, including indentation.
+3. Include comments in your code where necessary.
+4. Write or update tests for your changes if applicable.
+5. Ensure your changes don't break any existing functionality.
 
-1. Install SwiftLint if you're on macOS.
+## Committing Changes
 
-    ```shell
-    brew install swiftlint
-    ```
+1. Commit your changes: `git commit -m "Add a brief description of your changes"`
+2. Push to your fork: `git push origin feature/your-feature-name`
+3. Submit a pull request to the main repository.
 
-### Scripts
+## Pull Request Guidelines
 
-#### `npm run build`
+1. Ensure your PR title clearly describes the changes.
+2. Include a description of what your changes do and why they should be merged.
+3. Make sure all tests pass if applicable.
+4. Link any relevant issues in the pull request description.
 
-Build the plugin web assets and generate plugin API documentation using [`@capacitor/docgen`](https://github.com/ionic-team/capacitor-docgen).
+## Code of Conduct
 
-It will compile the TypeScript code from `src/` into ESM JavaScript in `dist/esm/`. These files are used in apps with bundlers when your plugin is imported.
+Please note that this project is released with a Contributor Code of Conduct. By participating in this project, you agree to abide by its terms.
 
-Then, Rollup will bundle the code into a single file at `dist/plugin.js`. This file is used in apps without bundlers by including it as a script in `index.html`.
+## Questions?
 
-#### `npm run verify`
+If you have any questions, please feel free to open an issue or contact the maintainers.
 
-Build and validate the web and native projects.
-
-This is useful to run in CI to verify that the plugin builds for all platforms.
-
-#### `npm run lint` / `npm run fmt`
-
-Check formatting and code quality, autoformat/autofix if possible.
-
-This template is integrated with ESLint, Prettier, and SwiftLint. Using these tools is completely optional, but the [Capacitor Community](https://github.com/capacitor-community/) strives to have consistent code style and structure for easier cooperation.
-
-## Publishing
-
-There is a `prepublishOnly` hook in `package.json` which prepares the plugin before publishing, so all you need to do is run:
-
-```shell
-npm publish
-```
-
-> **Note**: The [`files`](https://docs.npmjs.com/cli/v7/configuring-npm/package-json#files) array in `package.json` specifies which files get published. If you rename files/directories or add files elsewhere, you may need to update it.
+Thank you for your contributions!
