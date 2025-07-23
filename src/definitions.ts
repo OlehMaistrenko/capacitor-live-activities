@@ -428,9 +428,9 @@ type ImagePropertyObject =
 type ProgressPropertyObject =
   | BasePropertyObject
   /** @property value - Current progress value @example { value: 0.7 } */
-  | { value: number }
+  | { value: number | string }
   /** @property total - Total/maximum value for progress calculation @example { total: 100 } */
-  | { total: number }
+  | { total: number | string }
   /** @property color - Progress bar fill color @example { color: "#00ff00" } */
   | { color: ColorString }
   /** @property backgroundColor - Progress bar background color @example { backgroundColor: "#f0f0f0" } */

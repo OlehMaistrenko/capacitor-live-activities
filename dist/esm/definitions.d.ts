@@ -315,7 +315,7 @@ declare type ContainerPropertyObjectBase =
  | {
     borderColor: ColorString;
 }
-/** @property insideAlignment - Frame alignment within the container @example { insideAlignment: "center" } */
+/** @property alignment - Frame alignment within the container @example { alignment: "center" } */
  | {
     alignment: ContainerPropertyObjectStackAlignment;
 };
@@ -324,7 +324,7 @@ declare type ContainerPropertyObjectHorizontal =
 {
     direction: 'horizontal';
 }
-/** @property alignment - Vertical alignment within container @example { alignment: "center" } */
+/** @property insideAlignment - Vertical alignment within container @example { insideAlignment: "center" } */
  | {
     insideAlignment: 'bottom' | 'center' | 'first-text-baseline' | 'last-text-baseline' | 'top';
 };
@@ -333,7 +333,7 @@ declare type ContainerPropertyObjectVertical =
 {
     direction: 'vertical';
 }
-/** @property alignment - Horizontal alignment within container @example { alignment: "center" } */
+/** @property insideAlignment - Horizontal alignment within container @example { insideAlignment: "center" } */
  | {
     insideAlignment: 'center' | 'leading' | 'left' | 'list-row-separator-leading' | 'list-row-separator-trailing' | 'list-row-separator-left' | 'list-row-separator-right' | 'trailing' | 'right';
 };
@@ -450,11 +450,11 @@ declare type ImagePropertyObject = BasePropertyObject
 declare type ProgressPropertyObject = BasePropertyObject
 /** @property value - Current progress value @example { value: 0.7 } */
  | {
-    value: number;
+    value: number | string;
 }
 /** @property total - Total/maximum value for progress calculation @example { total: 100 } */
  | {
-    total: number;
+    total: number | string;
 }
 /** @property color - Progress bar fill color @example { color: "#00ff00" } */
  | {

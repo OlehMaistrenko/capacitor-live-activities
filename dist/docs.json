@@ -987,11 +987,11 @@
           ]
         },
         {
-          "text": "{ value: number }",
+          "text": "{ value: number | string }",
           "complexTypes": []
         },
         {
-          "text": "{ total: number }",
+          "text": "{ total: number | string }",
           "complexTypes": []
         },
         {
