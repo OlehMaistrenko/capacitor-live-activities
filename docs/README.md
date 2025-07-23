@@ -42,6 +42,8 @@ This documentation provides comprehensive examples and code snippets for the Cap
 
 - [Food Order Tracking](./food-order-tracking.md) - Real-world delivery tracking example
 
+- [Flight Tracker](./flight-tracker.md) - Real-world flight tracker example
+
 ## 🚀 Getting Started
 
 All examples in this documentation are based on the working example app located in the `example-app/` directory. Each example demonstrates:

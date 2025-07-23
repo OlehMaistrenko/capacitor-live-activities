@@ -43,6 +43,8 @@
 
 - **[Food Order Tracking](./food-order-tracking.md)** - Delivery system
 
+- **[Flight Tracker](./flight-tracker.md)** - Flight tracking system
+
 ## 📱 **By App Category**
 
 ### 💰 **Finance Apps**

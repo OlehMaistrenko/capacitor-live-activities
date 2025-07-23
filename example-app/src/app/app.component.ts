@@ -84,6 +84,7 @@ export class AppComponent {
         { title: 'Food Order', url: '/food-order', icon: 'utensils' },
         { title: 'Gym Workout', url: '/gym-workout', icon: 'dumbbell' },
         { title: 'Crypto Tracker', url: '/crypto-tracker', icon: 'money-bill-trend-up' },
+        { title: 'Flight Tracker', url: '/flight-tracker', icon: 'plane' },
       ],
     },
   ];

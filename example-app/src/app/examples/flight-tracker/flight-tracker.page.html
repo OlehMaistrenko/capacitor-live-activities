@@ -1,0 +1,135 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Flight Tracker</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Flight Tracker</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="content-container">
+    <!-- Main Card -->
+    <ion-card class="main-card">
+      <ion-card-header>
+        <ion-card-title class="card-title">
+          <span class="title-icon">✈️</span>
+          Flight Tracker Live Activity
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p class="description">
+          Track a flight's progress with real-time status updates, gate information, and a visual progress bar.
+        </p>
+
+        <!-- Features -->
+        <div class="features">
+          <div class="feature">
+            <fa-icon icon="plane-departure" color="success" />
+            <div class="feature-info">
+              <strong>Real-Time Status</strong>
+              <p>From boarding to landing</p>
+            </div>
+          </div>
+
+          <div class="feature">
+            <fa-icon icon="door-open" color="medium" />
+            <div class="feature-info">
+              <strong>Gate & Seat Info</strong>
+              <p>Essential travel details</p>
+            </div>
+          </div>
+
+          <div class="feature">
+            <fa-icon icon="mobile-screen" color="warning" />
+            <div class="feature-info">
+              <strong>Dynamic Island</strong>
+              <p>Critical info at a glance</p>
+            </div>
+          </div>
+        </div>
+
+        @if (activityId) {
+        <ion-chip color="success" style="margin-bottom: 16px">
+          <ion-label>Active ID: {{ activityId }}</ion-label>
+        </ion-chip>
+        }
+
+        <!-- Controls -->
+        <div class="controls">
+          <ion-button
+            expand="block"
+            size="large"
+            (click)="startActivity()"
+            [disabled]="activityId !== null"
+          >
+            <fa-icon icon="play-circle" slot="start" />
+            Start Flight Tracker
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Flight Controls -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Flight Events</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item button (click)="updateActivity()" [disabled]="!activityId">
+            <fa-icon icon="plane" slot="start" style="color: #3880ff" />
+            <ion-label>
+              <h3>Flight In-Air</h3>
+              <p>Update status to "In-Air" and progress to 50%</p>
+            </ion-label>
+          </ion-item>
+
+          <ion-item button (click)="endActivity()" [disabled]="!activityId">
+            <fa-icon icon="plane-arrival" slot="start" style="color: #30d158" />
+            <ion-label>
+              <h3>Flight Landed</h3>
+              <p>End the activity with status "Landed"</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Dynamic Island Features -->
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Dynamic Island Integration</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-label>
+              <h3>Expanded State</h3>
+              <p>Shows flight route, status, and progress bar</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <h3>Compact State</h3>
+              <p>Displays gate information for quick access</p>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>
+              <h3>Minimal State</h3>
+              <p>A simple airplane icon for awareness</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

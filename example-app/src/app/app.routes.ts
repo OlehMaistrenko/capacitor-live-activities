@@ -61,4 +61,8 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./examples/layout-elements-examples/layout-elements-examples.page').then((m) => m.LayoutElementsExamplesPage),
   },
+  {
+    path: 'flight-tracker',
+    loadComponent: () => import('./examples/flight-tracker/flight-tracker.page').then(m => m.FlightTrackerPage)
+  },
 ];
